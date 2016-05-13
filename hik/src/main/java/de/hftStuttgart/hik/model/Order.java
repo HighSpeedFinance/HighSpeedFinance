@@ -15,13 +15,14 @@ public class Order {
 	private float orderSumm;
 	private String orderNumber;
 	private Status status;
-	
-	public Order(){
-		
+
+	public Order() {
+
 	}
 
-	public Order(Long id, int orderAmount, float orderSumm, String orderNumber, Status status) {
-		super();
+	public Order(final Long id, final int orderAmount, final float orderSumm, final String orderNumber,
+			final Status status) {
+
 		this.id = id;
 		this.orderAmount = orderAmount;
 		this.orderSumm = orderSumm;
@@ -68,6 +69,5 @@ public class Order {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	
 
 }

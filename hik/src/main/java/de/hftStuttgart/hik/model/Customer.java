@@ -5,9 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-
 @Entity
-public class Customer{
+public class Customer {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -26,14 +25,15 @@ public class Customer{
 	private String customerTitel;
 
 	public Customer() {
-		
+
 	}
 
-	public Customer(int customerNumber, String customerCompanyName, String customerContactPersonFirstName,
-			String customerContactPersonLastName, String customerStreet, int customerPostalCode, String customerCity,
-			int customerPhoneNumber, String customerEmail, int customerHouseNumber, String customerCountry,
-			int customerFax, String customerTitel) {
-		super();
+	public Customer(final int customerNumber, final String customerCompanyName,
+			final String customerContactPersonFirstName, final String customerContactPersonLastName,
+			final String customerStreet, final int customerPostalCode, final String customerCity,
+			final int customerPhoneNumber, final String customerEmail, final int customerHouseNumber,
+			final String customerCountry, final int customerFax, final String customerTitel) {
+		
 		this.customerNumber = customerNumber;
 		this.customerCompanyName = customerCompanyName;
 		this.customerContactPersonFirstName = customerContactPersonFirstName;
@@ -49,8 +49,6 @@ public class Customer{
 		this.customerTitel = customerTitel;
 	}
 
-	
-	
 	public String getCustomerTitel() {
 		return customerTitel;
 	}
@@ -162,5 +160,5 @@ public class Customer{
 	public void setCustomerFax(int customerFax) {
 		this.customerFax = customerFax;
 	}
-	
+
 }

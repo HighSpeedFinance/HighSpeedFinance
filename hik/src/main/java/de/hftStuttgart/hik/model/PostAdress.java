@@ -20,13 +20,13 @@ public class PostAdress {
 	private String street;
 	private int postIndex;
 	private String city;
-	
-	public PostAdress(){
-		
+
+	public PostAdress() {
+
 	}
 
-	public PostAdress(Long id, String street, int postIndex, String city) {
-		super();
+	public PostAdress(final Long id, final String street, final int postIndex, final String city) {
+
 		this.id = id;
 		this.street = street;
 		this.postIndex = postIndex;
@@ -64,6 +64,5 @@ public class PostAdress {
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
 
 }

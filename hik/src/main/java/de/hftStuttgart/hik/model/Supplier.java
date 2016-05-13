@@ -27,11 +27,12 @@ public class Supplier {
 	public Supplier() {
 	}
 
-	public Supplier(int supplierNumber, String supplierCompanyName, String supplierContactPersonFirstName,
-			String supplierContactPersonLastName, String supplierStreet, int supplierPostalCode, String supplierCity,
-			int supplierPhoneNumber, String supplierEmail, int supplierHouseNumber, String supplierCountry,
-			int supplierFax) {
-		super();
+	public Supplier(final int supplierNumber, final String supplierCompanyName,
+			final String supplierContactPersonFirstName, final String supplierContactPersonLastName,
+			final String supplierStreet, final int supplierPostalCode, String supplierCity,
+			final int supplierPhoneNumber, final String supplierEmail, final int supplierHouseNumber,
+			final String supplierCountry, final int supplierFax) {
+
 		this.supplierNumber = supplierNumber;
 		this.supplierCompanyName = supplierCompanyName;
 		this.supplierContactPersonFirstName = supplierContactPersonFirstName;
@@ -141,6 +142,7 @@ public class Supplier {
 	public void setSupplierFax(int supplierFax) {
 		this.supplierFax = supplierFax;
 	}
+
 	public Long getId() {
 		return id;
 	}
