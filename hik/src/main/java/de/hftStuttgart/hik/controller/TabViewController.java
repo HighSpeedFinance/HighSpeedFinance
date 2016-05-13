@@ -5,7 +5,7 @@ import java.io.IOException;
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.Supplier;
-import de.hftStuttgart.hik.utilities.SupplierService;
+import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
@@ -135,7 +135,7 @@ public class TabViewController {
 	private void deleteSupplier() {
 		int selectedIndex = supplierTable.getSelectionModel().getSelectedIndex();
 		if (supplierTable.getSelectionModel().getSelectedItem() != null) {
-			SupplierService.deleteSupplier(supplierTable.getSelectionModel().getSelectedItem());
+			SupplierUtil.deleteSupplier(supplierTable.getSelectionModel().getSelectedItem());
 			supplierTable.getItems().remove(selectedIndex);
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -164,7 +164,7 @@ public class TabViewController {
 
 				refreshPersonTable();
 				showSupplierDetails(selectedSupplier);
-				SupplierService.editSupplier(selectedSupplier);
+				SupplierUtil.editSupplier(selectedSupplier);
 			}
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);

@@ -11,9 +11,8 @@ import de.hftStuttgart.hik.model.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
-public class CustomerService {
-
+public enum CustomerUtil {
+	INSTANCE;
 	private static final String PERSISTENCE_UNIT_NAME = "jpa";
 	private static EntityManagerFactory factory;
 	private static EntityManager em;
@@ -41,7 +40,7 @@ public class CustomerService {
 		em.close();
 	}
 
-	public static void editCustomer (Customer cust) {
+	public static void editCustomer(Customer cust) {
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em = factory.createEntityManager();
 		em.getTransaction().begin();
@@ -50,15 +49,13 @@ public class CustomerService {
 		em.close();
 	}
 
-	
-	public static void deleteCustomer (Customer cust) {
+	public static void deleteCustomer(Customer cust) {
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em = factory.createEntityManager();
 		em.getTransaction().begin();
 		em.remove(em.merge(cust));
 		em.getTransaction().commit();
 		em.close();
-	
 
-}
+	}
 }

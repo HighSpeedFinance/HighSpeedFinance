@@ -5,8 +5,8 @@ import java.io.IOException;
 import de.hftStuttgart.hik.controller.TabViewController;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.Supplier;
-import de.hftStuttgart.hik.utilities.CustomerService;
-import de.hftStuttgart.hik.utilities.SupplierService;
+import de.hftStuttgart.hik.utilities.CustomerUtil;
+import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -91,8 +91,8 @@ public class Main extends Application {
 	//Delete dummy 
 	public Main() {
 		//addDummyCustomers();
-		supplierData.addAll(SupplierService.loadAllSuppliers());
-		customerData.addAll(CustomerService.loadAllCustomers());
+		supplierData.addAll(SupplierUtil.loadAllSuppliers());
+		customerData.addAll(CustomerUtil.loadAllCustomers());
 	}
 
 	public Stage getPrimaryStage() {
@@ -101,7 +101,7 @@ public class Main extends Application {
 	
 	public void addDummyCustomers(){
 		for(int i=0;i<10;i++){
-			CustomerService.addCustomer(new Customer(i,"customerCompanyName" + i,"customerContactPersonFirstName","customerContactPersonLastName","customerStreet"
+			CustomerUtil.addCustomer(new Customer(i,"customerCompanyName" + i,"customerContactPersonFirstName","customerContactPersonLastName","customerStreet"
 					,73770,"customerCity",0711344455,"customerEmail",16,"customerCountry",123,"customerTitel"));
 		}
 	}
@@ -109,7 +109,7 @@ public class Main extends Application {
 	// auslagern
 	public ObservableList<Supplier> getSupplierData(Supplier sup) {
 		if (sup != null)
-			SupplierService.addSupplier(sup);
+			SupplierUtil.addSupplier(sup);
 		return supplierData;
 	}
 	

@@ -12,8 +12,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 
-public class SupplierService {
+public enum SupplierUtil {
 
+	INSTANCE;
 	private static final String PERSISTENCE_UNIT_NAME = "jpa";
 	private static EntityManagerFactory factory;
 	private static EntityManager em;
