@@ -21,7 +21,6 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-	//hhhhh
 	private ObservableList<Supplier> supplierData = FXCollections.observableArrayList();
 	private ObservableList<Customer> customerData = FXCollections.observableArrayList();
 	private Stage primaryStage;
