@@ -1,9 +1,13 @@
 package de.hftStuttgart.hik.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Customer {
@@ -23,6 +27,9 @@ public class Customer {
 	private String customerCountry;
 	private int customerFax;
 	private String customerTitel;
+	
+	@OneToMany(cascade = CascadeType.REMOVE)
+	private List<Order> order;
 
 	public Customer() {
 
@@ -33,7 +40,7 @@ public class Customer {
 			final String customerStreet, final int customerPostalCode, final String customerCity,
 			final int customerPhoneNumber, final String customerEmail, final int customerHouseNumber,
 			final String customerCountry, final int customerFax, final String customerTitel) {
-		
+
 		this.customerNumber = customerNumber;
 		this.customerCompanyName = customerCompanyName;
 		this.customerContactPersonFirstName = customerContactPersonFirstName;
@@ -159,6 +166,14 @@ public class Customer {
 
 	public void setCustomerFax(int customerFax) {
 		this.customerFax = customerFax;
+	}
+
+	public List<Order> getOrder() {
+		return order;
+	}
+
+	public void setOrder(List<Order> order) {
+		this.order = order;
 	}
 
 }

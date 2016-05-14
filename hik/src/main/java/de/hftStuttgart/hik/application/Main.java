@@ -2,6 +2,7 @@ package de.hftStuttgart.hik.application;
 
 import java.io.IOException;
 
+import de.hftStuttgart.hik.controller.CustomerOrderController;
 import de.hftStuttgart.hik.controller.TabViewController;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.Supplier;
@@ -16,6 +17,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 
@@ -36,7 +38,7 @@ public class Main extends Application {
 		try {
 			this.primaryStage = primaryStage;
 			this.primaryStage.setTitle("HighSpeed-Finance");
-			this.primaryStage.getIcons().add(new Image("/main/java/de/hftStuttgart/hik/pics/hik_icon.png"));
+			this.primaryStage.getIcons().add(new Image("/main/java/de/hftStuttgart/hik/pics/Logo1.jpg"));
 			this.primaryStage.setResizable(true);
 
 			FXMLLoader loader = new FXMLLoader(Main.class.getResource("/main/java/de/hftStuttgart/hik/view/MenuBar.fxml"));
@@ -86,6 +88,28 @@ public class Main extends Application {
 		} catch (Exception e) {
 			System.out.println("showNavigationBarCustomer: " + e.getMessage());
 		}
+	}
+	
+	public void showCustomerOrder(Customer customer){
+			try {
+				FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/CustomerOrder.fxml"));
+				AnchorPane page = (AnchorPane) loader.load();
+				Stage dialogStage = new Stage();
+				dialogStage.setTitle("Bestellungen " + customer.getCustomerContactPersonFirstName());
+				dialogStage.initModality(Modality.WINDOW_MODAL);
+				dialogStage.initOwner(getPrimaryStage());
+				Scene scene = new Scene(page);
+				dialogStage.setScene(scene);
+
+				CustomerOrderController controller = loader.getController();
+				controller.setDialogStage(dialogStage);
+				controller.setCustomer(customer);
+
+				dialogStage.showAndWait();
+			} catch (IOException e) {
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
 	}
 
 	//ToDo:Delete dummy 

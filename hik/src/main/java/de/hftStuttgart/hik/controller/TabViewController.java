@@ -8,6 +8,7 @@ import de.hftStuttgart.hik.model.Supplier;
 import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,6 +18,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -109,6 +111,16 @@ public class TabViewController {
 				showCustomerDetails(newValue);
 			}
 		});
+		
+		customerTable.setOnMousePressed(new EventHandler<MouseEvent>() {
+			   @Override 
+			   public void handle(MouseEvent e) {
+			      if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
+			         //System.out.println(customerTable.getSelectionModel().getSelectedItem());
+			    	  main.showCustomerOrder(customerTable.getSelectionModel().getSelectedItem());
+			      }
+			   }
+			});
 	}
 	
 	private void showCustomerDetails(Customer customer) {
