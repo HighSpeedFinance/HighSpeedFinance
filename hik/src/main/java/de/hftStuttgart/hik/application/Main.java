@@ -88,7 +88,7 @@ public class Main extends Application {
 		}
 	}
 
-	//Delete dummy 
+	//ToDo:Delete dummy 
 	public Main() {
 		//addDummyCustomers();
 		supplierData.addAll(SupplierUtil.loadAllSuppliers());
@@ -114,6 +114,8 @@ public class Main extends Application {
 	}
 	
 	public ObservableList<Customer> getCustomerData(Customer cust) {
+		if(cust != null)
+			CustomerUtil.addCustomer(cust);
 		return customerData;
 	}
 }
