@@ -1,35 +1,37 @@
 package de.hftStuttgart.hik.model;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
-public class Order {
+public class CustomerOrder {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private Date date;
+	private int date;
 	private int supId;
-	private Status status;
+	private String status;
 	private int itemNumb;
 	private String description;
 	private double unitPrice;
-	private long amount;
-	private double sum;
+	private int amount;
+	private double sumPrice;
+	
+	@ManyToOne(fetch=FetchType.EAGER, targetEntity=Customer.class)
+	private Customer customer;
 
-	public Order() {
+	public CustomerOrder() {
 
 	}
 
-	public Order(final Long id, final Date date, final int supId, final Status status, final int itemNumb,
-			final String description, final double unitPrice, final long amount, final double sum) {
+	public CustomerOrder(final int date, final int supId, final String status, final int itemNumb,
+			final String description, final double unitPrice, final int amount, final double sum) {
 
-		this.id = id;
 		this.date = date;
 		this.supId = supId;
 		this.status = status;
@@ -37,7 +39,7 @@ public class Order {
 		this.description = description;
 		this.unitPrice = unitPrice;
 		this.amount = amount;
-		this.sum = sum;
+		this.sumPrice = sum;
 	}
 
 	public Long getId() {
@@ -48,11 +50,11 @@ public class Order {
 		this.id = id;
 	}
 
-	public Date getDate() {
+	public int getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(int date) {
 		this.date = date;
 	}
 
@@ -64,11 +66,11 @@ public class Order {
 		this.supId = supId;
 	}
 
-	public Status getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(Status status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -96,22 +98,27 @@ public class Order {
 		this.unitPrice = unitPrice;
 	}
 
-	public long getAmount() {
+	public int getAmount() {
 		return amount;
 	}
 
-	public void setAmount(long amount) {
+	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 
 	public double getSum() {
-		return sum;
+		return sumPrice;
 	}
 
 	public void setSum(double sum) {
-		this.sum = sum;
+		this.sumPrice = sum;
 	}
-	
-	
 
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 }

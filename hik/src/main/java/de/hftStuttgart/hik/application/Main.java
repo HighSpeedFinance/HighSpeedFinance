@@ -5,8 +5,10 @@ import java.io.IOException;
 import de.hftStuttgart.hik.controller.CustomerOrderController;
 import de.hftStuttgart.hik.controller.TabViewController;
 import de.hftStuttgart.hik.model.Customer;
+import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.model.Supplier;
 import de.hftStuttgart.hik.utilities.CustomerUtil;
+import de.hftStuttgart.hik.utilities.OrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -25,6 +27,7 @@ public class Main extends Application {
 
 	private ObservableList<Supplier> supplierData = FXCollections.observableArrayList();
 	private ObservableList<Customer> customerData = FXCollections.observableArrayList();
+	private ObservableList<CustomerOrder> customerOrderData = FXCollections.observableArrayList();
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 
@@ -101,9 +104,12 @@ public class Main extends Application {
 				Scene scene = new Scene(page);
 				dialogStage.setScene(scene);
 
+				customerOrderData.clear();
+				customerOrderData.addAll(OrderUtil.loadAllOrders(customer));
 				CustomerOrderController controller = loader.getController();
 				controller.setDialogStage(dialogStage);
 				controller.setCustomer(customer);
+				controller.setMainApp(this);
 
 				dialogStage.showAndWait();
 			} catch (IOException e) {
@@ -117,6 +123,11 @@ public class Main extends Application {
 		//addDummyCustomers();
 		supplierData.addAll(SupplierUtil.loadAllSuppliers());
 		customerData.addAll(CustomerUtil.loadAllCustomers());
+		
+		//CustomerOrder order = new CustomerOrder(23,2,"new",2,"descrip",2,2,3);
+		//CustomerUtil.loadAllCustomers().get(2).addOrder(order);
+		//order.setCustomer(CustomerUtil.loadAllCustomers().get(2));
+		//OrderUtil.addOrder(order);
 	}
 
 	public Stage getPrimaryStage() {
@@ -124,9 +135,10 @@ public class Main extends Application {
 	}
 	
 	public void addDummyCustomers(){
-		for(int i=0;i<10;i++){
+		for(int i=0;i<=5;i++){
 			CustomerUtil.addCustomer(new Customer(i,"customerCompanyName" + i,"customerContactPersonFirstName","customerContactPersonLastName","customerStreet"
 					,73770,"customerCity",0711344455,"customerEmail",16,"customerCountry",123,"customerTitel"));
+			
 		}
 	}
 
@@ -141,5 +153,9 @@ public class Main extends Application {
 		if(cust != null)
 			CustomerUtil.addCustomer(cust);
 		return customerData;
+	}
+	
+	public ObservableList<CustomerOrder> getCustomerOrderData(CustomerOrder custOrder) {
+		return customerOrderData;
 	}
 }

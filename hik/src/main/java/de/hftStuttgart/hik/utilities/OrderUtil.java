@@ -6,7 +6,9 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
-import de.hftStuttgart.hik.model.Order;
+
+import de.hftStuttgart.hik.model.Customer;
+import de.hftStuttgart.hik.model.CustomerOrder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -17,20 +19,20 @@ public enum OrderUtil {
 	private static EntityManager em;
 
 	@SuppressWarnings("unchecked")
-	public static ObservableList<Order> loadAllOrders() {
+	public static ObservableList<CustomerOrder> loadAllOrders(Customer cus) {
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em = factory.createEntityManager();
-		ObservableList<Order> ordList = FXCollections.observableArrayList();
-		Query q = em.createQuery("select t from Order t");
-		List<Order> orderList = q.getResultList();
-		for (Order ord : orderList) {
+		ObservableList<CustomerOrder> ordList = FXCollections.observableArrayList();
+		Query q = em.createQuery("select t from CustomerOrder t where customer_id = " + cus.getId());
+		List<CustomerOrder> orderList = q.getResultList();
+		for (CustomerOrder ord : orderList) {
 			ordList.add(ord);
 		}
 		em.close();
 		return ordList;
 	}
 
-	public static void addOrder(Order ord) {
+	public static void addOrder(CustomerOrder ord) {
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em = factory.createEntityManager();
 		em.getTransaction().begin();
@@ -39,7 +41,7 @@ public enum OrderUtil {
 		em.close();
 	}
 
-	public static void editOrder(Order ord) {
+	public static void editOrder(CustomerOrder ord) {
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em = factory.createEntityManager();
 		em.getTransaction().begin();
@@ -48,7 +50,7 @@ public enum OrderUtil {
 		em.close();
 	}
 
-	public static void deleteOrder(Order ord) {
+	public static void deleteOrder(CustomerOrder ord) {
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 		em = factory.createEntityManager();
 		em.getTransaction().begin();

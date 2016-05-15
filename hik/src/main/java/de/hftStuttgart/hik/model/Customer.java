@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,7 +13,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Customer {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private int customerNumber;
 	private String customerCompanyName;
@@ -27,9 +28,9 @@ public class Customer {
 	private String customerCountry;
 	private int customerFax;
 	private String customerTitel;
-	
-	@OneToMany(cascade = CascadeType.REMOVE)
-	private List<Order> order;
+
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch=FetchType.EAGER)
+	private List<CustomerOrder> orders;
 
 	public Customer() {
 
@@ -168,12 +169,13 @@ public class Customer {
 		this.customerFax = customerFax;
 	}
 
-	public List<Order> getOrder() {
-		return order;
+	public void addOrder(CustomerOrder order) {
+		if (!orders.contains(order)) {
+			orders.add(order);
+		}
 	}
 
-	public void setOrder(List<Order> order) {
-		this.order = order;
+	public List<CustomerOrder> getOrders() {
+		return orders;
 	}
-
 }

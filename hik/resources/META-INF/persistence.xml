@@ -7,7 +7,7 @@
 		<class>de.hftStuttgart.hik.model.Supplier</class>
 		<class>de.hftStuttgart.hik.model.Customer</class>
 		<class>de.hftStuttgart.hik.model.PaymentDetails</class>
-		<class>de.hftStuttgart.hik.model.Order</class>
+		<class>de.hftStuttgart.hik.model.CustomerOrder</class>
 		<class>de.hftStuttgart.hik.model.PostAdress</class>
 		<class>de.hftStuttgart.hik.model.Invoice</class>
 		<properties>
