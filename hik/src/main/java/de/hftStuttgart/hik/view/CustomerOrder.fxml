@@ -21,7 +21,7 @@
             <TableColumn prefWidth="119.0" text="Gesamtpreis" fx:id="orderTotalPrice"/>
         </columns>
       </TableView>
-      <Button layoutX="572.0" layoutY="282.0" mnemonicParsing="false" text="Hinzufügen" />
+      <Button layoutX="572.0" layoutY="282.0" mnemonicParsing="false" text="Hinzufügen" onAction="#addCustomerOrder"/>
       <Button layoutX="650.0" layoutY="282.0" mnemonicParsing="false" text="Bearbeiten" />
    </children>
 </AnchorPane>

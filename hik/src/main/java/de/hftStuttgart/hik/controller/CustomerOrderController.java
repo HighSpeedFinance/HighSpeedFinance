@@ -7,7 +7,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 public class CustomerOrderController {
 
@@ -32,27 +31,31 @@ public class CustomerOrderController {
 	@FXML
 	private TableColumn<CustomerOrder, String> orderArt;
 	
-	private Stage dialogStage;
 	private Customer customer;
 	private Main main;
 	
 	@FXML
 	private void initialize() {
-		orderNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("supId"));
+		orderNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("itemNumb"));
+		orderDescription.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("description"));
+		leer.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("description"));
+		orderStatus.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("status"));
+		orderDate.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("date"));
+		orderSinglePrice.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("unitPrice"));
+		orderAmount.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("amount"));
+		orderArt.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("status"));
+		orderTotalPrice.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("sumPrice"));
 		customerOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+	}
+
+	@FXML
+	public void addCustomerOrder(){
+		
 	}
 	
 	public void setMainApp(Main mainApp) {
 		this.main = mainApp;
 		customerOrderTable.setItems(main.getCustomerOrderData(null));
-	}
-
-	public Stage getDialogStage() {
-		return dialogStage;
-	}
-
-	public void setDialogStage(Stage dialogStage) {
-		this.dialogStage = dialogStage;
 	}
 
 	public Customer getCustomer() {
