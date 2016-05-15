@@ -20,14 +20,14 @@ public class Order {
 	private String description;
 	private double unitPrice;
 	private long amount;
-	private double sum;
+	private double totalPrice;
 
 	public Order() {
 
 	}
 
 	public Order(final Long id, final Date date, final int supId, final Status status, final int itemNumb,
-			final String description, final double unitPrice, final long amount, final double sum) {
+			final String description, final double unitPrice, final long amount, final double totalPrice) {
 
 		this.id = id;
 		this.date = date;
@@ -37,7 +37,7 @@ public class Order {
 		this.description = description;
 		this.unitPrice = unitPrice;
 		this.amount = amount;
-		this.sum = sum;
+		this.totalPrice = totalPrice;
 	}
 
 	public Long getId() {
@@ -104,13 +104,15 @@ public class Order {
 		this.amount = amount;
 	}
 
-	public double getSum() {
-		return sum;
+	public double getTotalPrice() {
+		return totalPrice;
 	}
 
-	public void setSum(double sum) {
-		this.sum = sum;
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
 	}
+
+	
 	
 	
 
