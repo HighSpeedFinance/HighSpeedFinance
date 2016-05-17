@@ -104,18 +104,18 @@
 						<RadioButton fx:id="radioDays" layoutX="92.0" layoutY="14.0"
 							mnemonicParsing="false" selected="true" text="in Tagen">
 							<toggleGroup>
-								<ToggleGroup fx:id="Zeitraum" />
+								<ToggleGroup fx:id="zeitraum" />
 							</toggleGroup>
 						</RadioButton>
 						<RadioButton fx:id="radioDate" layoutX="92.0" layoutY="52.0"
-							mnemonicParsing="false" text="Datum" toggleGroup="$Zeitraum" />
+							mnemonicParsing="false" text="Datum" toggleGroup="$zeitraum" />
 						<ComboBox layoutX="177.0" layoutY="10.0" prefHeight="25.0"
 							prefWidth="87.0" fx:id="daysCombobox" />
 						<DatePicker layoutX="176.0" layoutY="48.0" prefHeight="25.0"
-							prefWidth="89.0" />
+							prefWidth="89.0" fx:id="startDate" onAction="#loadCustomers"/>
 						<DatePicker layoutX="306.0" layoutY="48.0" prefHeight="25.0"
-							prefWidth="89.0" />
-						<Label layoutX="275.0" layoutY="52.0" text="bis" />
+							prefWidth="89.0" fx:id="endDate" onAction="#loadCustomers"/>
+						<Label layoutX="275.0" layoutY="52.0" text="bis"/>
 					</children>
 				</AnchorPane>
 			</content>

@@ -13,10 +13,13 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.converter.LocalDateStringConverter;
@@ -68,6 +71,12 @@ public class NewCustomersAndSuppliersController {
 	private RadioButton radioDate;
 	@FXML
 	private ComboBox<String> daysCombobox;
+	@FXML
+	private ToggleGroup zeitraum;
+	@FXML
+	private DatePicker startDate;
+	@FXML
+	private DatePicker endDate;
 
 	private Main main;
 
@@ -78,8 +87,15 @@ public class NewCustomersAndSuppliersController {
 
 		daysCombobox.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
-			public void changed(ObservableValue ov, String t, String t1) {
+			public void changed(@SuppressWarnings("rawtypes") ObservableValue ov, String t, String t1) {
 				loadCustomerList(t1);
+			}
+		});
+
+		zeitraum.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
+				daysCombobox.getSelectionModel().select(0);
+				loadCustomerList(daysCombobox.getSelectionModel().getSelectedItem());
 			}
 		});
 
@@ -128,7 +144,7 @@ public class NewCustomersAndSuppliersController {
 			customerPhone.setText("");
 		}
 	}
-	
+
 	public void setMainApp(Main main) {
 		this.main = main;
 		loadCustomerList("10 Tage");
@@ -150,6 +166,11 @@ public class NewCustomersAndSuppliersController {
 	@FXML
 	public void supplierIsSelected() {
 		main.showNavigationBarSupplier();
+	}
+
+	@FXML
+	public void loadCustomers() {
+		loadCustomerList(daysCombobox.getSelectionModel().getSelectedItem());
 	}
 
 	public void loadCustomerList(String comboValue) {
@@ -178,10 +199,14 @@ public class NewCustomersAndSuppliersController {
 				}
 				break;
 			}
-		} else if (radioDate.isSelected()) {
-
+		} else if (radioDate.isSelected() && startDate.getValue() != null && endDate.getValue() != null) {
+			for (Customer cus : customerList) {
+				if (new LocalDateStringConverter().fromString(cus.getDate()).isAfter(startDate.getValue())
+						&& new LocalDateStringConverter().fromString(cus.getDate()).isBefore(endDate.getValue())) {
+					customerListInTime.add(cus);
+				}
+			}
 		}
-
 		customerTable.setItems(customerListInTime);
 	}
 }
