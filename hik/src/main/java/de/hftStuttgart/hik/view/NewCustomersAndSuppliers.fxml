@@ -74,7 +74,7 @@
 											</rowConstraints>
 											<children>
 												<Label prefHeight="17.0" prefWidth="58.0" text="Anrede: " />
-												<Label text="Name23:  " GridPane.rowIndex="1" />
+												<Label text="Name:  " GridPane.rowIndex="1" />
 												<Label text="Straße:  " GridPane.rowIndex="2" />
 												<Label text="PLZ:  " GridPane.rowIndex="3" />
 												<Label fx:id="customerTitel" text="Label"
