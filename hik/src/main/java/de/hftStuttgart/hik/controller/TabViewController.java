@@ -1,7 +1,5 @@
 package de.hftStuttgart.hik.controller;
 
-import java.io.IOException;
-
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.Supplier;
@@ -10,8 +8,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
@@ -19,9 +15,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 
 public class TabViewController {
@@ -158,6 +151,7 @@ public class TabViewController {
 		}
 	}
 
+	/*
 	@FXML
 	private void newSupplier() {
 		Supplier tempSupplier = new Supplier();
@@ -165,8 +159,9 @@ public class TabViewController {
 		if (okClicked) {
 			main.getSupplierData(tempSupplier).add(tempSupplier);
 		}
-	}
+	}*/
 
+	/*
 	@FXML
 	private void editSupplier() {
 		Supplier selectedSupplier = supplierTable.getSelectionModel().getSelectedItem();
@@ -185,7 +180,7 @@ public class TabViewController {
 			alert.setContentText("No Supplier selected!");
 			alert.showAndWait();
 		}
-	}
+	}*/
 
 	private void showSupplierDetails(Supplier supplier) {
 		if (supplier != null) {
@@ -208,7 +203,7 @@ public class TabViewController {
 		}
 	}
 
-	public boolean showSupplierEditDialog(Supplier supplier) {
+	/*public boolean showSupplierEditDialog(Supplier supplier) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/SupplierEditDialog.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
@@ -231,7 +226,7 @@ public class TabViewController {
 			System.out.println(e.getMessage());
 			return false;
 		}
-	}
+	}*/
 
 	public void setMainApp(Main mainApp) {
 		this.main = mainApp;

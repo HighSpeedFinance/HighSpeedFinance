@@ -8,7 +8,7 @@
 
 <AnchorPane prefHeight="400.0" prefWidth="321.0"
 	xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
-	fx:controller="de.hftStuttgart.hik.controller.SupplierEditDialogController">
+	fx:controller="de.hftStuttgart.hik.controller.CustomerOrderController">
 	<children>
 		<GridPane prefHeight="327.0" prefWidth="301.0"
 			AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0"

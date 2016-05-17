@@ -13,6 +13,7 @@ public class CustomerOrder {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	private int orderNumber;
 	private int date;
 	private int supId;
 	private String status;
@@ -29,10 +30,11 @@ public class CustomerOrder {
 
 	}
 
-	public CustomerOrder(final int date, final int supId, final String status, final int itemNumb,
+	public CustomerOrder(final int date, final int order_nr, final int supId, final String status, final int itemNumb,
 			final String description, final double unitPrice, final int amount, final double sum) {
 
 		this.date = date;
+		this.orderNumber = order_nr;
 		this.supId = supId;
 		this.status = status;
 		this.itemNumb = itemNumb;
@@ -121,4 +123,22 @@ public class CustomerOrder {
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
+
+	public int getOrderNumber() {
+		return orderNumber;
+	}
+
+	public void setOrderNumber(int orderNumber) {
+		this.orderNumber = orderNumber;
+	}
+
+	public double getSumPrice() {
+		return sumPrice;
+	}
+
+	public void setSumPrice(double sumPrice) {
+		this.sumPrice = sumPrice;
+	}
+	
+	
 }

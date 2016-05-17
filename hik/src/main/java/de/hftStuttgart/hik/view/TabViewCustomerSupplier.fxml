@@ -173,16 +173,6 @@
 													GridPane.columnIndex="0" GridPane.rowIndex="5" />
 											</children>
 										</GridPane>
-										<HBox layoutX="14.0" layoutY="260.0" spacing="10.0">
-											<children>
-												<Button layoutX="145.0" layoutY="259.0"
-													mnemonicParsing="false" onAction="#newSupplier" text="New" />
-												<Button layoutX="195.0" layoutY="259.0"
-													mnemonicParsing="false" onAction="#editSupplier" text="Edit" />
-												<Button layoutX="239.0" layoutY="259.0"
-													mnemonicParsing="false" onAction="#deleteSupplier" text="Delete" />
-											</children>
-										</HBox>
 									</children>
 								</AnchorPane>
 							</items>

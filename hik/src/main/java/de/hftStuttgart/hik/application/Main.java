@@ -28,6 +28,7 @@ public class Main extends Application {
 	private ObservableList<Supplier> supplierData = FXCollections.observableArrayList();
 	private ObservableList<Customer> customerData = FXCollections.observableArrayList();
 	private ObservableList<CustomerOrder> customerOrderData = FXCollections.observableArrayList();
+	
 	private Stage primaryStage;
 	private BorderPane rootLayout;
 
@@ -106,8 +107,8 @@ public class Main extends Application {
 
 				customerOrderData.clear();
 				customerOrderData.addAll(OrderUtil.loadAllOrders(customer));
+				
 				CustomerOrderController controller = loader.getController();
-				controller.setDialogStage(dialogStage);
 				controller.setCustomer(customer);
 				controller.setMainApp(this);
 
@@ -123,11 +124,6 @@ public class Main extends Application {
 		//addDummyCustomers();
 		supplierData.addAll(SupplierUtil.loadAllSuppliers());
 		customerData.addAll(CustomerUtil.loadAllCustomers());
-		
-		//CustomerOrder order = new CustomerOrder(23,2,"new",2,"descrip",2,2,3);
-		//CustomerUtil.loadAllCustomers().get(2).addOrder(order);
-		//order.setCustomer(CustomerUtil.loadAllCustomers().get(2));
-		//OrderUtil.addOrder(order);
 	}
 
 	public Stage getPrimaryStage() {
