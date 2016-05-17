@@ -100,7 +100,6 @@ public class TabViewController {
 			@Override
 			public void handle(MouseEvent e) {
 				if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
-					// System.out.println(customerTable.getSelectionModel().getSelectedItem());
 					main.showCustomerOrder(customerTable.getSelectionModel().getSelectedItem());
 				}
 			}

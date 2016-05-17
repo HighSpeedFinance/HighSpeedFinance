@@ -13,7 +13,7 @@ public class CustomerTest extends TestCase {
 	
 	@Test
 	public void testAddCustomer() {
-		Customer cus = new Customer(1, "CN", "CPF", "CPL", "CS", 73770, "CC", 1234, "CE", 1, "CCOUNTRY", 123, "HERR");
+		Customer cus = new Customer(1, "CN", "CPF", "CPL", "CS", 73770, "CC", 1234, "CE", 1, "CCOUNTRY", 123, "HERR","");
 		Main main = new Main();
 		
 		int customerBefore = CustomerUtil.loadAllCustomers().size();
@@ -25,7 +25,7 @@ public class CustomerTest extends TestCase {
 	
 	@Test
 	public void testAddNoCustomer(){
-		Customer cus = new Customer(1, "CN", "CPF", "CPL", "CS", 73770, "CC", 1234, "CE", 1, "CCOUNTRY", 123, "HERR");
+		Customer cus = new Customer(1, "CN", "CPF", "CPL", "CS", 73770, "CC", 1234, "CE", 1, "CCOUNTRY", 123, "HERR","");
 		Main main = new Main();
 		
 		int customerBefore = CustomerUtil.loadAllCustomers().size();
@@ -37,7 +37,7 @@ public class CustomerTest extends TestCase {
 	
 	@Test
 	public void testGetCustomerTitel(){
-		Customer cus = new Customer(1, "CN", "CPF", "CPL", "CS", 73770, "CC", 1234, "CE", 1, "CCOUNTRY", 123, "Expected");
+		Customer cus = new Customer(1, "CN", "CPF", "CPL", "CS", 73770, "CC", 1234, "CE", 1, "CCOUNTRY", 123, "Expected","");
 		
 		CustomerUtil.addCustomer(cus);
 		String customerTittel = CustomerUtil.loadAllCustomers().get(cus.getId().intValue()-1).getCustomerTitel();

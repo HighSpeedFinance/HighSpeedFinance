@@ -28,6 +28,7 @@ public class Customer {
 	private String customerCountry;
 	private int customerFax;
 	private String customerTitel;
+	private String addedDate;
 
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private List<CustomerOrder> orders;
@@ -40,7 +41,7 @@ public class Customer {
 			final String customerContactPersonFirstName, final String customerContactPersonLastName,
 			final String customerStreet, final int customerPostalCode, final String customerCity,
 			final int customerPhoneNumber, final String customerEmail, final int customerHouseNumber,
-			final String customerCountry, final int customerFax, final String customerTitel) {
+			final String customerCountry, final int customerFax, final String customerTitel, final String date) {
 
 		this.customerNumber = customerNumber;
 		this.customerCompanyName = customerCompanyName;
@@ -55,6 +56,7 @@ public class Customer {
 		this.customerCountry = customerCountry;
 		this.customerFax = customerFax;
 		this.customerTitel = customerTitel;
+		this.addedDate = date;
 	}
 
 	public String getCustomerTitel() {
@@ -178,4 +180,14 @@ public class Customer {
 	public List<CustomerOrder> getOrders() {
 		return orders;
 	}
+
+	public String getDate() {
+		return addedDate;
+	}
+
+	public void setDate(String date) {
+		this.addedDate = date;
+	}
+	
+	
 }

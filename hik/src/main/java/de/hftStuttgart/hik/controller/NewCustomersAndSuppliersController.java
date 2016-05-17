@@ -1,15 +1,25 @@
 package de.hftStuttgart.hik.controller;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.Supplier;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.util.converter.LocalDateStringConverter;
 
 public class NewCustomersAndSuppliersController {
 	@FXML
@@ -60,15 +70,68 @@ public class NewCustomersAndSuppliersController {
 	private ComboBox<String> daysCombobox;
 
 	private Main main;
-	
+
 	@FXML
 	private void initialize() {
-		daysCombobox.setItems(FXCollections.observableArrayList("10 Tage", "20Tage", "30Tage"));
+		daysCombobox.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage"));
 		daysCombobox.getSelectionModel().select(0);
+
+		daysCombobox.valueProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(ObservableValue ov, String t, String t1) {
+				loadCustomerList(t1);
+			}
+		});
+
+		customerNameColumn
+				.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerContactPersonFirstName"));
+		customerNumberColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerNumber"));
+
+		customerTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		showCustomerDetails(null);
+
+		customerTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Customer>() {
+			public void changed(ObservableValue<? extends Customer> observable, Customer oldValue, Customer newValue) {
+				showCustomerDetails(newValue);
+			}
+		});
+
+		customerTable.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
+				if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
+					main.showCustomerOrder(customerTable.getSelectionModel().getSelectedItem());
+				}
+			}
+		});
 	}
 
+	private void showCustomerDetails(Customer customer) {
+		if (customer != null) {
+			customerHeading.setText(
+					customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
+			customerTitel.setText(customer.getCustomerTitel());
+			customerName.setText(
+					customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
+			customerStreet
+					.setText(customer.getCustomerStreet() + ". " + String.valueOf(customer.getCustomerHouseNumber()));
+			customerPLZ.setText(String.valueOf(customer.getCustomerPostalCode()) + " " + customer.getCustomerCity());
+			customerCountry.setText(customer.getCustomerCountry());
+			customerPhone.setText(String.valueOf(customer.getCustomerPhoneNumber()));
+		} else {
+			customerHeading.setText("");
+			customerTitel.setText("");
+			customerName.setText("");
+			customerStreet.setText("");
+			customerPLZ.setText("");
+			customerCountry.setText("");
+			customerPhone.setText("");
+		}
+	}
+	
 	public void setMainApp(Main main) {
 		this.main = main;
+		loadCustomerList("10 Tage");
 	}
 
 	@FXML
@@ -81,12 +144,44 @@ public class NewCustomersAndSuppliersController {
 		try {
 			main.showNavigationBarCustomer();
 		} catch (Exception e) {
-
 		}
 	}
 
 	@FXML
 	public void supplierIsSelected() {
 		main.showNavigationBarSupplier();
+	}
+
+	public void loadCustomerList(String comboValue) {
+		ZoneId zone1 = ZoneId.of("Europe/Berlin");
+		LocalDate local = LocalDate.now(zone1);
+		ObservableList<Customer> customerList = main.getCustomerData(null);
+		ObservableList<Customer> customerListInTime = FXCollections.observableArrayList();
+		if (radioDays.isSelected()) {
+			switch (comboValue) {
+			case "10 Tage":
+				for (Customer cus : customerList) {
+					if (new LocalDateStringConverter().fromString(cus.getDate()).isAfter(local.minusDays(10)))
+						customerListInTime.add(cus);
+				}
+				break;
+			case "20 Tage":
+				for (Customer cus : customerList) {
+					if (new LocalDateStringConverter().fromString(cus.getDate()).isAfter(local.minusDays(20)))
+						customerListInTime.add(cus);
+				}
+				break;
+			case "30 Tage":
+				for (Customer cus : customerList) {
+					if (new LocalDateStringConverter().fromString(cus.getDate()).isAfter(local.minusDays(30)))
+						customerListInTime.add(cus);
+				}
+				break;
+			}
+		} else if (radioDate.isSelected()) {
+
+		}
+
+		customerTable.setItems(customerListInTime);
 	}
 }
