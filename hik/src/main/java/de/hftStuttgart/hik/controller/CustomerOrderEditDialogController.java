@@ -51,25 +51,28 @@ public class CustomerOrderEditDialogController {
 
 	public void setCustomerOrder(CustomerOrder customerOrder) {
 		this.customerOrder = customerOrder;
-		date.setValue(new LocalDateStringConverter().fromString(customerOrder.getDate()));
-		artNr.setText(String.valueOf(customerOrder.getItemNumb()));
-		description.setText(customerOrder.getDescription());
-		leer.setText(String.valueOf(customerOrder.getSupId()));
-		switch (customerOrder.getStatus().toString()) {
-		case "SUCCEEDED":
-			paymentStatus.getSelectionModel().select(1);
-			break;
-		case "PENDING":
-			paymentStatus.getSelectionModel().select(2);
-			break;
-		case "ENABLED":
-			paymentStatus.getSelectionModel().select(0);
-			break;
+		if (customerOrder.getStatus() == Status.ENABLED || customerOrder.getStatus() == Status.PENDING
+				|| customerOrder.getStatus() == Status.SUCCEEDED) {
+			date.setValue(new LocalDateStringConverter().fromString(customerOrder.getDate()));
+			artNr.setText(String.valueOf(customerOrder.getItemNumb()));
+			description.setText(customerOrder.getDescription());
+			leer.setText(String.valueOf(customerOrder.getSupId()));
+			switch (customerOrder.getStatus().toString()) {
+			case "SUCCEEDED":
+				paymentStatus.getSelectionModel().select(1);
+				break;
+			case "PENDING":
+				paymentStatus.getSelectionModel().select(2);
+				break;
+			case "ENABLED":
+				paymentStatus.getSelectionModel().select(0);
+				break;
+			}
+			singlePrice.setText(String.valueOf(customerOrder.getUnitPrice()));
+			amount.setText(String.valueOf(customerOrder.getAmount()));
+			sumPrice.setText(String.valueOf(customerOrder.getSumPrice()));
+			orderNr.setText(String.valueOf(customerOrder.getOrderNumber()));
 		}
-		singlePrice.setText(String.valueOf(customerOrder.getUnitPrice()));
-		amount.setText(String.valueOf(customerOrder.getAmount()));
-		sumPrice.setText(String.valueOf(customerOrder.getSumPrice()));
-		orderNr.setText(String.valueOf(customerOrder.getOrderNumber()));
 	}
 
 	public boolean isOkClicked() {
