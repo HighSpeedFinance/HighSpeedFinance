@@ -4,9 +4,11 @@ import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.model.Status;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.util.converter.LocalDateStringConverter;
 
@@ -81,33 +83,109 @@ public class CustomerOrderEditDialogController {
 
 	@FXML
 	private void handleOk() {
-		// ToDo: input testen siehe SupplierEditDialogController
-		customerOrder.setAmount(Integer.parseInt(amount.getText()));
-		customerOrder.setDate(new LocalDateStringConverter().toString(date.getValue()));
-		customerOrder.setDescription(description.getText());
-		customerOrder.setItemNumb(Integer.parseInt(artNr.getText()));
-		customerOrder.setOrderNumber(Integer.parseInt(orderNr.getText()));
-		switch (paymentStatus.getSelectionModel().getSelectedItem()) {
-		case "erfasst":
-			customerOrder.setStatus(Status.ENABLED);
-			break;
-		case "bezahlt":
-			customerOrder.setStatus(Status.SUCCEEDED);
-			break;
-		case "warten":
-			customerOrder.setStatus(Status.PENDING);
-			break;
-		}
-		customerOrder.setSum(Double.parseDouble(sumPrice.getText()));
-		customerOrder.setSupId(Integer.parseInt(leer.getText()));
-		customerOrder.setUnitPrice(Double.parseDouble(singlePrice.getText()));
+		if (isInputValid()) {
+			customerOrder.setAmount(Integer.parseInt(amount.getText()));
+			customerOrder.setDate(new LocalDateStringConverter().toString(date.getValue()));
+			customerOrder.setDescription(description.getText());
+			customerOrder.setItemNumb(Integer.parseInt(artNr.getText()));
+			customerOrder.setOrderNumber(Integer.parseInt(orderNr.getText()));
+			switch (paymentStatus.getSelectionModel().getSelectedItem()) {
+			case "erfasst":
+				customerOrder.setStatus(Status.ENABLED);
+				break;
+			case "bezahlt":
+				customerOrder.setStatus(Status.SUCCEEDED);
+				break;
+			case "warten":
+				customerOrder.setStatus(Status.PENDING);
+				break;
+			}
+			customerOrder.setSum(Double.parseDouble(sumPrice.getText()));
+			customerOrder.setSupId(Integer.parseInt(leer.getText()));
+			customerOrder.setUnitPrice(Double.parseDouble(singlePrice.getText()));
 
-		okClicked = true;
-		dialogStage.close();
+			okClicked = true;
+			dialogStage.close();
+		}
 	}
 
 	@FXML
 	private void handleCancel() {
 		dialogStage.close();
+	}
+
+	private boolean isInputValid() {
+		String errorMessage = "";
+
+		if (amount.getText() == null || amount.getText().length() == 0) {
+			errorMessage += "Keine gueltige Menge!\n";
+		} else {
+			try {
+				Integer.parseInt(amount.getText());
+			} catch (NumberFormatException e) {
+				errorMessage += "Keine gueltige Menge (muss eine Zahl sein)!\n";
+			}
+		}
+		if (date.getValue() == null) {
+			errorMessage += "Kein gueltiges Datum!\n";
+		}
+		if (description.getText() == null || description.getText().length() == 0) {
+			errorMessage += "Keine gueltige Beschreibung!\n";
+		}
+		if (artNr.getText() == null || artNr.getText().length() == 0) {
+			errorMessage += "Keine gueltige Artikelnummer!\n";
+		} else {
+			try {
+				Integer.parseInt(artNr.getText());
+			} catch (NumberFormatException e) {
+				errorMessage += "Keine gueltige Artikelnummer (muss eine Zahl sein)!\n";
+			}
+		}
+		if (orderNr.getText() == null || orderNr.getText().length() == 0) {
+			errorMessage += "Keine gueltige Ordernummer!\n";
+		} else {
+			try {
+				Integer.parseInt(orderNr.getText());
+			} catch (NumberFormatException e) {
+				errorMessage += "Keine gueltige Ordernummer (muss eine Zahl sein)!\n";
+			}
+		}
+		if (singlePrice.getText() == null || singlePrice.getText().length() == 0) {
+			errorMessage += "Kein gueltiger Unitpreis!\n";
+		} else {
+			try {
+				Integer.parseInt(singlePrice.getText());
+			} catch (NumberFormatException e) {
+				errorMessage += "Kein gueltiger Unitpreis (muss eine Zahl sein)!\n";
+			}
+		}
+		if (sumPrice.getText() == null || sumPrice.getText().length() == 0) {
+			errorMessage += "Kein gueltiger Gesamtpreis!\n";
+		} else {
+			try {
+				Double.parseDouble(sumPrice.getText());
+			} catch (NumberFormatException e) {
+				errorMessage += "Kein gueltiger Gesamtpreis (muss eine Zahl sein)!\n";
+			}
+		}
+		if (leer.getText() == null || leer.getText().length() == 0) {
+			errorMessage += "Keine gueltige leer!\n";
+		} else {
+			try {
+				Integer.parseInt(leer.getText());
+			} catch (NumberFormatException e) {
+				errorMessage += "Keine gueltige leer (muss eine Zahl sein)!\n";
+			}
+		}
+		if (errorMessage.length() == 0) {
+			return true;
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error!");
+			alert.setHeaderText("");
+			alert.setContentText(errorMessage);
+			alert.showAndWait();
+			return false;
+		}
 	}
 }
