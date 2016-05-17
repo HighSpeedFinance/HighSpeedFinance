@@ -121,7 +121,7 @@ public class Main extends Application {
 
 	//ToDo:Delete dummy 
 	public Main() {
-		addDummyCustomers();
+		//addDummyCustomers();
 		supplierData.addAll(SupplierUtil.loadAllSuppliers());
 		customerData.addAll(CustomerUtil.loadAllCustomers());
 	}

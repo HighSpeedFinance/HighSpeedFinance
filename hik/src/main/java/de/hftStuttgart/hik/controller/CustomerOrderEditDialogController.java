@@ -1,9 +1,7 @@
 package de.hftStuttgart.hik.controller;
 
-import java.time.LocalDate;
 import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.model.Status;
-import de.hftStuttgart.hik.model.Supplier;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
@@ -52,19 +50,26 @@ public class CustomerOrderEditDialogController {
 	}
 
 	public void setCustomerOrder(CustomerOrder customerOrder) {
-		if (customerOrder != null) {
-			this.customerOrder = customerOrder;
-			date.setValue(new LocalDateStringConverter().fromString(customerOrder.getDate()));
-			artNr.setText(String.valueOf(customerOrder.getItemNumb()));
-			description.setText(customerOrder.getDescription());
-			leer.setText(String.valueOf(customerOrder.getSupId()));
-			paymentStatus.getSelectionModel().select(1);
-			singlePrice.setText(String.valueOf(customerOrder.getUnitPrice()));
-			amount.setText(String.valueOf(customerOrder.getAmount()));
-			sumPrice.setText(String.valueOf(customerOrder.getSumPrice()));
-			orderNr.setText(String.valueOf(customerOrder.getOrderNumber()));
-		}
 		this.customerOrder = customerOrder;
+		date.setValue(new LocalDateStringConverter().fromString(customerOrder.getDate()));
+		artNr.setText(String.valueOf(customerOrder.getItemNumb()));
+		description.setText(customerOrder.getDescription());
+		leer.setText(String.valueOf(customerOrder.getSupId()));
+		switch (customerOrder.getStatus().toString()) {
+		case "SUCCEEDED":
+			paymentStatus.getSelectionModel().select(1);
+			break;
+		case "PENDING":
+			paymentStatus.getSelectionModel().select(2);
+			break;
+		case "ENABLED":
+			paymentStatus.getSelectionModel().select(0);
+			break;
+		}
+		singlePrice.setText(String.valueOf(customerOrder.getUnitPrice()));
+		amount.setText(String.valueOf(customerOrder.getAmount()));
+		sumPrice.setText(String.valueOf(customerOrder.getSumPrice()));
+		orderNr.setText(String.valueOf(customerOrder.getOrderNumber()));
 	}
 
 	public boolean isOkClicked() {
