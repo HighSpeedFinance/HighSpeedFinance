@@ -16,7 +16,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
-
 public class TabViewController {
 	@FXML
 	private TableView<Customer> customerTable;
@@ -75,9 +74,9 @@ public class TabViewController {
 		supplierNameColumn
 				.setCellValueFactory(new PropertyValueFactory<Supplier, String>("supplierContactPersonFirstName"));
 
-		customerNameColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerContactPersonFirstName"));
-		customerNumberColumn
-				.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerNumber"));
+		customerNameColumn
+				.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerContactPersonFirstName"));
+		customerNumberColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerNumber"));
 
 		supplierTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		showSupplierDetails(null);
@@ -90,30 +89,33 @@ public class TabViewController {
 				showSupplierDetails(newValue);
 			}
 		});
-		
+
 		customerTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Customer>() {
 			public void changed(ObservableValue<? extends Customer> observable, Customer oldValue, Customer newValue) {
 				showCustomerDetails(newValue);
 			}
 		});
-		
+
 		customerTable.setOnMousePressed(new EventHandler<MouseEvent>() {
-			   @Override 
-			   public void handle(MouseEvent e) {
-			      if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
-			         //System.out.println(customerTable.getSelectionModel().getSelectedItem());
-			    	  main.showCustomerOrder(customerTable.getSelectionModel().getSelectedItem());
-			      }
-			   }
-			});
+			@Override
+			public void handle(MouseEvent e) {
+				if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
+					// System.out.println(customerTable.getSelectionModel().getSelectedItem());
+					main.showCustomerOrder(customerTable.getSelectionModel().getSelectedItem());
+				}
+			}
+		});
 	}
-	
+
 	private void showCustomerDetails(Customer customer) {
 		if (customer != null) {
-			customerHeading.setText(customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
+			customerHeading.setText(
+					customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
 			customerTitel.setText(customer.getCustomerTitel());
-			customerName.setText(customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
-			customerStreet.setText(customer.getCustomerStreet() + ". " + String.valueOf(customer.getCustomerHouseNumber()));
+			customerName.setText(
+					customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
+			customerStreet
+					.setText(customer.getCustomerStreet() + ". " + String.valueOf(customer.getCustomerHouseNumber()));
 			customerPLZ.setText(String.valueOf(customer.getCustomerPostalCode()) + " " + customer.getCustomerCity());
 			customerCountry.setText(customer.getCustomerCountry());
 			customerPhone.setText(String.valueOf(customer.getCustomerPhoneNumber()));

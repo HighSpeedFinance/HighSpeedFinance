@@ -3,6 +3,8 @@ package de.hftStuttgart.hik.application;
 import java.io.IOException;
 
 import de.hftStuttgart.hik.controller.CustomerOrderController;
+import de.hftStuttgart.hik.controller.NavigationBarCustomerController;
+import de.hftStuttgart.hik.controller.NewCustomersAndSuppliersController;
 import de.hftStuttgart.hik.controller.TabViewController;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.CustomerOrder;
@@ -71,6 +73,20 @@ public class Main extends Application {
 			System.out.println("showCustomerAndSupplierOverview: " + e.getMessage());
 		}
 	}
+	
+	public void showNewCustomersAndSuppliers(){
+		try {
+			TabPane myPane;
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/NewCustomersAndSuppliers.fxml"));
+			myPane = (TabPane) loader.load();
+			rootLayout.setCenter(myPane);
+
+			NewCustomersAndSuppliersController controller = loader.getController();
+			controller.setMainApp(this);
+		} catch (IOException e) {
+			System.out.println("showCustomerAndSupplierOverview: " + e.getMessage());
+		}
+	}
 
 	public void showNavigationBarCustomer() {
 		try {
@@ -78,6 +94,9 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/NavigationBarCustomer.fxml"));
 			anchorPane = (AnchorPane) loader.load();
 			rootLayout.setLeft(anchorPane);
+			
+			NavigationBarCustomerController controller = loader.getController();
+			controller.setMainApp(this);
 		} catch (Exception e) {
 			System.out.println("showNavigationBarCustomer: " + e.getMessage());
 		}

@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="450.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.NavigationBarCustomerController">
    <children>
-      <Button layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Kundenübersicht" />
-      <Button layoutY="70.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Neue Kunden anzeigen" />
+      <Button layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Kundenübersicht" onAction="#showCustomerOverview"/>
+      <Button layoutY="70.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Neue Kunden anzeigen" onAction="#showNewCustomers"/>
       <Button layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Neue Rechnung anzeigen" />
       <Button layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Rechnung verwalten" />
       <Button layoutY="160.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Offene Kundenrechnungen" />
