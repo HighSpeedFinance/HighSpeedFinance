@@ -66,15 +66,7 @@ public class TabViewController {
 
 	@FXML
 	private void showBestellung() {
-
-	}
-
-	private void refreshPersonTable() {
-		int selectedIndex = supplierTable.getSelectionModel().getSelectedIndex();
-		supplierTable.setItems(null);
-		supplierTable.layout();
-		supplierTable.setItems(main.getSupplierData(null));
-		supplierTable.getSelectionModel().select(selectedIndex);
+		main.showCustomerOrder(customerTable.getSelectionModel().getSelectedItem());
 	}
 
 	@FXML
@@ -151,37 +143,6 @@ public class TabViewController {
 		}
 	}
 
-	/*
-	@FXML
-	private void newSupplier() {
-		Supplier tempSupplier = new Supplier();
-		boolean okClicked = showSupplierEditDialog(tempSupplier);
-		if (okClicked) {
-			main.getSupplierData(tempSupplier).add(tempSupplier);
-		}
-	}*/
-
-	/*
-	@FXML
-	private void editSupplier() {
-		Supplier selectedSupplier = supplierTable.getSelectionModel().getSelectedItem();
-		if (selectedSupplier != null) {
-			boolean okClicked = showSupplierEditDialog(selectedSupplier);
-			if (okClicked) {
-
-				refreshPersonTable();
-				showSupplierDetails(selectedSupplier);
-				SupplierUtil.editSupplier(selectedSupplier);
-			}
-		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error!");
-			alert.setHeaderText("");
-			alert.setContentText("No Supplier selected!");
-			alert.showAndWait();
-		}
-	}*/
-
 	private void showSupplierDetails(Supplier supplier) {
 		if (supplier != null) {
 			supplierPhoneNumberLabel.setText(String.valueOf(supplier.getSupplierPhoneNumber()));
@@ -202,31 +163,6 @@ public class TabViewController {
 			supplierEmailLabel.setText("");
 		}
 	}
-
-	/*public boolean showSupplierEditDialog(Supplier supplier) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/SupplierEditDialog.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Edit Supplier");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(main.getPrimaryStage());
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
-
-			SupplierEditDialogController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-			controller.setSupplier(supplier);
-
-			dialogStage.showAndWait();
-			return controller.isOkClicked();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-			return false;
-		}
-	}*/
 
 	public void setMainApp(Main mainApp) {
 		this.main = mainApp;
