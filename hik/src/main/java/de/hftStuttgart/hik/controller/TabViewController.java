@@ -65,7 +65,15 @@ public class TabViewController {
 
 	@FXML
 	private void showBestellung() {
-		main.showCustomerOrder(customerTable.getSelectionModel().getSelectedItem());
+		if(customerTable.getSelectionModel().getSelectedItem() != null)
+			main.showCustomerOrder(customerTable.getSelectionModel().getSelectedItem());
+		else{
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error!");
+			alert.setHeaderText("");
+			alert.setContentText("Keinen Kunden ausgewählt!");
+			alert.showAndWait();
+		}
 	}
 
 	@FXML
