@@ -1,12 +1,19 @@
 package de.hftStuttgart.hik.controller;
 
+import java.time.LocalDate;
 import de.hftStuttgart.hik.model.CustomerOrder;
+import de.hftStuttgart.hik.model.Status;
+import de.hftStuttgart.hik.model.Supplier;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.converter.LocalDateStringConverter;
 
 public class CustomerOrderEditDialogController {
-	
+
 	@FXML
 	private TextField artNr;
 	@FXML
@@ -14,9 +21,9 @@ public class CustomerOrderEditDialogController {
 	@FXML
 	private TextField leer;
 	@FXML
-	private TextField paymentStatus;
+	private ChoiceBox<String> paymentStatus;
 	@FXML
-	private TextField date;
+	private DatePicker date;
 	@FXML
 	private TextField singlePrice;
 	@FXML
@@ -25,10 +32,16 @@ public class CustomerOrderEditDialogController {
 	private TextField sumPrice;
 	@FXML
 	private TextField orderNr;
-	
+
 	private Stage dialogStage;
 	private CustomerOrder customerOrder;
 	private boolean okClicked = false;
+
+	@FXML
+	private void initialize() {
+		paymentStatus.setItems(FXCollections.observableArrayList("erfasst", "bezahlt", "warten"));
+		paymentStatus.getSelectionModel().select(0);
+	}
 
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
@@ -39,6 +52,18 @@ public class CustomerOrderEditDialogController {
 	}
 
 	public void setCustomerOrder(CustomerOrder customerOrder) {
+		if (customerOrder != null) {
+			this.customerOrder = customerOrder;
+			date.setValue(new LocalDateStringConverter().fromString(customerOrder.getDate()));
+			artNr.setText(String.valueOf(customerOrder.getItemNumb()));
+			description.setText(customerOrder.getDescription());
+			leer.setText(String.valueOf(customerOrder.getSupId()));
+			paymentStatus.getSelectionModel().select(1);
+			singlePrice.setText(String.valueOf(customerOrder.getUnitPrice()));
+			amount.setText(String.valueOf(customerOrder.getAmount()));
+			sumPrice.setText(String.valueOf(customerOrder.getSumPrice()));
+			orderNr.setText(String.valueOf(customerOrder.getOrderNumber()));
+		}
 		this.customerOrder = customerOrder;
 	}
 
@@ -48,17 +73,27 @@ public class CustomerOrderEditDialogController {
 
 	@FXML
 	private void handleOk() {
-		//ToDo: input testen siehe SupplierEditDialogController
+		// ToDo: input testen siehe SupplierEditDialogController
 		customerOrder.setAmount(Integer.parseInt(amount.getText()));
-		customerOrder.setDate(Integer.parseInt(date.getText()));
+		customerOrder.setDate(new LocalDateStringConverter().toString(date.getValue()));
 		customerOrder.setDescription(description.getText());
-		customerOrder.setItemNumb(Integer.parseInt(leer.getText()));
+		customerOrder.setItemNumb(Integer.parseInt(artNr.getText()));
 		customerOrder.setOrderNumber(Integer.parseInt(orderNr.getText()));
-		customerOrder.setStatus(paymentStatus.getText());
+		switch (paymentStatus.getSelectionModel().getSelectedItem()) {
+		case "erfasst":
+			customerOrder.setStatus(Status.ENABLED);
+			break;
+		case "bezahlt":
+			customerOrder.setStatus(Status.SUCCEEDED);
+			break;
+		case "warten":
+			customerOrder.setStatus(Status.PENDING);
+			break;
+		}
 		customerOrder.setSum(Double.parseDouble(sumPrice.getText()));
-		customerOrder.setSupId(Integer.parseInt("2"));
+		customerOrder.setSupId(Integer.parseInt(leer.getText()));
 		customerOrder.setUnitPrice(Double.parseDouble(singlePrice.getText()));
-		
+
 		okClicked = true;
 		dialogStage.close();
 	}

@@ -14,9 +14,9 @@ public class CustomerOrder {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int orderNumber;
-	private int date;
+	private String date;
 	private int supId;
-	private String status;
+	private Status status;
 	private int itemNumb;
 	private String description;
 	private double unitPrice;
@@ -30,7 +30,7 @@ public class CustomerOrder {
 
 	}
 
-	public CustomerOrder(final int date, final int order_nr, final int supId, final String status, final int itemNumb,
+	public CustomerOrder(final String date, final int order_nr, final int supId, final Status status, final int itemNumb,
 			final String description, final double unitPrice, final int amount, final double sum) {
 
 		this.date = date;
@@ -52,11 +52,11 @@ public class CustomerOrder {
 		this.id = id;
 	}
 
-	public int getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(int date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -68,11 +68,11 @@ public class CustomerOrder {
 		this.supId = supId;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

@@ -22,6 +22,6 @@
         </columns>
       </TableView>
       <Button layoutX="572.0" layoutY="282.0" mnemonicParsing="false" text="Hinzufügen" onAction="#addCustomerOrder"/>
-      <Button layoutX="650.0" layoutY="282.0" mnemonicParsing="false" text="Bearbeiten" />
+      <Button layoutX="650.0" layoutY="282.0" mnemonicParsing="false" text="Bearbeiten" onAction="#editCustomerOrder"/>
    </children>
 </AnchorPane>

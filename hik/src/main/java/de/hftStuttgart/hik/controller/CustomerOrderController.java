@@ -10,6 +10,8 @@ import de.hftStuttgart.hik.utilities.OrderUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -42,7 +44,7 @@ public class CustomerOrderController {
 
 	private Customer customer;
 	private Main main;
-	
+
 	@FXML
 	private void initialize() {
 		orderNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("orderNumber"));
@@ -57,6 +59,14 @@ public class CustomerOrderController {
 		customerOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	}
 
+	private void refreshCustomerOrderTable() {
+		int selectedIndex = customerOrderTable.getSelectionModel().getSelectedIndex();
+		customerOrderTable.setItems(null);
+		customerOrderTable.layout();
+		customerOrderTable.setItems(main.getCustomerOrderData(null));
+		customerOrderTable.getSelectionModel().select(selectedIndex);
+	}
+
 	@FXML
 	public void addCustomerOrder() {
 		CustomerOrder customerOrder = new CustomerOrder();
@@ -66,8 +76,24 @@ public class CustomerOrderController {
 			customerOrder.setCustomer(customer);
 			OrderUtil.addOrder(customerOrder);
 		}
-		customerOrderTable.setItems(null);
-		customerOrderTable.setItems(main.getCustomerOrderData(null));
+	}
+
+	@FXML
+	private void editCustomerOrder() {
+		CustomerOrder customerOrder = customerOrderTable.getSelectionModel().getSelectedItem();
+		if (customerOrder != null) {
+			boolean okClicked = showOrderEditDialog(customerOrder);
+			if (okClicked) {
+				refreshCustomerOrderTable();
+				OrderUtil.editOrder(customerOrder);
+			}
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error!");
+			alert.setHeaderText("");
+			alert.setContentText("No CustomerOrder selected!");
+			alert.showAndWait();
+		}
 	}
 
 	public void setMainApp(Main mainApp) {
