@@ -116,8 +116,8 @@ public class CustomerOrder {
 		this.sumPrice = sum;
 	}
 
-	public Customer getCustomer() {
-		return customer;
+	public long getCustomer() {
+		return customer.getId();
 	}
 
 	public void setCustomer(Customer customer) {

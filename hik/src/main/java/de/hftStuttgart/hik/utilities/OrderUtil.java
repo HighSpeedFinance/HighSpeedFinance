@@ -31,6 +31,20 @@ public enum OrderUtil {
 		em.close();
 		return ordList;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public static ObservableList<CustomerOrder> loadAllOrders() {
+		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		em = factory.createEntityManager();
+		ObservableList<CustomerOrder> ordList = FXCollections.observableArrayList();
+		Query q = em.createQuery("select t from CustomerOrder t");
+		List<CustomerOrder> orderList = q.getResultList();
+		for (CustomerOrder ord : orderList) {
+			ordList.add(ord);
+		}
+		em.close();
+		return ordList;
+	}
 
 	public static void addOrder(CustomerOrder ord) {
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
