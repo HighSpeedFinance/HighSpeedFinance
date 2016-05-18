@@ -120,6 +120,10 @@ public class CustomerOrder {
 		return customer.getId();
 	}
 
+	public Customer getCustomerObject(){
+		return customer;
+	}
+	
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}

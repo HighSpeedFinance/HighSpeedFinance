@@ -188,6 +188,11 @@ public class Customer {
 	public void setDate(String date) {
 		this.addedDate = date;
 	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(this.id);
+	}
 	
 	
 }
