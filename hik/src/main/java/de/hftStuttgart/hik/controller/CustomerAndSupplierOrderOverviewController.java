@@ -122,7 +122,6 @@ public class CustomerAndSupplierOrderOverviewController {
 
 			CustomerOrderEditWithCustomerDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
-			controller.setMainApp(main);
 			controller.setCustomerOrder(customerOrder);
 
 			dialogStage.showAndWait();

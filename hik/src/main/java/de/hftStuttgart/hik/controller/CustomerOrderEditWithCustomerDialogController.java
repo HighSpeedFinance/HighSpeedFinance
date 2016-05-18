@@ -1,6 +1,5 @@
 package de.hftStuttgart.hik.controller;
 
-import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.model.Status;
@@ -40,7 +39,6 @@ public class CustomerOrderEditWithCustomerDialogController {
 	private Stage dialogStage;
 	private CustomerOrder customerOrder;
 	private boolean okClicked = false;
-	private Main main;
 
 	@FXML
 	private void initialize() {
@@ -55,10 +53,6 @@ public class CustomerOrderEditWithCustomerDialogController {
 		this.dialogStage = dialogStage;
 	}
 	
-	public void setMainApp(Main main){
-		this.main = main;
-	}
-
 	public CustomerOrder getCustomerOrder() {
 		return customerOrder;
 	}
@@ -167,7 +161,7 @@ public class CustomerOrderEditWithCustomerDialogController {
 			errorMessage += "Kein gueltiger Unitpreis!\n";
 		} else {
 			try {
-				Integer.parseInt(singlePrice.getText());
+				Double.parseDouble(singlePrice.getText());
 			} catch (NumberFormatException e) {
 				errorMessage += "Kein gueltiger Unitpreis (muss eine Zahl sein)!\n";
 			}

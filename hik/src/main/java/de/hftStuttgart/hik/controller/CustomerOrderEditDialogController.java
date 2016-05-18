@@ -154,7 +154,7 @@ public class CustomerOrderEditDialogController {
 			errorMessage += "Kein gueltiger Unitpreis!\n";
 		} else {
 			try {
-				Integer.parseInt(singlePrice.getText());
+				Double.parseDouble(singlePrice.getText());
 			} catch (NumberFormatException e) {
 				errorMessage += "Kein gueltiger Unitpreis (muss eine Zahl sein)!\n";
 			}
