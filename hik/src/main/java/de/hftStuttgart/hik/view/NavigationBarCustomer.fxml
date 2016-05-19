@@ -12,6 +12,6 @@
       <Button layoutY="70.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Neue Kunden anzeigen" onAction="#showNewCustomers"/>
       <Button layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Neue Rechnung anzeigen" onAction="#showNewCustomerOrders"/>
       <Button layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Rechnung verwalten" onAction="#showCustomerOrderOverview"/>
-      <Button layoutY="160.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Offene Kundenrechnungen" />
+      <Button layoutY="160.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Offene Kundenrechnungen" onAction="#showOpenCustomerOrders"/>
    </children>
 </AnchorPane>

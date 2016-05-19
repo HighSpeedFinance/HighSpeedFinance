@@ -182,6 +182,23 @@ public class Main extends Application {
 
 		}
 	}
+	
+	public void showOpenCustomerAndSupplierOrders(){
+		try {
+			TabPane myPane;
+			FXMLLoader loader = new FXMLLoader(getClass()
+					.getResource("/main/java/de/hftStuttgart/hik/view/OpenCustomerAndSupplierOrders.fxml"));
+			myPane = (TabPane) loader.load();
+			rootLayout.setCenter(myPane);
+
+			customerOrderData.clear();
+
+			CustomerAndSupplierOrderOverviewController controller = loader.getController();
+			controller.setMainApp(this);
+		} catch (Exception e) {
+
+		}
+	}
 	// ToDo:Delete dummy
 	public Main() {
 		//addDummyCustomers();

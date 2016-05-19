@@ -27,6 +27,11 @@ public class NavigationBarCustomerController {
 		main.showNewOrders();
 	}
 	
+	@FXML
+	public void showOpenCustomerOrders(){
+		main.showOpenCustomerAndSupplierOrders();
+	}
+	
 	public void setMainApp(Main mainApp) {
 		this.main = mainApp;
 	}

@@ -9,6 +9,7 @@ import javax.persistence.Query;
 
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.CustomerOrder;
+import de.hftStuttgart.hik.model.Status;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -45,6 +46,20 @@ public enum OrderUtil {
 		em.close();
 		return ordList;
 	}
+	
+	public static ObservableList<CustomerOrder> loadAllOrdersWhereStatusOpen() {
+		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		em = factory.createEntityManager();
+		ObservableList<CustomerOrder> ordList = FXCollections.observableArrayList();
+		Query q = em.createQuery("select t from CustomerOrder t where status = 1 OR status=2");
+		List<CustomerOrder> orderList = q.getResultList();
+		for (CustomerOrder ord : orderList) {
+			ordList.add(ord);
+		}
+		em.close();
+		return ordList;
+	}
+	
 
 	public static void addOrder(CustomerOrder ord) {
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
