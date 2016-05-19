@@ -16,14 +16,14 @@ public class Invoice {
 	private int invoiceNumber;
 	private int cusId;
 	private Status status;
-	private Date date;
+	private String date;
 	private double totalPrice;
 
 	public Invoice() {
 
 	}
 
-	public Invoice(final Long id, final int invoiceNumber, final int cusId, final Status status, final Date date,
+	public Invoice(final Long id, final int invoiceNumber, final int cusId, final Status status, final String date,
 			final double totalPrice) {
 		this.id = id;
 		this.invoiceNumber = invoiceNumber;
@@ -65,11 +65,11 @@ public class Invoice {
 		this.status = status;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
