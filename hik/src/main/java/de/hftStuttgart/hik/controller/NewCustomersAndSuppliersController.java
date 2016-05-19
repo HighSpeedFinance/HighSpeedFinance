@@ -212,7 +212,9 @@ public class NewCustomersAndSuppliersController {
 		} else if (radioDate.isSelected() && startDate.getValue() != null && endDate.getValue() != null) {
 			for (Customer cus : customerList) {
 				if (new LocalDateStringConverter().fromString(cus.getDate()).isAfter(startDate.getValue())
-						&& new LocalDateStringConverter().fromString(cus.getDate()).isBefore(endDate.getValue())) {
+						&& new LocalDateStringConverter().fromString(cus.getDate()).isBefore(endDate.getValue())
+						|| new LocalDateStringConverter().fromString(cus.getDate()).isEqual(endDate.getValue())
+						|| new LocalDateStringConverter().fromString(cus.getDate()).isEqual(startDate.getValue())) {
 					customerListInTime.add(cus);
 				}
 			}

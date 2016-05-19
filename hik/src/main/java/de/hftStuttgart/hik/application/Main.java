@@ -7,6 +7,7 @@ import de.hftStuttgart.hik.controller.CustomerOrderController;
 import de.hftStuttgart.hik.controller.CustomerAndSupplierOrderOverviewController;
 import de.hftStuttgart.hik.controller.NavigationBarCustomerController;
 import de.hftStuttgart.hik.controller.NewCustomersAndSuppliersController;
+import de.hftStuttgart.hik.controller.ShowNewOrdersController;
 import de.hftStuttgart.hik.controller.TabViewController;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.CustomerOrder;
@@ -93,6 +94,24 @@ public class Main extends Application {
 		}
 	}
 
+	public void showNewOrders() {
+		try {
+			TabPane myPane;
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/main/java/de/hftStuttgart/hik/view/ShowNewOrders.fxml"));
+			myPane = (TabPane) loader.load();
+			rootLayout.setCenter(myPane);
+
+			customerOrderData.clear();
+			customerOrderData.addAll(OrderUtil.loadAllOrders());
+			
+			ShowNewOrdersController controller = loader.getController();
+			controller.setMainApp(this);
+		} catch (IOException e) {
+			System.out.println("showCustomerAndSupplierOverview: " + e.getMessage());
+		}
+	}
+
 	public void showNavigationBarCustomer() {
 		try {
 			AnchorPane anchorPane;
@@ -166,7 +185,7 @@ public class Main extends Application {
 
 	// ToDo:Delete dummy
 	public Main() {
-		// addDummyCustomers();
+		//addDummyCustomers();
 		supplierData.addAll(SupplierUtil.loadAllSuppliers());
 		customerData.addAll(CustomerUtil.loadAllCustomers());
 	}
@@ -176,11 +195,11 @@ public class Main extends Application {
 	}
 
 	public void addDummyCustomers() {
-		for (int i = 0; i <= 5; i++) {
+		for (int i = 0; i <= 10; i++) {
 			CustomerUtil.addCustomer(new Customer(i, "customerCompanyName" + i, "customerContactPersonFirstName",
 					"customerContactPersonLastName", "customerStreet", 73770, "customerCity", 0711344455,
 					"customerEmail", 16, "customerCountry", 123, "customerTitel",
-					new LocalDateStringConverter().toString(LocalDate.now().minusDays(5))));
+					new LocalDateStringConverter().toString(LocalDate.now().minusDays(25))));
 
 		}
 	}

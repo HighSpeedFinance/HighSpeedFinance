@@ -22,6 +22,11 @@ public class NavigationBarCustomerController {
 		main.showCustomerAndSupplierOrderOverview();
 	}
 	
+	@FXML
+	public void showNewCustomerOrders(){
+		main.showNewOrders();
+	}
+	
 	public void setMainApp(Main mainApp) {
 		this.main = mainApp;
 	}
