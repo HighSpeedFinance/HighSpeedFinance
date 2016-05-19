@@ -182,7 +182,6 @@ public class Main extends Application {
 
 		}
 	}
-
 	// ToDo:Delete dummy
 	public Main() {
 		//addDummyCustomers();
