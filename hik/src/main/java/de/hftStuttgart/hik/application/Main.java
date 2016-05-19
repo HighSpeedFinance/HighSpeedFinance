@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import de.hftStuttgart.hik.controller.CustomerOrderController;
+import de.hftStuttgart.hik.controller.IncomeController;
 import de.hftStuttgart.hik.controller.MenuBarController;
 import de.hftStuttgart.hik.controller.CustomerAndSupplierOrderOverviewController;
 import de.hftStuttgart.hik.controller.NavigationBarCustomerController;
@@ -41,9 +42,7 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	// Christines Kommentar
-	// Christines zweiter Kommentar
-	// Christines dritter Kommentar
+	
 	// LoadViews
 	@Override
 	public void start(Stage primaryStage) {
@@ -78,6 +77,7 @@ public class Main extends Application {
 					getClass().getResource("/main/java/de/hftStuttgart/hik/view/TabViewCustomerSupplier.fxml"));
 			myPane = (TabPane) loader.load();
 			rootLayout.setCenter(myPane);
+			showNavigationBarCustomer();
 
 			TabViewController controller = loader.getController();
 			controller.setMainApp(this);
@@ -204,10 +204,29 @@ public class Main extends Application {
 		} catch (Exception e) {
 		}
 	}
+	
+	public void showIncome(){
+		try {
+			AnchorPane anchorPane;
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/main/java/de/hftStuttgart/hik/view/Income.fxml"));
+			anchorPane = (AnchorPane) loader.load();
+			rootLayout.setLeft(null);
+			rootLayout.setCenter(anchorPane);
+			
+			customerOrderData.clear();
+			customerOrderData.addAll(OrderUtil.loadAllOrders());
+			
+			IncomeController controller = loader.getController();
+			controller.setMainApp(this);
+			
+		} catch (Exception e) {
+		}
+	}
 
 	// ToDo:Delete dummy
 	public Main() {
-		// addDummyCustomers();
+		//addDummyCustomers();
 		supplierData.addAll(SupplierUtil.loadAllSuppliers());
 		customerData.addAll(CustomerUtil.loadAllCustomers());
 	}
@@ -219,7 +238,7 @@ public class Main extends Application {
 	public void addDummyCustomers() {
 		for (int i = 0; i <= 10; i++) {
 			CustomerUtil.addCustomer(new Customer(i, "customerCompanyName" + i, "customerContactPersonFirstName",
-					"customerContactPersonLastName", "customerStreet", 73770, "customerCity", 0711344455,
+					"customerContactPersonLastName", "customerStreet", 73778, "customerCity", 0711344455,
 					"customerEmail", 16, "customerCountry", 123, "customerTitel",
 					new LocalDateStringConverter().toString(LocalDate.now().minusDays(25))));
 		}

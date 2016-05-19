@@ -60,6 +60,19 @@ public enum OrderUtil {
 		return ordList;
 	}
 	
+	public static ObservableList<CustomerOrder> loadAllOrdersWhereStatusSucceeded() {
+		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+		em = factory.createEntityManager();
+		ObservableList<CustomerOrder> ordList = FXCollections.observableArrayList();
+		Query q = em.createQuery("select t from CustomerOrder t where status = 0");
+		List<CustomerOrder> orderList = q.getResultList();
+		for (CustomerOrder ord : orderList) {
+			ordList.add(ord);
+		}
+		em.close();
+		return ordList;
+	}
+	
 
 	public static void addOrder(CustomerOrder ord) {
 		factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);

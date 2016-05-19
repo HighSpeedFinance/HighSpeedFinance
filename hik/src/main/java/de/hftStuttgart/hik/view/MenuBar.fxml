@@ -15,7 +15,7 @@
                   <Insets />
                </HBox.margin>
             </Button>
-            <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" text="Einnahmen" style="-fx-background-color: transparent;"/>
+            <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" text="Einnahmen" style="-fx-background-color: transparent;" onAction="#showIncome"/>
             <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" text="Ausgaben" style="-fx-background-color: transparent;"/>
             <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" text="Graphiken" style="-fx-background-color: transparent;"/>
             <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" text="Hilfe" style="-fx-background-color: transparent;"/>

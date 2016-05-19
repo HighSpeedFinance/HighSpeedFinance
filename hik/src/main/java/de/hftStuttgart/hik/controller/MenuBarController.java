@@ -13,6 +13,12 @@ public class MenuBarController {
 		main.showCustomerAndSupplierOverview();
 	}
 	
+	@FXML
+	public void showIncome(){
+		System.out.println("dede");
+		main.showIncome();
+	}
+	
 	public void setMainApp(Main main){
 		this.main = main;
 	}
