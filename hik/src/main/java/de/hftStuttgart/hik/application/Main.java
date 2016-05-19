@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import de.hftStuttgart.hik.controller.CustomerOrderController;
+import de.hftStuttgart.hik.controller.MenuBarController;
 import de.hftStuttgart.hik.controller.CustomerAndSupplierOrderOverviewController;
 import de.hftStuttgart.hik.controller.NavigationBarCustomerController;
 import de.hftStuttgart.hik.controller.NewCustomersAndSuppliersController;
@@ -54,6 +55,10 @@ public class Main extends Application {
 					Main.class.getResource("/main/java/de/hftStuttgart/hik/view/MenuBar.fxml"));
 			rootLayout = (BorderPane) loader.load();
 			Scene scene = new Scene(rootLayout);
+			
+			MenuBarController controller = loader.getController();
+			controller.setMainApp(this);
+			
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
