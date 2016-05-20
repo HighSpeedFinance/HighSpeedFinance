@@ -1,25 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="470.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.MenuBarController">
+<BorderPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.MenuBarController">
    <top>
-      <HBox prefHeight="33.0" prefWidth="700.0" spacing="10.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="83.0" prefWidth="700.0">
          <children>
-            <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: transparent;" text="Start" onAction="#showStart">
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-            </Button>
-            <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" text="Einnahmen" style="-fx-background-color: transparent;" onAction="#showIncome"/>
-            <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" text="Ausgaben" style="-fx-background-color: transparent;"/>
-            <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" text="Graphiken" style="-fx-background-color: transparent;"/>
-            <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" text="Hilfe" style="-fx-background-color: transparent;"/>
+            <HBox layoutY="54.0" prefHeight="31.0" prefWidth="700.0" spacing="10.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#showStart" prefWidth="80.0" style="-fx-background-color: transparent;" text="Start">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#showIncome" prefWidth="80.0" style="-fx-background-color: transparent;" text="Einnahmen" />
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: transparent;" text="Ausgaben" />
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: transparent;" text="Graphiken" />
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: transparent;" text="Hilfe" />
+               </children>
+            </HBox>
+            <ImageView fx:id="imageView" fitHeight="54.0" fitWidth="87.0" layoutX="23.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
+            <Label layoutX="152.0" layoutY="15.0" prefHeight="32.0" prefWidth="277.0" text="HiK HighSpeed-Finance">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Separator layoutY="85.0" prefHeight="0.0" prefWidth="700.0" />
          </children>
-      </HBox>
+      </AnchorPane>
    </top>
 </BorderPane>
