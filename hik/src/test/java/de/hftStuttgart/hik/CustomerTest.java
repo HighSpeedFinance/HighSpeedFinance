@@ -17,7 +17,7 @@ public class CustomerTest extends TestCase {
 		Main main = new Main();
 		
 		int customerBefore = CustomerUtil.loadAllCustomers().size();
-		main.getCustomerData(cus);
+		main.getCustomerData();
 		int customerAfter = CustomerUtil.loadAllCustomers().size();
 		
 		assertEquals(customerAfter, customerBefore+1);
@@ -29,7 +29,7 @@ public class CustomerTest extends TestCase {
 		Main main = new Main();
 		
 		int customerBefore = CustomerUtil.loadAllCustomers().size();
-		main.getCustomerData(null);
+		main.getCustomerData();
 		int customerAfter = CustomerUtil.loadAllCustomers().size();
 		
 		assertEquals(customerAfter, customerBefore);
