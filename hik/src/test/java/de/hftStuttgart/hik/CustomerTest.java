@@ -1,5 +1,6 @@
 package de.hftStuttgart.hik;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.hftStuttgart.hik.application.Main;
@@ -7,6 +8,7 @@ import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.utilities.CustomerUtil;
 import junit.framework.TestCase;
 
+@Ignore
 public class CustomerTest extends TestCase {
 
 	//ToDo: extra Class mit alle Daten
