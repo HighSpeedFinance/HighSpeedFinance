@@ -6,6 +6,8 @@ import de.hftStuttgart.hik.model.Supplier;
 import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -13,6 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
@@ -57,23 +60,42 @@ public class TabViewController {
 	private Label supplierEmailLabel;
 	@FXML
 	private Label supplierNameLabel;
+	@FXML
+	private TextField searchCustomer;
 
 	private Main main;
+	private ObservableList<Customer> customerList = FXCollections.observableArrayList();
 
 	public TabViewController() {
 	}
 
 	@FXML
 	private void showBestellung() {
-		if(customerTable.getSelectionModel().getSelectedItem() != null)
+		if (customerTable.getSelectionModel().getSelectedItem() != null)
 			main.showCustomerOrder(customerTable.getSelectionModel().getSelectedItem());
-		else{
+		else {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error!");
 			alert.setHeaderText("");
 			alert.setContentText("Keinen Kunden ausgewählt!");
 			alert.showAndWait();
 		}
+	}
+
+	@FXML
+	public void searchCustomer() {
+		customerList.clear();
+		if (!searchCustomer.getText().equals("")) {
+			for (Customer cus : main.getCustomerData()) {
+				if (cus.getCustomerNumber() == Integer.valueOf(searchCustomer.getText())) {
+					customerList.add(cus);
+				}
+			}
+			customerTable.setItems(customerList);
+		}else{
+			customerTable.setItems(main.getCustomerData());
+		}
+		
 	}
 
 	@FXML
