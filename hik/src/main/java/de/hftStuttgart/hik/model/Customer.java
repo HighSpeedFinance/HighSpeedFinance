@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Customer {
+	//Test
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
