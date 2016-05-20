@@ -186,7 +186,7 @@ public class NewCustomersAndSuppliersController {
 	public void loadCustomerList(String comboValue) {
 		ZoneId zone1 = ZoneId.of("Europe/Berlin");
 		LocalDate local = LocalDate.now(zone1);
-		ObservableList<Customer> customerList = main.getCustomerData(null);
+		ObservableList<Customer> customerList = main.getCustomerData();
 		ObservableList<Customer> customerListInTime = FXCollections.observableArrayList();
 		if (radioDays.isSelected()) {
 			switch (comboValue) {

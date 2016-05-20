@@ -49,7 +49,7 @@ public class CustomerAndSupplierOrderOverviewController {
 		int selectedIndex = customerOrderTable.getSelectionModel().getSelectedIndex();
 		customerOrderTable.setItems(null);
 		customerOrderTable.layout();
-		customerOrderTable.setItems(main.getCustomerOrderData(null));
+		customerOrderTable.setItems(main.getCustomerOrderData());
 		customerOrderTable.getSelectionModel().select(selectedIndex);
 	}
 
@@ -136,7 +136,7 @@ public class CustomerAndSupplierOrderOverviewController {
 
 	public void setMainApp(Main mainApp) {
 		this.main = mainApp;
-		customerOrderTable.setItems(main.getCustomerOrderData(null));
+		customerOrderTable.setItems(main.getCustomerOrderData());
 	}
 
 	@FXML

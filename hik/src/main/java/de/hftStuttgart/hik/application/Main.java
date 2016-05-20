@@ -245,19 +245,15 @@ public class Main extends Application {
 	}
 
 	// auslagern
-	public ObservableList<Supplier> getSupplierData(Supplier sup) {
-		if (sup != null)
-			SupplierUtil.addSupplier(sup);
+	public ObservableList<Supplier> getSupplierData() {
 		return supplierData;
 	}
 
-	public ObservableList<Customer> getCustomerData(Customer cust) {
-		if (cust != null)
-			CustomerUtil.addCustomer(cust);
+	public ObservableList<Customer> getCustomerData() {
 		return customerData;
 	}
 
-	public ObservableList<CustomerOrder> getCustomerOrderData(CustomerOrder custOrder) {
+	public ObservableList<CustomerOrder> getCustomerOrderData() {
 		return customerOrderData;
 	}
 }

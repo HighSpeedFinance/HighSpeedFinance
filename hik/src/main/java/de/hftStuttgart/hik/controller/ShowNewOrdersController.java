@@ -89,7 +89,7 @@ public class ShowNewOrdersController {
 		ZoneId zone1 = ZoneId.of("Europe/Berlin");
 		LocalDate local = LocalDate.now(zone1);
 
-		ObservableList<CustomerOrder> customerOrderList = main.getCustomerOrderData(null);
+		ObservableList<CustomerOrder> customerOrderList = main.getCustomerOrderData();
 		ObservableList<CustomerOrder> customerOrderListInTime = FXCollections.observableArrayList();
 		if (radioDays.isSelected()) {
 			switch (comboValue) {

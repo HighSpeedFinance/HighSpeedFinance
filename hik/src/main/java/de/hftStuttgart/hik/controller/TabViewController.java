@@ -175,8 +175,8 @@ public class TabViewController {
 
 	public void setMainApp(Main mainApp) {
 		this.main = mainApp;
-		supplierTable.setItems(mainApp.getSupplierData(null));
-		customerTable.setItems(mainApp.getCustomerData(null));
+		supplierTable.setItems(mainApp.getSupplierData());
+		customerTable.setItems(mainApp.getCustomerData());
 	}
 
 	@FXML
