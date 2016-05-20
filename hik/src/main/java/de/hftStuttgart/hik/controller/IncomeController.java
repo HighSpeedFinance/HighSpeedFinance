@@ -45,32 +45,46 @@ public class IncomeController {
 	@FXML
 	private ComboBox<String> daysCombobox;
 	@FXML
-	private ComboBox<Integer> plzCombobox;
+	private ComboBox<String> plzCombobox;
 
+	@SuppressWarnings("unused")
 	private Main main;
 	private ObservableList<CustomerOrder> customerOrderListInTime = FXCollections.observableArrayList();
+	private ObservableList<CustomerOrder> customerOrderListInTimeAndPlz = FXCollections.observableArrayList();
 	private ObservableList<CustomerOrder> customerOrderList = FXCollections.observableArrayList();
-	private ObservableList<Integer> plz = FXCollections.observableArrayList();
+	private ObservableList<String> plz = FXCollections.observableArrayList();
+	private double summeCalc = 0;
 
-	public void setPlzComboBox(){
-		for(CustomerOrder cusOrder : customerOrderList){
-			int plzInt = CustomerUtil.loadAllCustomers().get((int) cusOrder.getCustomer()).getCustomerPostalCode();
-			if(!plz.contains(plzInt))
-			plz.add(plzInt);
+	public void setPlzComboBox(int index) {
+		for (CustomerOrder cusOrder : customerOrderListInTime) {
+			String plzInt = String
+					.valueOf(CustomerUtil.loadAllCustomers().get((int) cusOrder.getCustomer()).getCustomerPostalCode());
+			if (!plz.contains("Alle")) {
+				plz.add("Alle");
+			}
+			if (!plz.contains(plzInt))
+				plz.add(plzInt);
 		}
 		plzCombobox.setItems(plz);
-		plzCombobox.getSelectionModel().select(0);
+		plzCombobox.getSelectionModel().select(index);
 	}
-	
+
 	@FXML
 	private void initialize() {
 		daysCombobox.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage", "Alle"));
 		daysCombobox.getSelectionModel().select(0);
-		
+
 		daysCombobox.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(@SuppressWarnings("rawtypes") ObservableValue ov, String t, String t1) {
 				loadOrders(t1);
+			}
+		});
+
+		plzCombobox.valueProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(@SuppressWarnings("rawtypes") ObservableValue ov, String t, String t1) {
+				loadOrdersPlz(t1);
 			}
 		});
 
@@ -88,18 +102,33 @@ public class IncomeController {
 
 	public void setMainApp(Main main) {
 		this.main = main;
+		customerOrderList = OrderUtil.loadAllOrdersWhereStatusSucceeded();
 		loadOrders("10 Tage");
+	}
+
+	public void loadOrdersPlz(String comboValue) {
+		customerOrderListInTimeAndPlz.clear();
+
+		for (CustomerOrder cusOder : customerOrderListInTime) {
+			if (String.valueOf(cusOder.getCustomerObject().getCustomerPostalCode()).equals(comboValue)
+					|| comboValue.equals("Alle")) {
+				customerOrderListInTimeAndPlz.add(cusOder);
+			}
+		}
+
+		for (CustomerOrder cusOrder : customerOrderListInTimeAndPlz) {
+			summeCalc += cusOrder.getSumPrice();
+		}
+		summe.setText(String.valueOf(summeCalc) + " €");
+		customerOrderTable.setItems(customerOrderListInTimeAndPlz);
 	}
 
 	public void loadOrders(String comboValue) {
 		ZoneId zone1 = ZoneId.of("Europe/Berlin");
 		LocalDate local = LocalDate.now(zone1);
-		double summeCalc = 0;
 
 		customerOrderListInTime.clear();
-		customerOrderList = OrderUtil.loadAllOrdersWhereStatusSucceeded();
-		setPlzComboBox();
-		
+
 		switch (comboValue) {
 		case "10 Tage":
 			for (CustomerOrder cusOrder : customerOrderList) {
@@ -125,10 +154,18 @@ public class IncomeController {
 			}
 			break;
 		}
-		for (CustomerOrder cusOrder : customerOrderListInTime) {
-			summeCalc += cusOrder.getSumPrice();
-		}
-		summe.setText(String.valueOf(summeCalc) + " €");
-		customerOrderTable.setItems(customerOrderListInTime);
+		if (plzCombobox.getSelectionModel().getSelectedIndex() == -1)
+			setPlzComboBox(0);
+		else
+			setPlzComboBox(plzCombobox.getSelectionModel().getSelectedIndex());
+		loadOrdersPlz(plzCombobox.getSelectionModel().getSelectedItem());
+	}
+
+	public double getSummeCalc() {
+		return summeCalc;
+	}
+
+	public void setSummeCalc(double summeCalc) {
+		this.summeCalc = summeCalc;
 	}
 }

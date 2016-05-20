@@ -238,9 +238,9 @@ public class Main extends Application {
 	public void addDummyCustomers() {
 		for (int i = 0; i <= 10; i++) {
 			CustomerUtil.addCustomer(new Customer(i, "customerCompanyName" + i, "customerContactPersonFirstName",
-					"customerContactPersonLastName", "customerStreet", 73778, "customerCity", 0711344455,
+					"customerContactPersonLastName", "customerStreet", 73779, "customerCity", 0711344455,
 					"customerEmail", 16, "customerCountry", 123, "customerTitel",
-					new LocalDateStringConverter().toString(LocalDate.now().minusDays(25))));
+					new LocalDateStringConverter().toString(LocalDate.now().minusDays(60))));
 		}
 	}
 
