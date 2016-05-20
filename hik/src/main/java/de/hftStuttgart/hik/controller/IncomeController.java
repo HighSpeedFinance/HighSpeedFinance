@@ -108,6 +108,7 @@ public class IncomeController {
 
 	public void loadOrdersPlz(String comboValue) {
 		customerOrderListInTimeAndPlz.clear();
+		summeCalc = 0;
 
 		for (CustomerOrder cusOder : customerOrderListInTime) {
 			if (String.valueOf(cusOder.getCustomerObject().getCustomerPostalCode()).equals(comboValue)
