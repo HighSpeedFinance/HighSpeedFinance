@@ -24,7 +24,7 @@
 				</excludes>
 			</resource>
 			<resource>
-				<directory>src/resources</directory>
+				<directory>/hik/resources/META-INF</directory>
 			</resource>
 		</resources>
 	</build>
