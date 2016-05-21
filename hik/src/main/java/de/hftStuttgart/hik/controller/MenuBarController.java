@@ -15,10 +15,13 @@ public class MenuBarController {
 
 	@FXML
 	private void initialize() {
-		imageView.setImage(new Image("/main/java/de/hftStuttgart/hik/pics/hik_icon.png"));
-		
+		imageView.setImage(new Image("/main/java/de/hftStuttgart/hik/pics/Icon_Hahn.png"));
 	}
 	
+	@FXML
+	public void showGraphics(){
+		main.showGraphics();
+	}
 	
 	@FXML
 	private void showStart(ActionEvent event) {

@@ -21,7 +21,7 @@
                   </Button>
                   <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#showIncome" prefWidth="80.0" style="-fx-background-color: transparent;" text="Einnahmen" />
                   <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: transparent;" text="Ausgaben" />
-                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: transparent;" text="Graphiken" />
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: transparent;" text="Graphiken" onAction="#showGraphics"/>
                   <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: transparent;" text="Hilfe" />
                </children>
             </HBox>

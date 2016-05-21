@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import de.hftStuttgart.hik.controller.CustomerOrderController;
+import de.hftStuttgart.hik.controller.GraphicsController;
 import de.hftStuttgart.hik.controller.IncomeController;
 import de.hftStuttgart.hik.controller.MenuBarController;
 import de.hftStuttgart.hik.controller.CustomerAndSupplierOrderOverviewController;
@@ -49,7 +50,7 @@ public class Main extends Application {
 		try {
 			this.primaryStage = primaryStage;
 			this.primaryStage.setTitle("HighSpeed-Finance");
-			this.primaryStage.getIcons().add(new Image("/main/java/de/hftStuttgart/hik/pics/Logo1.jpg"));
+			this.primaryStage.getIcons().add(new Image("/main/java/de/hftStuttgart/hik/pics/Icon_icon.png"));
 			this.primaryStage.setResizable(true);
 
 			FXMLLoader loader = new FXMLLoader(
@@ -218,6 +219,25 @@ public class Main extends Application {
 			customerOrderData.addAll(OrderUtil.loadAllOrders());
 			
 			IncomeController controller = loader.getController();
+			controller.setMainApp(this);
+			
+		} catch (Exception e) {
+		}
+	}
+	
+	public void showGraphics(){
+		try {
+			AnchorPane anchorPane;
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/main/java/de/hftStuttgart/hik/view/Graphics.fxml"));
+			anchorPane = (AnchorPane) loader.load();
+			rootLayout.setLeft(null);
+			rootLayout.setCenter(anchorPane);
+			
+			customerOrderData.clear();
+			customerOrderData.addAll(OrderUtil.loadAllOrders());
+			
+			GraphicsController controller = loader.getController();
 			controller.setMainApp(this);
 			
 		} catch (Exception e) {
