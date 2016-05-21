@@ -48,37 +48,47 @@ public class NewCustomersAndSuppliersController {
 	@FXML
 	private Label customerPhone;
 	@FXML
+	private Label supplierCompanyName;
+	@FXML
+	private Label supplierContactPerson;
+	@FXML
+	private Label supplierStreet;
+	@FXML
+	private Label supplierPLZ;
+	@FXML
+	private Label supplierPhoneNumber;
+	@FXML
+	private Label supplierMail;
+	@FXML
 	private TableView<Supplier> supplierTable;
 	@FXML
 	private TableColumn<Supplier, String> supplierNumberColumn;
 	@FXML
 	private TableColumn<Supplier, String> supplierNameColumn;
 	@FXML
-	private Label supplierCompanyNameLabel;
-	@FXML
-	private Label supplierContactPersonLabel;
-	@FXML
-	private Label supplierStreetLabel;
-	@FXML
-	private Label supplierPostalCodeCityLabel;
-	@FXML
-	private Label supplierPhoneNumberLabel;
-	@FXML
-	private Label supplierEmailLabel;
-	@FXML
-	private Label supplierNameLabel;
-	@FXML
 	private RadioButton radioDays;
 	@FXML
 	private RadioButton radioDate;
 	@FXML
+	private RadioButton radioDays1;
+	@FXML
+	private RadioButton radioDate1;
+	@FXML
 	private ComboBox<String> daysCombobox;
 	@FXML
+	private ComboBox<String> daysCombobox1;
+	@FXML
 	private ToggleGroup zeitraum;
+	@FXML
+	private ToggleGroup zeitraum1;
 	@FXML
 	private DatePicker startDate;
 	@FXML
 	private DatePicker endDate;
+	@FXML
+	private DatePicker startDate1;
+	@FXML
+	private DatePicker endDate1;
 
 	private Main main;
 
@@ -88,6 +98,15 @@ public class NewCustomersAndSuppliersController {
 		daysCombobox.getSelectionModel().select(0);
 
 		daysCombobox.valueProperty().addListener(new ChangeListener<String>() {
+			@Override
+			public void changed(@SuppressWarnings("rawtypes") ObservableValue ov, String t, String t1) {
+				loadCustomerList(t1);
+			}
+		});
+		daysCombobox1.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage"));
+		daysCombobox1.getSelectionModel().select(0);
+
+		daysCombobox1.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(@SuppressWarnings("rawtypes") ObservableValue ov, String t, String t1) {
 				loadCustomerList(t1);
@@ -146,6 +165,24 @@ public class NewCustomersAndSuppliersController {
 			customerPhone.setText("");
 		}
 	}
+	
+	private void showSupplierDetails(Supplier supplier) {
+		if(supplier != null) {
+			supplierCompanyName.setText(supplier.getSupplierCompanyName());
+			supplierContactPerson.setText(supplier.getSupplierContactPersonFirstName() + " " + supplier.getSupplierContactPersonLastName());
+			supplierStreet.setText(supplier.getSupplierStreet()+ ", " + String.valueOf(supplier.getSupplierHouseNumber()));
+			supplierPLZ.setText(String.valueOf(supplier.getSupplierPostalCode())+" " + supplier.getSupplierCity());
+			supplierPhoneNumber.setText(String.valueOf(supplier.getSupplierPhoneNumber()));
+			supplierMail.setText(String.valueOf(supplier.getSupplierEmail()));
+		} else {
+			supplierCompanyName.setText("");
+			supplierContactPerson.setText("");
+			supplierStreet.setText("");
+			supplierPLZ.setText("");
+			supplierPhoneNumber.setText("");
+			supplierMail.setText("");
+		}
+	}
 
 	public void setMainApp(Main main) {
 		this.main = main;
@@ -160,7 +197,7 @@ public class NewCustomersAndSuppliersController {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error!");
 			alert.setHeaderText("");
-			alert.setContentText("Keinen Kunden ausgew√§hlt!");
+			alert.setContentText("Keinen Kunden ausgew‰hlt!");
 			alert.showAndWait();
 		}
 	}
