@@ -13,7 +13,7 @@
 
 <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
 	minWidth="-Infinity" prefHeight="450.0" prefWidth="550.0"
-	tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8"
+	tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" fx:id="tabPane"
 	xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.OpenCustomerAndSupplierOrders">
 	<tabs>
 		<Tab onSelectionChanged="#customerIsSelected" text="Kunde">

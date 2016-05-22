@@ -5,6 +5,9 @@ import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.utilities.OrderUtil;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -22,6 +25,8 @@ public class OpenCustomerAndSupplierOrders {
 	private TableColumn<CustomerOrder, String> orderTotalPrice;
 	@FXML
 	private TableColumn<CustomerOrder, String> customerNumber;
+	@FXML
+	private TabPane tabPane;
 
 	private Main main;
 
@@ -57,5 +62,14 @@ public class OpenCustomerAndSupplierOrders {
 	@FXML
 	public void supplierIsSelected() {
 		main.showNavigationBarSupplier();
+	}
+	
+	public void setTabSelected(int selection){
+		SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+		if(selection == 0){
+			selectionModel.select(0);
+		}else{
+			selectionModel.select(1);
+		}
 	}
 }

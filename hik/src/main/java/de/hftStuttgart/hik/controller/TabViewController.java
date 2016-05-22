@@ -13,6 +13,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -62,6 +65,12 @@ public class TabViewController {
 	private Label supplierNameLabel;
 	@FXML
 	private TextField searchCustomer;
+	@FXML
+	private Tab customerTab;
+	@FXML
+	private Tab supplierTab;
+	@FXML
+	private TabPane tabPane;
 
 	private Main main;
 	private ObservableList<Customer> customerList = FXCollections.observableArrayList();
@@ -201,6 +210,15 @@ public class TabViewController {
 		customerTable.setItems(mainApp.getCustomerData());
 	}
 
+	public void setTabSelected(int selection){
+		SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+		if(selection == 0){
+			selectionModel.select(0);
+		}else{
+			selectionModel.select(1);
+		}
+	}
+	
 	@FXML
 	public void customerIsSelected() {
 		try {

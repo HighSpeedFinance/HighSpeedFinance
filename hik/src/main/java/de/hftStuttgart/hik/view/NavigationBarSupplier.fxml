@@ -6,12 +6,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="450.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.NavigationBarSupplierController">
    <children>
-      <Button layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Lieferantenübersicht" />
-      <Button layoutY="70.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Lieferanten erfassen" />
-      <Button layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Neue Bestellung erfassen" />
-      <Button layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Bestellung verwalten" />
-      <Button layoutY="160.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Überweisungen" />
+      <Button layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Lieferantenübersicht" onAction="#showSupplierOverview"/>
+      <Button layoutY="70.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Neue Lieferanten anzeigen" onAction="#showNewSuppliers"/>
+      <Button layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Neue Bestellung anzeigen" onAction="#showNewSupplierOrders"/>
+      <Button layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Bestellung verwalten" onAction="#showAllSupplierOrders"/>
+      <Button layoutY="160.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Ausstehende Rechnungen" onAction="#showOpenSupplierOrders"/>
    </children>
 </AnchorPane>

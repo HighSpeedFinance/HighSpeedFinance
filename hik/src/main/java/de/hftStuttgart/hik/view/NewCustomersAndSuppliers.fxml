@@ -12,7 +12,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.Group?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="550.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.NewCustomersAndSuppliersController">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="550.0" tabClosingPolicy="UNAVAILABLE" fx:id="tabPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.NewCustomersAndSuppliersController">
 	<tabs>
 		<Tab onSelectionChanged="#customerIsSelected" text="Kunde">
 			<content>
@@ -49,7 +49,7 @@
 											<children>
 												<Label prefHeight="17.0" prefWidth="58.0" text="Anrede: " />
 												<Label text="Name:  " GridPane.rowIndex="1" />
-												<Label text="Straße:  " GridPane.rowIndex="2" />
+												<Label text="Straï¿½e:  " GridPane.rowIndex="2" />
 												<Label text="PLZ:  " GridPane.rowIndex="3" />
 												<Label fx:id="customerTitel" text="Label" GridPane.columnIndex="1" />
 												<Label fx:id="customerName" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
@@ -117,7 +117,7 @@
 											<children>
 												<Label text="Firma:" GridPane.columnIndex="0" />
 												<Label text="Ansprechpartner:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-												<Label text="Straße, Nr.:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+												<Label text="Straï¿½e, Nr.:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 												<Label text="PLZ, Stadt:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 												<Label text="Telefon:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 												<Label text="Mail:" GridPane.columnIndex="0" GridPane.rowIndex="5" />

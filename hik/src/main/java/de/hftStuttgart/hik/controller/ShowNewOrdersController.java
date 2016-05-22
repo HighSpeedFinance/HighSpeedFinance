@@ -13,6 +13,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.SingleSelectionModel;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Toggle;
@@ -45,6 +48,8 @@ public class ShowNewOrdersController {
 	private DatePicker startDate;
 	@FXML
 	private DatePicker endDate;
+	@FXML
+	private TabPane tabPane;
 
 	private Main main;
 
@@ -136,5 +141,14 @@ public class ShowNewOrdersController {
 	@FXML
 	public void supplierIsSelected() {
 		main.showNavigationBarSupplier();
+	}
+	
+	public void setTabSelected(int selection){
+		SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
+		if(selection == 0){
+			selectionModel.select(0);
+		}else{
+			selectionModel.select(1);
+		}
 	}
 }
