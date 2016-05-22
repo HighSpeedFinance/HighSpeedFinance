@@ -171,6 +171,7 @@ public class NewCustomersAndSuppliersController {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private void showSupplierDetails(Supplier supplier) {
 		if(supplier != null) {
 			supplierCompanyName.setText(supplier.getSupplierCompanyName());

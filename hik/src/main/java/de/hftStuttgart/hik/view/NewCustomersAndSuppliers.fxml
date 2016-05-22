@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.*?>
 <?import javafx.geometry.Insets?>
@@ -12,7 +13,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.Group?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="550.0" tabClosingPolicy="UNAVAILABLE" fx:id="tabPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.NewCustomersAndSuppliersController">
+<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="550.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.NewCustomersAndSuppliersController">
 	<tabs>
 		<Tab onSelectionChanged="#customerIsSelected" text="Kunde">
 			<content>
@@ -67,17 +68,22 @@
 								</AnchorPane>
 							</items>
 						</SplitPane>
-						<Label layoutX="14.0" layoutY="14.0" text="Zeitraum :" />
-						<RadioButton fx:id="radioDays" layoutX="92.0" layoutY="14.0" mnemonicParsing="false" selected="true" text="in Tagen">
+						<Label layoutX="14.0" layoutY="35.0" text="Zeitraum :" />
+						<RadioButton fx:id="radioDays" layoutX="92.0" layoutY="35.0" mnemonicParsing="false" selected="true" text="in Tagen">
 							<toggleGroup>
 								<ToggleGroup fx:id="zeitraum" />
 							</toggleGroup>
 						</RadioButton>
-						<RadioButton fx:id="radioDate" layoutX="92.0" layoutY="52.0" mnemonicParsing="false" text="Datum" toggleGroup="$zeitraum" />
-						<ComboBox fx:id="daysCombobox" layoutX="177.0" layoutY="10.0" prefHeight="25.0" prefWidth="87.0" />
-						<DatePicker fx:id="startDate" layoutX="176.0" layoutY="48.0" onAction="#loadCustomers" prefHeight="25.0" prefWidth="89.0" />
-						<DatePicker fx:id="endDate" layoutX="306.0" layoutY="48.0" onAction="#loadCustomers" prefHeight="25.0" prefWidth="89.0" />
-						<Label layoutX="275.0" layoutY="52.0" text="bis" />
+						<RadioButton fx:id="radioDate" layoutX="92.0" layoutY="73.0" mnemonicParsing="false" text="Datum" toggleGroup="$zeitraum" />
+						<ComboBox fx:id="daysCombobox" layoutX="177.0" layoutY="31.0" prefHeight="25.0" prefWidth="87.0" />
+						<DatePicker fx:id="startDate" layoutX="176.0" layoutY="69.0" onAction="#loadCustomers" prefHeight="25.0" prefWidth="89.0" />
+						<DatePicker fx:id="endDate" layoutX="306.0" layoutY="69.0" onAction="#loadCustomers" prefHeight="25.0" prefWidth="89.0" />
+						<Label layoutX="275.0" layoutY="73.0" text="bis" />
+                  <Label layoutX="14.0" layoutY="6.0" text="Neue Kunden">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
 					</children>
 				</AnchorPane>
 			</content>
