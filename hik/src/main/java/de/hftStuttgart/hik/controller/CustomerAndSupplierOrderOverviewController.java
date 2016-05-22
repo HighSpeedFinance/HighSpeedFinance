@@ -3,6 +3,7 @@ package de.hftStuttgart.hik.controller;
 import java.io.IOException;
 
 import de.hftStuttgart.hik.application.Main;
+import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.utilities.CustomerUtil;
 import de.hftStuttgart.hik.utilities.OrderUtil;
@@ -14,6 +15,7 @@ import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -37,6 +39,8 @@ public class CustomerAndSupplierOrderOverviewController {
 	private TableColumn<CustomerOrder, String> customerNumber;
 	@FXML
 	private TabPane tabPane;
+	@FXML
+	private TextField searchCustomerOrders;
 	
 	private Main main;
 
@@ -137,6 +141,21 @@ public class CustomerAndSupplierOrderOverviewController {
 			System.out.println(e.getMessage());
 			return false;
 		}
+	}
+	
+	@FXML
+	public void searchCustomerOrders() {
+		/*c.clear();
+		if (!searchCustomer.getText().equals("")) {
+			for (Customer cus : main.getCustomerData()) {
+				if (cus.getCustomerNumber() == Integer.valueOf(searchCustomer.getText())) {
+					customerList.add(cus);
+				}
+			}
+			customerTable.setItems(customerList);
+		}else{
+			customerTable.setItems(main.getCustomerData());
+		}*/
 	}
 
 	public void setMainApp(Main mainApp) {

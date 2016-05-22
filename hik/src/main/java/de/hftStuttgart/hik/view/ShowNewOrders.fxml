@@ -46,7 +46,7 @@
 						<DatePicker fx:id="startDate" layoutX="176.0" layoutY="74.0" onAction="#loadOrders" prefHeight="25.0" prefWidth="89.0" />
 						<DatePicker fx:id="endDate" layoutX="306.0" layoutY="74.0" onAction="#loadOrders" prefHeight="25.0" prefWidth="89.0" />
 						<Label layoutX="275.0" layoutY="78.0" text="bis" />
-                  <Label layoutX="14.0" layoutY="1.0" text="Neue Kundenrechnungen">
+                  <Label layoutX="14.0" layoutY="1.0" text="Neue Kundenrechnungen" >
                      <font>
                         <Font size="18.0" />
                      </font>
