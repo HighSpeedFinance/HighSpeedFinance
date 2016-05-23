@@ -1,9 +1,14 @@
 package de.hftStuttgart.hik.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Supplier {
@@ -23,7 +28,11 @@ public class Supplier {
 	private int supplierHouseNumber;
 	private String supplierCountry;
 	private int supplierFax;
+	private String addedDate;
 
+	@OneToMany(mappedBy = "supplier", cascade = CascadeType.REMOVE, fetch=FetchType.EAGER)
+	private List<SupplierOrder> orders;
+	
 	public Supplier() {
 	}
 
@@ -31,7 +40,7 @@ public class Supplier {
 			final String supplierContactPersonFirstName, final String supplierContactPersonLastName,
 			final String supplierStreet, final int supplierPostalCode, String supplierCity,
 			final int supplierPhoneNumber, final String supplierEmail, final int supplierHouseNumber,
-			final String supplierCountry, final int supplierFax) {
+			final String supplierCountry, final int supplierFax, final String date) {
 
 		this.supplierNumber = supplierNumber;
 		this.supplierCompanyName = supplierCompanyName;
@@ -45,6 +54,7 @@ public class Supplier {
 		this.supplierHouseNumber = supplierHouseNumber;
 		this.supplierCountry = supplierCountry;
 		this.supplierFax = supplierFax;
+		this.addedDate = date;
 	}
 
 	public int getSupplierNumber() {
@@ -149,5 +159,23 @@ public class Supplier {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+	
+	public String getDate() {
+		return addedDate;
+	}
+
+	public void setDate(String date) {
+		this.addedDate = date;
+	}
+	
+	public void addOrder(SupplierOrder order) {
+		if (!orders.contains(order)) {
+			orders.add(order);
+		}
+	}
+
+	public List<SupplierOrder> getOrders() {
+		return orders;
 	}
 }

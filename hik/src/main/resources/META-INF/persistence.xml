@@ -10,6 +10,7 @@
 		<class>de.hftStuttgart.hik.model.CustomerOrder</class>
 		<class>de.hftStuttgart.hik.model.PostAdress</class>
 		<class>de.hftStuttgart.hik.model.Invoice</class>
+		<class>de.hftStuttgart.hik.model.SupplierOrder</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
 			<property name="javax.persistence.jdbc.url" value="jdbc:derby:test;create=true" />

@@ -123,7 +123,7 @@
 											<children>
 												<Label text="Firma:" GridPane.columnIndex="0" />
 												<Label text="Ansprechpartner:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-												<Label text="Stra�e, Nr.:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+												<Label text="Straße, Nr.:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
 												<Label text="PLZ, Stadt:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
 												<Label text="Telefon:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
 												<Label text="Mail:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
@@ -141,20 +141,20 @@
 							</items>
 						</SplitPane>
                   <Label layoutX="14.0" layoutY="14.0" text="Zeitraum :" />
-                  <RadioButton fx:id="radioDays1" layoutX="92.0" layoutY="14.0" mnemonicParsing="false" selected="true" text="in Tagen">
+                  <RadioButton fx:id="radioDaysSupplier" layoutX="92.0" layoutY="14.0" mnemonicParsing="false" selected="true" text="in Tagen">
                      <toggleGroup>
-                        <ToggleGroup fx:id="zeitraum1" />
+                        <ToggleGroup fx:id="zeitraumSupplier" />
                      </toggleGroup>
                   </RadioButton>
-                  <ComboBox fx:id="daysCombobox1" layoutX="177.0" layoutY="10.0" prefHeight="25.0" prefWidth="87.0">
+                  <ComboBox fx:id="daysComboboxSupplier" layoutX="177.0" layoutY="10.0" prefHeight="25.0" prefWidth="87.0">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
                   </ComboBox>
-                  <RadioButton fx:id="radioDate1" layoutX="92.0" layoutY="52.0" mnemonicParsing="false" text="Datum" toggleGroup="$zeitraum1" />
-                  <DatePicker fx:id="startDate1" layoutX="176.0" layoutY="48.0" onAction="#loadCustomers" prefHeight="25.0" prefWidth="89.0" />
+                  <RadioButton fx:id="radioDateSupplier" layoutX="92.0" layoutY="52.0" mnemonicParsing="false" text="Datum" toggleGroup="$zeitraumSupplier" />
+                  <DatePicker fx:id="startDateSupplier" layoutX="176.0" layoutY="48.0" onAction="#loadSuppliers" prefHeight="25.0" prefWidth="89.0" />
                   <Label layoutX="275.0" layoutY="52.0" text="bis" />
-                  <DatePicker fx:id="endDate1" layoutX="306.0" layoutY="48.0" onAction="#loadCustomers" prefHeight="25.0" prefWidth="89.0" />
+                  <DatePicker fx:id="endDateSupplier" layoutX="306.0" layoutY="48.0" onAction="#loadSuppliers" prefHeight="25.0" prefWidth="89.0" />
 					</children>
 				</AnchorPane>
 			</content>

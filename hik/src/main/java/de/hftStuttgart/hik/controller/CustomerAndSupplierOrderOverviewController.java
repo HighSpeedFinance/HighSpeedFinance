@@ -3,7 +3,6 @@ package de.hftStuttgart.hik.controller;
 import java.io.IOException;
 
 import de.hftStuttgart.hik.application.Main;
-import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.utilities.CustomerUtil;
 import de.hftStuttgart.hik.utilities.OrderUtil;

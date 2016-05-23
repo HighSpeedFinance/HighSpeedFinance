@@ -73,25 +73,25 @@ public class NewCustomersAndSuppliersController {
 	@FXML
 	private RadioButton radioDate;
 	@FXML
-	private RadioButton radioDays1;
+	private RadioButton radioDaysSupplier;
 	@FXML
-	private RadioButton radioDate1;
+	private RadioButton radioDateSupplier;
 	@FXML
 	private ComboBox<String> daysCombobox;
 	@FXML
-	private ComboBox<String> daysCombobox1;
+	private ComboBox<String> daysComboboxSupplier;
 	@FXML
 	private ToggleGroup zeitraum;
 	@FXML
-	private ToggleGroup zeitraum1;
+	private ToggleGroup zeitraumSupplier;
 	@FXML
 	private DatePicker startDate;
 	@FXML
 	private DatePicker endDate;
 	@FXML
-	private DatePicker startDate1;
+	private DatePicker startDateSupplier;
 	@FXML
-	private DatePicker endDate1;
+	private DatePicker endDateSupplier;
 	@FXML
 	private TabPane tabPane;
 
@@ -108,13 +108,13 @@ public class NewCustomersAndSuppliersController {
 				loadCustomerList(t1);
 			}
 		});
-		daysCombobox1.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage"));
-		daysCombobox1.getSelectionModel().select(0);
+		daysComboboxSupplier.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage"));
+		daysComboboxSupplier.getSelectionModel().select(0);
 
-		daysCombobox1.valueProperty().addListener(new ChangeListener<String>() {
+		daysComboboxSupplier.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(@SuppressWarnings("rawtypes") ObservableValue ov, String t, String t1) {
-				loadCustomerList(t1);
+				loadSupplierList(t1);
 			}
 		});
 
@@ -122,6 +122,13 @@ public class NewCustomersAndSuppliersController {
 			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 				daysCombobox.getSelectionModel().select(0);
 				loadCustomerList(daysCombobox.getSelectionModel().getSelectedItem());
+			}
+		});
+
+		zeitraumSupplier.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
+				daysComboboxSupplier.getSelectionModel().select(0);
+				loadSupplierList(daysComboboxSupplier.getSelectionModel().getSelectedItem());
 			}
 		});
 
@@ -146,6 +153,27 @@ public class NewCustomersAndSuppliersController {
 				}
 			}
 		});
+
+		supplierNumberColumn.setCellValueFactory(new PropertyValueFactory<Supplier, String>("supplierNumber"));
+		supplierNameColumn.setCellValueFactory(new PropertyValueFactory<Supplier, String>("supplierCompanyName"));
+
+		supplierTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		showSupplierDetails(null);
+
+		supplierTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Supplier>() {
+			public void changed(ObservableValue<? extends Supplier> observable, Supplier oldValue, Supplier newValue) {
+				showSupplierDetails(newValue);
+			}
+		});
+
+		/*
+		 * supplierTable.setOnMousePressed(new EventHandler<MouseEvent>() {
+		 * 
+		 * @Override public void handle(MouseEvent e) { if
+		 * (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
+		 * main.showCustomerOrder(customerTable.getSelectionModel().
+		 * getSelectedItem()); } } });
+		 */
 	}
 
 	private void showCustomerDetails(Customer customer) {
@@ -170,14 +198,15 @@ public class NewCustomersAndSuppliersController {
 			customerPhone.setText("");
 		}
 	}
-	
-	@SuppressWarnings("unused")
+
 	private void showSupplierDetails(Supplier supplier) {
-		if(supplier != null) {
+		if (supplier != null) {
 			supplierCompanyName.setText(supplier.getSupplierCompanyName());
-			supplierContactPerson.setText(supplier.getSupplierContactPersonFirstName() + " " + supplier.getSupplierContactPersonLastName());
-			supplierStreet.setText(supplier.getSupplierStreet()+ ", " + String.valueOf(supplier.getSupplierHouseNumber()));
-			supplierPLZ.setText(String.valueOf(supplier.getSupplierPostalCode())+" " + supplier.getSupplierCity());
+			supplierContactPerson.setText(
+					supplier.getSupplierContactPersonFirstName() + " " + supplier.getSupplierContactPersonLastName());
+			supplierStreet
+					.setText(supplier.getSupplierStreet() + ", " + String.valueOf(supplier.getSupplierHouseNumber()));
+			supplierPLZ.setText(String.valueOf(supplier.getSupplierPostalCode()) + " " + supplier.getSupplierCity());
 			supplierPhoneNumber.setText(String.valueOf(supplier.getSupplierPhoneNumber()));
 			supplierMail.setText(String.valueOf(supplier.getSupplierEmail()));
 		} else {
@@ -188,11 +217,6 @@ public class NewCustomersAndSuppliersController {
 			supplierPhoneNumber.setText("");
 			supplierMail.setText("");
 		}
-	}
-
-	public void setMainApp(Main main) {
-		this.main = main;
-		loadCustomerList("10 Tage");
 	}
 
 	@FXML
@@ -209,21 +233,54 @@ public class NewCustomersAndSuppliersController {
 	}
 
 	@FXML
-	public void customerIsSelected() {
-		try {
-			main.showNavigationBarCustomer();
-		} catch (Exception e) {
-		}
-	}
-
-	@FXML
-	public void supplierIsSelected() {
-		main.showNavigationBarSupplier();
-	}
-
-	@FXML
 	public void loadCustomers() {
 		loadCustomerList(daysCombobox.getSelectionModel().getSelectedItem());
+	}
+
+	@FXML
+	public void loadSuppliers() {
+		loadSupplierList(daysComboboxSupplier.getSelectionModel().getSelectedItem());
+	}
+
+	public void loadSupplierList(String comboValue) {
+		ZoneId zone1 = ZoneId.of("Europe/Berlin");
+		LocalDate local = LocalDate.now(zone1);
+		ObservableList<Supplier> supplierList = main.getSupplierData();
+		ObservableList<Supplier> supplierListInTime = FXCollections.observableArrayList();
+		if (radioDaysSupplier.isSelected()) {
+			switch (comboValue) {
+			case "10 Tage":
+				for (Supplier sup : supplierList) {
+					if (new LocalDateStringConverter().fromString(sup.getDate()).isAfter(local.minusDays(10)))
+						supplierListInTime.add(sup);
+				}
+				break;
+			case "20 Tage":
+				for (Supplier sup : supplierList) {
+					if (new LocalDateStringConverter().fromString(sup.getDate()).isAfter(local.minusDays(20)))
+						supplierListInTime.add(sup);
+				}
+				break;
+			case "30 Tage":
+				for (Supplier sup : supplierList) {
+					if (new LocalDateStringConverter().fromString(sup.getDate()).isAfter(local.minusDays(30)))
+						supplierListInTime.add(sup);
+				}
+				break;
+			}
+		} else if (radioDateSupplier.isSelected() && startDateSupplier.getValue() != null
+				&& endDateSupplier.getValue() != null) {
+			for (Supplier sup : supplierList) {
+				if (new LocalDateStringConverter().fromString(sup.getDate()).isAfter(startDateSupplier.getValue())
+						&& new LocalDateStringConverter().fromString(sup.getDate()).isBefore(endDateSupplier.getValue())
+						|| new LocalDateStringConverter().fromString(sup.getDate()).isEqual(endDateSupplier.getValue())
+						|| new LocalDateStringConverter().fromString(sup.getDate())
+								.isEqual(startDateSupplier.getValue())) {
+					supplierListInTime.add(sup);
+				}
+			}
+		}
+		supplierTable.setItems(supplierListInTime);
 	}
 
 	public void loadCustomerList(String comboValue) {
@@ -264,12 +321,31 @@ public class NewCustomersAndSuppliersController {
 		}
 		customerTable.setItems(customerListInTime);
 	}
-	
-	public void setTabSelected(int selection){
+
+	public void setMainApp(Main main) {
+		this.main = main;
+		loadCustomerList("10 Tage");
+		loadSupplierList("10 Tage");
+	}
+
+	@FXML
+	public void customerIsSelected() {
+		try {
+			main.showNavigationBarCustomer();
+		} catch (Exception e) {
+		}
+	}
+
+	@FXML
+	public void supplierIsSelected() {
+		main.showNavigationBarSupplier();
+	}
+
+	public void setTabSelected(int selection) {
 		SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
-		if(selection == 0){
+		if (selection == 0) {
 			selectionModel.select(0);
-		}else{
+		} else {
 			selectionModel.select(1);
 		}
 	}

@@ -3,7 +3,6 @@ package de.hftStuttgart.hik.controller;
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.Supplier;
-import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -66,6 +65,8 @@ public class TabViewController {
 	@FXML
 	private TextField searchCustomer;
 	@FXML
+	private TextField searchSupplier;
+	@FXML
 	private Tab customerTab;
 	@FXML
 	private Tab supplierTab;
@@ -74,6 +75,7 @@ public class TabViewController {
 
 	private Main main;
 	private ObservableList<Customer> customerList = FXCollections.observableArrayList();
+	private ObservableList<Supplier> supplierList = FXCollections.observableArrayList();
 
 	public TabViewController() {
 	}
@@ -90,6 +92,19 @@ public class TabViewController {
 			alert.showAndWait();
 		}
 	}
+	
+	@FXML
+	private void showBestellungSupplier() {
+		if (supplierTable.getSelectionModel().getSelectedItem() != null)
+			main.showSupplierOrder(supplierTable.getSelectionModel().getSelectedItem());
+		else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error!");
+			alert.setHeaderText("");
+			alert.setContentText("Keinen Lieferanten ausgewaehlt!");
+			alert.showAndWait();
+		}
+	}
 
 	@FXML
 	public void searchCustomer() {
@@ -101,17 +116,40 @@ public class TabViewController {
 				}
 			}
 			customerTable.setItems(customerList);
-		}else{
+		} else {
 			customerTable.setItems(main.getCustomerData());
 		}
-		
+	}
+
+	@FXML
+	public void searchSuppliers() {
+		supplierList.clear();
+		int searchInteger = 0;
+		try {
+			searchInteger = Integer.valueOf(searchSupplier.getText());
+		} catch (Exception e) {
+		}
+		if (!searchSupplier.getText().equals("")) {
+			for (Supplier sup : main.getSupplierData()) {
+				if (sup.getSupplierNumber() == searchInteger
+						|| sup.getSupplierContactPersonFirstName().equals(searchSupplier.getText())
+						|| sup.getSupplierContactPersonLastName().equals(searchSupplier.getText())
+						|| sup.getSupplierCity().equals(searchSupplier.getText())) {
+					supplierList.add(sup);
+				}
+			}
+			supplierTable.setItems(supplierList);
+		} else {
+			supplierTable.setItems(main.getSupplierData());
+		}
+
 	}
 
 	@FXML
 	private void initialize() {
 		supplierNumberColumn.setCellValueFactory(new PropertyValueFactory<Supplier, String>("supplierNumber"));
 		supplierNameColumn
-				.setCellValueFactory(new PropertyValueFactory<Supplier, String>("supplierContactPersonFirstName"));
+				.setCellValueFactory(new PropertyValueFactory<Supplier, String>("supplierCompanyName"));
 
 		customerNameColumn
 				.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerContactPersonFirstName"));
@@ -135,6 +173,15 @@ public class TabViewController {
 			}
 		});
 
+		supplierTable.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
+				if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
+					main.showSupplierOrder(supplierTable.getSelectionModel().getSelectedItem());
+				}
+			}
+		});
+		
 		customerTable.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {
@@ -168,21 +215,6 @@ public class TabViewController {
 		}
 	}
 
-	@FXML
-	private void deleteSupplier() {
-		int selectedIndex = supplierTable.getSelectionModel().getSelectedIndex();
-		if (supplierTable.getSelectionModel().getSelectedItem() != null) {
-			SupplierUtil.deleteSupplier(supplierTable.getSelectionModel().getSelectedItem());
-			supplierTable.getItems().remove(selectedIndex);
-		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error!");
-			alert.setHeaderText("");
-			alert.setContentText("No Supplier selected!");
-			alert.showAndWait();
-		}
-	}
-
 	private void showSupplierDetails(Supplier supplier) {
 		if (supplier != null) {
 			supplierPhoneNumberLabel.setText(String.valueOf(supplier.getSupplierPhoneNumber()));
@@ -193,7 +225,6 @@ public class TabViewController {
 					.setText(String.valueOf(supplier.getSupplierPostalCode() + " " + supplier.getSupplierCity()));
 			supplierStreetLabel.setText(supplier.getSupplierStreet());
 			supplierEmailLabel.setText(supplier.getSupplierEmail());
-			supplierNameLabel.setText(supplier.getSupplierNumber() + "-------");
 		} else {
 			supplierPhoneNumberLabel.setText("");
 			supplierCompanyNameLabel.setText("");
@@ -210,15 +241,15 @@ public class TabViewController {
 		customerTable.setItems(mainApp.getCustomerData());
 	}
 
-	public void setTabSelected(int selection){
+	public void setTabSelected(int selection) {
 		SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
-		if(selection == 0){
+		if (selection == 0) {
 			selectionModel.select(0);
-		}else{
+		} else {
 			selectionModel.select(1);
 		}
 	}
-	
+
 	@FXML
 	public void customerIsSelected() {
 		try {

@@ -13,12 +13,15 @@ import de.hftStuttgart.hik.controller.NavigationBarSupplierController;
 import de.hftStuttgart.hik.controller.NewCustomersAndSuppliersController;
 import de.hftStuttgart.hik.controller.OpenCustomerAndSupplierOrders;
 import de.hftStuttgart.hik.controller.ShowNewOrdersController;
+import de.hftStuttgart.hik.controller.SupplierOrderController;
 import de.hftStuttgart.hik.controller.TabViewController;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.model.Supplier;
+import de.hftStuttgart.hik.model.SupplierOrder;
 import de.hftStuttgart.hik.utilities.CustomerUtil;
 import de.hftStuttgart.hik.utilities.OrderUtil;
+import de.hftStuttgart.hik.utilities.SupplierOrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -38,6 +41,7 @@ public class Main extends Application {
 	private ObservableList<Supplier> supplierData = FXCollections.observableArrayList();
 	private ObservableList<Customer> customerData = FXCollections.observableArrayList();
 	private ObservableList<CustomerOrder> customerOrderData = FXCollections.observableArrayList();
+	private ObservableList<SupplierOrder> supplierOrderData = FXCollections.observableArrayList();
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;
@@ -45,7 +49,7 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
+
 	// LoadViews
 	@Override
 	public void start(Stage primaryStage) {
@@ -89,7 +93,7 @@ public class Main extends Application {
 			System.out.println("showCustomerAndSupplierOverview: " + e.getMessage());
 		}
 	}
-	
+
 	public void showSupplierOverview() {
 		try {
 			TabPane myPane;
@@ -164,7 +168,7 @@ public class Main extends Application {
 					getClass().getResource("/main/java/de/hftStuttgart/hik/view/NavigationBarSupplier.fxml"));
 			anchorPane = (AnchorPane) loader.load();
 			rootLayout.setLeft(anchorPane);
-			
+
 			NavigationBarSupplierController controller = loader.getController();
 			controller.setMainApp(this);
 		} catch (Exception e) {
@@ -189,6 +193,32 @@ public class Main extends Application {
 
 			CustomerOrderController controller = loader.getController();
 			controller.setCustomer(customer);
+			controller.setMainApp(this);
+
+			dialogStage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public void showSupplierOrder(Supplier supplier) {
+		try {
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/main/java/de/hftStuttgart/hik/view/SupplierOrder.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Bestellungen " + supplier.getSupplierCompanyName());
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(getPrimaryStage());
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			supplierOrderData.clear();
+			supplierOrderData.addAll(SupplierOrderUtil.loadAllOrders(supplier));
+
+			SupplierOrderController controller = loader.getController();
+			controller.setSupplier(supplier);
 			controller.setMainApp(this);
 
 			dialogStage.showAndWait();
@@ -232,8 +262,8 @@ public class Main extends Application {
 		} catch (Exception e) {
 		}
 	}
-	
-	public void showIncome(){
+
+	public void showIncome() {
 		try {
 			AnchorPane anchorPane;
 			FXMLLoader loader = new FXMLLoader(
@@ -241,18 +271,18 @@ public class Main extends Application {
 			anchorPane = (AnchorPane) loader.load();
 			rootLayout.setLeft(null);
 			rootLayout.setCenter(anchorPane);
-			
+
 			customerOrderData.clear();
 			customerOrderData.addAll(OrderUtil.loadAllOrders());
-			
+
 			IncomeController controller = loader.getController();
 			controller.setMainApp(this);
-			
+
 		} catch (Exception e) {
 		}
 	}
-	
-	public void showGraphics(){
+
+	public void showGraphics() {
 		try {
 			AnchorPane anchorPane;
 			FXMLLoader loader = new FXMLLoader(
@@ -260,13 +290,13 @@ public class Main extends Application {
 			anchorPane = (AnchorPane) loader.load();
 			rootLayout.setLeft(null);
 			rootLayout.setCenter(anchorPane);
-			
+
 			customerOrderData.clear();
 			customerOrderData.addAll(OrderUtil.loadAllOrders());
-			
+
 			GraphicsController controller = loader.getController();
 			controller.setMainApp(this);
-			
+
 		} catch (Exception e) {
 		}
 	}
@@ -274,8 +304,10 @@ public class Main extends Application {
 	// ToDo:Delete dummy
 	public Main() {
 		//addDummyCustomers();
+		//addDummySuppliers();
 		supplierData.addAll(SupplierUtil.loadAllSuppliers());
 		customerData.addAll(CustomerUtil.loadAllCustomers());
+		customerOrderData.addAll(OrderUtil.loadAllOrders());
 	}
 
 	public Stage getPrimaryStage() {
@@ -283,11 +315,19 @@ public class Main extends Application {
 	}
 
 	public void addDummyCustomers() {
-		for (int i = 0; i <= 10; i++) {
+		for (int i = 1; i <= 10; i++) {
 			CustomerUtil.addCustomer(new Customer(i, "customerCompanyName" + i, "customerContactPersonFirstName",
 					"customerContactPersonLastName", "customerStreet", 73770, "customerCity", 0711344455,
 					"customerEmail", 16, "customerCountry", 123, "customerTitel",
 					new LocalDateStringConverter().toString(LocalDate.now().minusDays(60))));
+		}
+	}
+
+	public void addDummySuppliers() {
+		for (int i = 1; i <= 10; i++) {
+			SupplierUtil.addSupplier(
+					new Supplier(i, "supplierCName", "Flo", "Rietz", "Street", 73770, "DDorf", 071177777, "email", 12,
+							"Germany", 123, new LocalDateStringConverter().toString(LocalDate.now().minusDays(10))));
 		}
 	}
 
@@ -302,5 +342,9 @@ public class Main extends Application {
 
 	public ObservableList<CustomerOrder> getCustomerOrderData() {
 		return customerOrderData;
+	}
+	
+	public ObservableList<SupplierOrder> getSupplierOrderData() {
+		return supplierOrderData;
 	}
 }
