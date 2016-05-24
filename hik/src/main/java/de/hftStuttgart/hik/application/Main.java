@@ -7,6 +7,7 @@ import de.hftStuttgart.hik.controller.CustomerOrderController;
 import de.hftStuttgart.hik.controller.GraphicsController;
 import de.hftStuttgart.hik.controller.IncomeController;
 import de.hftStuttgart.hik.controller.MenuBarController;
+import de.hftStuttgart.hik.controller.CostsController;
 import de.hftStuttgart.hik.controller.CustomerAndSupplierOrderOverviewController;
 import de.hftStuttgart.hik.controller.NavigationBarCustomerController;
 import de.hftStuttgart.hik.controller.NavigationBarSupplierController;
@@ -277,10 +278,23 @@ public class Main extends Application {
 			rootLayout.setLeft(null);
 			rootLayout.setCenter(anchorPane);
 
-			customerOrderData.clear();
-			customerOrderData.addAll(OrderUtil.loadAllOrders());
-
 			IncomeController controller = loader.getController();
+			controller.setMainApp(this);
+
+		} catch (Exception e) {
+		}
+	}
+
+	public void showCosts() {
+		try {
+			AnchorPane anchorPane;
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/main/java/de/hftStuttgart/hik/view/Costs.fxml"));
+			anchorPane = (AnchorPane) loader.load();
+			rootLayout.setLeft(null);
+			rootLayout.setCenter(anchorPane);
+
+			CostsController controller = loader.getController();
 			controller.setMainApp(this);
 
 		} catch (Exception e) {

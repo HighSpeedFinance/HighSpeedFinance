@@ -11,9 +11,9 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.Group?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.IncomeController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.IncomeController">
 	<children>
-		<TableView fx:id="customerOrderTable" layoutX="15.0" layoutY="54.0" prefHeight="260.0" prefWidth="670">
+		<TableView fx:id="customerOrderTable" layoutX="15.0" layoutY="54.0">
 			<columns>
 				<TableColumn fx:id="orderNumber" prefWidth="83.0" text="Rechnungsnr." />
 				<TableColumn fx:id="customerNumber" prefWidth="69.0" text="Kundennr." />
@@ -28,8 +28,8 @@
 		</TableView>
 		<Label layoutX="14.0" layoutY="14.0" text="Zeitraum :" />
 		<ComboBox fx:id="daysCombobox" layoutX="77.0" layoutY="10.0" prefHeight="25.0" prefWidth="87.0" />
-      <Label layoutX="520.0" layoutY="326.0" text="Summe :" />
-      <Label fx:id="summe" layoutX="607.0" layoutY="326.0" text="" />
+      <Label layoutX="522.0" layoutY="473.0" text="Summe :" />
+      <Label fx:id="summe" layoutX="578.0" layoutY="473.0" />
       <Label layoutX="189.0" layoutY="14.0" text="PLZ Gebiet :" />
       <ComboBox fx:id="plzCombobox" layoutX="263.0" layoutY="10.0" prefHeight="25.0" prefWidth="87.0" />
 	</children>

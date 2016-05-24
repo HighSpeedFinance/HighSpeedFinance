@@ -19,7 +19,7 @@ public class MenuBarController {
 	}
 	
 	@FXML
-	public void showGraphics(){
+	private void showGraphics(){
 		main.showGraphics();
 	}
 	
@@ -29,8 +29,12 @@ public class MenuBarController {
 	}
 	
 	@FXML
-	public void showIncome(){
-		System.out.println("dede");
+	private void showCosts(){
+		main.showCosts();
+	}
+	
+	@FXML
+	private void showIncome(){
 		main.showIncome();
 	}
 	
