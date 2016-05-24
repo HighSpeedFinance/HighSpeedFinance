@@ -10,45 +10,27 @@
 <?import javafx.collections.*?>
 <?import javafx.scene.control.ChoiceBox?>
 
-<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity"
-	minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0"
-	prefWidth="550.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8"
-	xmlns:fx="http://javafx.com/fxml/1"
-	fx:controller="de.hftStuttgart.hik.controller.CustomerAndSupplierOrderOverviewController">
+<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.CustomerAndSupplierOrderOverviewController">
 	<tabs>
 		<Tab onSelectionChanged="#customerIsSelected" text="Kunde">
 			<content>
-				<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-					minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-					prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+				<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 					<children>
-						<SplitPane layoutX="150.0" layoutY="37.0" prefHeight="363.0"
-							prefWidth="600.0" AnchorPane.bottomAnchor="0.0"
-							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-							AnchorPane.topAnchor="37.0">
+						<SplitPane layoutX="150.0" layoutY="37.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0">
 							<items>
-								<AnchorPane minHeight="0.0" minWidth="0.0"
-									prefHeight="362.0" prefWidth="598.0">
+								<AnchorPane minHeight="0.0" minWidth="0.0">
 									<children>
-										<TableView fx:id="customerOrderTable" layoutX="14.0"
-											layoutY="14.0" prefHeight="260.0" prefWidth="522.0">
+										<TableView fx:id="customerOrderTable" layoutX="14.0" layoutY="14.0" prefHeight="260.0" prefWidth="522.0">
 											<columns>
-												<TableColumn fx:id="orderNumber" prefWidth="99.0"
-													text="Rechnungsnr." />
-												<TableColumn fx:id="customerNumber" prefWidth="76.0"
-													text="Kundennr." />
-												<TableColumn fx:id="orderStatus" prefWidth="76.0"
-													text="Bezahlstatus" />
-												<TableColumn fx:id="orderDate" prefWidth="89.0"
-													text="Bestelldatum" />
-												<TableColumn fx:id="orderTotalPrice" prefWidth="119.0"
-													text="Gesamtpreis" />
+												<TableColumn fx:id="orderNumber" prefWidth="99.0" text="Rechnungsnr." />
+												<TableColumn fx:id="customerNumber" prefWidth="76.0" text="Kundennr." />
+												<TableColumn fx:id="orderStatus" prefWidth="76.0" text="Bezahlstatus" />
+												<TableColumn fx:id="orderDate" prefWidth="89.0" text="Bestelldatum" />
+												<TableColumn fx:id="orderTotalPrice" prefWidth="119.0" text="Gesamtpreis" />
 											</columns>
 										</TableView>
-										<Button layoutX="385.0" layoutY="295.0"
-											mnemonicParsing="false" onAction="#addCustomerOrder" text="Hinzufügen" />
-										<Button layoutX="463.0" layoutY="295.0"
-											mnemonicParsing="false" onAction="#editCustomerOrder" text="Bearbeiten" />
+										<Button layoutX="385.0" layoutY="295.0" mnemonicParsing="false" onAction="#addCustomerOrder" text="Hinzufügen" />
+										<Button layoutX="463.0" layoutY="295.0" mnemonicParsing="false" onAction="#editCustomerOrder" text="Bearbeiten" />
 									</children>
 								</AnchorPane>
 							</items>
@@ -58,8 +40,7 @@
 								<Font size="18.0" />
 							</font>
 						</Label>
-						<TextField layoutX="449.0" layoutY="7.0" promptText="Suche"
-							fx:id="searchCustomerOrders" onAction="#searchCustomerOrders">
+						<TextField fx:id="searchCustomerOrders" layoutX="449.0" layoutY="7.0" onAction="#searchCustomerOrders" promptText="Suche">
 							<font>
 								<Font name="Consolas Italic" size="12.0" />
 							</font>
@@ -70,34 +51,26 @@
 		</Tab>
 		<Tab onSelectionChanged="#supplierIsSelected" text="Lieferant">
 			<content>
-				<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity"
-					minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
-					prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+				<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 					<children>
-						<SplitPane layoutX="150.0" layoutY="37.0" prefHeight="363.0"
-							prefWidth="600.0" AnchorPane.bottomAnchor="0.0"
-							AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
-							AnchorPane.topAnchor="37.0">
+						<SplitPane layoutX="150.0" layoutY="37.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0">
 							<items>
-								<AnchorPane minHeight="0.0" minWidth="0.0"
-									prefHeight="362.0" prefWidth="598.0">
+								<AnchorPane prefHeight="400.0" prefWidth="609.0">
 									<children>
-										<TableView fx:id="supplierOrderTable" layoutX="14.0" layoutY="14.0" prefHeight="260.0" prefWidth="533.0">
+										<TableView fx:id="supplierOrderTable" layoutX="14.0" layoutY="14.0" prefHeight="357.0" prefWidth="611.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
 											<columns>
 												<TableColumn fx:id="orderDateSupplier" text="Bestelldatum" />
-												<TableColumn fx:id="orderNameSupplier" prefWidth="55.0" text="Lieferant" />
-												<TableColumn fx:id="orderStatusSupplier" prefWidth="79.0" text="Bezahlstatus" />
-												<TableColumn fx:id="orderArtSupplier" prefWidth="65.0" text="Artikel-Nr." />
+												<TableColumn fx:id="orderNameSupplier" prefWidth="69.0" text="Lieferant" />
+												<TableColumn fx:id="orderStatusSupplier" prefWidth="84.0" text="Bezahlstatus" />
+												<TableColumn fx:id="orderArtSupplier" text="Artikel-Nr." />
 												<TableColumn fx:id="orderDescriptionSupplier" prefWidth="77.0" text="Bezeichnung" />
-												<TableColumn fx:id="orderSinglePriceSupplier" prefWidth="66.0" text="Einzelpreis" />
-												<TableColumn fx:id="orderAmountSupplier" prefWidth="45.0" text="Menge" />
-												<TableColumn fx:id="orderTotalPriceSupplier" prefWidth="65.0" text="Gesamtpreis" />
+												<TableColumn fx:id="orderSinglePriceSupplier" prefWidth="69.0" text="Einzelpreis" />
+												<TableColumn fx:id="orderAmountSupplier" prefWidth="57.0" text="Menge" />
+												<TableColumn fx:id="orderTotalPriceSupplier" prefWidth="94.0" text="Gesamtpreis" />
 											</columns>
 										</TableView>
-										<Button layoutX="385.0" layoutY="295.0"
-											mnemonicParsing="false" onAction="#addSupplierOrder" text="Hinzufügen" />
-										<Button layoutX="463.0" layoutY="295.0"
-											mnemonicParsing="false" onAction="#editSupplierOrder" text="Bearbeiten" />
+										<Button layoutX="382.0" layoutY="361.0" mnemonicParsing="false" onAction="#addSupplierOrder" text="Hinzufügen" />
+										<Button layoutX="460.0" layoutY="361.0" mnemonicParsing="false" onAction="#editSupplierOrder" text="Bearbeiten" />
 									</children>
 								</AnchorPane>
 							</items>
@@ -107,8 +80,7 @@
 								<Font size="18.0" />
 							</font>
 						</Label>
-						<TextField layoutX="449.0" layoutY="7.0" promptText="Suche"
-							fx:id="searchSupplierOrders" onAction="#searchSupplierOrders">
+						<TextField fx:id="searchSupplierOrders" layoutX="449.0" layoutY="7.0" onAction="#searchSupplierOrders" promptText="Suche">
 							<font>
 								<Font name="Consolas Italic" size="12.0" />
 							</font>

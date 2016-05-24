@@ -155,6 +155,7 @@ public class Main extends Application {
 					getClass().getResource("/main/java/de/hftStuttgart/hik/view/NavigationBarCustomer.fxml"));
 			anchorPane = (AnchorPane) loader.load();
 			rootLayout.setLeft(anchorPane);
+			rootLayout.autosize();
 
 			NavigationBarCustomerController controller = loader.getController();
 			controller.setMainApp(this);

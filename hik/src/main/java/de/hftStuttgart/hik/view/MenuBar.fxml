@@ -8,21 +8,37 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.MenuBarController">
+<BorderPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.MenuBarController">
    <top>
-      <AnchorPane prefHeight="100.0" prefWidth="700.0">
+      <AnchorPane prefHeight="121.0" prefWidth="1000.0">
          <children>
-            <HBox layoutY="61.0" prefHeight="31.0" prefWidth="700.0" spacing="10.0" BorderPane.alignment="CENTER">
+            <HBox layoutY="40.0" spacing="10.0" AnchorPane.bottomAnchor="-22.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" BorderPane.alignment="CENTER">
                <children>
                   <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#showStart" prefWidth="80.0" style="-fx-background-color: transparent;" text="Start">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
                   </Button>
-                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#showIncome" prefWidth="80.0" style="-fx-background-color: transparent;" text="Einnahmen" />
-                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: transparent;" text="Ausgaben" />
-                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#showGraphics" prefWidth="80.0" style="-fx-background-color: transparent;" text="Graphiken" />
-                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: transparent;" text="Hilfe" />
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#showIncome" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="Einnahmen">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="Ausgaben">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#showGraphics" prefHeight="44.0" prefWidth="95.0" style="-fx-background-color: transparent;" text="Graphiken">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: transparent;" text="Hilfe">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Button>
                </children>
             </HBox>
             <ImageView fx:id="imageView" fitHeight="54.0" fitWidth="87.0" layoutX="23.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />
@@ -31,8 +47,8 @@
                   <Font size="24.0" />
                </font>
             </Label>
-            <Separator layoutY="58.0" prefHeight="0.0" prefWidth="700.0" />
-            <Separator layoutY="91.0" prefHeight="0.0" prefWidth="700.0" />
+            <Separator layoutY="62.5" prefHeight="3.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="62.5" />
+            <Separator layoutY="104.0" prefHeight="3.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="104.0" />
          </children>
       </AnchorPane>
    </top>

@@ -11,25 +11,25 @@
 <?import javafx.collections.*?>
 <?import javafx.scene.control.ChoiceBox?>
 
-<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="550.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.TabViewController">
+<TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.TabViewController">
 	<tabs>
 		<Tab fx:id="customerTab" onSelectionChanged="#customerIsSelected" text="Kunde">
 			<content>
-				<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="360.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+				<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 					<children>
-						<SplitPane dividerPositions="0.48722627737226276" layoutY="30.0" prefHeight="374.0" prefWidth="550.0" AnchorPane.bottomAnchor="-44.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="30.0">
+						<SplitPane dividerPositions="0.48722627737226276" layoutY="30.0" prefHeight="533.0" prefWidth="750.0" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="30.0">
 							<items>
 								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
 									<children>
 										<TableView fx:id="customerTable" layoutX="-27.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
 											<columns>
-												<TableColumn fx:id="customerNumberColumn" prefWidth="116.0" text="Kundennummer" />
-												<TableColumn fx:id="customerNameColumn" prefWidth="127.0" text="Name" />
+												<TableColumn fx:id="customerNumberColumn" prefWidth="170.0" text="Kundennummer" />
+												<TableColumn fx:id="customerNameColumn" prefWidth="170.0" text="Name" />
 											</columns>
 										</TableView>
 									</children>
 								</AnchorPane>
-								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="372.0" prefWidth="291.0">
+								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="562.0" prefWidth="384.0">
 									<children>
 										<Label fx:id="customerHeading" layoutX="14.0" layoutY="14.0" text="" />
 										<GridPane layoutX="10.0" layoutY="40.0" prefHeight="155.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
@@ -78,21 +78,21 @@
 		</Tab>
 		<Tab fx:id="supplierTab" onSelectionChanged="#supplierIsSelected" text="Lieferant">
 			<content>
-				<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+				<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 					<children>
 						<SplitPane dividerPositions="0.44481605351170567" layoutX="250.0" layoutY="31.0" prefHeight="369.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="31.0">
 							<items>
-								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="381.0" prefWidth="263.0">
+								<AnchorPane>
 									<children>
 										<TableView fx:id="supplierTable" layoutX="-27.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
 											<columns>
-												<TableColumn fx:id="supplierNumberColumn" prefWidth="120.0" text="Lieferantennummer" />
-												<TableColumn fx:id="supplierNameColumn" prefWidth="120.0" text="Name" />
+												<TableColumn fx:id="supplierNumberColumn" prefWidth="173.0" text="Lieferantennummer" />
+												<TableColumn fx:id="supplierNameColumn" prefWidth="158.0" text="Name" />
 											</columns>
 										</TableView>
 									</children>
 								</AnchorPane>
-								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="357.0" prefWidth="329.0">
+								<AnchorPane>
 									<children>
 										<GridPane layoutX="10.0" layoutY="40.0" prefHeight="155.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="40.0">
 											<columnConstraints>
@@ -122,13 +122,13 @@
 											</children>
 										</GridPane>
 										<Label fx:id="supplierCompanyNameLabel" layoutX="10.0" layoutY="14.0" />
-										<Button layoutX="11.0" layoutY="238.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="257.0" text="Bestellungen anzeigen" onAction="#showBestellungSupplier"/>
+										<Button layoutX="11.0" layoutY="238.0" mnemonicParsing="false" onAction="#showBestellungSupplier" prefHeight="25.0" prefWidth="257.0" text="Bestellungen anzeigen" />
 									</children>
 								</AnchorPane>
 							</items>
 						</SplitPane>
 						<Label layoutX="14.0" layoutY="6.0" text="Lieferantenübersicht" />
-						<TextField layoutX="432.0" layoutY="4.0" promptText="Suche" fx:id="searchSupplier" onAction="#searchSuppliers">
+						<TextField fx:id="searchSupplier" layoutX="432.0" layoutY="4.0" onAction="#searchSuppliers" promptText="Suche">
 							<font>
 								<Font name="Consolas Italic" size="12.0" />
 							</font>

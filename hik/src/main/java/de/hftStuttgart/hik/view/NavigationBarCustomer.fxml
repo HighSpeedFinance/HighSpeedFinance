@@ -6,12 +6,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="150.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.NavigationBarCustomerController">
+<AnchorPane prefHeight="800.0" prefWidth="222.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.NavigationBarCustomerController">
    <children>
-      <Button layoutY="40.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Kundenübersicht" onAction="#showCustomerOverview"/>
-      <Button layoutY="70.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Neue Kunden anzeigen" onAction="#showNewCustomers"/>
-      <Button layoutY="100.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Neue Rechnung anzeigen" onAction="#showNewCustomerOrders"/>
-      <Button layoutY="130.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Rechnung verwalten" onAction="#showCustomerOrderOverview"/>
-      <Button layoutY="160.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="160" text="Offene Kundenrechnungen" onAction="#showOpenCustomerOrders"/>
+      <VBox prefHeight="245.0" prefWidth="229.0" spacing="15.0">
+         <children>
+            <Button layoutY="40.0" mnemonicParsing="false" onAction="#showCustomerOverview" prefHeight="37.0" prefWidth="300.0" text="Kundenübersicht" />
+            <Button layoutY="70.0" mnemonicParsing="false" onAction="#showNewCustomers" prefHeight="37.0" prefWidth="300.0" text="Neue Kunden anzeigen" />
+            <Button layoutY="100.0" mnemonicParsing="false" onAction="#showNewCustomerOrders" prefHeight="37.0" prefWidth="300.0" text="Neue Rechnung anzeigen" />
+            <Button layoutY="130.0" mnemonicParsing="false" onAction="#showCustomerOrderOverview" prefHeight="37.0" prefWidth="300.0" text="Rechnung verwalten" />
+            <Button layoutY="160.0" mnemonicParsing="false" onAction="#showOpenCustomerOrders" prefHeight="37.0" prefWidth="300.0" text="Offene Kundenrechnungen" />
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
