@@ -7,9 +7,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
 
-import de.hftStuttgart.hik.model.Customer;
-import de.hftStuttgart.hik.model.CustomerOrder;
-import de.hftStuttgart.hik.model.Status;
 import de.hftStuttgart.hik.model.Supplier;
 import de.hftStuttgart.hik.model.SupplierOrder;
 import javafx.collections.FXCollections;

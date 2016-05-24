@@ -9,7 +9,6 @@ import javax.persistence.Query;
 
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.CustomerOrder;
-import de.hftStuttgart.hik.model.Status;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
