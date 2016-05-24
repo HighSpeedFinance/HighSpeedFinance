@@ -12,10 +12,10 @@
 		<class>de.hftStuttgart.hik.model.Invoice</class>
 		<class>de.hftStuttgart.hik.model.SupplierOrder</class>
 		<properties>
-			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:derby:test;create=true" />
-			<property name="javax.persistence.jdbc.user" value="root" />
-			<property name="javax.persistence.jdbc.password" value="root" />
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://193.196.143.168/aj6s-gruppe2" />
+			<property name="javax.persistence.jdbc.user" value="aj6s-gruppe2" />
+			<property name="javax.persistence.jdbc.password" value="uRHrtAbm6q2saGXj" />
 
 			<!-- Properties for Hibernate -->
 			<property name="hibernate.hbm2ddl.auto" value="update" />
