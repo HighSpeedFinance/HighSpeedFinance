@@ -28,8 +28,6 @@ public class SupplierOrderController {
 	@FXML
 	private TableColumn<SupplierOrder, String> orderDescription;
 	@FXML
-	private TableColumn<SupplierOrder, String> leer;
-	@FXML
 	private TableColumn<SupplierOrder, String> orderStatus;
 	@FXML
 	private TableColumn<SupplierOrder, String> orderDate;
@@ -49,7 +47,6 @@ public class SupplierOrderController {
 	private void initialize() {
 		orderNumber.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("orderNumber"));
 		orderDescription.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("description"));
-		leer.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("supId"));
 		orderStatus.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("status"));
 		orderDate.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("date"));
 		orderSinglePrice.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("unitPrice"));

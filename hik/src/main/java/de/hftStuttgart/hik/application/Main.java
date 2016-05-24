@@ -137,6 +137,8 @@ public class Main extends Application {
 
 			customerOrderData.clear();
 			customerOrderData.addAll(OrderUtil.loadAllOrders());
+			supplierOrderData.clear();
+			supplierOrderData.addAll(SupplierOrderUtil.loadAllOrders());
 
 			ShowNewOrdersController controller = loader.getController();
 			controller.setMainApp(this);

@@ -166,14 +166,15 @@ public class NewCustomersAndSuppliersController {
 			}
 		});
 
-		/*
-		 * supplierTable.setOnMousePressed(new EventHandler<MouseEvent>() {
-		 * 
-		 * @Override public void handle(MouseEvent e) { if
-		 * (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
-		 * main.showCustomerOrder(customerTable.getSelectionModel().
-		 * getSelectedItem()); } } });
-		 */
+		supplierTable.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
+				if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
+					main.showSupplierOrder(supplierTable.getSelectionModel().getSelectedItem());
+				}
+			}
+		});
+
 	}
 
 	private void showCustomerDetails(Customer customer) {
@@ -228,6 +229,19 @@ public class NewCustomersAndSuppliersController {
 			alert.setTitle("Error!");
 			alert.setHeaderText("");
 			alert.setContentText("Keinen Kunden ausgewählt!");
+			alert.showAndWait();
+		}
+	}
+	
+	@FXML
+	private void showSupplierBestellung() {
+		if (supplierTable.getSelectionModel().getSelectedItem() != null)
+			main.showSupplierOrder(supplierTable.getSelectionModel().getSelectedItem());
+		else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error!");
+			alert.setHeaderText("");
+			alert.setContentText("Keinen Lieferanten ausgewählt!");
 			alert.showAndWait();
 		}
 	}

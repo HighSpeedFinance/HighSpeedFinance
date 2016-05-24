@@ -115,8 +115,8 @@ public class SupplierOrder {
 		this.sumPrice = sum;
 	}
 
-	public long getSupplier() {
-		return supplier.getId();
+	public String getSupplier() {
+		return supplier.getSupplierCompanyName();
 	}
 
 	public Supplier getSupplierObject() {
