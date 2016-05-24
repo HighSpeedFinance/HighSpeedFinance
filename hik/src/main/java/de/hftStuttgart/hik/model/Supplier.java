@@ -178,4 +178,11 @@ public class Supplier {
 	public List<SupplierOrder> getOrders() {
 		return orders;
 	}
+
+	@Override
+	public String toString() {
+		return supplierCompanyName;
+	}
+	
+	
 }

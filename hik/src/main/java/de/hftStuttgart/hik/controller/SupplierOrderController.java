@@ -107,7 +107,7 @@ public class SupplierOrderController {
 
 			SupplierOrderEditDialogController controller = loader.getController();
 			controller.setDialogStage(dialogStage);
-			controller.setCustomerOrder(supplierOrder);
+			controller.setSupplierOrder(supplierOrder);
 
 			dialogStage.showAndWait();
 			return controller.isOkClicked();

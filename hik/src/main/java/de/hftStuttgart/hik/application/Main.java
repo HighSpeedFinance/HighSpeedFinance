@@ -203,7 +203,7 @@ public class Main extends Application {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	public void showSupplierOrder(Supplier supplier) {
 		try {
 			FXMLLoader loader = new FXMLLoader(
@@ -240,6 +240,8 @@ public class Main extends Application {
 
 			customerOrderData.clear();
 			customerOrderData.addAll(OrderUtil.loadAllOrders());
+			supplierOrderData.clear();
+			supplierOrderData.addAll(SupplierOrderUtil.loadAllOrders());
 
 			CustomerAndSupplierOrderOverviewController controller = loader.getController();
 			controller.setMainApp(this);
@@ -305,8 +307,8 @@ public class Main extends Application {
 
 	// ToDo:Delete dummy
 	public Main() {
-		//addDummyCustomers();
-		//addDummySuppliers();
+		// addDummyCustomers();
+		// addDummySuppliers();
 		supplierData.addAll(SupplierUtil.loadAllSuppliers());
 		customerData.addAll(CustomerUtil.loadAllCustomers());
 		customerOrderData.addAll(OrderUtil.loadAllOrders());
@@ -345,7 +347,7 @@ public class Main extends Application {
 	public ObservableList<CustomerOrder> getCustomerOrderData() {
 		return customerOrderData;
 	}
-	
+
 	public ObservableList<SupplierOrder> getSupplierOrderData() {
 		return supplierOrderData;
 	}

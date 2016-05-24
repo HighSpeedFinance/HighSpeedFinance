@@ -4,8 +4,11 @@ import java.io.IOException;
 
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.CustomerOrder;
+import de.hftStuttgart.hik.model.SupplierOrder;
 import de.hftStuttgart.hik.utilities.CustomerUtil;
 import de.hftStuttgart.hik.utilities.OrderUtil;
+import de.hftStuttgart.hik.utilities.SupplierOrderUtil;
+import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -37,11 +40,30 @@ public class CustomerAndSupplierOrderOverviewController {
 	@FXML
 	private TableColumn<CustomerOrder, String> customerNumber;
 	@FXML
+	private TableView<SupplierOrder> supplierOrderTable;
+	@FXML
+	private TableColumn<SupplierOrder, String> orderNameSupplier;
+	@FXML
+	private TableColumn<SupplierOrder, String> orderDescriptionSupplier;
+	@FXML
+	private TableColumn<SupplierOrder, String> orderStatusSupplier;
+	@FXML
+	private TableColumn<SupplierOrder, String> orderDateSupplier;
+	@FXML
+	private TableColumn<SupplierOrder, String> orderSinglePriceSupplier;
+	@FXML
+	private TableColumn<SupplierOrder, String> orderAmountSupplier;
+	@FXML
+	private TableColumn<SupplierOrder, String> orderTotalPriceSupplier;
+	@FXML
+	private TableColumn<SupplierOrder, String> orderArtSupplier;
+	@FXML
 	private TabPane tabPane;
 	@FXML
 	private TextField searchCustomerOrders;
 	
 	private Main main;
+	
 
 	@FXML
 	private void initialize() {
@@ -51,6 +73,16 @@ public class CustomerAndSupplierOrderOverviewController {
 		customerNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("customer"));
 		orderTotalPrice.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("sumPrice"));
 		customerOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		
+		orderNameSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("supplier"));
+		orderDescriptionSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("description"));
+		orderStatusSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("status"));
+		orderDateSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("date"));
+		orderSinglePriceSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("unitPrice"));
+		orderAmountSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("amount"));
+		orderArtSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("itemNumb"));
+		orderTotalPriceSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("sumPrice"));
+		supplierOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	}
 
 	private void refreshCustomerOrderTable() {
@@ -59,6 +91,44 @@ public class CustomerAndSupplierOrderOverviewController {
 		customerOrderTable.layout();
 		customerOrderTable.setItems(main.getCustomerOrderData());
 		customerOrderTable.getSelectionModel().select(selectedIndex);
+	}
+	
+	private void refreshSupplierOrderTable() {
+		int selectedIndex = supplierOrderTable.getSelectionModel().getSelectedIndex();
+		supplierOrderTable.setItems(null);
+		supplierOrderTable.layout();
+		supplierOrderTable.setItems(main.getSupplierOrderData());
+		supplierOrderTable.getSelectionModel().select(selectedIndex);
+	}
+	
+	@FXML
+	public void addSupplierOrder() {
+		SupplierOrder supplierOrder = new SupplierOrder();
+		boolean okClicked = showSupplierOrderEditWithSupplierDialog(supplierOrder);
+		if (okClicked) {
+			SupplierUtil.loadAllSuppliers().get(supplierOrder.getSupplierObject().getId().intValue()-1).addOrder(supplierOrder);
+			supplierOrder.setSupplier(supplierOrder.getSupplierObject());
+			SupplierOrderUtil.addOrder(supplierOrder);
+			refreshSupplierOrderTable();
+		}
+	}
+	
+	@FXML
+	private void editSupplierOrder() {
+		SupplierOrder supplierOrder = supplierOrderTable.getSelectionModel().getSelectedItem();
+		if (supplierOrder != null) {
+			boolean okClicked = showSupplierOrderEditDialog(supplierOrder);
+			if (okClicked) {
+				refreshSupplierOrderTable();
+				SupplierOrderUtil.editOrder(supplierOrder);
+			}
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error!");
+			alert.setHeaderText("");
+			alert.setContentText("Keine Bestellung ausgew�hlt!");
+			alert.showAndWait();
+		}
 	}
 
 	@FXML
@@ -89,6 +159,58 @@ public class CustomerAndSupplierOrderOverviewController {
 			alert.showAndWait();
 		}
 	}
+	
+	public boolean showSupplierOrderEditDialog(SupplierOrder supplierOrder) {
+		try {
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/main/java/de/hftStuttgart/hik/view/SupplierOrderEditDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Bestellung Hinzufuegen");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(main.getPrimaryStage());
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			SupplierOrderEditDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setSupplierOrder(supplierOrder);
+
+			dialogStage.showAndWait();
+			return controller.isOkClicked();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean showSupplierOrderEditWithSupplierDialog(SupplierOrder supplierOrder) {
+		try {
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/main/java/de/hftStuttgart/hik/view/SupplierOrderEditWithSupplierDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Bestellung hinzufuegen");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(main.getPrimaryStage());
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			SupplierOrderEditWithSupplierDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setSupplierOrder(supplierOrder);
+
+			dialogStage.showAndWait();
+			return controller.isOkClicked();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
 
 	public boolean showOrderEditDialog(CustomerOrder customerOrder) {
 		try {
@@ -96,7 +218,7 @@ public class CustomerAndSupplierOrderOverviewController {
 					getClass().getResource("/main/java/de/hftStuttgart/hik/view/OrderEditDialog.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Bestellung Hinzufügen");
+			dialogStage.setTitle("Bestellung hinzufuegen");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(main.getPrimaryStage());
 			Scene scene = new Scene(page);
@@ -122,7 +244,7 @@ public class CustomerAndSupplierOrderOverviewController {
 					getClass().getResource("/main/java/de/hftStuttgart/hik/view/OrderEditWithCustomerDialog.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Bestellung Hinzufügen");
+			dialogStage.setTitle("Bestellung hinzufuegen");
 			dialogStage.initModality(Modality.WINDOW_MODAL);
 			dialogStage.initOwner(main.getPrimaryStage());
 			Scene scene = new Scene(page);
@@ -143,6 +265,21 @@ public class CustomerAndSupplierOrderOverviewController {
 	}
 	
 	@FXML
+	public void searchSupplierOrders() {
+		/*c.clear();
+		if (!searchCustomer.getText().equals("")) {
+			for (Customer cus : main.getCustomerData()) {
+				if (cus.getCustomerNumber() == Integer.valueOf(searchCustomer.getText())) {
+					customerList.add(cus);
+				}
+			}
+			customerTable.setItems(customerList);
+		}else{
+			customerTable.setItems(main.getCustomerData());
+		}*/
+	}
+	
+	@FXML
 	public void searchCustomerOrders() {
 		/*c.clear();
 		if (!searchCustomer.getText().equals("")) {
@@ -160,6 +297,7 @@ public class CustomerAndSupplierOrderOverviewController {
 	public void setMainApp(Main mainApp) {
 		this.main = mainApp;
 		customerOrderTable.setItems(main.getCustomerOrderData());
+		supplierOrderTable.setItems(main.getSupplierOrderData());
 	}
 
 	@FXML

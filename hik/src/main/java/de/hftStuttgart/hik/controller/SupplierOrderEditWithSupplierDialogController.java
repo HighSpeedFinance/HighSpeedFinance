@@ -1,7 +1,9 @@
 package de.hftStuttgart.hik.controller;
 
 import de.hftStuttgart.hik.model.Status;
+import de.hftStuttgart.hik.model.Supplier;
 import de.hftStuttgart.hik.model.SupplierOrder;
+import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -12,7 +14,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.util.converter.LocalDateStringConverter;
 
-public class SupplierOrderEditDialogController {
+public class SupplierOrderEditWithSupplierDialogController {
 	@FXML
 	private TextField artNr;
 	@FXML
@@ -29,6 +31,8 @@ public class SupplierOrderEditDialogController {
 	private TextField sumPrice;
 	@FXML
 	private TextField orderNr;
+	@FXML
+	private ChoiceBox<Supplier> supplierChoiceBox;
 
 	private Stage dialogStage;
 	private SupplierOrder supplierOrder;
@@ -38,6 +42,9 @@ public class SupplierOrderEditDialogController {
 	private void initialize() {
 		paymentStatus.setItems(FXCollections.observableArrayList("erfasst", "bezahlt", "warten"));
 		paymentStatus.getSelectionModel().select(0);
+		
+		supplierChoiceBox.setItems(SupplierUtil.loadAllSuppliers());
+		supplierChoiceBox.getSelectionModel().select(0);
 	}
 
 	public void setDialogStage(Stage dialogStage) {
@@ -98,7 +105,8 @@ public class SupplierOrderEditDialogController {
 			}
 			supplierOrder.setSum(Double.parseDouble(sumPrice.getText()));
 			supplierOrder.setUnitPrice(Double.parseDouble(singlePrice.getText()));
-
+			supplierOrder.setSupplier(supplierChoiceBox.getSelectionModel().getSelectedItem());
+			
 			okClicked = true;
 			dialogStage.close();
 		}
@@ -174,4 +182,5 @@ public class SupplierOrderEditDialogController {
 			return false;
 		}
 	}
+
 }
