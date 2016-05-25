@@ -40,6 +40,8 @@ public class IncomeController {
 	@FXML
 	private TableColumn<CustomerOrder, String> customerNumber;
 	@FXML
+	private TableColumn<CustomerOrder, String> orderTax;
+	@FXML
 	private Label summe;
 	@FXML
 	private ComboBox<String> daysCombobox;
@@ -95,6 +97,7 @@ public class IncomeController {
 		orderArt.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("itemNumb"));
 		orderTotalPrice.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("sumPrice"));
 		customerNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("customer"));
+		orderTax.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("tax"));
 		customerOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	}
 

@@ -22,6 +22,7 @@ public class CustomerOrder {
 	private double unitPrice;
 	private int amount;
 	private double sumPrice;
+	private double tax;
 	
 	@ManyToOne(fetch=FetchType.EAGER, targetEntity=Customer.class)
 	private Customer customer;
@@ -31,7 +32,7 @@ public class CustomerOrder {
 	}
 
 	public CustomerOrder(final String date, final int order_nr, final int supId, final Status status, final int itemNumb,
-			final String description, final double unitPrice, final int amount, final double sum) {
+			final String description, final double unitPrice, final int amount, final double tax) {
 
 		this.date = date;
 		this.orderNumber = order_nr;
@@ -41,7 +42,7 @@ public class CustomerOrder {
 		this.description = description;
 		this.unitPrice = unitPrice;
 		this.amount = amount;
-		this.sumPrice = sum;
+		this.sumPrice = (unitPrice * ((tax/100)+1)) * amount;
 	}
 
 	public Long getId() {
@@ -143,6 +144,13 @@ public class CustomerOrder {
 	public void setSumPrice(double sumPrice) {
 		this.sumPrice = sumPrice;
 	}
-	
-	
+
+	public double getTax() {
+		return tax;
+	}
+
+	public void setTax(double tax) {
+		this.tax = tax;
+		this.sumPrice = (this.unitPrice * ((tax/100)+1)) * this.amount;
+	}	
 }

@@ -22,6 +22,7 @@
 				<TableColumn fx:id="leer" maxWidth="61.0" prefWidth="39.0" />
 				<TableColumn fx:id="orderDate" text="Bestelldatum" />
 				<TableColumn fx:id="orderSinglePrice" prefWidth="71.0" text="Einzelpreis" />
+				<TableColumn prefWidth="59.0" text="Steuer" fx:id="orderTax"/>
 				<TableColumn fx:id="orderAmount" minWidth="0.0" prefWidth="56.0" text="Menge" />
 				<TableColumn fx:id="orderTotalPrice" prefWidth="111.0" text="Gesamtpreis" />
 			</columns>

@@ -34,6 +34,8 @@ public class CustomerOrderController {
 	private TableColumn<CustomerOrder, String> orderTotalPrice;
 	@FXML
 	private TableColumn<CustomerOrder, String> orderArt;
+	@FXML
+	private TableColumn<CustomerOrder, String> orderTax;
 
 	private Customer customer;
 	private Main main;
@@ -49,6 +51,7 @@ public class CustomerOrderController {
 		orderAmount.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("amount"));
 		orderArt.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("itemNumb"));
 		orderTotalPrice.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("sumPrice"));
+		orderTax.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("tax"));
 		customerOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	}
 

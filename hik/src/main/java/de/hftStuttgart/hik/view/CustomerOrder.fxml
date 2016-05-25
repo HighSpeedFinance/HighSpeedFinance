@@ -17,6 +17,7 @@
             <TableColumn prefWidth="76.0" text="Bezahlstatus" fx:id="orderStatus"/>
             <TableColumn prefWidth="89.0" text="Bestelldatum" fx:id="orderDate"/>
             <TableColumn prefWidth="70.0" text="Einzelpreis" fx:id="orderSinglePrice"/>
+            <TableColumn prefWidth="59.0" text="Steuer" fx:id="orderTax"/>
             <TableColumn prefWidth="59.0" text="Menge" fx:id="orderAmount"/>
             <TableColumn prefWidth="119.0" text="Gesamtpreis" fx:id="orderTotalPrice"/>
         </columns>
