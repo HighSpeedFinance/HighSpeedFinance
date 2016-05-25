@@ -16,6 +16,7 @@
 			<children>
 				<Label text="Rechnungsnr." GridPane.columnIndex="0"
 					GridPane.rowIndex="0" />
+				<Label text="Lieferant" GridPane.rowIndex="1" />
 				<Label text="Artikel-Nr." GridPane.columnIndex="0"
 					GridPane.rowIndex="2" />
 				<Label text="Bezeichnung" GridPane.columnIndex="0"
@@ -24,28 +25,27 @@
 					GridPane.rowIndex="4" />
 				<Label text="Bestelldatum" GridPane.columnIndex="0"
 					GridPane.rowIndex="5" />
+				<Label text="Einzelpreis" GridPane.rowIndex="6" />
+				<Label text="Menge" GridPane.rowIndex="7" />
+				<Label text="Steuersatz" GridPane.rowIndex="8" />
+				<TextField fx:id="orderNr" prefWidth="200.0"
+					GridPane.columnIndex="1" />
+				<ChoiceBox fx:id="supplierChoiceBox" prefHeight="25.0"
+					prefWidth="218.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 				<TextField fx:id="artNr" prefWidth="200.0"
 					GridPane.columnIndex="1" GridPane.rowIndex="2" />
 				<TextField fx:id="description" prefWidth="200.0"
 					GridPane.columnIndex="1" GridPane.rowIndex="3" />
-				<Label text="Einzelpreis" GridPane.rowIndex="6" />
-				<Label text="Menge" GridPane.rowIndex="7" />
-				<Label text="Steuersatz" GridPane.rowIndex="8" />
+				<ChoiceBox fx:id="paymentStatus" prefHeight="25.0"
+					prefWidth="218.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+				<DatePicker fx:id="date" prefHeight="25.0" prefWidth="223.0"
+					GridPane.columnIndex="1" GridPane.rowIndex="5" />
 				<TextField fx:id="singlePrice" prefWidth="200.0"
 					GridPane.columnIndex="1" GridPane.rowIndex="6" />
 				<TextField fx:id="amount" prefWidth="200.0"
 					GridPane.columnIndex="1" GridPane.rowIndex="7" />
 				<TextField fx:id="tax" editable="true" prefWidth="200.0"
 					GridPane.columnIndex="1" GridPane.rowIndex="8" />
-				<TextField fx:id="orderNr" prefWidth="200.0"
-					GridPane.columnIndex="1" />
-				<ChoiceBox fx:id="paymentStatus" prefHeight="25.0"
-					prefWidth="218.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-				<DatePicker fx:id="date" prefHeight="25.0" prefWidth="223.0"
-					GridPane.columnIndex="1" GridPane.rowIndex="5" />
-				<Label text="Lieferant" GridPane.rowIndex="1" />
-				<ChoiceBox fx:id="supplierChoiceBox" prefHeight="25.0"
-					prefWidth="218.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 			</children>
 			<columnConstraints>
 				<ColumnConstraints fillWidth="true" hgrow="SOMETIMES"
