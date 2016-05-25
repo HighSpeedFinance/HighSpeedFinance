@@ -107,7 +107,7 @@ public class CostsController {
 
 	public void setSupplierComboBox(int index) {
 		for (SupplierOrder supOrder : supplierOrderListInTime) {
-			String supplierName = SupplierUtil.loadAllSuppliers().get((supOrder.getSupplierObject().getId()).intValue()).getSupplierCompanyName();
+			String supplierName = SupplierUtil.loadAllSuppliers().get((supOrder.getSupplierObject().getId()).intValue()-1).getSupplierCompanyName();
 			if (!supplier.contains("Alle")) {
 				supplier.add("Alle");
 			}

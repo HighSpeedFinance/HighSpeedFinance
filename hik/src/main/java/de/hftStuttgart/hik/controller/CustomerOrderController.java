@@ -63,7 +63,7 @@ public class CustomerOrderController {
 		int selectedIndex = customerOrderTable.getSelectionModel().getSelectedIndex();
 		customerOrderTable.setItems(null);
 		customerOrderTable.layout();
-		customerOrderTable.setItems(main.getCustomerOrderData());
+		customerOrderTable.setItems(OrderUtil.loadAllOrders(customer));
 		customerOrderTable.getSelectionModel().select(selectedIndex);
 	}
 
@@ -72,9 +72,10 @@ public class CustomerOrderController {
 		CustomerOrder customerOrder = new CustomerOrder();
 		boolean okClicked = showOrderEditDialog(customerOrder);
 		if (okClicked) {
-			CustomerUtil.loadAllCustomers().get(customer.getId().intValue()).addOrder(customerOrder);
+			CustomerUtil.loadAllCustomers().get(customer.getId().intValue()-1).addOrder(customerOrder);
 			customerOrder.setCustomer(customer);
 			OrderUtil.addOrder(customerOrder);
+			refreshCustomerOrderTable();
 		}
 	}
 

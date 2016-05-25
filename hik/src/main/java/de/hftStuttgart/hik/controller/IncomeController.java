@@ -58,7 +58,7 @@ public class IncomeController {
 	public void setPlzComboBox(int index) {
 		for (CustomerOrder cusOrder : customerOrderListInTime) {
 			String plzInt = String
-					.valueOf(CustomerUtil.loadAllCustomers().get((int) cusOrder.getCustomer()).getCustomerPostalCode());
+					.valueOf(CustomerUtil.loadAllCustomers().get((int) cusOrder.getCustomer()-1).getCustomerPostalCode());
 			if (!plz.contains("Alle")) {
 				plz.add("Alle");
 			}

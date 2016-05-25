@@ -60,7 +60,7 @@ public class SupplierOrderController {
 		int selectedIndex = supplierOrderTable.getSelectionModel().getSelectedIndex();
 		supplierOrderTable.setItems(null);
 		supplierOrderTable.layout();
-		supplierOrderTable.setItems(main.getSupplierOrderData());
+		supplierOrderTable.setItems(SupplierOrderUtil.loadAllOrders(supplier));
 		supplierOrderTable.getSelectionModel().select(selectedIndex);
 	}
 	
@@ -69,9 +69,10 @@ public class SupplierOrderController {
 		SupplierOrder supplierOrder = new SupplierOrder();
 		boolean okClicked = showOrderEditDialog(supplierOrder);
 		if (okClicked) {
-			SupplierUtil.loadAllSuppliers().get(supplier.getId().intValue()).addOrder(supplierOrder);
+			SupplierUtil.loadAllSuppliers().get(supplier.getId().intValue()-1).addOrder(supplierOrder);
 			supplierOrder.setSupplier(supplier);
 			SupplierOrderUtil.addOrder(supplierOrder);
+			refreshSupplierOrderTable();
 		}
 	}
 	
