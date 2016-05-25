@@ -92,7 +92,7 @@ public class TabViewController {
 			alert.showAndWait();
 		}
 	}
-	
+
 	@FXML
 	private void showBestellungSupplier() {
 		if (supplierTable.getSelectionModel().getSelectedItem() != null)
@@ -109,9 +109,18 @@ public class TabViewController {
 	@FXML
 	public void searchCustomer() {
 		customerList.clear();
+		int searchInteger = 0;
+		try {
+			searchInteger = Integer.valueOf(searchCustomer.getText());
+		} catch (NumberFormatException e) {
+		}
 		if (!searchCustomer.getText().equals("")) {
 			for (Customer cus : main.getCustomerData()) {
-				if (cus.getCustomerNumber() == Integer.valueOf(searchCustomer.getText())) {
+				if (cus.getCustomerNumber() == searchInteger
+						|| cus.getCustomerContactPersonFirstName().equals(searchCustomer.getText())
+						|| cus.getCustomerCompanyName().equals(searchCustomer.getText())
+						|| (cus.getCustomerContactPersonFirstName() + " " + cus.getCustomerContactPersonLastName())
+								.equals(searchCustomer.getText())) {
 					customerList.add(cus);
 				}
 			}
@@ -134,7 +143,8 @@ public class TabViewController {
 				if (sup.getSupplierNumber() == searchInteger
 						|| sup.getSupplierContactPersonFirstName().equals(searchSupplier.getText())
 						|| sup.getSupplierContactPersonLastName().equals(searchSupplier.getText())
-						|| sup.getSupplierCity().equals(searchSupplier.getText())) {
+						|| sup.getSupplierCity().equals(searchSupplier.getText())
+						|| sup.getSupplierCompanyName().equals(searchSupplier.getText())) {
 					supplierList.add(sup);
 				}
 			}
@@ -148,8 +158,7 @@ public class TabViewController {
 	@FXML
 	private void initialize() {
 		supplierNumberColumn.setCellValueFactory(new PropertyValueFactory<Supplier, String>("supplierNumber"));
-		supplierNameColumn
-				.setCellValueFactory(new PropertyValueFactory<Supplier, String>("supplierCompanyName"));
+		supplierNameColumn.setCellValueFactory(new PropertyValueFactory<Supplier, String>("supplierCompanyName"));
 
 		customerNameColumn
 				.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerContactPersonFirstName"));
@@ -181,7 +190,7 @@ public class TabViewController {
 				}
 			}
 		});
-		
+
 		customerTable.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent e) {

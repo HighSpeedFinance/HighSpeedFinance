@@ -7,6 +7,8 @@ import de.hftStuttgart.hik.utilities.CustomerUtil;
 import de.hftStuttgart.hik.utilities.OrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierOrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierUtil;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.SingleSelectionModel;
@@ -54,8 +56,12 @@ public class CustomerAndSupplierOrderOverviewController {
 	private TabPane tabPane;
 	@FXML
 	private TextField searchCustomerOrders;
+	@FXML
+	private TextField searchSupplierOrders;
 	
 	private Main main;
+	private ObservableList<CustomerOrder> customerOrderList = FXCollections.observableArrayList();
+	private ObservableList<SupplierOrder> supplierOrderList = FXCollections.observableArrayList();
 	
 
 	@FXML
@@ -157,32 +163,49 @@ public class CustomerAndSupplierOrderOverviewController {
 	
 	@FXML
 	public void searchSupplierOrders() {
-		/*c.clear();
-		if (!searchCustomer.getText().equals("")) {
-			for (Customer cus : main.getCustomerData()) {
-				if (cus.getCustomerNumber() == Integer.valueOf(searchCustomer.getText())) {
-					customerList.add(cus);
+		supplierOrderList.clear();
+		int searchInteger = 0;
+		try {
+			searchInteger = Integer.valueOf(searchSupplierOrders.getText());
+		} catch (NumberFormatException e) {
+		}
+		if (!searchSupplierOrders.getText().equals("")) {
+			for (SupplierOrder supOrder : main.getSupplierOrderData()) {
+				if (supOrder.getOrderNumber() == searchInteger
+						|| supOrder.getSupId() == searchInteger
+						|| supOrder.getSupplierObject().getSupplierCompanyName().equals(searchCustomerOrders.getText())
+						|| supOrder.getItemNumb()==searchInteger) {
+					supplierOrderList.add(supOrder);
 				}
 			}
-			customerTable.setItems(customerList);
-		}else{
-			customerTable.setItems(main.getCustomerData());
-		}*/
+			supplierOrderTable.setItems(supplierOrderList);
+		} else {
+			supplierOrderTable.setItems(main.getSupplierOrderData());
+		}
 	}
 	
 	@FXML
 	public void searchCustomerOrders() {
-		/*c.clear();
-		if (!searchCustomer.getText().equals("")) {
-			for (Customer cus : main.getCustomerData()) {
-				if (cus.getCustomerNumber() == Integer.valueOf(searchCustomer.getText())) {
-					customerList.add(cus);
+		customerOrderList.clear();
+		int searchInteger = 0;
+		try {
+			searchInteger = Integer.valueOf(searchCustomerOrders.getText());
+		} catch (NumberFormatException e) {
+		}
+		if (!searchCustomerOrders.getText().equals("")) {
+			for (CustomerOrder cusOrder : main.getCustomerOrderData()) {
+				if (cusOrder.getOrderNumber() == searchInteger
+						|| cusOrder.getCustomer() == searchInteger
+						|| cusOrder.getCustomerObject().getCustomerCompanyName().equals(searchCustomerOrders.getText())
+						|| (cusOrder.getCustomerObject().getCustomerContactPersonFirstName() + " " + cusOrder.getCustomerObject().getCustomerContactPersonLastName())
+								.equals(searchCustomerOrders.getText())) {
+					customerOrderList.add(cusOrder);
 				}
 			}
-			customerTable.setItems(customerList);
-		}else{
-			customerTable.setItems(main.getCustomerData());
-		}*/
+			customerOrderTable.setItems(customerOrderList);
+		} else {
+			customerOrderTable.setItems(main.getCustomerOrderData());
+		}
 	}
 
 	public void setMainApp(Main mainApp) {
