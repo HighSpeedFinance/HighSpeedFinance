@@ -50,7 +50,7 @@
 											<children>
 												<Label prefHeight="17.0" prefWidth="58.0" text="Anrede: " />
 												<Label text="Name:  " GridPane.rowIndex="1" />
-												<Label text="Stra�e:  " GridPane.rowIndex="2" />
+												<Label text="Strasse:  " GridPane.rowIndex="2" />
 												<Label text="PLZ:  " GridPane.rowIndex="3" />
 												<Label fx:id="customerTitel" text="Label" GridPane.columnIndex="1" />
 												<Label fx:id="customerName" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
