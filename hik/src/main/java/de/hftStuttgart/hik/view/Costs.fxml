@@ -21,6 +21,7 @@
 				<TableColumn fx:id="orderArtSupplier" text="Artikel-Nr." />
 				<TableColumn fx:id="orderDescriptionSupplier" prefWidth="77.0" text="Bezeichnung" />
 				<TableColumn fx:id="orderSinglePriceSupplier" prefWidth="69.0" text="Einzelpreis" />
+				<TableColumn fx:id="orderTaxSupplier" prefWidth="69.0" text="Steuersatz" />
 				<TableColumn fx:id="orderAmountSupplier" prefWidth="57.0" text="Menge" />
 				<TableColumn fx:id="orderTotalPriceSupplier" prefWidth="94.0" text="Gesamtpreis" />
 			</columns>

@@ -30,12 +30,12 @@
 					GridPane.columnIndex="1" GridPane.rowIndex="3" />
 				<Label text="Einzelpreis" GridPane.rowIndex="6" />
 				<Label text="Menge" GridPane.rowIndex="7" />
-				<Label text="Gesamtpreis" GridPane.rowIndex="8" />
+				<Label text="Steuersatz" GridPane.rowIndex="8" />
 				<TextField fx:id="singlePrice" prefWidth="200.0"
 					GridPane.columnIndex="1" GridPane.rowIndex="6" />
 				<TextField fx:id="amount" prefWidth="200.0"
 					GridPane.columnIndex="1" GridPane.rowIndex="7" />
-				<TextField fx:id="sumPrice" editable="true" prefWidth="200.0"
+				<TextField fx:id="tax" editable="true" prefWidth="200.0"
 					GridPane.columnIndex="1" GridPane.rowIndex="8" />
 				<TextField fx:id="orderNr" prefWidth="200.0"
 					GridPane.columnIndex="1" />

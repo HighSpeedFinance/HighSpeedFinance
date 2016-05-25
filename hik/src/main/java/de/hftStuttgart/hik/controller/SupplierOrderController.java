@@ -32,6 +32,8 @@ public class SupplierOrderController {
 	private TableColumn<SupplierOrder, String> orderTotalPrice;
 	@FXML
 	private TableColumn<SupplierOrder, String> orderArt;
+	@FXML
+	private TableColumn<SupplierOrder, String> orderTax;
 	
 	private Supplier supplier;
 	private Main main;
@@ -46,6 +48,7 @@ public class SupplierOrderController {
 		orderAmount.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("amount"));
 		orderArt.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("itemNumb"));
 		orderTotalPrice.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("sumPrice"));
+		orderTax.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("tax"));
 		supplierOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	}
 	

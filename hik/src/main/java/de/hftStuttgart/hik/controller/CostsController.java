@@ -38,6 +38,8 @@ public class CostsController {
 	@FXML
 	private TableColumn<SupplierOrder, String> orderArtSupplier;
 	@FXML
+	private TableColumn<SupplierOrder, String> orderTaxSupplier;
+	@FXML
 	private Label summe;
 	@FXML
 	private ComboBox<String> daysCombobox;
@@ -78,6 +80,7 @@ public class CostsController {
 		orderDescriptionSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("description"));
 		orderSinglePriceSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("unitPrice"));
 		orderAmountSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("amount"));
+		orderTaxSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("tax"));
 		supplierOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 	}

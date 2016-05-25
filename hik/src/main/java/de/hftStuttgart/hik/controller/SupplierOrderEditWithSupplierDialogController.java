@@ -28,7 +28,7 @@ public class SupplierOrderEditWithSupplierDialogController {
 	@FXML
 	private TextField amount;
 	@FXML
-	private TextField sumPrice;
+	private TextField tax;
 	@FXML
 	private TextField orderNr;
 	@FXML
@@ -75,7 +75,7 @@ public class SupplierOrderEditWithSupplierDialogController {
 			}
 			singlePrice.setText(String.valueOf(supplierOrder.getUnitPrice()));
 			amount.setText(String.valueOf(supplierOrder.getAmount()));
-			sumPrice.setText(String.valueOf(supplierOrder.getSumPrice()));
+			tax.setText(String.valueOf(supplierOrder.getTax()));
 			orderNr.setText(String.valueOf(supplierOrder.getOrderNumber()));
 		}
 	}
@@ -103,9 +103,9 @@ public class SupplierOrderEditWithSupplierDialogController {
 				supplierOrder.setStatus(Status.PENDING);
 				break;
 			}
-			supplierOrder.setSum(Double.parseDouble(sumPrice.getText()));
 			supplierOrder.setUnitPrice(Double.parseDouble(singlePrice.getText()));
 			supplierOrder.setSupplier(supplierChoiceBox.getSelectionModel().getSelectedItem());
+			supplierOrder.setTax(Double.parseDouble(tax.getText()));
 			
 			okClicked = true;
 			dialogStage.close();
@@ -162,13 +162,13 @@ public class SupplierOrderEditWithSupplierDialogController {
 				errorMessage += "Kein gueltiger Unitpreis (muss eine Zahl sein)!\n";
 			}
 		}
-		if (sumPrice.getText() == null || sumPrice.getText().length() == 0) {
-			errorMessage += "Kein gueltiger Gesamtpreis!\n";
+		if (tax.getText() == null || tax.getText().length() == 0) {
+			errorMessage += "Kein gueltiger Steuersatz!\n";
 		} else {
 			try {
-				Double.parseDouble(sumPrice.getText());
+				Double.parseDouble(tax.getText());
 			} catch (NumberFormatException e) {
-				errorMessage += "Kein gueltiger Gesamtpreis (muss eine Zahl sein)!\n";
+				errorMessage += "Kein gueltiger Steuersatz (muss eine Zahl sein)!\n";
 			}
 		}
 		if (errorMessage.length() == 0) {

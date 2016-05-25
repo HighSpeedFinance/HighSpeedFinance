@@ -19,10 +19,10 @@
 				<TextField fx:id="description" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 				<Label text="Einzelpreis" GridPane.rowIndex="5" />
 				<Label text="Menge" GridPane.rowIndex="6" />
-				<Label text="Gesamtpreis" GridPane.rowIndex="7" />
+				<Label text="Steuersatz" GridPane.rowIndex="7" />
 				<TextField fx:id="singlePrice" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
 				<TextField fx:id="amount" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-				<TextField fx:id="sumPrice" editable="true" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+				<TextField fx:id="tax" editable="true" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
            	 	<TextField fx:id="orderNr" prefWidth="200.0" GridPane.columnIndex="1" />
             <ChoiceBox fx:id="paymentStatus" prefHeight="25.0" prefWidth="218.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <DatePicker fx:id="date" prefHeight="25.0" prefWidth="223.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
