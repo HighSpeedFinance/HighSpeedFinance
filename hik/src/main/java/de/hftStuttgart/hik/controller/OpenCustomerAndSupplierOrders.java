@@ -5,6 +5,7 @@ import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.model.SupplierOrder;
 import de.hftStuttgart.hik.utilities.OrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierOrderUtil;
+import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.SingleSelectionModel;
@@ -53,15 +54,23 @@ public class OpenCustomerAndSupplierOrders {
 	public void setMainApp(Main main) {
 		this.main = main;
 	}
-	
-	public void loadCustomerOrders(){
+
+	public void loadCustomerOrders() {
 		ObservableList<CustomerOrder> customerOrderList = OrderUtil.loadAllOrdersWhereStatusOpen();
 		customerOrderTable.setItems(customerOrderList);
 	}
-	
-	public void loadSupplierOrders(){
+
+	public void loadSupplierOrders() {
 		ObservableList<SupplierOrder> supplierOrderList = SupplierOrderUtil.loadAllOrdersWhereStatusOpen();
 		supplierOrderTable.setItems(supplierOrderList);
+	}
+	
+	private void refreshSupplierOrderTable() {
+		int selectedIndex = supplierOrderTable.getSelectionModel().getSelectedIndex();
+		supplierOrderTable.setItems(null);
+		supplierOrderTable.layout();
+		supplierOrderTable.setItems(main.getSupplierOrderData());
+		supplierOrderTable.getSelectionModel().select(selectedIndex);
 	}
 
 	@FXML
@@ -72,9 +81,9 @@ public class OpenCustomerAndSupplierOrders {
 		customerNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("customer"));
 		orderTotalPrice.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("sumPrice"));
 		customerOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		
+
 		loadCustomerOrders();
-		
+
 		orderNameSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("supplier"));
 		orderDescriptionSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("description"));
 		orderStatusSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("status"));
@@ -84,20 +93,28 @@ public class OpenCustomerAndSupplierOrders {
 		orderArtSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("itemNumb"));
 		orderTotalPriceSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("sumPrice"));
 		supplierOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		
+
 		loadSupplierOrders();
 	}
 
 	@FXML
-	public void addSupplierOrder(){
-		
+	public void addSupplierOrder() {
+		SupplierOrder supplierOrder = new SupplierOrder();
+		boolean okClicked = main.showSupplierOrderEditWithSupplierDialog(supplierOrder);
+		if (okClicked) {
+			SupplierUtil.loadAllSuppliers().get(supplierOrder.getSupplierObject().getId().intValue() - 1)
+					.addOrder(supplierOrder);
+			supplierOrder.setSupplier(supplierOrder.getSupplierObject());
+			SupplierOrderUtil.addOrder(supplierOrder);
+			refreshSupplierOrderTable();
+		}
 	}
-	
+
 	@FXML
-	public void editSupplierOrder(){
-		
+	public void editSupplierOrder() {
+
 	}
-	
+
 	@FXML
 	public void customerIsSelected() {
 		try {
@@ -110,12 +127,12 @@ public class OpenCustomerAndSupplierOrders {
 	public void supplierIsSelected() {
 		main.showNavigationBarSupplier();
 	}
-	
-	public void setTabSelected(int selection){
+
+	public void setTabSelected(int selection) {
 		SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
-		if(selection == 0){
+		if (selection == 0) {
 			selectionModel.select(0);
-		}else{
+		} else {
 			selectionModel.select(1);
 		}
 	}

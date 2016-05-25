@@ -1,23 +1,16 @@
 package de.hftStuttgart.hik.controller;
 
-import java.io.IOException;
-
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.utilities.CustomerUtil;
 import de.hftStuttgart.hik.utilities.OrderUtil;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class CustomerOrderController {
 
@@ -70,7 +63,7 @@ public class CustomerOrderController {
 	@FXML
 	public void addCustomerOrder() {
 		CustomerOrder customerOrder = new CustomerOrder();
-		boolean okClicked = showOrderEditDialog(customerOrder);
+		boolean okClicked = main.showOrderEditDialog(customerOrder);
 		if (okClicked) {
 			CustomerUtil.loadAllCustomers().get(customer.getId().intValue()-1).addOrder(customerOrder);
 			customerOrder.setCustomer(customer);
@@ -83,10 +76,10 @@ public class CustomerOrderController {
 	private void editCustomerOrder() {
 		CustomerOrder customerOrder = customerOrderTable.getSelectionModel().getSelectedItem();
 		if (customerOrder != null) {
-			boolean okClicked = showOrderEditDialog(customerOrder);
+			boolean okClicked = main.showOrderEditDialog(customerOrder);
 			if (okClicked) {
-				refreshCustomerOrderTable();
 				OrderUtil.editOrder(customerOrder);
+				refreshCustomerOrderTable();
 			}
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
@@ -108,31 +101,5 @@ public class CustomerOrderController {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
-	}
-
-	public boolean showOrderEditDialog(CustomerOrder customerOrder) {
-		try {
-			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/OrderEditDialog.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Bestellung Hinzufügen");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(main.getPrimaryStage());
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
-
-			CustomerOrderEditDialogController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-			controller.setCustomerOrder(customerOrder);
-
-			dialogStage.showAndWait();
-			return controller.isOkClicked();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-			return false;
-		}
 	}
 }

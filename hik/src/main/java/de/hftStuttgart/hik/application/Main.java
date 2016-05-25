@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import de.hftStuttgart.hik.controller.CustomerOrderController;
+import de.hftStuttgart.hik.controller.CustomerOrderEditDialogController;
+import de.hftStuttgart.hik.controller.CustomerOrderEditWithCustomerDialogController;
 import de.hftStuttgart.hik.controller.GraphicsController;
 import de.hftStuttgart.hik.controller.IncomeController;
 import de.hftStuttgart.hik.controller.MenuBarController;
@@ -15,6 +17,8 @@ import de.hftStuttgart.hik.controller.NewCustomersAndSuppliersController;
 import de.hftStuttgart.hik.controller.OpenCustomerAndSupplierOrders;
 import de.hftStuttgart.hik.controller.ShowNewOrdersController;
 import de.hftStuttgart.hik.controller.SupplierOrderController;
+import de.hftStuttgart.hik.controller.SupplierOrderEditDialogController;
+import de.hftStuttgart.hik.controller.SupplierOrderEditWithSupplierDialogController;
 import de.hftStuttgart.hik.controller.TabViewController;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.CustomerOrder;
@@ -317,6 +321,110 @@ public class Main extends Application {
 			controller.setMainApp(this);
 
 		} catch (Exception e) {
+		}
+	}
+	
+	public boolean showSupplierOrderEditWithSupplierDialog(SupplierOrder supplierOrder) {
+		try {
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/main/java/de/hftStuttgart/hik/view/SupplierOrderEditWithSupplierDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Bestellung hinzufuegen");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(getPrimaryStage());
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			SupplierOrderEditWithSupplierDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setSupplierOrder(supplierOrder);
+
+			dialogStage.showAndWait();
+			return controller.isOkClicked();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean showSupplierOrderEditDialog(SupplierOrder supplierOrder) {
+		try {
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/main/java/de/hftStuttgart/hik/view/SupplierOrderEditDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Bestellung Hinzufuegen");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(getPrimaryStage());
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			SupplierOrderEditDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setSupplierOrder(supplierOrder);
+
+			dialogStage.showAndWait();
+			return controller.isOkClicked();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean showOrderEditDialog(CustomerOrder customerOrder) {
+		try {
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/main/java/de/hftStuttgart/hik/view/OrderEditDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Bestellung hinzufuegen");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(getPrimaryStage());
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			CustomerOrderEditDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setCustomerOrder(customerOrder);
+
+			dialogStage.showAndWait();
+			return controller.isOkClicked();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			return false;
+		}
+	}
+	
+	public boolean showOrderEditWithCustomerDialog(CustomerOrder customerOrder) {
+		try {
+			FXMLLoader loader = new FXMLLoader(
+					getClass().getResource("/main/java/de/hftStuttgart/hik/view/OrderEditWithCustomerDialog.fxml"));
+			AnchorPane page = (AnchorPane) loader.load();
+			Stage dialogStage = new Stage();
+			dialogStage.setTitle("Bestellung hinzufuegen");
+			dialogStage.initModality(Modality.WINDOW_MODAL);
+			dialogStage.initOwner(getPrimaryStage());
+			Scene scene = new Scene(page);
+			dialogStage.setScene(scene);
+
+			CustomerOrderEditWithCustomerDialogController controller = loader.getController();
+			controller.setDialogStage(dialogStage);
+			controller.setCustomerOrder(customerOrder);
+
+			dialogStage.showAndWait();
+			return controller.isOkClicked();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			return false;
 		}
 	}
 

@@ -4,11 +4,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 
 import de.hftStuttgart.hik.application.Main;
-import de.hftStuttgart.hik.model.CustomerOrder;
-import de.hftStuttgart.hik.model.Supplier;
 import de.hftStuttgart.hik.model.SupplierOrder;
-import de.hftStuttgart.hik.utilities.CustomerUtil;
-import de.hftStuttgart.hik.utilities.OrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierOrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.beans.value.ChangeListener;
@@ -49,6 +45,7 @@ public class CostsController {
 	@FXML
 	private ComboBox<String> supplierCombobox;
 
+	@SuppressWarnings("unused")
 	private Main main;
 	private ObservableList<SupplierOrder> supplierOrderListInTime = FXCollections.observableArrayList();
 	private ObservableList<SupplierOrder> supplierOrderListInTimeAndSupplier = FXCollections.observableArrayList();

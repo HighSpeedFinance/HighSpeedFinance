@@ -51,6 +51,7 @@ public enum SupplierOrderUtil {
 		em = factory.createEntityManager();
 		ObservableList<SupplierOrder> ordList = FXCollections.observableArrayList();
 		Query q = em.createQuery("select t from SupplierOrder t where status = 1 OR status=2");
+		@SuppressWarnings("unchecked")
 		List<SupplierOrder> orderList = q.getResultList();
 		for (SupplierOrder ord : orderList) {
 			ordList.add(ord);
@@ -64,6 +65,7 @@ public enum SupplierOrderUtil {
 		em = factory.createEntityManager();
 		ObservableList<SupplierOrder> ordList = FXCollections.observableArrayList();
 		Query q = em.createQuery("select t from SupplierOrder t where status = 0");
+		@SuppressWarnings("unchecked")
 		List<SupplierOrder> orderList = q.getResultList();
 		for (SupplierOrder ord : orderList) {
 			ordList.add(ord);

@@ -1,7 +1,5 @@
 package de.hftStuttgart.hik.controller;
 
-import java.io.IOException;
-
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.model.SupplierOrder;
@@ -10,8 +8,6 @@ import de.hftStuttgart.hik.utilities.OrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierOrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
@@ -21,9 +17,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class CustomerAndSupplierOrderOverviewController {
 
@@ -104,7 +97,7 @@ public class CustomerAndSupplierOrderOverviewController {
 	@FXML
 	public void addSupplierOrder() {
 		SupplierOrder supplierOrder = new SupplierOrder();
-		boolean okClicked = showSupplierOrderEditWithSupplierDialog(supplierOrder);
+		boolean okClicked = main.showSupplierOrderEditWithSupplierDialog(supplierOrder);
 		if (okClicked) {
 			SupplierUtil.loadAllSuppliers().get(supplierOrder.getSupplierObject().getId().intValue()-1).addOrder(supplierOrder);
 			supplierOrder.setSupplier(supplierOrder.getSupplierObject());
@@ -117,7 +110,7 @@ public class CustomerAndSupplierOrderOverviewController {
 	private void editSupplierOrder() {
 		SupplierOrder supplierOrder = supplierOrderTable.getSelectionModel().getSelectedItem();
 		if (supplierOrder != null) {
-			boolean okClicked = showSupplierOrderEditDialog(supplierOrder);
+			boolean okClicked = main.showSupplierOrderEditDialog(supplierOrder);
 			if (okClicked) {
 				refreshSupplierOrderTable();
 				SupplierOrderUtil.editOrder(supplierOrder);
@@ -134,7 +127,7 @@ public class CustomerAndSupplierOrderOverviewController {
 	@FXML
 	public void addCustomerOrder() {
 		CustomerOrder customerOrder = new CustomerOrder();
-		boolean okClicked = showOrderEditWithCustomerDialog(customerOrder);
+		boolean okClicked = main.showOrderEditWithCustomerDialog(customerOrder);
 		if (okClicked) {
 			CustomerUtil.loadAllCustomers().get(customerOrder.getCustomerObject().getId().intValue()-1).addOrder(customerOrder);
 			customerOrder.setCustomer(customerOrder.getCustomerObject());
@@ -146,7 +139,7 @@ public class CustomerAndSupplierOrderOverviewController {
 	private void editCustomerOrder() {
 		CustomerOrder customerOrder = customerOrderTable.getSelectionModel().getSelectedItem();
 		if (customerOrder != null) {
-			boolean okClicked = showOrderEditDialog(customerOrder);
+			boolean okClicked = main.showOrderEditDialog(customerOrder);
 			if (okClicked) {
 				refreshCustomerOrderTable();
 				OrderUtil.editOrder(customerOrder);
@@ -157,110 +150,6 @@ public class CustomerAndSupplierOrderOverviewController {
 			alert.setHeaderText("");
 			alert.setContentText("No CustomerOrder selected!");
 			alert.showAndWait();
-		}
-	}
-	
-	public boolean showSupplierOrderEditDialog(SupplierOrder supplierOrder) {
-		try {
-			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/SupplierOrderEditDialog.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Bestellung Hinzufuegen");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(main.getPrimaryStage());
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
-
-			SupplierOrderEditDialogController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-			controller.setSupplierOrder(supplierOrder);
-
-			dialogStage.showAndWait();
-			return controller.isOkClicked();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-			return false;
-		}
-	}
-	
-	public boolean showSupplierOrderEditWithSupplierDialog(SupplierOrder supplierOrder) {
-		try {
-			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/SupplierOrderEditWithSupplierDialog.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Bestellung hinzufuegen");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(main.getPrimaryStage());
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
-
-			SupplierOrderEditWithSupplierDialogController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-			controller.setSupplierOrder(supplierOrder);
-
-			dialogStage.showAndWait();
-			return controller.isOkClicked();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-			return false;
-		}
-	}
-
-	public boolean showOrderEditDialog(CustomerOrder customerOrder) {
-		try {
-			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/OrderEditDialog.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Bestellung hinzufuegen");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(main.getPrimaryStage());
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
-
-			CustomerOrderEditDialogController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-			controller.setCustomerOrder(customerOrder);
-
-			dialogStage.showAndWait();
-			return controller.isOkClicked();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-			return false;
-		}
-	}
-	
-	public boolean showOrderEditWithCustomerDialog(CustomerOrder customerOrder) {
-		try {
-			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/OrderEditWithCustomerDialog.fxml"));
-			AnchorPane page = (AnchorPane) loader.load();
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Bestellung hinzufuegen");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(main.getPrimaryStage());
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
-
-			CustomerOrderEditWithCustomerDialogController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-			controller.setCustomerOrder(customerOrder);
-
-			dialogStage.showAndWait();
-			return controller.isOkClicked();
-
-		} catch (IOException e) {
-			e.printStackTrace();
-			System.out.println(e.getMessage());
-			return false;
 		}
 	}
 	
