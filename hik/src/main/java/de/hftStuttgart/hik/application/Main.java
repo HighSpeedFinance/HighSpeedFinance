@@ -458,7 +458,6 @@ public class Main extends Application {
 		}
 	}
 
-	// auslagern
 	public ObservableList<Supplier> getSupplierData() {
 		return supplierData;
 	}
@@ -473,5 +472,13 @@ public class Main extends Application {
 
 	public ObservableList<SupplierOrder> getSupplierOrderData() {
 		return supplierOrderData;
+	}
+	
+	public void addCustomerOrder(CustomerOrder customerOrder){
+		customerOrderData.add(customerOrder);
+	}
+	
+	public void addSupplierOrder(SupplierOrder supplierOrder){
+		supplierOrderData.add(supplierOrder);
 	}
 }

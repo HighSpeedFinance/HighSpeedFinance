@@ -102,6 +102,7 @@ public class CustomerAndSupplierOrderOverviewController {
 			SupplierUtil.loadAllSuppliers().get(supplierOrder.getSupplierObject().getId().intValue()-1).addOrder(supplierOrder);
 			supplierOrder.setSupplier(supplierOrder.getSupplierObject());
 			SupplierOrderUtil.addOrder(supplierOrder);
+			main.addSupplierOrder(supplierOrder);
 			refreshSupplierOrderTable();
 		}
 	}
@@ -132,6 +133,7 @@ public class CustomerAndSupplierOrderOverviewController {
 			CustomerUtil.loadAllCustomers().get(customerOrder.getCustomerObject().getId().intValue()-1).addOrder(customerOrder);
 			customerOrder.setCustomer(customerOrder.getCustomerObject());
 			OrderUtil.addOrder(customerOrder);
+			main.addCustomerOrder(customerOrder);
 		}
 	}
 

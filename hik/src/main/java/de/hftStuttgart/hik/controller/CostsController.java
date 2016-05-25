@@ -6,7 +6,6 @@ import java.time.ZoneId;
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.SupplierOrder;
 import de.hftStuttgart.hik.utilities.SupplierOrderUtil;
-import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -45,7 +44,6 @@ public class CostsController {
 	@FXML
 	private ComboBox<String> supplierCombobox;
 
-	@SuppressWarnings("unused")
 	private Main main;
 	private ObservableList<SupplierOrder> supplierOrderListInTime = FXCollections.observableArrayList();
 	private ObservableList<SupplierOrder> supplierOrderListInTimeAndSupplier = FXCollections.observableArrayList();
@@ -104,7 +102,7 @@ public class CostsController {
 
 	public void setSupplierComboBox(int index) {
 		for (SupplierOrder supOrder : supplierOrderListInTime) {
-			String supplierName = SupplierUtil.loadAllSuppliers().get((supOrder.getSupplierObject().getId()).intValue()-1).getSupplierCompanyName();
+			String supplierName = main.getSupplierData().get((supOrder.getSupplierObject().getId()).intValue()-1).getSupplierCompanyName();
 			if (!supplier.contains("Alle")) {
 				supplier.add("Alle");
 			}

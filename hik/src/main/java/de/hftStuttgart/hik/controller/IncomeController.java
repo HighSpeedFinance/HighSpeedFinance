@@ -5,7 +5,6 @@ import java.time.ZoneId;
 
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.CustomerOrder;
-import de.hftStuttgart.hik.utilities.CustomerUtil;
 import de.hftStuttgart.hik.utilities.OrderUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -47,7 +46,6 @@ public class IncomeController {
 	@FXML
 	private ComboBox<String> plzCombobox;
 
-	@SuppressWarnings("unused")
 	private Main main;
 	private ObservableList<CustomerOrder> customerOrderListInTime = FXCollections.observableArrayList();
 	private ObservableList<CustomerOrder> customerOrderListInTimeAndPlz = FXCollections.observableArrayList();
@@ -58,7 +56,7 @@ public class IncomeController {
 	public void setPlzComboBox(int index) {
 		for (CustomerOrder cusOrder : customerOrderListInTime) {
 			String plzInt = String
-					.valueOf(CustomerUtil.loadAllCustomers().get((int) cusOrder.getCustomer()-1).getCustomerPostalCode());
+					.valueOf(main.getCustomerData().get((int) cusOrder.getCustomer()-1).getCustomerPostalCode());
 			if (!plz.contains("Alle")) {
 				plz.add("Alle");
 			}

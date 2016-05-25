@@ -107,6 +107,7 @@ public class OpenCustomerAndSupplierOrders {
 			supplierOrder.setSupplier(supplierOrder.getSupplierObject());
 			SupplierOrderUtil.addOrder(supplierOrder);
 			refreshSupplierOrderTable();
+			main.addSupplierOrder(supplierOrder);
 		}
 	}
 

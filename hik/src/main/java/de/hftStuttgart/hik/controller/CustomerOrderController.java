@@ -56,7 +56,7 @@ public class CustomerOrderController {
 		int selectedIndex = customerOrderTable.getSelectionModel().getSelectedIndex();
 		customerOrderTable.setItems(null);
 		customerOrderTable.layout();
-		customerOrderTable.setItems(OrderUtil.loadAllOrders(customer));
+		customerOrderTable.setItems(main.getCustomerOrderData());
 		customerOrderTable.getSelectionModel().select(selectedIndex);
 	}
 
@@ -68,6 +68,7 @@ public class CustomerOrderController {
 			CustomerUtil.loadAllCustomers().get(customer.getId().intValue()-1).addOrder(customerOrder);
 			customerOrder.setCustomer(customer);
 			OrderUtil.addOrder(customerOrder);
+			main.addCustomerOrder(customerOrder);
 			refreshCustomerOrderTable();
 		}
 	}
