@@ -1,13 +1,10 @@
 package de.hftStuttgart.hik.controller;
 
 import de.hftStuttgart.hik.application.Main;
-import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.model.SupplierOrder;
 import de.hftStuttgart.hik.utilities.OrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierOrderUtil;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -17,9 +14,6 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class GraphicsController {
 
@@ -33,7 +27,6 @@ public class GraphicsController {
 	@SuppressWarnings("rawtypes")
 	@FXML
 	private BarChart barChart;
-	private Main main;
 	private ObservableList<CustomerOrder> customerOrderList = FXCollections.observableArrayList();
 	private ObservableList<SupplierOrder> supplierOrderList = FXCollections.observableArrayList();
 	private double summeEinnahmen = 0;
@@ -67,7 +60,6 @@ public class GraphicsController {
 	}
 
 	public void setMainApp(Main main) {
-		this.main = main;
 		customerOrderList.addAll(OrderUtil.loadAllOrdersWhereStatusSucceeded());
 		supplierOrderList.addAll(SupplierOrderUtil.loadAllOrdersWhereStatusSucceeded());
 		
