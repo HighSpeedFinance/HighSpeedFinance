@@ -26,7 +26,7 @@
 												<TableColumn fx:id="customerNumber" prefWidth="76.0" text="Kundennr." />
 												<TableColumn fx:id="orderStatus" prefWidth="76.0" text="Bezahlstatus" />
 												<TableColumn fx:id="orderDate" prefWidth="89.0" text="Bestelldatum" />
-												<TableColumn fx:id="orderTotalPrice" prefWidth="119.0" text="Gesamtpreis" />
+												<TableColumn fx:id="orderTotalPrice" prefWidth="119.0" text="Gesamtpreis in Euro" />
 											</columns>
 										</TableView>
 										<Button layoutX="385.0" layoutY="295.0" mnemonicParsing="false" onAction="#addCustomerOrder" text="Hinzufügen" />
