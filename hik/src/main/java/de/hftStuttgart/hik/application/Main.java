@@ -1,8 +1,6 @@
 package de.hftStuttgart.hik.application;
 
 import java.io.IOException;
-import java.time.LocalDate;
-
 import de.hftStuttgart.hik.controller.CustomerOrderController;
 import de.hftStuttgart.hik.controller.CustomerOrderEditDialogController;
 import de.hftStuttgart.hik.controller.CustomerOrderEditWithCustomerDialogController;
@@ -39,7 +37,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.converter.LocalDateStringConverter;
 
 public class Main extends Application {
 
@@ -428,10 +425,7 @@ public class Main extends Application {
 		}
 	}
 
-	// ToDo:Delete dummy
 	public Main() {
-		//addDummyCustomers();
-		//addDummySuppliers();
 		supplierData.addAll(SupplierUtil.loadAllSuppliers());
 		customerData.addAll(CustomerUtil.loadAllCustomers());
 		customerOrderData.addAll(OrderUtil.loadAllOrders());
@@ -439,23 +433,6 @@ public class Main extends Application {
 
 	public Stage getPrimaryStage() {
 		return primaryStage;
-	}
-
-	public void addDummyCustomers() {
-		for (int i = 1; i <= 10; i++) {
-			CustomerUtil.addCustomer(new Customer(i, "customerCompanyName" + i, "customerContactPersonFirstName",
-					"customerContactPersonLastName", "customerStreet", 73770, "customerCity", 0711344455,
-					"customerEmail", 16, "customerCountry", 123, "customerTitel",
-					new LocalDateStringConverter().toString(LocalDate.now().minusDays(60))));
-		}
-	}
-
-	public void addDummySuppliers() {
-		for (int i = 1; i <= 10; i++) {
-			SupplierUtil.addSupplier(
-					new Supplier(i, "supplierCName", "Flo", "Rietz", "Street", 73770, "DDorf", 071177777, "email", 12,
-							"Germany", 123, new LocalDateStringConverter().toString(LocalDate.now().minusDays(10))));
-		}
 	}
 
 	public ObservableList<Supplier> getSupplierData() {

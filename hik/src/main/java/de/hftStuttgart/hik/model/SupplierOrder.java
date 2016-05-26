@@ -108,14 +108,6 @@ public class SupplierOrder {
 		this.amount = amount;
 	}
 
-	public double getSum() {
-		return sumPrice;
-	}
-
-	public void setSum(double sum) {
-		this.sumPrice = sum;
-	}
-
 	public String getSupplier() {
 		return supplier.getSupplierCompanyName();
 	}
@@ -151,5 +143,12 @@ public class SupplierOrder {
 	public void setTax(double tax) {
 		this.tax = tax;
 		this.sumPrice = (this.unitPrice * ((tax/100)+1)) * this.amount;
+	}
+
+	@Override
+	public String toString() {
+		return String.valueOf(Math.round(100.0 * sumPrice) / 100.0);
 	}	
+	
+	
 }

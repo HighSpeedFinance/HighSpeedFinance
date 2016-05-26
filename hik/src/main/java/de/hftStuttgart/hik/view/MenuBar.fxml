@@ -26,11 +26,11 @@
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="Ausgaben" onAction="#showCosts">
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#showCosts" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="Ausgaben">
                      <font>
                         <Font size="14.0" />
                      </font></Button>
-                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#showGraphics" prefHeight="44.0" prefWidth="95.0" style="-fx-background-color: transparent;" text="Graphiken">
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#showGraphics" prefHeight="103.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Jahresabschluss">
                      <font>
                         <Font size="14.0" />
                      </font>

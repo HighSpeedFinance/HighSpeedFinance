@@ -12,15 +12,21 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.Group?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="700" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.GraphicsController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.GraphicsController">
 	<children>
-      <BarChart layoutX="6.0" layoutY="37.0" prefHeight="326.0" prefWidth="688.0" fx:id="barChart">
+      <BarChart fx:id="barChart" layoutY="277.0" prefHeight="280.0" prefWidth="514.0">
         <xAxis>
-          <CategoryAxis side="BOTTOM"/>
+          <CategoryAxis side="BOTTOM" />
         </xAxis>
         <yAxis>
-          <NumberAxis side="LEFT"/>
+          <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
+      <ListView fx:id="income" layoutX="57.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="cost" layoutX="257.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label fx:id="resultIncomeCost" layoutX="257.0" layoutY="244.0" />
+      <Label layoutX="128.0" layoutY="14.0" text="Einnahmen" />
+      <Label layoutX="331.0" layoutY="14.0" text="Ausgaben" />
+      <Label fx:id="resultIncomeCost1" layoutX="158.0" layoutY="244.0" text="Jahresabschluss: " />
 	</children>
 </AnchorPane>
