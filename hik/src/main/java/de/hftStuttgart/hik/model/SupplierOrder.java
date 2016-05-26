@@ -137,7 +137,7 @@ public class SupplierOrder {
 	}
 
 	public double getSumPrice() {
-		return sumPrice;
+		return Math.round(100.0 * sumPrice) / 100.0;
 	}
 
 	public void setSumPrice(double sumPrice) {
