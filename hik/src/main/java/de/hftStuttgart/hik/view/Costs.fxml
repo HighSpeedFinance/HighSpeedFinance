@@ -30,7 +30,7 @@
 		<ComboBox fx:id="daysCombobox" layoutX="77.0" layoutY="10.0" prefHeight="25.0" prefWidth="87.0" />
 		<Label layoutX="457.0" layoutY="466.0" text="Summe :" />
 		<Label fx:id="summe" layoutX="511.0" layoutY="457.0" />
-		<Label layoutX="189.0" layoutY="14.0" text="PLZ Gebiet :" />
+		<Label layoutX="189.0" layoutY="14.0" text="Lieferant :" />
 		<ComboBox fx:id="supplierCombobox" layoutX="263.0" layoutY="10.0" prefHeight="25.0" prefWidth="87.0" />
 	</children>
 </AnchorPane>

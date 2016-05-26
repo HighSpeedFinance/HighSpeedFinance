@@ -107,6 +107,10 @@ public class SupplierOrder {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
+	
+	public long getSupplierId() {
+		return supplier.getId();
+	}
 
 	public String getSupplier() {
 		return supplier.getSupplierCompanyName();

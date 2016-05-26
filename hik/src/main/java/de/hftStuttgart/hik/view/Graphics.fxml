@@ -14,7 +14,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.GraphicsController">
 	<children>
-      <BarChart fx:id="barChart" layoutY="277.0" prefHeight="280.0" prefWidth="514.0">
+      <BarChart fx:id="barChart" layoutY="381.0" prefHeight="296.0" prefWidth="500.0">
         <xAxis>
           <CategoryAxis side="BOTTOM" />
         </xAxis>
@@ -22,11 +22,12 @@
           <NumberAxis side="LEFT" />
         </yAxis>
       </BarChart>
-      <ListView fx:id="income" layoutX="57.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0" />
-      <ListView fx:id="cost" layoutX="257.0" layoutY="34.0" prefHeight="200.0" prefWidth="200.0" />
-      <Label fx:id="resultIncomeCost" layoutX="257.0" layoutY="244.0" />
-      <Label layoutX="128.0" layoutY="14.0" text="Einnahmen" />
-      <Label layoutX="331.0" layoutY="14.0" text="Ausgaben" />
-      <Label fx:id="resultIncomeCost1" layoutX="158.0" layoutY="244.0" text="Jahresabschluss: " />
+      <ListView fx:id="income" layoutX="57.0" layoutY="82.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="cost" layoutX="257.0" layoutY="82.0" prefHeight="200.0" prefWidth="200.0" />
+      <Label fx:id="resultIncomeCost" layoutX="257.0" layoutY="292.0" />
+      <Label layoutX="128.0" layoutY="62.0" text="Einnahmen" />
+      <Label layoutX="331.0" layoutY="62.0" text="Ausgaben" />
+      <Label layoutX="158.0" layoutY="292.0" text="Jahresabschluss: " />
+      <ChoiceBox layoutX="205.0" layoutY="21.0" prefHeight="25.0" prefWidth="105.0" fx:id="plzChoiceBox"/>
 	</children>
 </AnchorPane>
