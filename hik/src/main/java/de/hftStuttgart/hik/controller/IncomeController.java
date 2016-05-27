@@ -71,8 +71,7 @@ public class IncomeController {
 
 	@FXML
 	private void initialize() {
-		daysCombobox.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage", "Alle"));
-		daysCombobox.getSelectionModel().select(0);
+		setDaysCombobox();
 
 		daysCombobox.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
@@ -99,6 +98,11 @@ public class IncomeController {
 		customerNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("customer"));
 		orderTax.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("tax"));
 		customerOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+	}
+	
+	public void setDaysCombobox(){
+		daysCombobox.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage", "Alle"));
+		daysCombobox.getSelectionModel().select(0);
 	}
 
 	public void setMainApp(Main main) {

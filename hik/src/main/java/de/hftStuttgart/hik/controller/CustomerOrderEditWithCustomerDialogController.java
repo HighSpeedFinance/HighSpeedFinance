@@ -42,9 +42,16 @@ public class CustomerOrderEditWithCustomerDialogController {
 
 	@FXML
 	private void initialize() {
+		setPaymentStatus();
+		setCustomers();
+	}
+
+	public void setPaymentStatus() {
 		paymentStatus.setItems(FXCollections.observableArrayList("erfasst", "bezahlt", "warten"));
 		paymentStatus.getSelectionModel().select(0);
-		
+	}
+
+	public void setCustomers() {
 		customers.setItems(CustomerUtil.loadAllCustomers());
 		customers.getSelectionModel().select(0);
 	}
@@ -52,7 +59,7 @@ public class CustomerOrderEditWithCustomerDialogController {
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
 	}
-	
+
 	public CustomerOrder getCustomerOrder() {
 		return customerOrder;
 	}

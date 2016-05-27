@@ -97,20 +97,27 @@ public class NewCustomersAndSuppliersController {
 
 	private Main main;
 
-	@FXML
-	private void initialize() {
+	public void setDaysComboBox() {
 		daysCombobox.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage"));
 		daysCombobox.getSelectionModel().select(0);
+	}
 
+	public void setDaysComboboxSupplier() {
+		daysComboboxSupplier.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage"));
+		daysComboboxSupplier.getSelectionModel().select(0);
+	}
+
+	@FXML
+	private void initialize() {
+		setDaysComboBox();
 		daysCombobox.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(@SuppressWarnings("rawtypes") ObservableValue ov, String t, String t1) {
 				loadCustomerList(t1);
 			}
 		});
-		daysComboboxSupplier.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage"));
-		daysComboboxSupplier.getSelectionModel().select(0);
 
+		setDaysComboboxSupplier();
 		daysComboboxSupplier.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(@SuppressWarnings("rawtypes") ObservableValue ov, String t, String t1) {
@@ -184,9 +191,10 @@ public class NewCustomersAndSuppliersController {
 			customerTitel.setText(customer.getCustomerTitel());
 			customerName.setText(
 					customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
-			customerStreet
-					.setText(customer.getCustomerAdressStreet() + ". " + String.valueOf(customer.getCustomerAdressHouseNumber()));
-			customerPLZ.setText(String.valueOf(customer.getCustomerAdressPostIndex()) + " " + customer.getCustomerAdressCity());
+			customerStreet.setText(customer.getCustomerAdressStreet() + ". "
+					+ String.valueOf(customer.getCustomerAdressHouseNumber()));
+			customerPLZ.setText(
+					String.valueOf(customer.getCustomerAdressPostIndex()) + " " + customer.getCustomerAdressCity());
 			customerCountry.setText(customer.getCustomerAdressCountry());
 			customerPhone.setText(String.valueOf(customer.getCustomerPhoneNumber()));
 		} else {
@@ -205,9 +213,10 @@ public class NewCustomersAndSuppliersController {
 			supplierCompanyName.setText(supplier.getSupplierCompanyName());
 			supplierContactPerson.setText(
 					supplier.getSupplierContactPersonFirstName() + " " + supplier.getSupplierContactPersonLastName());
-			supplierStreet
-					.setText(supplier.getSupplierAdressStreet() + ", " + String.valueOf(supplier.getSupplierAdressHouseNumber()));
-			supplierPLZ.setText(String.valueOf(supplier.getSupplierAdressPostIndex()) + " " + supplier.getSupplierAdressCity());
+			supplierStreet.setText(supplier.getSupplierAdressStreet() + ", "
+					+ String.valueOf(supplier.getSupplierAdressHouseNumber()));
+			supplierPLZ.setText(
+					String.valueOf(supplier.getSupplierAdressPostIndex()) + " " + supplier.getSupplierAdressCity());
 			supplierPhoneNumber.setText(String.valueOf(supplier.getSupplierPhoneNumber()));
 			supplierMail.setText(String.valueOf(supplier.getSupplierEmail()));
 		} else {
@@ -232,7 +241,7 @@ public class NewCustomersAndSuppliersController {
 			alert.showAndWait();
 		}
 	}
-	
+
 	@FXML
 	private void showSupplierBestellung() {
 		if (supplierTable.getSelectionModel().getSelectedItem() != null)

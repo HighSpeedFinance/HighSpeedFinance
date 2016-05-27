@@ -38,13 +38,20 @@ public class SupplierOrderEditWithSupplierDialogController {
 	private SupplierOrder supplierOrder;
 	private boolean okClicked = false;
 
-	@FXML
-	private void initialize() {
+	public void setPaymentStatus() {
 		paymentStatus.setItems(FXCollections.observableArrayList("erfasst", "bezahlt", "warten"));
 		paymentStatus.getSelectionModel().select(0);
-		
+	}
+
+	public void setSupplierChoiceBox() {
 		supplierChoiceBox.setItems(SupplierUtil.loadAllSuppliers());
 		supplierChoiceBox.getSelectionModel().select(0);
+	}
+
+	@FXML
+	private void initialize() {
+		setPaymentStatus();
+		setSupplierChoiceBox();
 	}
 
 	public void setDialogStage(Stage dialogStage) {
@@ -106,7 +113,7 @@ public class SupplierOrderEditWithSupplierDialogController {
 			supplierOrder.setUnitPrice(Double.parseDouble(singlePrice.getText()));
 			supplierOrder.setSupplier(supplierChoiceBox.getSelectionModel().getSelectedItem());
 			supplierOrder.setTax(Double.parseDouble(tax.getText()));
-			
+
 			okClicked = true;
 			dialogStage.close();
 		}

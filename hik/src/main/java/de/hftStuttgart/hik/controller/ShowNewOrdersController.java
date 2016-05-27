@@ -84,10 +84,19 @@ public class ShowNewOrdersController {
 
 	private Main main;
 
-	@FXML
-	private void initialize() {
+	public void setDaysCombobox() {
 		daysCombobox.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage"));
 		daysCombobox.getSelectionModel().select(0);
+	}
+
+	public void setDaysComboboxSupplier() {
+		daysComboboxSupplier.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage"));
+		daysComboboxSupplier.getSelectionModel().select(0);
+	}
+
+	@FXML
+	private void initialize() {
+		setDaysCombobox();
 
 		daysCombobox.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
@@ -110,9 +119,8 @@ public class ShowNewOrdersController {
 		orderTotalPrice.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("sumPrice"));
 		customerOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
-		daysComboboxSupplier.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage"));
-		daysComboboxSupplier.getSelectionModel().select(0);
-
+		setDaysComboboxSupplier();
+		
 		daysComboboxSupplier.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(@SuppressWarnings("rawtypes") ObservableValue ov, String t, String t1) {

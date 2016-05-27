@@ -33,7 +33,7 @@ public class Supplier {
 	@JoinColumn(name="paymentDetails_id")
 	private PaymentDetails supplierPaymentDetails;
 
-	@OneToMany(mappedBy = "supplier", cascade = CascadeType.REMOVE)
+	@OneToMany(mappedBy = "supplier", cascade = CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private List<SupplierOrder> orders;
 	
 	@ManyToOne(fetch=FetchType.EAGER)

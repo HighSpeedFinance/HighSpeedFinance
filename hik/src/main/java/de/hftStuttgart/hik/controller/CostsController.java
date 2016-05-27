@@ -55,8 +55,7 @@ public class CostsController {
 
 	@FXML
 	private void initialize() {
-		daysCombobox.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage", "Alle"));
-		daysCombobox.getSelectionModel().select(0);
+		setDaysCombobox();
 
 		daysCombobox.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
@@ -71,7 +70,7 @@ public class CostsController {
 				loadOrdersSupplier(t1);
 			}
 		});
-
+		
 		orderStatusSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("status"));
 		orderDateSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("date"));
 		orderTotalPriceSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("sumPrice"));
@@ -83,6 +82,11 @@ public class CostsController {
 		orderTaxSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("tax"));
 		supplierOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
+	}
+	
+	public void setDaysCombobox(){
+		daysCombobox.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage", "Alle"));
+		daysCombobox.getSelectionModel().select(0);
 	}
 
 	public void loadOrdersSupplier(String comboValue) {

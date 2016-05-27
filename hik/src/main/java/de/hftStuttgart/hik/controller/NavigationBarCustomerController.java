@@ -8,27 +8,27 @@ public class NavigationBarCustomerController {
 	private Main main;
 
 	@FXML
-	public void showCustomerOverview(){
+	private void showCustomerOverview(){
 		main.showCustomerAndSupplierOverview();
 	}
 	
 	@FXML
-	public void showNewCustomers(){
+	private void showNewCustomers(){
 		main.showNewCustomersAndSuppliers(0);
 	}
 	
 	@FXML
-	public void showCustomerOrderOverview(){
+	private void showCustomerOrderOverview(){
 		main.showCustomerAndSupplierOrderOverview(0);
 	}
 	
 	@FXML
-	public void showNewCustomerOrders(){
+	private void showNewCustomerOrders(){
 		main.showNewOrders(0);
 	}
 	
 	@FXML
-	public void showOpenCustomerOrders(){
+	private void showOpenCustomerOrders(){
 		main.showOpenCustomerAndSupplierOrders(0);
 	}
 	
