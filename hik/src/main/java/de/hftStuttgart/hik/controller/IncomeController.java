@@ -58,7 +58,7 @@ public class IncomeController {
 	public void setPlzComboBox(int index) {
 		for (CustomerOrder cusOrder : customerOrderListInTime) {
 			String plzInt = String
-					.valueOf(main.getCustomerData().get((int) cusOrder.getCustomer()-1).getCustomerPostalCode());
+					.valueOf(main.getCustomerData().get((int) cusOrder.getCustomer()-1).getCustomerAdressPostIndex());
 			if (!plz.contains("Alle")) {
 				plz.add("Alle");
 			}
@@ -112,7 +112,7 @@ public class IncomeController {
 		summeCalc = 0;
 
 		for (CustomerOrder cusOder : customerOrderListInTime) {
-			if (String.valueOf(cusOder.getCustomerObject().getCustomerPostalCode()).equals(comboValue)
+			if (String.valueOf(cusOder.getCustomerObject().getCustomerAdressPostIndex()).equals(comboValue)
 					|| comboValue.equals("Alle")) {
 				customerOrderListInTimeAndPlz.add(cusOder);
 			}

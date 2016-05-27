@@ -100,7 +100,7 @@ public class GraphicsController {
 	public void setPlzComboBox(int index) {
 		for (CustomerOrder cusOrder : customerOrderList) {
 			String plzInt = String
-					.valueOf(main.getCustomerData().get((int) cusOrder.getCustomer() - 1).getCustomerPostalCode());
+					.valueOf(main.getCustomerData().get((int) cusOrder.getCustomer() - 1).getCustomerAdressPostIndex());
 			if (!plz.contains("Alle")) {
 				plz.add("Alle");
 			}
@@ -109,7 +109,7 @@ public class GraphicsController {
 		}
 		for(SupplierOrder supOrder : supplierOrderList){
 			String plzInt = String
-					.valueOf(main.getSupplierData().get((int) supOrder.getSupplierId() - 1).getSupplierPostalCode());
+					.valueOf(main.getSupplierData().get((int) supOrder.getSupplierId() - 1).getSupplierAdressPostIndex());
 			if (!plz.contains("Alle")) {
 				plz.add("Alle");
 			}
@@ -127,7 +127,7 @@ public class GraphicsController {
 		summeAusgaben = 0;
 
 		for (CustomerOrder cusOder : customerOrderList) {
-			if (String.valueOf(cusOder.getCustomerObject().getCustomerPostalCode()).equals(comboValue)
+			if (String.valueOf(cusOder.getCustomerObject().getCustomerAdressPostIndex()).equals(comboValue)
 					|| comboValue.equals("Alle")) {
 				customerOrderListPlz.add(cusOder);
 			}
@@ -138,7 +138,7 @@ public class GraphicsController {
 		}
 		
 		for (SupplierOrder supOrder : supplierOrderList) {
-			if (String.valueOf(supOrder.getSupplierObject().getSupplierPostalCode()).equals(comboValue)
+			if (String.valueOf(supOrder.getSupplierObject().getSupplierAdressPostIndex()).equals(comboValue)
 					|| comboValue.equals("Alle")) {
 				supplierOrderListPlz.add(supOrder);
 			}

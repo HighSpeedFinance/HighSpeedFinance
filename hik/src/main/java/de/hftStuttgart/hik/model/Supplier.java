@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -20,41 +21,103 @@ public class Supplier {
 	private String supplierCompanyName;
 	private String supplierContactPersonFirstName;
 	private String supplierContactPersonLastName;
-	private String supplierStreet;
-	private int supplierPostalCode;
-	private String supplierCity;
+	
 	private int supplierPhoneNumber;
 	private String supplierEmail;
-	private int supplierHouseNumber;
-	private String supplierCountry;
 	private int supplierFax;
 	private String addedDate;
+	private PaymentDetails supplierPaymentDetails;
 
-	@OneToMany(mappedBy = "supplier", cascade = CascadeType.REMOVE, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "supplier", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	private List<SupplierOrder> orders;
-	
+	@ManyToOne(fetch=FetchType.EAGER, targetEntity=PostAdress.class)
+	private PostAdress supplierAdress;
 	public Supplier() {
 	}
 
 	public Supplier(final int supplierNumber, final String supplierCompanyName,
 			final String supplierContactPersonFirstName, final String supplierContactPersonLastName,
-			final String supplierStreet, final int supplierPostalCode, String supplierCity,
-			final int supplierPhoneNumber, final String supplierEmail, final int supplierHouseNumber,
-			final String supplierCountry, final int supplierFax, final String date) {
+			final PostAdress supplierAdress, final int supplierPhoneNumber, final String supplierEmail,
+			final int supplierFax, final String date, final PaymentDetails supplierPaymentDetails) {
 
 		this.supplierNumber = supplierNumber;
 		this.supplierCompanyName = supplierCompanyName;
 		this.supplierContactPersonFirstName = supplierContactPersonFirstName;
 		this.supplierContactPersonLastName = supplierContactPersonLastName;
-		this.supplierStreet = supplierStreet;
-		this.supplierPostalCode = supplierPostalCode;
-		this.supplierCity = supplierCity;
+		this.supplierAdress = supplierAdress;
 		this.supplierPhoneNumber = supplierPhoneNumber;
 		this.supplierEmail = supplierEmail;
-		this.supplierHouseNumber = supplierHouseNumber;
-		this.supplierCountry = supplierCountry;
 		this.supplierFax = supplierFax;
 		this.addedDate = date;
+		this.supplierPaymentDetails = supplierPaymentDetails;
+	}
+
+	public PostAdress getSupplierAdress() {
+		return supplierAdress;
+
+}
+	public void setSupplierAdressStreet(String street){
+		this.supplierAdress.setStreet(street);
+	}
+	
+	public void setSupplierAdressHouseNumber(int number){
+	this.supplierAdress.setHouseNumber(number);
+	}
+	
+	public void setSupplierAdressPostIndex(int index){
+		this.supplierAdress.setPostIndex(index);
+	}
+
+	public void setSupplierAdressCity(String city){
+		this.supplierAdress.setCity(city);
+	}
+	
+	public void setSupplierAdressCountry(String country){
+		this.supplierAdress.setCountry(country);
+	}
+	
+	public void setSupplierAdress(PostAdress supplierAdress) {
+		this.supplierAdress = supplierAdress;
+	}
+	
+	public String getSupplierAdressStreet(){
+		return this.supplierAdress.getStreet();
+	}
+	
+	public int getSupplierAdressHouseNumber(){
+		return this.supplierAdress.getHouseNumber();
+	}
+	
+	public int getSupplierAdressPostIndex(){
+		return this.supplierAdress.getPostIndex();
+	}
+
+	public String getSupplierAdressCity(){
+		return this.supplierAdress.getCity();
+	}
+	
+	public String getSupplierAdressCountry(){
+		return this.supplierAdress.getCountry();
+	}
+
+	public String getAddedDate() {
+		return addedDate;
+	}
+
+	public void setAddedDate(String addedDate) {
+		this.addedDate = addedDate;
+	}
+
+	public PaymentDetails getSupplierPaymentDetails() {
+		return supplierPaymentDetails;
+	}
+
+	public void setSupplierPaymentDetails(PaymentDetails supplierPaymentDetails) {
+		this.supplierPaymentDetails = supplierPaymentDetails;
+	}
+
+	public void setOrders(List<SupplierOrder> orders) {
+		this.orders = orders;
 	}
 
 	public int getSupplierNumber() {
@@ -89,30 +152,6 @@ public class Supplier {
 		this.supplierContactPersonLastName = supplierContactPersonLastName;
 	}
 
-	public String getSupplierStreet() {
-		return supplierStreet;
-	}
-
-	public void setSupplierStreet(String supplierStreet) {
-		this.supplierStreet = supplierStreet;
-	}
-
-	public int getSupplierPostalCode() {
-		return supplierPostalCode;
-	}
-
-	public void setSupplierPostalCode(int supplierPostalCode) {
-		this.supplierPostalCode = supplierPostalCode;
-	}
-
-	public String getSupplierCity() {
-		return supplierCity;
-	}
-
-	public void setSupplierCity(String supplierCity) {
-		this.supplierCity = supplierCity;
-	}
-
 	public int getSupplierPhoneNumber() {
 		return supplierPhoneNumber;
 	}
@@ -127,22 +166,6 @@ public class Supplier {
 
 	public void setSupplierEmail(String supplierEmail) {
 		this.supplierEmail = supplierEmail;
-	}
-
-	public int getSupplierHouseNumber() {
-		return supplierHouseNumber;
-	}
-
-	public void setSupplierHouseNumber(int supplierHouseNumber) {
-		this.supplierHouseNumber = supplierHouseNumber;
-	}
-
-	public String getSupplierCountry() {
-		return supplierCountry;
-	}
-
-	public void setSupplierCountry(String supplierCountry) {
-		this.supplierCountry = supplierCountry;
 	}
 
 	public int getSupplierFax() {
@@ -160,7 +183,7 @@ public class Supplier {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
+
 	public String getDate() {
 		return addedDate;
 	}
@@ -168,7 +191,7 @@ public class Supplier {
 	public void setDate(String date) {
 		this.addedDate = date;
 	}
-	
+
 	public void addOrder(SupplierOrder order) {
 		if (!orders.contains(order)) {
 			orders.add(order);
@@ -183,6 +206,5 @@ public class Supplier {
 	public String toString() {
 		return supplierCompanyName;
 	}
-	
-	
+
 }

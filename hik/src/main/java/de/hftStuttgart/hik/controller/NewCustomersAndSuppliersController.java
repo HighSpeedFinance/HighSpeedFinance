@@ -185,9 +185,9 @@ public class NewCustomersAndSuppliersController {
 			customerName.setText(
 					customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
 			customerStreet
-					.setText(customer.getCustomerStreet() + ". " + String.valueOf(customer.getCustomerHouseNumber()));
-			customerPLZ.setText(String.valueOf(customer.getCustomerPostalCode()) + " " + customer.getCustomerCity());
-			customerCountry.setText(customer.getCustomerCountry());
+					.setText(customer.getCustomerAdressStreet() + ". " + String.valueOf(customer.getCustomerAdressHouseNumber()));
+			customerPLZ.setText(String.valueOf(customer.getCustomerAdressPostIndex()) + " " + customer.getCustomerAdressCity());
+			customerCountry.setText(customer.getCustomerAdressCountry());
 			customerPhone.setText(String.valueOf(customer.getCustomerPhoneNumber()));
 		} else {
 			customerHeading.setText("");
@@ -206,8 +206,8 @@ public class NewCustomersAndSuppliersController {
 			supplierContactPerson.setText(
 					supplier.getSupplierContactPersonFirstName() + " " + supplier.getSupplierContactPersonLastName());
 			supplierStreet
-					.setText(supplier.getSupplierStreet() + ", " + String.valueOf(supplier.getSupplierHouseNumber()));
-			supplierPLZ.setText(String.valueOf(supplier.getSupplierPostalCode()) + " " + supplier.getSupplierCity());
+					.setText(supplier.getSupplierAdressStreet() + ", " + String.valueOf(supplier.getSupplierAdressHouseNumber()));
+			supplierPLZ.setText(String.valueOf(supplier.getSupplierAdressPostIndex()) + " " + supplier.getSupplierAdressCity());
 			supplierPhoneNumber.setText(String.valueOf(supplier.getSupplierPhoneNumber()));
 			supplierMail.setText(String.valueOf(supplier.getSupplierEmail()));
 		} else {
@@ -228,7 +228,7 @@ public class NewCustomersAndSuppliersController {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error!");
 			alert.setHeaderText("");
-			alert.setContentText("Keinen Kunden ausgewählt!");
+			alert.setContentText("Keinen Kunden ausgewï¿½hlt!");
 			alert.showAndWait();
 		}
 	}
@@ -241,7 +241,7 @@ public class NewCustomersAndSuppliersController {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error!");
 			alert.setHeaderText("");
-			alert.setContentText("Keinen Lieferanten ausgewählt!");
+			alert.setContentText("Keinen Lieferanten ausgewï¿½hlt!");
 			alert.showAndWait();
 		}
 	}

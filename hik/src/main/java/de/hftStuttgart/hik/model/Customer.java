@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -20,19 +21,17 @@ public class Customer {
 	private String customerCompanyName;
 	private String customerContactPersonFirstName;
 	private String customerContactPersonLastName;
-	private String customerStreet;
-	private int customerPostalCode;
-	private String customerCity;
+	
 	private int customerPhoneNumber;
 	private String customerEmail;
-	private int customerHouseNumber;
-	private String customerCountry;
 	private int customerFax;
 	private String customerTitel;
 	private String addedDate;
 
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private List<CustomerOrder> orders;
+	@ManyToOne(fetch=FetchType.EAGER, targetEntity=PostAdress.class)
+	private PostAdress customerAdress;
 
 	public Customer() {
 
@@ -40,21 +39,16 @@ public class Customer {
 
 	public Customer(final int customerNumber, final String customerCompanyName,
 			final String customerContactPersonFirstName, final String customerContactPersonLastName,
-			final String customerStreet, final int customerPostalCode, final String customerCity,
-			final int customerPhoneNumber, final String customerEmail, final int customerHouseNumber,
-			final String customerCountry, final int customerFax, final String customerTitel, final String date) {
+			final PostAdress customerAdress,
+			final int customerPhoneNumber, final String customerEmail,  final int customerFax, final String customerTitel, final String date) {
 
 		this.customerNumber = customerNumber;
 		this.customerCompanyName = customerCompanyName;
 		this.customerContactPersonFirstName = customerContactPersonFirstName;
 		this.customerContactPersonLastName = customerContactPersonLastName;
-		this.customerStreet = customerStreet;
-		this.customerPostalCode = customerPostalCode;
-		this.customerCity = customerCity;
+		this.customerAdress=customerAdress;
 		this.customerPhoneNumber = customerPhoneNumber;
 		this.customerEmail = customerEmail;
-		this.customerHouseNumber = customerHouseNumber;
-		this.customerCountry = customerCountry;
 		this.customerFax = customerFax;
 		this.customerTitel = customerTitel;
 		this.addedDate = date;
@@ -108,30 +102,7 @@ public class Customer {
 		this.customerContactPersonLastName = customerContactPersonLastName;
 	}
 
-	public String getCustomerStreet() {
-		return customerStreet;
-	}
-
-	public void setCustomerStreet(String customerStreet) {
-		this.customerStreet = customerStreet;
-	}
-
-	public int getCustomerPostalCode() {
-		return customerPostalCode;
-	}
-
-	public void setCustomerPostalCode(int customerPostalCode) {
-		this.customerPostalCode = customerPostalCode;
-	}
-
-	public String getCustomerCity() {
-		return customerCity;
-	}
-
-	public void setCustomerCity(String customerCity) {
-		this.customerCity = customerCity;
-	}
-
+	
 	public int getCustomerPhoneNumber() {
 		return customerPhoneNumber;
 	}
@@ -148,20 +119,67 @@ public class Customer {
 		this.customerEmail = customerEmail;
 	}
 
-	public int getCustomerHouseNumber() {
-		return customerHouseNumber;
+	
+	public PostAdress getCustomerAdress() {
+		return customerAdress;
 	}
 
-	public void setCustomerHouseNumber(int customerHouseNumber) {
-		this.customerHouseNumber = customerHouseNumber;
+	public void setCustomerAdress(PostAdress customerAdress) {
+		this.customerAdress = customerAdress;
+	}
+	public void setCustomerAdressStreet(String street){
+		this.customerAdress.setStreet(street);
+	}
+	
+	public void setCustomerAdressHouseNumber(int number){
+	this.customerAdress.setHouseNumber(number);
+	}
+	
+	public void setCustomerAdressPostIndex(int index){
+		this.customerAdress.setPostIndex(index);
 	}
 
-	public String getCustomerCountry() {
-		return customerCountry;
+	public void setCustomerAdressCity(String city){
+		this.customerAdress.setCity(city);
+	}
+	
+	public void setCustomerAdressCountry(String country){
+		this.customerAdress.setCountry(country);
+	}
+	
+	
+	
+	public String getCustomerAdressStreet(){
+		return this.customerAdress.getStreet();
+	}
+	
+	public int getCustomerAdressHouseNumber(){
+		return this.customerAdress.getHouseNumber();
+	}
+	
+	public int getCustomerAdressPostIndex(){
+		return this.customerAdress.getPostIndex();
 	}
 
-	public void setCustomerCountry(String customerCountry) {
-		this.customerCountry = customerCountry;
+	public String getCustomerAdressCity(){
+		return this.customerAdress.getCity();
+	}
+	
+	public String getCustomerAdressCountry(){
+		return this.customerAdress.getCountry();
+	}
+
+	
+	public String getAddedDate() {
+		return addedDate;
+	}
+
+	public void setAddedDate(String addedDate) {
+		this.addedDate = addedDate;
+	}
+
+	public void setOrders(List<CustomerOrder> orders) {
+		this.orders = orders;
 	}
 
 	public int getCustomerFax() {

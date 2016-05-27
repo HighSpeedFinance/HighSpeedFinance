@@ -143,7 +143,7 @@ public class TabViewController {
 				if (sup.getSupplierNumber() == searchInteger
 						|| sup.getSupplierContactPersonFirstName().equals(searchSupplier.getText())
 						|| sup.getSupplierContactPersonLastName().equals(searchSupplier.getText())
-						|| sup.getSupplierCity().equals(searchSupplier.getText())
+						|| sup.getSupplierAdressCity().equals(searchSupplier.getText())
 						|| sup.getSupplierCompanyName().equals(searchSupplier.getText())) {
 					supplierList.add(sup);
 				}
@@ -209,9 +209,9 @@ public class TabViewController {
 			customerName.setText(
 					customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
 			customerStreet
-					.setText(customer.getCustomerStreet() + ". " + String.valueOf(customer.getCustomerHouseNumber()));
-			customerPLZ.setText(String.valueOf(customer.getCustomerPostalCode()) + " " + customer.getCustomerCity());
-			customerCountry.setText(customer.getCustomerCountry());
+					.setText(customer.getCustomerAdressStreet() + ". " + String.valueOf(customer.getCustomerAdressHouseNumber()));
+			customerPLZ.setText(String.valueOf(customer.getCustomerAdressPostIndex()) + " " + customer.getCustomerAdressCity());
+			customerCountry.setText(customer.getCustomerAdressCountry());
 			customerPhone.setText(String.valueOf(customer.getCustomerPhoneNumber()));
 		} else {
 			customerHeading.setText("");
@@ -231,8 +231,8 @@ public class TabViewController {
 			supplierContactPersonLabel.setText(
 					supplier.getSupplierContactPersonFirstName() + " " + supplier.getSupplierContactPersonLastName());
 			supplierPostalCodeCityLabel
-					.setText(String.valueOf(supplier.getSupplierPostalCode() + " " + supplier.getSupplierCity()));
-			supplierStreetLabel.setText(supplier.getSupplierStreet());
+					.setText(String.valueOf(supplier.getSupplierAdressPostIndex() + " " + supplier.getSupplierAdressCity()));
+			supplierStreetLabel.setText(supplier.getSupplierAdressStreet());
 			supplierEmailLabel.setText(supplier.getSupplierEmail());
 		} else {
 			supplierPhoneNumberLabel.setText("");
