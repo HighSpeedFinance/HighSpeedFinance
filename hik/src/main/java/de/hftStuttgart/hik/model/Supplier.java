@@ -8,8 +8,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Supplier {
@@ -26,12 +28,18 @@ public class Supplier {
 	private String supplierEmail;
 	private int supplierFax;
 	private String addedDate;
+	
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="paymentDetails_id")
 	private PaymentDetails supplierPaymentDetails;
 
-	@OneToMany(mappedBy = "supplier", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "supplier", cascade = CascadeType.REMOVE)
 	private List<SupplierOrder> orders;
-	@ManyToOne(fetch=FetchType.EAGER, targetEntity=PostAdress.class)
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="postAdress_id")
 	private PostAdress supplierAdress;
+	
 	public Supplier() {
 	}
 

@@ -9,7 +9,6 @@
 		<class>de.hftStuttgart.hik.model.PaymentDetails</class>
 		<class>de.hftStuttgart.hik.model.CustomerOrder</class>
 		<class>de.hftStuttgart.hik.model.PostAdress</class>
-	
 		<class>de.hftStuttgart.hik.model.SupplierOrder</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
@@ -18,7 +17,7 @@
 			<property name="javax.persistence.jdbc.password" value="uRHrtAbm6q2saGXj" />
 
 			<!-- Properties for Hibernate -->
-			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="false" />
 		</properties>
 	</persistence-unit>

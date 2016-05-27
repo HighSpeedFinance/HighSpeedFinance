@@ -4,14 +4,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 
-/**
- * @dorothea
- * ich bin mir gar nicht sicher, ob wir das überhaupt brauchen...
- * wenn, dann müssten wir den Customer verändern
- */
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,18 +15,20 @@ import javax.persistence.OneToMany;
 public class PostAdress {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private String street;
 	private int houseNumber;
 	private int postIndex;
 	private String city;
 	private String country;
-	@OneToMany(mappedBy = "supplierAdress", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-	private List<Supplier> supplier;
 	
-	@OneToMany(mappedBy = "customerAdress", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
-	private List<Customer> customer;
+
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy="supplierAdress")
+	private List<Supplier> suppliers;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Customer> customers;
 	
 	public PostAdress() {
 
@@ -97,5 +93,18 @@ public class PostAdress {
 	public void setCity(String city) {
 		this.city = city;
 	}
+	
+	public void addSupplier(Supplier supplier) {
+		if (!suppliers.contains(supplier)) {
+			suppliers.add(supplier);
+		}
+	}
 
+	public void addCustomer(Customer customer) {
+		if (!customers.contains(customer)) {
+			customers.add(customer);
+		}
+	}
+	
+	
 }

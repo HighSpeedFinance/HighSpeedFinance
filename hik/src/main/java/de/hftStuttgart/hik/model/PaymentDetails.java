@@ -1,9 +1,11 @@
 package de.hftStuttgart.hik.model;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class PaymentDetails {
@@ -14,6 +16,9 @@ public class PaymentDetails {
 	private int bic;
 	private int iban;
 	private String creditInstitution;
+	
+	@OneToOne(fetch=FetchType.EAGER, mappedBy="supplierPaymentDetails")
+	private Supplier owner;
 
 	public PaymentDetails() {
 

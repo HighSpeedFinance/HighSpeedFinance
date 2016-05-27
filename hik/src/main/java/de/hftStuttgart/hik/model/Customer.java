@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -30,7 +31,9 @@ public class Customer {
 
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch=FetchType.EAGER)
 	private List<CustomerOrder> orders;
-	@ManyToOne(fetch=FetchType.EAGER, targetEntity=PostAdress.class)
+	
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="postAdress_id")
 	private PostAdress customerAdress;
 
 	public Customer() {

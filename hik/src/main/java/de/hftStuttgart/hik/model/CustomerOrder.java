@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 public class CustomerOrder {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	private int orderNumber;
 	private String date;
