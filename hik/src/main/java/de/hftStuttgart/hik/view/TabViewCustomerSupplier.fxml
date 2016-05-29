@@ -11,7 +11,7 @@
 <?import javafx.collections.*?>
 <?import javafx.scene.control.ChoiceBox?>
 
-<TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.TabViewController">
+<TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" tabMinWidth="250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.TabViewController">
 	<tabs>
 		<Tab fx:id="customerTab" onSelectionChanged="#customerIsSelected" text="Kunde">
 			<content>

@@ -19,8 +19,6 @@ public class CustomerOrderEditDialogController {
 	@FXML
 	private TextField description;
 	@FXML
-	private TextField leer;
-	@FXML
 	private ChoiceBox<String> paymentStatus;
 	@FXML
 	private DatePicker date;
@@ -58,7 +56,6 @@ public class CustomerOrderEditDialogController {
 			date.setValue(new LocalDateStringConverter().fromString(customerOrder.getDate()));
 			artNr.setText(String.valueOf(customerOrder.getItemNumb()));
 			description.setText(customerOrder.getDescription());
-			leer.setText(String.valueOf(customerOrder.getSupId()));
 			switch (customerOrder.getStatus().toString()) {
 			case "SUCCEEDED":
 				paymentStatus.getSelectionModel().select(1);
@@ -100,7 +97,6 @@ public class CustomerOrderEditDialogController {
 				customerOrder.setStatus(Status.PENDING);
 				break;
 			}
-			customerOrder.setSupId(Integer.parseInt(leer.getText()));
 			customerOrder.setUnitPrice(Double.parseDouble(singlePrice.getText()));
 			customerOrder.setTax(Double.parseDouble(tax.getText()));
 
@@ -118,7 +114,7 @@ public class CustomerOrderEditDialogController {
 		String errorMessage = "";
 
 		if (amount.getText() == null || amount.getText().length() == 0) {
-			errorMessage += "Keine gueltige Menge!\n";
+			errorMessage += "Keine gueltige Menge eingegeben!\n";
 		} else {
 			try {
 				Integer.parseInt(amount.getText());
@@ -166,15 +162,6 @@ public class CustomerOrderEditDialogController {
 				Double.parseDouble(tax.getText());
 			} catch (NumberFormatException e) {
 				errorMessage += "Kein gueltiger Steuersatz (muss eine Zahl sein)!\n";
-			}
-		}
-		if (leer.getText() == null || leer.getText().length() == 0) {
-			errorMessage += "Keine gueltige leer!\n";
-		} else {
-			try {
-				Integer.parseInt(leer.getText());
-			} catch (NumberFormatException e) {
-				errorMessage += "Keine gueltige leer (muss eine Zahl sein)!\n";
 			}
 		}
 		if (errorMessage.length() == 0) {

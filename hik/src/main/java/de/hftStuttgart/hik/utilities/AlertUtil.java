@@ -12,4 +12,12 @@ public class AlertUtil {
 		alert.setContentText("Keine Verbindung zu Datenbank!");
 		alert.showAndWait();
 	}
+	
+	public static void invalidURL(){
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error!");
+		alert.setHeaderText("");
+		alert.setContentText("URL oder Datei konnte nicht geladen werden!");
+		alert.showAndWait();
+	}
 }

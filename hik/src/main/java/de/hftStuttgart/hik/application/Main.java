@@ -56,15 +56,22 @@ public class Main extends Application {
 		launch(args);
 	}
 
-	// LoadViews
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
 		this.primaryStage.setTitle("HighSpeed-Finance");
-		this.primaryStage.getIcons().add(new Image("/main/java/de/hftStuttgart/hik/pics/Icon_icon.png"));
+		try {
+			this.primaryStage.getIcons().add(new Image("/main/java/de/hftStuttgart/hik/pics/Icon_icon.png"));
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
 		this.primaryStage.setResizable(true);
-
-		FXMLLoader loader = new FXMLLoader(Main.class.getResource("/main/java/de/hftStuttgart/hik/view/MenuBar.fxml"));
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(Main.class.getResource("/main/java/de/hftStuttgart/hik/view/MenuBar.fxml"));
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
 		try {
 			rootLayout = (BorderPane) loader.load();
 		} catch (IOException | IllegalStateException e) {
@@ -83,8 +90,13 @@ public class Main extends Application {
 
 	public void showCustomerAndSupplierOverview() {
 		TabPane myPane;
-		FXMLLoader loader = new FXMLLoader(
-				getClass().getResource("/main/java/de/hftStuttgart/hik/view/TabViewCustomerSupplier.fxml"));
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(
+					getClass().getResource("/main/java/de/hftStuttgart/hik/view/TabViewCustomerSupplier.fxml"));
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
 		try {
 			myPane = (TabPane) loader.load();
 			rootLayout.setCenter(myPane);
@@ -101,8 +113,13 @@ public class Main extends Application {
 
 	public void showSupplierOverview() {
 		TabPane myPane;
-		FXMLLoader loader = new FXMLLoader(
-				getClass().getResource("/main/java/de/hftStuttgart/hik/view/TabViewCustomerSupplier.fxml"));
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(
+					getClass().getResource("/main/java/de/hftStuttgart/hik/view/TabViewCustomerSupplier.fxml"));
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
 		try {
 			myPane = (TabPane) loader.load();
 			rootLayout.setCenter(myPane);
@@ -119,8 +136,13 @@ public class Main extends Application {
 
 	public void showNewCustomersAndSuppliers(int selection) {
 		TabPane myPane;
-		FXMLLoader loader = new FXMLLoader(
-				getClass().getResource("/main/java/de/hftStuttgart/hik/view/NewCustomersAndSuppliers.fxml"));
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(
+					getClass().getResource("/main/java/de/hftStuttgart/hik/view/NewCustomersAndSuppliers.fxml"));
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
 		try {
 			myPane = (TabPane) loader.load();
 			rootLayout.setCenter(myPane);
@@ -135,8 +157,12 @@ public class Main extends Application {
 
 	public void showNewOrders(int selection) {
 		TabPane myPane;
-		FXMLLoader loader = new FXMLLoader(
-				getClass().getResource("/main/java/de/hftStuttgart/hik/view/ShowNewOrders.fxml"));
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/ShowNewOrders.fxml"));
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
 		try {
 			myPane = (TabPane) loader.load();
 			rootLayout.setCenter(myPane);
@@ -160,8 +186,13 @@ public class Main extends Application {
 
 	public void showNavigationBarCustomer() {
 		AnchorPane anchorPane;
-		FXMLLoader loader = new FXMLLoader(
-				getClass().getResource("/main/java/de/hftStuttgart/hik/view/NavigationBarCustomer.fxml"));
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(
+					getClass().getResource("/main/java/de/hftStuttgart/hik/view/NavigationBarCustomer.fxml"));
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
 		try {
 			anchorPane = (AnchorPane) loader.load();
 			rootLayout.setLeft(anchorPane);
@@ -178,8 +209,13 @@ public class Main extends Application {
 
 	public void showNavigationBarSupplier() {
 		AnchorPane anchorPane;
-		FXMLLoader loader = new FXMLLoader(
-				getClass().getResource("/main/java/de/hftStuttgart/hik/view/NavigationBarSupplier.fxml"));
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(
+					getClass().getResource("/main/java/de/hftStuttgart/hik/view/NavigationBarSupplier.fxml"));
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
 		try {
 			anchorPane = (AnchorPane) loader.load();
 			rootLayout.setLeft(anchorPane);
@@ -192,8 +228,12 @@ public class Main extends Application {
 	}
 
 	public void showCustomerOrder(Customer customer) {
-		FXMLLoader loader = new FXMLLoader(
-				getClass().getResource("/main/java/de/hftStuttgart/hik/view/CustomerOrder.fxml"));
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/CustomerOrder.fxml"));
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
 		AnchorPane page = null;
 		try {
 			page = (AnchorPane) loader.load();
@@ -201,7 +241,7 @@ public class Main extends Application {
 			System.out.println(e.getMessage());
 		}
 		Stage dialogStage = new Stage();
-		dialogStage.setTitle("Bestellungen " + customer.getCustomerContactPersonFirstName());
+		dialogStage.setTitle("Bestellungen: " + customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
 		dialogStage.initModality(Modality.WINDOW_MODAL);
 		dialogStage.initOwner(getPrimaryStage());
 		Scene scene = new Scene(page);
@@ -222,231 +262,276 @@ public class Main extends Application {
 	}
 
 	public void showSupplierOrder(Supplier supplier) {
-			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/SupplierOrder.fxml"));
-			AnchorPane page = null;
-			try {
-				page = (AnchorPane) loader.load();
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-			}
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Bestellungen " + supplier.getSupplierCompanyName());
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(getPrimaryStage());
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/SupplierOrder.fxml"));
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
+		AnchorPane page = null;
+		try {
+			page = (AnchorPane) loader.load();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+		Stage dialogStage = new Stage();
+		dialogStage.setTitle("Rechnungen: " + supplier.getSupplierCompanyName());
+		dialogStage.initModality(Modality.WINDOW_MODAL);
+		dialogStage.initOwner(getPrimaryStage());
+		Scene scene = new Scene(page);
+		dialogStage.setScene(scene);
 
-			try{
+		try {
 			supplierOrderData.clear();
 			supplierOrderData.addAll(SupplierOrderUtil.loadAllOrders(supplier));
-			}catch(PersistenceException e){
-				AlertUtil.noConnectionToDatabase();
-			}
+		} catch (PersistenceException e) {
+			AlertUtil.noConnectionToDatabase();
+		}
 
-			SupplierOrderController controller = loader.getController();
-			controller.setSupplier(supplier);
-			controller.setMainApp(this);
+		SupplierOrderController controller = loader.getController();
+		controller.setSupplier(supplier);
+		controller.setMainApp(this);
 
-			dialogStage.showAndWait();
+		dialogStage.showAndWait();
 	}
 
 	public void showCustomerAndSupplierOrderOverview(int selection) {
-			TabPane myPane = null;
-			FXMLLoader loader = new FXMLLoader(getClass()
+		TabPane myPane = null;
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(getClass()
 					.getResource("/main/java/de/hftStuttgart/hik/view/CustomerAndSupplierOrderOverview.fxml"));
-			try {
-				myPane = (TabPane) loader.load();
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-			}
-			rootLayout.setCenter(myPane);
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
+		try {
+			myPane = (TabPane) loader.load();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+		rootLayout.setCenter(myPane);
 
-			try{
+		try {
 			customerOrderData.clear();
 			customerOrderData.addAll(OrderUtil.loadAllOrders());
 			supplierOrderData.clear();
 			supplierOrderData.addAll(SupplierOrderUtil.loadAllOrders());
-			}catch(PersistenceException e){
-				AlertUtil.noConnectionToDatabase();
-			}
+		} catch (PersistenceException e) {
+			AlertUtil.noConnectionToDatabase();
+		}
 
-			CustomerAndSupplierOrderOverviewController controller = loader.getController();
-			controller.setMainApp(this);
-			controller.setTabSelected(selection);
+		CustomerAndSupplierOrderOverviewController controller = loader.getController();
+		controller.setMainApp(this);
+		controller.setTabSelected(selection);
 	}
 
 	public void showOpenCustomerAndSupplierOrders(int selection) {
-			TabPane myPane = null;
-			FXMLLoader loader = new FXMLLoader(
+		TabPane myPane = null;
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(
 					getClass().getResource("/main/java/de/hftStuttgart/hik/view/OpenCustomerAndSupplierOrders.fxml"));
-			try {
-				myPane = (TabPane) loader.load();
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-			}
-			rootLayout.setCenter(myPane);
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
+		try {
+			myPane = (TabPane) loader.load();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+		rootLayout.setCenter(myPane);
 
-			customerOrderData.clear();
+		customerOrderData.clear();
 
-			OpenCustomerAndSupplierOrders controller = loader.getController();
-			controller.setMainApp(this);
-			controller.setTabSelected(selection);
+		OpenCustomerAndSupplierOrders controller = loader.getController();
+		controller.setMainApp(this);
+		controller.setTabSelected(selection);
 	}
 
 	public void showIncome() {
-			AnchorPane anchorPane = null;
-			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/Income.fxml"));
-			try {
-				anchorPane = (AnchorPane) loader.load();
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-			}
-			rootLayout.setLeft(null);
-			rootLayout.setCenter(anchorPane);
+		AnchorPane anchorPane = null;
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/Income.fxml"));
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
+		try {
+			anchorPane = (AnchorPane) loader.load();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+		rootLayout.setLeft(null);
+		rootLayout.setCenter(anchorPane);
 
-			IncomeController controller = loader.getController();
-			controller.setMainApp(this);
+		IncomeController controller = loader.getController();
+		controller.setMainApp(this);
 	}
 
 	public void showCosts() {
-			AnchorPane anchorPane = null;
-			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/Costs.fxml"));
-			try {
-				anchorPane = (AnchorPane) loader.load();
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-			}
-			rootLayout.setLeft(null);
-			rootLayout.setCenter(anchorPane);
+		AnchorPane anchorPane = null;
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/Costs.fxml"));
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
+		try {
+			anchorPane = (AnchorPane) loader.load();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+		rootLayout.setLeft(null);
+		rootLayout.setCenter(anchorPane);
 
-			CostsController controller = loader.getController();
-			controller.setMainApp(this);
+		CostsController controller = loader.getController();
+		controller.setMainApp(this);
 	}
 
 	public void showGraphics() {
-			AnchorPane anchorPane = null;
-			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/Graphics.fxml"));
-			try {
-				anchorPane = (AnchorPane) loader.load();
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-			}
-			rootLayout.setLeft(null);
-			rootLayout.setCenter(anchorPane);
+		AnchorPane anchorPane = null;
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/Graphics.fxml"));
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
+		try {
+			anchorPane = (AnchorPane) loader.load();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+		rootLayout.setLeft(null);
+		rootLayout.setCenter(anchorPane);
 
-			try{
+		try {
 			customerOrderData.clear();
 			customerOrderData.addAll(OrderUtil.loadAllOrders());
-			}catch(PersistenceException e){
-				AlertUtil.noConnectionToDatabase();
-			}
+		} catch (PersistenceException e) {
+			AlertUtil.noConnectionToDatabase();
+		}
 
-			GraphicsController controller = loader.getController();
-			controller.setMainApp(this);
+		GraphicsController controller = loader.getController();
+		controller.setMainApp(this);
 	}
 
 	public boolean showSupplierOrderEditWithSupplierDialog(SupplierOrder supplierOrder) {
-			FXMLLoader loader = new FXMLLoader(getClass()
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(getClass()
 					.getResource("/main/java/de/hftStuttgart/hik/view/SupplierOrderEditWithSupplierDialog.fxml"));
-			AnchorPane page;
-			try {
-				page = (AnchorPane) loader.load();
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-				return false;
-			}
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Bestellung hinzufuegen");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(getPrimaryStage());
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
+		AnchorPane page;
+		try {
+			page = (AnchorPane) loader.load();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		Stage dialogStage = new Stage();
+		dialogStage.setTitle("Bestellung hinzufuegen");
+		dialogStage.initModality(Modality.WINDOW_MODAL);
+		dialogStage.initOwner(getPrimaryStage());
+		Scene scene = new Scene(page);
+		dialogStage.setScene(scene);
 
-			SupplierOrderEditWithSupplierDialogController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-			controller.setSupplierOrder(supplierOrder);
+		SupplierOrderEditWithSupplierDialogController controller = loader.getController();
+		controller.setDialogStage(dialogStage);
+		controller.setSupplierOrder(supplierOrder);
 
-			dialogStage.showAndWait();
-			return controller.isOkClicked();
+		dialogStage.showAndWait();
+		return controller.isOkClicked();
 	}
 
 	public boolean showSupplierOrderEditDialog(SupplierOrder supplierOrder) {
-			FXMLLoader loader = new FXMLLoader(
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(
 					getClass().getResource("/main/java/de/hftStuttgart/hik/view/SupplierOrderEditDialog.fxml"));
-			AnchorPane page;
-			try {
-				page = (AnchorPane) loader.load();
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-				return false;
-			}
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Bestellung Hinzufuegen");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(getPrimaryStage());
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
+		AnchorPane page;
+		try {
+			page = (AnchorPane) loader.load();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		Stage dialogStage = new Stage();
+		dialogStage.setTitle("Bestellung Hinzufuegen");
+		dialogStage.initModality(Modality.WINDOW_MODAL);
+		dialogStage.initOwner(getPrimaryStage());
+		Scene scene = new Scene(page);
+		dialogStage.setScene(scene);
 
-			SupplierOrderEditDialogController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-			controller.setSupplierOrder(supplierOrder);
+		SupplierOrderEditDialogController controller = loader.getController();
+		controller.setDialogStage(dialogStage);
+		controller.setSupplierOrder(supplierOrder);
 
-			dialogStage.showAndWait();
-			return controller.isOkClicked();
+		dialogStage.showAndWait();
+		return controller.isOkClicked();
 	}
 
 	public boolean showOrderEditDialog(CustomerOrder customerOrder) {
-			FXMLLoader loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/OrderEditDialog.fxml"));
-			AnchorPane page;
-			try {
-				page = (AnchorPane) loader.load();
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-				return false;
-			}
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Bestellung hinzufuegen");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(getPrimaryStage());
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/OrderEditDialog.fxml"));
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
+		AnchorPane page;
+		try {
+			page = (AnchorPane) loader.load();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		Stage dialogStage = new Stage();
+		dialogStage.setTitle("Bestellung hinzufuegen");
+		dialogStage.initModality(Modality.WINDOW_MODAL);
+		dialogStage.initOwner(getPrimaryStage());
+		Scene scene = new Scene(page);
+		dialogStage.setScene(scene);
 
-			CustomerOrderEditDialogController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-			controller.setCustomerOrder(customerOrder);
+		CustomerOrderEditDialogController controller = loader.getController();
+		controller.setDialogStage(dialogStage);
+		controller.setCustomerOrder(customerOrder);
 
-			dialogStage.showAndWait();
-			return controller.isOkClicked();
+		dialogStage.showAndWait();
+		return controller.isOkClicked();
 	}
 
 	public boolean showOrderEditWithCustomerDialog(CustomerOrder customerOrder) {
-			FXMLLoader loader = new FXMLLoader(
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(
 					getClass().getResource("/main/java/de/hftStuttgart/hik/view/OrderEditWithCustomerDialog.fxml"));
-			AnchorPane page;
-			try {
-				page = (AnchorPane) loader.load();
-			} catch (IOException e) {
-				System.out.println(e.getMessage());
-				return false;
-			}
-			Stage dialogStage = new Stage();
-			dialogStage.setTitle("Bestellung hinzufuegen");
-			dialogStage.initModality(Modality.WINDOW_MODAL);
-			dialogStage.initOwner(getPrimaryStage());
-			Scene scene = new Scene(page);
-			dialogStage.setScene(scene);
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
+		AnchorPane page;
+		try {
+			page = (AnchorPane) loader.load();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+			return false;
+		}
+		Stage dialogStage = new Stage();
+		dialogStage.setTitle("Bestellung hinzufuegen");
+		dialogStage.initModality(Modality.WINDOW_MODAL);
+		dialogStage.initOwner(getPrimaryStage());
+		Scene scene = new Scene(page);
+		dialogStage.setScene(scene);
 
-			CustomerOrderEditWithCustomerDialogController controller = loader.getController();
-			controller.setDialogStage(dialogStage);
-			controller.setCustomerOrder(customerOrder);
+		CustomerOrderEditWithCustomerDialogController controller = loader.getController();
+		controller.setDialogStage(dialogStage);
+		controller.setCustomerOrder(customerOrder);
 
-			dialogStage.showAndWait();
-			return controller.isOkClicked();
+		dialogStage.showAndWait();
+		return controller.isOkClicked();
 	}
 
 	public Main() {

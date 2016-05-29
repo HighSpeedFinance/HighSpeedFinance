@@ -15,7 +15,6 @@ public class CustomerOrder {
 	private Long id;
 	private int orderNumber;
 	private String date;
-	private int supId;
 	private Status status;
 	private int itemNumb;
 	private String description;
@@ -31,12 +30,11 @@ public class CustomerOrder {
 
 	}
 
-	public CustomerOrder(final String date, final int order_nr, final int supId, final Status status, final int itemNumb,
+	public CustomerOrder(final String date, final int order_nr,final Status status, final int itemNumb,
 			final String description, final double unitPrice, final int amount, final double tax) {
 
 		this.date = date;
 		this.orderNumber = order_nr;
-		this.supId = supId;
 		this.status = status;
 		this.itemNumb = itemNumb;
 		this.description = description;
@@ -59,14 +57,6 @@ public class CustomerOrder {
 
 	public void setDate(String date) {
 		this.date = date;
-	}
-
-	public int getSupId() {
-		return supId;
-	}
-
-	public void setSupId(int supId) {
-		this.supId = supId;
 	}
 
 	public Status getStatus() {

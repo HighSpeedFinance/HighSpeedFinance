@@ -13,7 +13,7 @@
           <TableColumn prefWidth="99.0" text="Rechnungsnr." fx:id="orderNumber"/>
           <TableColumn prefWidth="76.0" text="Artikel-Nr." fx:id="orderArt"/>
             <TableColumn prefWidth="91.0" text="Bezeichnung" fx:id="orderDescription"/>
-            <TableColumn prefWidth="61.0" fx:id="leer"/>
+            <TableColumn prefWidth="61.0" fx:id="customerID" text="Kundennr."/>
             <TableColumn prefWidth="76.0" text="Bezahlstatus" fx:id="orderStatus"/>
             <TableColumn prefWidth="89.0" text="Bestelldatum" fx:id="orderDate"/>
             <TableColumn prefWidth="70.0" text="Einzelpreis" fx:id="orderSinglePrice"/>

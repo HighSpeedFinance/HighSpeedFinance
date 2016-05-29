@@ -21,7 +21,7 @@ public class CustomerOrderController {
 	@FXML
 	private TableColumn<CustomerOrder, String> orderDescription;
 	@FXML
-	private TableColumn<CustomerOrder, String> leer;
+	private TableColumn<CustomerOrder, String> customerID;
 	@FXML
 	private TableColumn<CustomerOrder, String> orderStatus;
 	@FXML
@@ -44,7 +44,7 @@ public class CustomerOrderController {
 	private void initialize() {
 		orderNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("orderNumber"));
 		orderDescription.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("description"));
-		leer.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("supId"));
+		customerID.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("customer"));
 		orderStatus.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("status"));
 		orderDate.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("date"));
 		orderSinglePrice.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("unitPrice"));
@@ -89,7 +89,7 @@ public class CustomerOrderController {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error!");
 			alert.setHeaderText("");
-			alert.setContentText("No CustomerOrder selected!");
+			alert.setContentText("Bitte wählen Sie eine Kundenbestellung aus!");
 			alert.showAndWait();
 		}
 	}

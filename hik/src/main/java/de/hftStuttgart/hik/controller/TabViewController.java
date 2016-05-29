@@ -81,6 +81,52 @@ public class TabViewController {
 	}
 
 	@FXML
+	private void initialize() {
+		supplierNumberColumn.setCellValueFactory(new PropertyValueFactory<Supplier, String>("supplierNumber"));
+		supplierNameColumn.setCellValueFactory(new PropertyValueFactory<Supplier, String>("supplierCompanyName"));
+
+		customerNameColumn
+				.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerContactPersonFirstName"));
+		customerNumberColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerNumber"));
+
+		supplierTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		showSupplierDetails(null);
+
+		customerTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+		showCustomerDetails(null);
+
+		supplierTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Supplier>() {
+			public void changed(ObservableValue<? extends Supplier> observable, Supplier oldValue, Supplier newValue) {
+				showSupplierDetails(newValue);
+			}
+		});
+
+		customerTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Customer>() {
+			public void changed(ObservableValue<? extends Customer> observable, Customer oldValue, Customer newValue) {
+				showCustomerDetails(newValue);
+			}
+		});
+
+		supplierTable.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
+				if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
+					main.showSupplierOrder(supplierTable.getSelectionModel().getSelectedItem());
+				}
+			}
+		});
+
+		customerTable.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent e) {
+				if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
+					main.showCustomerOrder(customerTable.getSelectionModel().getSelectedItem());
+				}
+			}
+		});
+	}
+
+	@FXML
 	private void showBestellung() {
 		if (customerTable.getSelectionModel().getSelectedItem() != null)
 			main.showCustomerOrder(customerTable.getSelectionModel().getSelectedItem());
@@ -88,7 +134,7 @@ public class TabViewController {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error!");
 			alert.setHeaderText("");
-			alert.setContentText("Keinen Kunden ausgew√§hlt!");
+			alert.setContentText("Bitte w‰hlen Sie einen Kunden aus!");
 			alert.showAndWait();
 		}
 	}
@@ -101,7 +147,7 @@ public class TabViewController {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error!");
 			alert.setHeaderText("");
-			alert.setContentText("Keinen Lieferanten ausgewaehlt!");
+			alert.setContentText("Bitte w‰hlen Sie einen Lieferanten aus!");
 			alert.showAndWait();
 		}
 	}
@@ -152,53 +198,6 @@ public class TabViewController {
 		} else {
 			supplierTable.setItems(main.getSupplierData());
 		}
-
-	}
-
-	@FXML
-	private void initialize() {
-		supplierNumberColumn.setCellValueFactory(new PropertyValueFactory<Supplier, String>("supplierNumber"));
-		supplierNameColumn.setCellValueFactory(new PropertyValueFactory<Supplier, String>("supplierCompanyName"));
-
-		customerNameColumn
-				.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerContactPersonFirstName"));
-		customerNumberColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerNumber"));
-
-		supplierTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		showSupplierDetails(null);
-
-		customerTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		showCustomerDetails(null);
-
-		supplierTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Supplier>() {
-			public void changed(ObservableValue<? extends Supplier> observable, Supplier oldValue, Supplier newValue) {
-				showSupplierDetails(newValue);
-			}
-		});
-
-		customerTable.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Customer>() {
-			public void changed(ObservableValue<? extends Customer> observable, Customer oldValue, Customer newValue) {
-				showCustomerDetails(newValue);
-			}
-		});
-
-		supplierTable.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent e) {
-				if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
-					main.showSupplierOrder(supplierTable.getSelectionModel().getSelectedItem());
-				}
-			}
-		});
-
-		customerTable.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent e) {
-				if (e.isPrimaryButtonDown() && e.getClickCount() == 2) {
-					main.showCustomerOrder(customerTable.getSelectionModel().getSelectedItem());
-				}
-			}
-		});
 	}
 
 	private void showCustomerDetails(Customer customer) {
@@ -208,9 +207,10 @@ public class TabViewController {
 			customerTitel.setText(customer.getCustomerTitel());
 			customerName.setText(
 					customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
-			customerStreet
-					.setText(customer.getCustomerAdressStreet() + ". " + String.valueOf(customer.getCustomerAdressHouseNumber()));
-			customerPLZ.setText(String.valueOf(customer.getCustomerAdressPostIndex()) + " " + customer.getCustomerAdressCity());
+			customerStreet.setText(customer.getCustomerAdressStreet() + ". "
+					+ String.valueOf(customer.getCustomerAdressHouseNumber()));
+			customerPLZ.setText(
+					String.valueOf(customer.getCustomerAdressPostIndex()) + " " + customer.getCustomerAdressCity());
 			customerCountry.setText(customer.getCustomerAdressCountry());
 			customerPhone.setText(String.valueOf(customer.getCustomerPhoneNumber()));
 		} else {
@@ -230,8 +230,8 @@ public class TabViewController {
 			supplierCompanyNameLabel.setText(String.valueOf(supplier.getSupplierCompanyName()));
 			supplierContactPersonLabel.setText(
 					supplier.getSupplierContactPersonFirstName() + " " + supplier.getSupplierContactPersonLastName());
-			supplierPostalCodeCityLabel
-					.setText(String.valueOf(supplier.getSupplierAdressPostIndex() + " " + supplier.getSupplierAdressCity()));
+			supplierPostalCodeCityLabel.setText(
+					String.valueOf(supplier.getSupplierAdressPostIndex() + " " + supplier.getSupplierAdressCity()));
 			supplierStreetLabel.setText(supplier.getSupplierAdressStreet());
 			supplierEmailLabel.setText(supplier.getSupplierEmail());
 		} else {
