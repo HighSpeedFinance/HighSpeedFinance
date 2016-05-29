@@ -86,7 +86,7 @@ public class SupplierOrderController {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error!");
 			alert.setHeaderText("");
-			alert.setContentText("Keine Bestellung ausgewählt!");
+			alert.setContentText("Keine Rechnung ausgewählt!");
 			alert.showAndWait();
 		}
 	}

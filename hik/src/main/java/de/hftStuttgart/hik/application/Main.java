@@ -7,7 +7,7 @@ import javax.persistence.PersistenceException;
 import de.hftStuttgart.hik.controller.CustomerOrderController;
 import de.hftStuttgart.hik.controller.CustomerOrderEditDialogController;
 import de.hftStuttgart.hik.controller.CustomerOrderEditWithCustomerDialogController;
-import de.hftStuttgart.hik.controller.GraphicsController;
+import de.hftStuttgart.hik.controller.AnnualAccountsController;
 import de.hftStuttgart.hik.controller.IncomeController;
 import de.hftStuttgart.hik.controller.MenuBarController;
 import de.hftStuttgart.hik.controller.CostsController;
@@ -411,7 +411,7 @@ public class Main extends Application {
 			AlertUtil.noConnectionToDatabase();
 		}
 
-		GraphicsController controller = loader.getController();
+		AnnualAccountsController controller = loader.getController();
 		controller.setMainApp(this);
 	}
 

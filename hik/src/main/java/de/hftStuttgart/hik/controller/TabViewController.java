@@ -163,10 +163,11 @@ public class TabViewController {
 		if (!searchCustomer.getText().equals("")) {
 			for (Customer cus : main.getCustomerData()) {
 				if (cus.getCustomerNumber() == searchInteger
-						|| cus.getCustomerContactPersonFirstName().equals(searchCustomer.getText())
-						|| cus.getCustomerCompanyName().equals(searchCustomer.getText())
-						|| (cus.getCustomerContactPersonFirstName() + " " + cus.getCustomerContactPersonLastName())
-								.equals(searchCustomer.getText())) {
+						|| cus.getCustomerContactPersonFirstName().toLowerCase().equals(searchCustomer.getText().toLowerCase())
+						|| cus.getCustomerCompanyName().toLowerCase().equals(searchCustomer.getText().toLowerCase())
+						|| (cus.getCustomerContactPersonFirstName().toLowerCase() + " " + cus.getCustomerContactPersonLastName().toLowerCase())
+								.equals(searchCustomer.getText().toLowerCase())
+						|| cus.getCustomerContactPersonLastName().toLowerCase().equals(searchCustomer.getText().toLowerCase())) {
 					customerList.add(cus);
 				}
 			}
@@ -187,10 +188,10 @@ public class TabViewController {
 		if (!searchSupplier.getText().equals("")) {
 			for (Supplier sup : main.getSupplierData()) {
 				if (sup.getSupplierNumber() == searchInteger
-						|| sup.getSupplierContactPersonFirstName().equals(searchSupplier.getText())
-						|| sup.getSupplierContactPersonLastName().equals(searchSupplier.getText())
-						|| sup.getSupplierAdressCity().equals(searchSupplier.getText())
-						|| sup.getSupplierCompanyName().equals(searchSupplier.getText())) {
+						|| sup.getSupplierContactPersonFirstName().toLowerCase().equals(searchSupplier.getText().toLowerCase())
+						|| sup.getSupplierContactPersonLastName().toLowerCase().equals(searchSupplier.getText().toLowerCase())
+						|| sup.getSupplierAdressCity().toLowerCase().equals(searchSupplier.getText().toLowerCase())
+						|| sup.getSupplierCompanyName().toLowerCase().equals(searchSupplier.getText().toLowerCase())) {
 					supplierList.add(sup);
 				}
 			}

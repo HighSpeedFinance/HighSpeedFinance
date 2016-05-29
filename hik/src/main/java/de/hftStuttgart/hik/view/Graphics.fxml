@@ -12,7 +12,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.Group?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.GraphicsController">
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.AnnualAccountsController">
 	<children>
       <ScrollPane hbarPolicy="ALWAYS" prefViewportHeight="656.0" prefViewportWidth="500.0" vbarPolicy="ALWAYS">
          <content>

@@ -1,5 +1,8 @@
 package de.hftStuttgart.hik.controller;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.model.SupplierOrder;
@@ -18,8 +21,9 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
+import javafx.util.converter.LocalDateStringConverter;
 
-public class GraphicsController {
+public class AnnualAccountsController {
 
 	@FXML
 	private Label resultIncomeCost;
@@ -35,6 +39,8 @@ public class GraphicsController {
 	private BarChart barChart;
 	private ObservableList<CustomerOrder> customerOrderList = FXCollections.observableArrayList();
 	private ObservableList<SupplierOrder> supplierOrderList = FXCollections.observableArrayList();
+	private ObservableList<CustomerOrder> customerOrderListinTime = FXCollections.observableArrayList();
+	private ObservableList<SupplierOrder> supplierOrderListinTime = FXCollections.observableArrayList();
 	private ObservableList<CustomerOrder> customerOrderListPlz = FXCollections.observableArrayList();
 	private ObservableList<SupplierOrder> supplierOrderListPlz = FXCollections.observableArrayList();
 	private ObservableList<String> plz = FXCollections.observableArrayList();
@@ -86,10 +92,8 @@ public class GraphicsController {
 		customerOrderList.addAll(OrderUtil.loadAllOrdersWhereStatusSucceeded());
 		supplierOrderList.addAll(SupplierOrderUtil.loadAllOrdersWhereStatusSucceeded());
 
-		cost.setItems(supplierOrderList);
-		income.setItems(customerOrderList);
-		loadBarChart();
-		setResultIncomeLabel();
+		setListInTime();
+
 		if (plzChoiceBox.getSelectionModel().getSelectedIndex() == -1)
 			setPlzComboBox(0);
 		else
@@ -97,8 +101,32 @@ public class GraphicsController {
 		loadOrdersPlz(plzChoiceBox.getSelectionModel().getSelectedItem());
 	}
 
-	public void setPlzComboBox(int index) {
+	public void setListInTime() {
+		ZoneId zone1 = ZoneId.of("Europe/Berlin");
+		LocalDate local = LocalDate.now(zone1);
+
+		customerOrderListinTime.clear();
+		supplierOrderListinTime.clear();
+
 		for (CustomerOrder cusOrder : customerOrderList) {
+			if (new LocalDateStringConverter().fromString(cusOrder.getDate())
+					.isAfter(LocalDate.of(local.getYear(), 1, 1))
+					&& new LocalDateStringConverter().fromString(cusOrder.getDate())
+							.isBefore(LocalDate.of(local.getYear(), 12, 31)))
+				customerOrderListinTime.add(cusOrder);
+		}
+
+		for (SupplierOrder supOrder : supplierOrderList) {
+			if (new LocalDateStringConverter().fromString(supOrder.getDate())
+					.isAfter(LocalDate.of(local.getYear(), 1, 1))
+					&& new LocalDateStringConverter().fromString(supOrder.getDate())
+							.isBefore(LocalDate.of(local.getYear(), 12, 31)))
+				supplierOrderListinTime.add(supOrder);
+		}
+	}
+
+	public void setPlzComboBox(int index) {
+		for (CustomerOrder cusOrder : customerOrderListinTime) {
 			String plzInt = String
 					.valueOf(main.getCustomerData().get((int) cusOrder.getCustomer() - 1).getCustomerAdressPostIndex());
 			if (!plz.contains("Alle")) {
@@ -107,9 +135,9 @@ public class GraphicsController {
 			if (!plz.contains(plzInt))
 				plz.add(plzInt);
 		}
-		for(SupplierOrder supOrder : supplierOrderList){
-			String plzInt = String
-					.valueOf(main.getSupplierData().get((int) supOrder.getSupplierId() - 1).getSupplierAdressPostIndex());
+		for (SupplierOrder supOrder : supplierOrderListinTime) {
+			String plzInt = String.valueOf(
+					main.getSupplierData().get((int) supOrder.getSupplierId() - 1).getSupplierAdressPostIndex());
 			if (!plz.contains("Alle")) {
 				plz.add("Alle");
 			}
@@ -126,7 +154,7 @@ public class GraphicsController {
 		summeEinnahmen = 0;
 		summeAusgaben = 0;
 
-		for (CustomerOrder cusOder : customerOrderList) {
+		for (CustomerOrder cusOder : customerOrderListinTime) {
 			if (String.valueOf(cusOder.getCustomerObject().getCustomerAdressPostIndex()).equals(comboValue)
 					|| comboValue.equals("Alle")) {
 				customerOrderListPlz.add(cusOder);
@@ -136,8 +164,8 @@ public class GraphicsController {
 		for (CustomerOrder cusOrder : customerOrderListPlz) {
 			summeEinnahmen += cusOrder.getSumPrice();
 		}
-		
-		for (SupplierOrder supOrder : supplierOrderList) {
+
+		for (SupplierOrder supOrder : supplierOrderListinTime) {
 			if (String.valueOf(supOrder.getSupplierObject().getSupplierAdressPostIndex()).equals(comboValue)
 					|| comboValue.equals("Alle")) {
 				supplierOrderListPlz.add(supOrder);
@@ -147,10 +175,10 @@ public class GraphicsController {
 		for (SupplierOrder supOrder : supplierOrderListPlz) {
 			summeAusgaben += supOrder.getSumPrice();
 		}
-		
+
 		income.setItems(customerOrderListPlz);
 		cost.setItems(supplierOrderListPlz);
-		
+
 		setResultIncomeLabel();
 		loadBarChart();
 	}
