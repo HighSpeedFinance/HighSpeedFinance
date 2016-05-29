@@ -454,6 +454,7 @@ public class Main extends Application {
 			supplierData.addAll(SupplierUtil.loadAllSuppliers());
 			customerData.addAll(CustomerUtil.loadAllCustomers());
 			customerOrderData.addAll(OrderUtil.loadAllOrders());
+			supplierOrderData.addAll(SupplierOrderUtil.loadAllOrders());
 		} catch (PersistenceException e) {
 			AlertUtil.noConnectionToDatabase();
 		}
