@@ -71,6 +71,15 @@ public class SupplierOrder {
 	public Status getStatus() {
 		return status;
 	}
+	
+	public String getStatusString(){
+		switch(this.status.toString()){
+		case "SUCCEEDED": return "Bezahlt";
+		case "PENDING": return "Offen";
+		case "ENABLED" : return "Freigegeben";
+		default: return " ";
+		}
+	}
 
 	public void setStatus(Status status) {
 		this.status = status;

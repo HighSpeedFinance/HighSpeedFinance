@@ -71,7 +71,7 @@ public class CostsController {
 			}
 		});
 		
-		orderStatusSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("status"));
+		orderStatusSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("statusString"));
 		orderDateSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("date"));
 		orderTotalPriceSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("sumPrice"));
 		orderNameSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("supplier"));

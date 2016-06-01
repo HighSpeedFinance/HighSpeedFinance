@@ -45,7 +45,7 @@ public class CustomerOrderController {
 		orderNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("orderNumber"));
 		orderDescription.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("description"));
 		customerID.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("customer"));
-		orderStatus.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("status"));
+		orderStatus.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("statusString"));
 		orderDate.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("date"));
 		orderSinglePrice.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("unitPrice"));
 		orderAmount.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("amount"));

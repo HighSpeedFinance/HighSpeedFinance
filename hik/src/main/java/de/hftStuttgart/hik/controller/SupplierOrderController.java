@@ -42,7 +42,7 @@ public class SupplierOrderController {
 	private void initialize() {
 		orderNumber.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("orderNumber"));
 		orderDescription.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("description"));
-		orderStatus.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("status"));
+		orderStatus.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("statusString"));
 		orderDate.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("date"));
 		orderSinglePrice.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("unitPrice"));
 		orderAmount.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("amount"));

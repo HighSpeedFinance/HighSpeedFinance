@@ -37,7 +37,7 @@ public class CustomerOrderEditDialogController {
 
 	@FXML
 	private void initialize() {
-		paymentStatus.setItems(FXCollections.observableArrayList("erfasst", "bezahlt", "warten"));
+		paymentStatus.setItems(FXCollections.observableArrayList("offen", "bezahlt"));
 		paymentStatus.getSelectionModel().select(0);
 	}
 
@@ -61,9 +61,6 @@ public class CustomerOrderEditDialogController {
 				paymentStatus.getSelectionModel().select(1);
 				break;
 			case "PENDING":
-				paymentStatus.getSelectionModel().select(2);
-				break;
-			case "ENABLED":
 				paymentStatus.getSelectionModel().select(0);
 				break;
 			}
@@ -71,6 +68,7 @@ public class CustomerOrderEditDialogController {
 			amount.setText(String.valueOf(customerOrder.getAmount()));
 			tax.setText(String.valueOf(customerOrder.getTax()));
 			orderNr.setText(String.valueOf(customerOrder.getOrderNumber()));
+			orderNr.setEditable(false);
 		}
 	}
 
@@ -87,14 +85,11 @@ public class CustomerOrderEditDialogController {
 			customerOrder.setItemNumb(Integer.parseInt(artNr.getText()));
 			customerOrder.setOrderNumber(Integer.parseInt(orderNr.getText()));
 			switch (paymentStatus.getSelectionModel().getSelectedItem()) {
-			case "erfasst":
-				customerOrder.setStatus(Status.ENABLED);
+			case "offen":
+				customerOrder.setStatus(Status.PENDING);
 				break;
 			case "bezahlt":
 				customerOrder.setStatus(Status.SUCCEEDED);
-				break;
-			case "warten":
-				customerOrder.setStatus(Status.PENDING);
 				break;
 			}
 			customerOrder.setUnitPrice(Double.parseDouble(singlePrice.getText()));

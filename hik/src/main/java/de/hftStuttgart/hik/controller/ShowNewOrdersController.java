@@ -113,7 +113,7 @@ public class ShowNewOrdersController {
 		});
 
 		orderNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("orderNumber"));
-		orderStatus.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("status"));
+		orderStatus.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("statusString"));
 		orderDate.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("date"));
 		customerNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("customer"));
 		orderTotalPrice.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("sumPrice"));
@@ -135,7 +135,7 @@ public class ShowNewOrdersController {
 			}
 		});
 
-		orderStatusSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("status"));
+		orderStatusSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("statusString"));
 		orderDateSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("date"));
 		orderTotalPriceSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("sumPrice"));
 		orderNameSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("supplier"));

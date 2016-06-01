@@ -62,6 +62,15 @@ public class CustomerOrder {
 	public Status getStatus() {
 		return status;
 	}
+	
+	public String getStatusString(){
+		switch(this.status.toString()){
+		case "SUCCEEDED": return "Bezahlt";
+		case "PENDING": return "Offen";
+		case "ENABLED" : return "Freigegeben";
+		default: return " ";
+		}
+	}
 
 	public void setStatus(Status status) {
 		this.status = status;
@@ -140,6 +149,4 @@ public class CustomerOrder {
 	public String toString() {
 		return String.valueOf(Math.round(100.0 * sumPrice) / 100.0);
 	}
-	
-	
 }

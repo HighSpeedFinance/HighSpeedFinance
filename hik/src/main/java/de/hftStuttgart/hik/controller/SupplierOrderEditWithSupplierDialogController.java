@@ -39,7 +39,7 @@ public class SupplierOrderEditWithSupplierDialogController {
 	private boolean okClicked = false;
 
 	public void setPaymentStatus() {
-		paymentStatus.setItems(FXCollections.observableArrayList("erfasst", "bezahlt", "warten"));
+		paymentStatus.setItems(FXCollections.observableArrayList("offen", "bezahlt", "freigegeben"));
 		paymentStatus.getSelectionModel().select(0);
 	}
 
@@ -74,10 +74,10 @@ public class SupplierOrderEditWithSupplierDialogController {
 				paymentStatus.getSelectionModel().select(1);
 				break;
 			case "PENDING":
-				paymentStatus.getSelectionModel().select(2);
+				paymentStatus.getSelectionModel().select(0);
 				break;
 			case "ENABLED":
-				paymentStatus.getSelectionModel().select(0);
+				paymentStatus.getSelectionModel().select(2);
 				break;
 			}
 			singlePrice.setText(String.valueOf(supplierOrder.getUnitPrice()));
@@ -100,14 +100,14 @@ public class SupplierOrderEditWithSupplierDialogController {
 			supplierOrder.setItemNumb(Integer.parseInt(artNr.getText()));
 			supplierOrder.setOrderNumber(Integer.parseInt(orderNr.getText()));
 			switch (paymentStatus.getSelectionModel().getSelectedItem()) {
-			case "erfasst":
-				supplierOrder.setStatus(Status.ENABLED);
+			case "offen":
+				supplierOrder.setStatus(Status.PENDING);
 				break;
 			case "bezahlt":
 				supplierOrder.setStatus(Status.SUCCEEDED);
 				break;
-			case "warten":
-				supplierOrder.setStatus(Status.PENDING);
+			case "freigegeben":
+				supplierOrder.setStatus(Status.ENABLED);
 				break;
 			}
 			supplierOrder.setUnitPrice(Double.parseDouble(singlePrice.getText()));
