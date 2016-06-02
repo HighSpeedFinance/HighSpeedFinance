@@ -53,23 +53,33 @@ public class SupplierOrderEditDialogController {
 		if (supplierOrder.getStatus() == Status.ENABLED || supplierOrder.getStatus() == Status.PENDING
 				|| supplierOrder.getStatus() == Status.SUCCEEDED) {
 			date.setValue(new LocalDateStringConverter().fromString(supplierOrder.getDate()));
+			date.setEditable(false);
 			artNr.setText(String.valueOf(supplierOrder.getItemNumb()));
+			artNr.setEditable(false);
 			description.setText(supplierOrder.getDescription());
+			description.setEditable(false);
 			switch (supplierOrder.getStatus().toString()) {
 			case "SUCCEEDED":
-				paymentStatus.getSelectionModel().select(1);
+				paymentStatus.setItems(FXCollections.observableArrayList("bezahlt"));
+				paymentStatus.getSelectionModel().select(0);
 				break;
 			case "PENDING":
+				paymentStatus.setItems(FXCollections.observableArrayList("offen", "freigegeben"));
 				paymentStatus.getSelectionModel().select(0);
 				break;
 			case "ENABLED":
-				paymentStatus.getSelectionModel().select(2);
+				paymentStatus.setItems(FXCollections.observableArrayList("freigegeben", "bezahlt"));
+				paymentStatus.getSelectionModel().select(0);
 				break;
 			}
 			singlePrice.setText(String.valueOf(supplierOrder.getUnitPrice()));
+			singlePrice.setEditable(false);
 			amount.setText(String.valueOf(supplierOrder.getAmount()));
+			amount.setEditable(false);
 			tax.setText(String.valueOf(supplierOrder.getTax()));
+			tax.setEditable(false);
 			orderNr.setText(String.valueOf(supplierOrder.getOrderNumber()));
+			orderNr.setEditable(false);
 		}
 	}
 

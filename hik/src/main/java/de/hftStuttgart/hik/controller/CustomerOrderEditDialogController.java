@@ -54,19 +54,27 @@ public class CustomerOrderEditDialogController {
 		if (customerOrder.getStatus() == Status.ENABLED || customerOrder.getStatus() == Status.PENDING
 				|| customerOrder.getStatus() == Status.SUCCEEDED) {
 			date.setValue(new LocalDateStringConverter().fromString(customerOrder.getDate()));
+			date.setEditable(false);
 			artNr.setText(String.valueOf(customerOrder.getItemNumb()));
+			artNr.setEditable(false);
 			description.setText(customerOrder.getDescription());
+			description.setEditable(false);
 			switch (customerOrder.getStatus().toString()) {
 			case "SUCCEEDED":
-				paymentStatus.getSelectionModel().select(1);
+				paymentStatus.setItems(FXCollections.observableArrayList("bezahlt"));
+				paymentStatus.getSelectionModel().select(0);
 				break;
 			case "PENDING":
+				paymentStatus.setItems(FXCollections.observableArrayList("offen", "bezahlt"));
 				paymentStatus.getSelectionModel().select(0);
 				break;
 			}
 			singlePrice.setText(String.valueOf(customerOrder.getUnitPrice()));
+			singlePrice.setEditable(false);
 			amount.setText(String.valueOf(customerOrder.getAmount()));
+			amount.setEditable(false);
 			tax.setText(String.valueOf(customerOrder.getTax()));
+			tax.setEditable(false);
 			orderNr.setText(String.valueOf(customerOrder.getOrderNumber()));
 			orderNr.setEditable(false);
 		}
