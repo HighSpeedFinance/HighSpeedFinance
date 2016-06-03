@@ -55,6 +55,9 @@ public class CustomerOrderEditDialogController {
 				|| customerOrder.getStatus() == Status.SUCCEEDED) {
 			date.setValue(new LocalDateStringConverter().fromString(customerOrder.getDate()));
 			date.setEditable(false);
+			date.setDisable(true);
+			date.setStyle("-fx-opacity: 1");
+			date.getEditor().setStyle("-fx-opacity: 1");
 			artNr.setText(String.valueOf(customerOrder.getItemNumb()));
 			artNr.setEditable(false);
 			description.setText(customerOrder.getDescription());
