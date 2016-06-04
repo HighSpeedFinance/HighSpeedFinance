@@ -28,6 +28,9 @@
 							<children>
 								<TableView fx:id="customerOrderTable" layoutX="14.0"
 									layoutY="14.0" prefHeight="260.0" prefWidth="522.0">
+									<placeholder>
+										<Label text="Keine offenen Kundenbestellungen vorhanden!" />
+									</placeholder>
 									<columns>
 										<TableColumn fx:id="orderNumber" prefWidth="99.0"
 											text="Rechnungsnr." />
@@ -59,6 +62,9 @@
 					<children>
 						<TableView fx:id="supplierOrderTable" layoutX="14.0"
 							layoutY="14.0" prefHeight="260.0" prefWidth="533.0">
+							<placeholder>
+								<Label text="Keine offenen Lieferantenrechnungen vorhanden!" />
+							</placeholder>
 							<columns>
 								<TableColumn fx:id="orderDateSupplier" text="Bestelldatum" />
 								<TableColumn fx:id="orderNameSupplier" prefWidth="55.0"

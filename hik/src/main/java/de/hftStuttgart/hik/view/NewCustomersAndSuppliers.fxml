@@ -24,6 +24,9 @@
 								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
 									<children>
 										<TableView fx:id="customerTable" layoutX="-27.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+											<placeholder>
+												<Label text="Keine neuen Kunden vorhanden!" />
+											</placeholder>
 											<columns>
 												<TableColumn fx:id="customerNumberColumn" prefWidth="71.0" text="Kundennummer" />
 												<TableColumn fx:id="customerNameColumn" prefWidth="79.0" text="Name" />
@@ -97,6 +100,9 @@
 								<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="283.0" prefWidth="263.0">
 									<children>
 										<TableView fx:id="supplierTable" layoutX="-27.0" layoutY="49.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+											<placeholder>
+												<Label text="Keine neuen Lieferanten vorhanden!" />
+											</placeholder>
 											<columns>
 												<TableColumn fx:id="supplierNumberColumn" prefWidth="120.0" text="Lieferantennummer" />
 												<TableColumn fx:id="supplierNameColumn" prefWidth="120.0" text="Name" />

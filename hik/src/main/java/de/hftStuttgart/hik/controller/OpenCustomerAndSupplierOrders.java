@@ -8,11 +8,13 @@ import de.hftStuttgart.hik.utilities.SupplierOrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class OpenCustomerAndSupplierOrders {
@@ -69,7 +71,7 @@ public class OpenCustomerAndSupplierOrders {
 		int selectedIndex = supplierOrderTable.getSelectionModel().getSelectedIndex();
 		supplierOrderTable.setItems(null);
 		supplierOrderTable.layout();
-		supplierOrderTable.setItems(main.getSupplierOrderData());
+		supplierOrderTable.setItems(SupplierOrderUtil.loadAllOrdersWhereStatusOpen());
 		supplierOrderTable.getSelectionModel().select(selectedIndex);
 	}
 
@@ -107,13 +109,25 @@ public class OpenCustomerAndSupplierOrders {
 			supplierOrder.setSupplier(supplierOrder.getSupplierObject());
 			SupplierOrderUtil.addOrder(supplierOrder);
 			refreshSupplierOrderTable();
-			main.addSupplierOrder(supplierOrder);
 		}
 	}
 
 	@FXML
 	public void editSupplierOrder() {
-
+		SupplierOrder supplierOrder = supplierOrderTable.getSelectionModel().getSelectedItem();
+		if (supplierOrder != null) {
+			boolean okClicked = main.showSupplierOrderEditDialog(supplierOrder);
+			if (okClicked) {
+				SupplierOrderUtil.editOrder(supplierOrder);
+				refreshSupplierOrderTable();
+			}
+		} else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error!");
+			alert.setHeaderText("");
+			alert.setContentText("Bitte wählen Sie eine Rechnung aus!");
+			alert.showAndWait();
+		}
 	}
 
 	@FXML

@@ -392,7 +392,7 @@ public class Main extends Application {
 		AnchorPane anchorPane = null;
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/Graphics.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/AnnualAccounts.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}

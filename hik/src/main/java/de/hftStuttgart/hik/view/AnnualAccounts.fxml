@@ -28,7 +28,7 @@
                       <NumberAxis side="LEFT" />
                     </yAxis>
                   </BarChart>
-                  <ChoiceBox fx:id="plzChoiceBox" layoutX="205.0" prefHeight="25.0" prefWidth="105.0" />
+                  <ChoiceBox fx:id="monthChoiceBox" layoutX="205.0" prefHeight="25.0" prefWidth="105.0" />
                   <Label layoutX="128.0" layoutY="41.0" text="Einnahmen" />
                   <Label layoutX="331.0" layoutY="41.0" text="Ausgaben" />
                   <Label fx:id="resultIncomeCost" layoutX="257.0" layoutY="271.0" />

@@ -2,6 +2,7 @@ package de.hftStuttgart.hik.controller;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
+import java.util.regex.Pattern;
 
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.CustomerOrder;
@@ -22,6 +23,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
 import javafx.util.converter.LocalDateStringConverter;
+import javafx.util.converter.LocalDateTimeStringConverter;
 
 public class AnnualAccountsController {
 
@@ -32,7 +34,7 @@ public class AnnualAccountsController {
 	@FXML
 	private ListView<CustomerOrder> income;
 	@FXML
-	private ChoiceBox<String> plzChoiceBox;
+	private ChoiceBox<String> monthChoiceBox;
 
 	@SuppressWarnings("rawtypes")
 	@FXML
@@ -41,32 +43,37 @@ public class AnnualAccountsController {
 	private ObservableList<SupplierOrder> supplierOrderList = FXCollections.observableArrayList();
 	private ObservableList<CustomerOrder> customerOrderListinTime = FXCollections.observableArrayList();
 	private ObservableList<SupplierOrder> supplierOrderListinTime = FXCollections.observableArrayList();
-	private ObservableList<CustomerOrder> customerOrderListPlz = FXCollections.observableArrayList();
-	private ObservableList<SupplierOrder> supplierOrderListPlz = FXCollections.observableArrayList();
-	private ObservableList<String> plz = FXCollections.observableArrayList();
+	private ObservableList<CustomerOrder> customerOrderListMonth = FXCollections.observableArrayList();
+	private ObservableList<SupplierOrder> supplierOrderListMonth = FXCollections.observableArrayList();
 	private double summeEinnahmen = 0;
 	private double summeAusgaben = 0;
 	private Main main;
 
 	@FXML
 	private void initialize() {
-		plzChoiceBox.valueProperty().addListener(new ChangeListener<String>() {
+		setMonthChoiceBox();
+		monthChoiceBox.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(@SuppressWarnings("rawtypes") ObservableValue ov, String t, String t1) {
-				loadOrdersPlz(t1);
+				loadOrdersMonth(t1);
 			}
 		});
 	}
 
+	public void setMonthChoiceBox(){
+		monthChoiceBox.setItems(FXCollections.observableArrayList("Alle", "Januar", "Februar", "März", "April", "Mai", "Juni","Juli","August","September", "Oktober", "November", "Dezember"));
+		monthChoiceBox.getSelectionModel().select(0);
+	}
+	
 	@SuppressWarnings("unchecked")
 	private void loadBarChart() {
 		new CategoryAxis();
 		new NumberAxis();
 
-		for (CustomerOrder customerOrder : customerOrderListPlz) {
+		for (CustomerOrder customerOrder : customerOrderListMonth) {
 			summeEinnahmen += customerOrder.getSumPrice();
 		}
-		for (SupplierOrder supplierOrder : supplierOrderListPlz) {
+		for (SupplierOrder supplierOrder : supplierOrderListMonth) {
 			summeAusgaben += supplierOrder.getSumPrice();
 		}
 
@@ -94,11 +101,7 @@ public class AnnualAccountsController {
 
 		setListInTime();
 
-		if (plzChoiceBox.getSelectionModel().getSelectedIndex() == -1)
-			setPlzComboBox(0);
-		else
-			setPlzComboBox(plzChoiceBox.getSelectionModel().getSelectedIndex());
-		loadOrdersPlz(plzChoiceBox.getSelectionModel().getSelectedItem());
+		loadOrdersMonth(monthChoiceBox.getSelectionModel().getSelectedItem());
 	}
 
 	public void setListInTime() {
@@ -125,59 +128,64 @@ public class AnnualAccountsController {
 		}
 	}
 
-	public void setPlzComboBox(int index) {
-		for (CustomerOrder cusOrder : customerOrderListinTime) {
-			String plzInt = String
-					.valueOf(main.getCustomerData().get((int) cusOrder.getCustomer() - 1).getCustomerAdressPostIndex());
-			if (!plz.contains("Alle")) {
-				plz.add("Alle");
-			}
-			if (!plz.contains(plzInt))
-				plz.add(plzInt);
-		}
-		for (SupplierOrder supOrder : supplierOrderListinTime) {
-			String plzInt = String.valueOf(
-					main.getSupplierData().get((int) supOrder.getSupplierId() - 1).getSupplierAdressPostIndex());
-			if (!plz.contains("Alle")) {
-				plz.add("Alle");
-			}
-			if (!plz.contains(plzInt))
-				plz.add(plzInt);
-		}
-		plzChoiceBox.setItems(plz);
-		plzChoiceBox.getSelectionModel().select(index);
-	}
-
-	public void loadOrdersPlz(String comboValue) {
-		customerOrderListPlz.clear();
-		supplierOrderListPlz.clear();
+	public void loadOrdersMonth(String comboValue) {
+		String month = "";
+		customerOrderListMonth.clear();
+		supplierOrderListMonth.clear();
 		summeEinnahmen = 0;
 		summeAusgaben = 0;
 
+		switch(comboValue){
+		case "Januar": month = "01";
+		break;
+		case "Februar": month = "02";
+		break;
+		case "März": month = "03";
+		break;
+		case "April": month = "04";
+		break;
+		case "Mai": month = "05";
+		break;
+		case "Juni": month = "06";
+		break;
+		case "Juli": month = "07";
+		break;
+		case "August": month = "08";
+		break;
+		case "September": month = "09";
+		break;
+		case "Oktober": month = "10";
+		break;
+		case "November": month = "11";
+		break;
+		case "Dezember": month = "12";
+		break;
+		}
+		
 		for (CustomerOrder cusOder : customerOrderListinTime) {
-			if (String.valueOf(cusOder.getCustomerObject().getCustomerAdressPostIndex()).equals(comboValue)
+			if (cusOder.getDate().split(Pattern.quote("."))[1].equals(month)
 					|| comboValue.equals("Alle")) {
-				customerOrderListPlz.add(cusOder);
+				customerOrderListMonth.add(cusOder);
 			}
 		}
 
-		for (CustomerOrder cusOrder : customerOrderListPlz) {
+		for (CustomerOrder cusOrder : customerOrderListMonth) {
 			summeEinnahmen += cusOrder.getSumPrice();
 		}
 
 		for (SupplierOrder supOrder : supplierOrderListinTime) {
-			if (String.valueOf(supOrder.getSupplierObject().getSupplierAdressPostIndex()).equals(comboValue)
+			if (supOrder.getDate().split(Pattern.quote("."))[1].equals(month)
 					|| comboValue.equals("Alle")) {
-				supplierOrderListPlz.add(supOrder);
+				supplierOrderListMonth.add(supOrder);
 			}
 		}
 
-		for (SupplierOrder supOrder : supplierOrderListPlz) {
+		for (SupplierOrder supOrder : supplierOrderListMonth) {
 			summeAusgaben += supOrder.getSumPrice();
 		}
 
-		income.setItems(customerOrderListPlz);
-		cost.setItems(supplierOrderListPlz);
+		income.setItems(customerOrderListMonth);
+		cost.setItems(supplierOrderListMonth);
 
 		setResultIncomeLabel();
 		loadBarChart();

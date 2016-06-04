@@ -21,6 +21,9 @@
 								<AnchorPane minHeight="0.0" minWidth="0.0">
 									<children>
 										<TableView fx:id="customerOrderTable" layoutX="14.0" layoutY="14.0" prefHeight="260.0" prefWidth="522.0">
+										<placeholder>
+												<Label text="Keine Kundenbestellungen vorhanden!" />
+											</placeholder>
 											<columns>
 												<TableColumn fx:id="orderNumber" prefWidth="99.0" text="Rechnungsnr." />
 												<TableColumn fx:id="customerNumber" prefWidth="76.0" text="Kundennr." />
@@ -58,6 +61,9 @@
 								<AnchorPane prefHeight="400.0" prefWidth="609.0">
 									<children>
 										<TableView fx:id="supplierOrderTable" layoutX="14.0" layoutY="14.0" prefHeight="357.0" prefWidth="611.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+											<placeholder>
+												<Label text="Keine Lieferantenrechnungen vorhanden!" />
+											</placeholder>
 											<columns>
 												<TableColumn fx:id="orderDateSupplier" text="Bestelldatum" />
 												<TableColumn fx:id="orderNameSupplier" prefWidth="69.0" text="Lieferant" />
