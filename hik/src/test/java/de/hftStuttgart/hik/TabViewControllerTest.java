@@ -5,6 +5,7 @@
 //import org.junit.Test;
 //
 //import org.hibernate.annotations.Parent;
+//import org.junit.AfterClass;
 //import org.junit.BeforeClass;
 //import org.loadui.testfx.GuiTest;
 //import org.loadui.testfx.utils.FXTestUtils;
@@ -42,7 +43,14 @@
 //	@InjectMocks
 //	TabViewController tabView;
 //
+//	@Test
 //	public void testShowBestellung() {
 //		tabView.searchCustomer();
+//	}
+//	
+//	
+//	@AfterClass
+//	public void tearDown (){
+//		//zurücksetzten
 //	}
 //}
