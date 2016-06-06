@@ -1,1 +1,4 @@
 /* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+#FullSize { width: 100%; 
+			height: 100%;
+			}

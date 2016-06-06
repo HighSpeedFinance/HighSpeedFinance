@@ -8,9 +8,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.MenuBarController">
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.MenuBarController">
    <top>
-      <AnchorPane prefHeight="121.0" prefWidth="1000.0">
+      <AnchorPane BorderPane.alignment="CENTER">
          <children>
             <HBox layoutY="40.0" spacing="10.0" AnchorPane.bottomAnchor="-22.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" BorderPane.alignment="CENTER">
                <children>
@@ -25,11 +26,13 @@
                   <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#showIncome" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="Einnahmen">
                      <font>
                         <Font size="14.0" />
-                     </font></Button>
+                     </font>
+                  </Button>
                   <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#showCosts" prefHeight="44.0" prefWidth="90.0" style="-fx-background-color: transparent;" text="Ausgaben">
                      <font>
                         <Font size="14.0" />
-                     </font></Button>
+                     </font>
+                  </Button>
                   <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" onAction="#showGraphics" prefHeight="103.0" prefWidth="130.0" style="-fx-background-color: transparent;" text="Jahresabschluss">
                      <font>
                         <Font size="14.0" />
@@ -38,7 +41,8 @@
                   <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: transparent;" text="Hilfe">
                      <font>
                         <Font size="14.0" />
-                     </font></Button>
+                     </font>
+                  </Button>
                </children>
             </HBox>
             <ImageView fx:id="imageView" fitHeight="54.0" fitWidth="87.0" layoutX="23.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true" />

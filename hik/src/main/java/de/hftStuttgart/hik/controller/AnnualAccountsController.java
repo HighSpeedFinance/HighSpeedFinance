@@ -23,7 +23,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
 import javafx.util.converter.LocalDateStringConverter;
-import javafx.util.converter.LocalDateTimeStringConverter;
 
 public class AnnualAccountsController {
 
@@ -47,8 +46,6 @@ public class AnnualAccountsController {
 	private ObservableList<SupplierOrder> supplierOrderListMonth = FXCollections.observableArrayList();
 	private double summeEinnahmen = 0;
 	private double summeAusgaben = 0;
-	private Main main;
-
 	@FXML
 	private void initialize() {
 		setMonthChoiceBox();
@@ -95,7 +92,6 @@ public class AnnualAccountsController {
 	}
 
 	public void setMainApp(Main main) {
-		this.main = main;
 		customerOrderList.addAll(OrderUtil.loadAllOrdersWhereStatusSucceeded());
 		supplierOrderList.addAll(SupplierOrderUtil.loadAllOrdersWhereStatusSucceeded());
 

@@ -13,11 +13,11 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.Group?>
 
-<TabPane fx:id="tabPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="550.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.NewCustomersAndSuppliersController">
+<TabPane id="FullSize" fx:id="tabPane" styleClass="../application" tabClosingPolicy="UNAVAILABLE" tabMinWidth="250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.NewCustomersAndSuppliersController">
 	<tabs>
 		<Tab onSelectionChanged="#customerIsSelected" text="Kunde">
 			<content>
-				<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+				<AnchorPane id="FullSize" styleClass="../application" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 					<children>
 						<SplitPane dividerPositions="0.3815261044176707" layoutX="150.0" layoutY="107.0" prefHeight="293.0" prefWidth="550.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="107.0">
 							<items>

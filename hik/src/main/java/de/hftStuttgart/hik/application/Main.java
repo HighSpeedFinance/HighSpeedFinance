@@ -1,5 +1,7 @@
 package de.hftStuttgart.hik.application;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.io.IOException;
 
 import javax.persistence.PersistenceException;
@@ -51,6 +53,9 @@ public class Main extends Application {
 
 	private Stage primaryStage;
 	private BorderPane rootLayout;
+	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	double width = screenSize.getWidth();
+	double height = screenSize.getHeight();
 
 	public static void main(String[] args) {
 		launch(args);
@@ -77,8 +82,10 @@ public class Main extends Application {
 		} catch (IOException | IllegalStateException e) {
 			System.out.println(e.getMessage());
 		}
-		Scene scene = new Scene(rootLayout);
+		Scene scene = new Scene(rootLayout);		
 
+		rootLayout.setPrefSize(width, height-100);
+		
 		MenuBarController controller = loader.getController();
 		controller.setMainApp(this);
 
@@ -89,7 +96,7 @@ public class Main extends Application {
 	}
 
 	public void showCustomerAndSupplierOverview() {
-		TabPane myPane;
+		TabPane myPane = null;
 		FXMLLoader loader = null;
 		try {
 			loader = new FXMLLoader(
@@ -99,11 +106,11 @@ public class Main extends Application {
 		}
 		try {
 			myPane = (TabPane) loader.load();
+			myPane.setPrefSize(width, height);
 			rootLayout.setCenter(myPane);
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
-
 		showNavigationBarCustomer();
 
 		TabViewController controller = loader.getController();
@@ -195,6 +202,8 @@ public class Main extends Application {
 		}
 		try {
 			anchorPane = (AnchorPane) loader.load();
+			
+			//anchorPane.setPrefSize(width, height);
 			rootLayout.setLeft(anchorPane);
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
@@ -358,6 +367,7 @@ public class Main extends Application {
 		}
 		try {
 			anchorPane = (AnchorPane) loader.load();
+			anchorPane.setPrefSize(width, height);
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
