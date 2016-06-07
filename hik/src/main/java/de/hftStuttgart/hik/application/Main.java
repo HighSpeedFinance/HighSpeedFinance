@@ -315,6 +315,7 @@ public class Main extends Application {
 		}
 		try {
 			myPane = (TabPane) loader.load();
+			myPane.setPrefSize(width, height);
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
@@ -388,6 +389,7 @@ public class Main extends Application {
 		}
 		try {
 			anchorPane = (AnchorPane) loader.load();
+			anchorPane.setPrefSize(width, height);
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}

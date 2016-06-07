@@ -103,7 +103,7 @@ public class CostsController {
 		for (SupplierOrder supOrder : supplierOrderListInTimeAndSupplier) {
 			summeCalc += supOrder.getSumPrice();
 		}
-		summe.setText(String.valueOf(summeCalc) + " Euro");
+		summe.setText(String.valueOf(Math.round(100.0 * summeCalc) / 100.0) + " Euro");
 		supplierOrderTable.setItems(supplierOrderListInTimeAndSupplier);
 	}
 

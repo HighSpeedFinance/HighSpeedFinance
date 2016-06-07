@@ -26,8 +26,6 @@ public class IncomeController {
 	@FXML
 	private TableColumn<CustomerOrder, String> orderDescription;
 	@FXML
-	private TableColumn<CustomerOrder, String> leer;
-	@FXML
 	private TableColumn<CustomerOrder, String> orderDate;
 	@FXML
 	private TableColumn<CustomerOrder, String> orderSinglePrice;
@@ -89,7 +87,6 @@ public class IncomeController {
 
 		orderNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("orderNumber"));
 		orderDescription.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("description"));
-		leer.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("supId"));
 		orderDate.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("date"));
 		orderSinglePrice.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("unitPrice"));
 		orderAmount.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("amount"));
