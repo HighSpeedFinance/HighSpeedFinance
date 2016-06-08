@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.GridPane?>
@@ -11,33 +12,46 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.Group?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.IncomeController">
-	<children>
-		<TableView fx:id="customerOrderTable" layoutX="14.0" layoutY="49.0" AnchorPane.bottomAnchor="63.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="49.0">
-			<placeholder>
-				<Label text="Keine Kundenbestellungen vorhanden!" />
-			</placeholder>
-			<columns>
-				<TableColumn fx:id="orderNumber" prefWidth="83.0" text="Rechnungsnr." />
-				<TableColumn fx:id="customerNumber" prefWidth="69.0" text="Kundennr." />
-				<TableColumn fx:id="orderArt" text="Artikel-Nr." />
-				<TableColumn fx:id="orderDescription" text="Bezeichnung" />
-				<TableColumn fx:id="orderDate" text="Bestelldatum" />
-				<TableColumn fx:id="orderSinglePrice" prefWidth="71.0" text="Einzelpreis" />
-				<TableColumn fx:id="orderTax" prefWidth="59.0" text="Steuer" />
-				<TableColumn fx:id="orderAmount" minWidth="0.0" prefWidth="56.0" text="Menge" />
-				<TableColumn fx:id="orderTotalPrice" prefWidth="111.0" text="Gesamtpreis" />
-			</columns>
-		</TableView>
-		<Label layoutX="14.0" layoutY="14.0" text="Zeitraum :" />
-		<ComboBox fx:id="daysCombobox" layoutX="77.0" layoutY="10.0" prefHeight="25.0" prefWidth="87.0" />
-      <HBox layoutX="448.0" layoutY="14.0" spacing="7.0">
-         <children>
-      		<Label layoutX="522.0" layoutY="473.0" text="Summe :" />
-      		<Label fx:id="summe" layoutX="578.0" layoutY="473.0" />
-         </children>
-      </HBox>
-		<Label layoutX="189.0" layoutY="14.0" text="PLZ Gebiet :" />
-		<ComboBox fx:id="plzCombobox" layoutX="263.0" layoutY="10.0" prefHeight="25.0" prefWidth="87.0" />
-	</children>
+
+<AnchorPane prefHeight="680.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.IncomeController">
+   <children>
+      <AnchorPane prefHeight="587.0" prefWidth="1000.0">
+      	<children>
+      		<TableView fx:id="customerOrderTable" layoutY="45.0" prefHeight="473.0" prefWidth="950.0" AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0">
+      			<placeholder>
+      				<Label text="Keine Kundenbestellungen vorhanden!" />
+      			</placeholder>
+      			<columns>
+      				<TableColumn fx:id="orderNumber" prefWidth="83.0" text="Rechnungsnr." />
+      				<TableColumn fx:id="customerNumber" prefWidth="69.0" text="Kundennr." />
+      				<TableColumn fx:id="orderArt" text="Artikel-Nr." />
+      				<TableColumn fx:id="orderDescription" prefWidth="140.0" text="Bezeichnung" />
+      				<TableColumn fx:id="orderDate" prefWidth="95.0" text="Bestelldatum" />
+      				<TableColumn fx:id="orderSinglePrice" prefWidth="99.0" text="Einzelpreis" />
+      				<TableColumn fx:id="orderTax" prefWidth="116.0" text="Steuer" />
+      				<TableColumn fx:id="orderAmount" minWidth="0.0" prefWidth="144.0" text="Menge" />
+      				<TableColumn fx:id="orderTotalPrice" prefWidth="158.0" text="Gesamtpreis" />
+      			</columns>
+      		</TableView>
+      		<Label layoutX="14.0" layoutY="14.0" text="Zeitraum :" />
+      		<ComboBox fx:id="daysCombobox" layoutX="77.0" layoutY="10.0" prefHeight="25.0" prefWidth="87.0" />
+            <HBox layoutX="797.0" layoutY="530.0" spacing="7.0">
+               <children>
+            		<Label text="Summe :" underline="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+            		<Label fx:id="summe" layoutX="578.0" layoutY="473.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+      		<Label layoutX="189.0" layoutY="14.0" text="PLZ Gebiet :" />
+      		<ComboBox fx:id="plzCombobox" layoutX="263.0" layoutY="10.0" prefHeight="25.0" prefWidth="87.0" />
+      	</children>
+      </AnchorPane>
+   </children>
 </AnchorPane>

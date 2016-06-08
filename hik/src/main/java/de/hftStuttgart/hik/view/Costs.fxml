@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.GridPane?>
@@ -11,41 +12,45 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.Group?>
 
-<AnchorPane prefHeight="680.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.CostsController">
+<AnchorPane prefHeight="680.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.CostsController">
 	<children>
-      <ScrollPane layoutY="10.0" AnchorPane.bottomAnchor="-6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <content>
-            <AnchorPane>
+      <AnchorPane prefHeight="587.0" prefWidth="1000.0">
+         <children>
+      		<ComboBox fx:id="daysCombobox" layoutX="77.0" layoutY="5.0" prefHeight="25.0" prefWidth="87.0" />
+      		<Label layoutX="189.0" layoutY="9.0" text="Lieferant :" />
+      		<ComboBox fx:id="supplierCombobox" layoutX="263.0" layoutY="5.0" prefHeight="25.0" prefWidth="87.0" />
+      		<TableView fx:id="supplierOrderTable" layoutY="45.0" prefHeight="473.0" prefWidth="950.0" AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0">
+      			<placeholder>
+      				<Label text="Keine Lieferantenrechnungen vorhanden!" />
+      			</placeholder>
+      			<columns>
+      				<TableColumn fx:id="orderDateSupplier" text="Bestelldatum" />
+      				<TableColumn fx:id="orderNameSupplier" prefWidth="69.0" text="Lieferant" />
+      				<TableColumn fx:id="orderStatusSupplier" prefWidth="84.0" text="Bezahlstatus" />
+      				<TableColumn fx:id="orderArtSupplier" text="Artikel-Nr." />
+      				<TableColumn fx:id="orderDescriptionSupplier" prefWidth="156.0" text="Bezeichnung" />
+      				<TableColumn fx:id="orderSinglePriceSupplier" prefWidth="121.0" text="Einzelpreis" />
+      				<TableColumn fx:id="orderTaxSupplier" prefWidth="146.0" text="Steuersatz in %" />
+      				<TableColumn fx:id="orderAmountSupplier" prefWidth="95.0" text="Menge" />
+      				<TableColumn fx:id="orderTotalPriceSupplier" prefWidth="168.0" text="Gesamtpreis €" />
+      			</columns>
+      		</TableView>
+      		<Label layoutX="14.0" layoutY="9.0" text="Zeitraum :" />
+            <HBox layoutX="797.0" layoutY="530.0" snapToPixel="false" spacing="7.0">
                <children>
-            		<ComboBox fx:id="daysCombobox" layoutX="77.0" layoutY="5.0" prefHeight="25.0" prefWidth="87.0" />
-            		<Label layoutX="189.0" layoutY="9.0" text="Lieferant :" />
-            		<ComboBox fx:id="supplierCombobox" layoutX="263.0" layoutY="5.0" prefHeight="25.0" prefWidth="87.0" />
-            		<TableView fx:id="supplierOrderTable" layoutY="45.0">
-            			<placeholder>
-            				<Label text="Keine Lieferantenrechnungen vorhanden!" />
-            			</placeholder>
-            			<columns>
-            				<TableColumn fx:id="orderDateSupplier" text="Bestelldatum" />
-            				<TableColumn fx:id="orderNameSupplier" prefWidth="69.0" text="Lieferant" />
-            				<TableColumn fx:id="orderStatusSupplier" prefWidth="84.0" text="Bezahlstatus" />
-            				<TableColumn fx:id="orderArtSupplier" text="Artikel-Nr." />
-            				<TableColumn fx:id="orderDescriptionSupplier" prefWidth="156.0" text="Bezeichnung" />
-            				<TableColumn fx:id="orderSinglePriceSupplier" prefWidth="121.0" text="Einzelpreis" />
-            				<TableColumn fx:id="orderTaxSupplier" prefWidth="146.0" text="Steuersatz in %" />
-            				<TableColumn fx:id="orderAmountSupplier" prefWidth="141.0" text="Menge" />
-            				<TableColumn fx:id="orderTotalPriceSupplier" prefWidth="189.0" text="Gesamtpreis €" />
-            			</columns>
-            		</TableView>
-            		<Label layoutX="14.0" layoutY="9.0" text="Zeitraum :" />
-                  <HBox layoutX="689.0" layoutY="9.0" snapToPixel="false" spacing="7.0">
-                     <children>
-                  		<Label text="Summe :" />
-                  		<Label fx:id="summe" layoutX="511.0" layoutY="457.0" />
-                     </children>
-                  </HBox>
+            		<Label text="Summe :" underline="true">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+            		<Label fx:id="summe" layoutX="511.0" layoutY="457.0">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
                </children>
-            </AnchorPane>
-         </content>
-      </ScrollPane>
+            </HBox>
+         </children>
+      </AnchorPane>
 	</children>
 </AnchorPane>

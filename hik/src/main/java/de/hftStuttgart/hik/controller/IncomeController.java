@@ -122,7 +122,7 @@ public class IncomeController {
 		for (CustomerOrder cusOrder : customerOrderListInTimeAndPlz) {
 			summeCalc += cusOrder.getSumPrice();
 		}
-		summe.setText(String.valueOf(summeCalc) + " €");
+		summe.setText(String.valueOf(summeCalc) + " Euro");
 		customerOrderTable.setItems(customerOrderListInTimeAndPlz);
 	}
 
