@@ -8,10 +8,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.MenuBarController">
+<BorderPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.MenuBarController">
    <top>
-      <AnchorPane BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="118.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
             <HBox layoutY="40.0" spacing="10.0" AnchorPane.bottomAnchor="-22.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0" BorderPane.alignment="CENTER">
                <children>

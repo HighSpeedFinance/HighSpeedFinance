@@ -10,57 +10,55 @@
 <?import javafx.collections.*?>
 <?import javafx.scene.control.ChoiceBox?>
 
-<TabPane fx:id="tabPane" tabClosingPolicy="UNAVAILABLE" tabMinWidth="250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.CustomerAndSupplierOrderOverviewController">
+<TabPane fx:id="tabPane" prefHeight="566.0" prefWidth="766.0" tabClosingPolicy="UNAVAILABLE" tabMinWidth="250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.CustomerAndSupplierOrderOverviewController">
 	<tabs>
 		<Tab onSelectionChanged="#customerIsSelected" text="Kunde">
 			<content>
 				<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 					<children>
-								<AnchorPane layoutX="16.0" layoutY="37.0">
+								<AnchorPane layoutY="48.0" prefHeight="400.0" prefWidth="766.0">
 									<children>
-										<TableView fx:id="customerOrderTable" layoutX="-2.0" layoutY="-2.0" AnchorPane.bottomAnchor="129.0" AnchorPane.leftAnchor="-2.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-2.0">
+										<TableView fx:id="customerOrderTable" layoutY="48.0" prefHeight="400.0" prefWidth="766.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 										<placeholder>
 												<Label text="Keine Kundenbestellungen vorhanden!" />
 											</placeholder>
 											<columns>
 												<TableColumn fx:id="orderNumber" prefWidth="107.0" text="Rechnungsnr." />
 												<TableColumn fx:id="customerNumber" prefWidth="90.0" text="Kundennr." />
-												<TableColumn fx:id="orderStatus" prefWidth="124.0" text="Bezahlstatus" />
-												<TableColumn fx:id="orderDate" prefWidth="112.0" text="Bestelldatum" />
-												<TableColumn fx:id="orderTotalPrice" prefWidth="140.0" text="Gesamtpreis in Euro" />
+												<TableColumn fx:id="orderStatus" prefWidth="228.0" text="Bezahlstatus" />
+												<TableColumn fx:id="orderDate" prefWidth="178.0" text="Bestelldatum" />
+												<TableColumn fx:id="orderTotalPrice" prefWidth="162.0" text="Gesamtpreis in Euro" />
 											</columns>
 										</TableView>
-                        <HBox layoutX="406.0" layoutY="409.0" spacing="15.0">
-                           <children>
-										<Button layoutX="385.0" layoutY="295.0" mnemonicParsing="false" onAction="#addCustomerOrder" text="Hinzufügen" />
-										<Button layoutX="463.0" layoutY="295.0" mnemonicParsing="false" onAction="#editCustomerOrder" text="Bearbeiten" />
-                           </children>
-                        </HBox>
 									</children>
 								</AnchorPane>
-						<Label layoutX="14.0" layoutY="6.0" text="Bestellungen">
+						<Label layoutX="14.0" layoutY="10.0" text="Bestellungen" underline="true">
 							<font>
 								<Font size="18.0" />
 							</font>
 						</Label>
-						<TextField fx:id="searchCustomerOrders" layoutX="449.0" layoutY="7.0" onAction="#searchCustomerOrders" prefHeight="22.0" prefWidth="126.0" promptText="Suche">
+						<TextField fx:id="searchCustomerOrders" layoutX="385.0" layoutY="13.0" onAction="#searchCustomerOrders" prefHeight="22.0" prefWidth="123.0" promptText="Suche">
 							<font>
 								<Font name="Consolas Italic" size="12.0" />
 							</font>
 						</TextField>
+                  <HBox layoutX="121.0" layoutY="459.0" spacing="15.0">
+                     <children>
+      										<Button layoutX="385.0" layoutY="295.0" mnemonicParsing="false" onAction="#addCustomerOrder" prefWidth="257.0" text="Hinzufügen" />
+										<Button layoutX="463.0" layoutY="295.0" mnemonicParsing="false" onAction="#editCustomerOrder" prefWidth="257.0" text="Bearbeiten" />
+                     </children>
+                  </HBox>
 					</children>
 				</AnchorPane>
 			</content>
 		</Tab>
 		<Tab onSelectionChanged="#supplierIsSelected" text="Lieferant">
 			<content>
-				<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+				<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="767.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
 					<children>
-						<SplitPane layoutX="150.0" layoutY="37.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0">
-							<items>
-								<AnchorPane>
+								<AnchorPane layoutY="48.0">
 									<children>
-										<TableView fx:id="supplierOrderTable" layoutX="14.0" layoutY="14.0" AnchorPane.bottomAnchor="43.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-2.0" AnchorPane.topAnchor="0.0">
+										<TableView fx:id="supplierOrderTable" layoutY="48.0" prefHeight="400.0" prefWidth="766.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 											<placeholder>
 												<Label text="Keine Lieferantenrechnungen vorhanden!" />
 											</placeholder>
@@ -75,26 +73,24 @@
 												<TableColumn fx:id="orderTotalPriceSupplier" prefWidth="94.0" text="Gesamtpreis" />
 											</columns>
 										</TableView>
-                              <HBox layoutX="429.0" layoutY="361.0" spacing="15.0">
-                                 <children>
-      										<Button layoutX="382.0" layoutY="361.0" mnemonicParsing="false" onAction="#addSupplierOrder" text="Hinzufügen" />
-      										<Button layoutX="460.0" layoutY="361.0" mnemonicParsing="false" onAction="#editSupplierOrder" text="Bearbeiten" />
-                                 </children>
-                              </HBox>
 									</children>
 								</AnchorPane>
-							</items>
-						</SplitPane>
-						<Label layoutX="14.0" layoutY="6.0" text="Rechnungen">
+						<Label layoutX="14.0" layoutY="10.0" text="Rechnungen" underline="true">
 							<font>
 								<Font size="18.0" />
 							</font>
 						</Label>
-						<TextField fx:id="searchSupplierOrders" layoutX="449.0" layoutY="7.0" onAction="#searchSupplierOrders" prefHeight="22.0" prefWidth="126.0" promptText="Suche">
+						<TextField fx:id="searchSupplierOrders" layoutX="385.0" layoutY="13.0" onAction="#searchSupplierOrders" prefHeight="22.0" prefWidth="123.0" promptText="Suche">
 							<font>
 								<Font name="Consolas Italic" size="12.0" />
 							</font>
 						</TextField>
+                  <HBox layoutX="121.0" layoutY="459.0" spacing="15.0">
+                     <children>
+										<Button layoutX="382.0" layoutY="361.0" mnemonicParsing="false" onAction="#addSupplierOrder" prefWidth="257.0" text="Hinzufügen" />
+										<Button layoutX="460.0" layoutY="361.0" mnemonicParsing="false" onAction="#editSupplierOrder" prefWidth="257.0" text="Bearbeiten" />
+                     </children>
+                  </HBox>
 					</children>
 				</AnchorPane>
 			</content>
