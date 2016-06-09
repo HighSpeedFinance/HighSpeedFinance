@@ -22,19 +22,17 @@ public class Customer {
 	private String customerCompanyName;
 	private String customerContactPersonFirstName;
 	private String customerContactPersonLastName;
-	private String customerCotactPersonName;
-	
 	private int customerPhoneNumber;
 	private String customerEmail;
 	private int customerFax;
 	private String customerTitel;
 	private String addedDate;
 
-	@OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	private List<CustomerOrder> orders;
-	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="postAdress_id")
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "postAdress_id")
 	private PostAdress customerAdress;
 
 	public Customer() {
@@ -43,14 +41,14 @@ public class Customer {
 
 	public Customer(final int customerNumber, final String customerCompanyName,
 			final String customerContactPersonFirstName, final String customerContactPersonLastName,
-			final PostAdress customerAdress,
-			final int customerPhoneNumber, final String customerEmail,  final int customerFax, final String customerTitel, final String date) {
+			final PostAdress customerAdress, final int customerPhoneNumber, final String customerEmail,
+			final int customerFax, final String customerTitel, final String date) {
 
 		this.customerNumber = customerNumber;
 		this.customerCompanyName = customerCompanyName;
 		this.customerContactPersonFirstName = customerContactPersonFirstName;
 		this.customerContactPersonLastName = customerContactPersonLastName;
-		this.customerAdress=customerAdress;
+		this.customerAdress = customerAdress;
 		this.customerPhoneNumber = customerPhoneNumber;
 		this.customerEmail = customerEmail;
 		this.customerFax = customerFax;
@@ -105,16 +103,11 @@ public class Customer {
 	public void setCustomerContactPersonLastName(String customerContactPersonLastName) {
 		this.customerContactPersonLastName = customerContactPersonLastName;
 	}
-	
-	
-	public String getCustomerContactPersonName(){
-		return customerContactPersonFirstName+" "+customerContactPersonLastName;
+
+	public String getCustomerContactPersonName() {
+		return this.customerContactPersonFirstName + " " + this.customerContactPersonLastName;
 	}
 
-	public void setCustomerContactPersonName(String customerContactPersonName){
-		this.customerContactPersonLastName=customerContactPersonLastName;
-	}
-	
 	public int getCustomerPhoneNumber() {
 		return customerPhoneNumber;
 	}
@@ -131,7 +124,6 @@ public class Customer {
 		this.customerEmail = customerEmail;
 	}
 
-	
 	public PostAdress getCustomerAdress() {
 		return customerAdress;
 	}
@@ -139,49 +131,47 @@ public class Customer {
 	public void setCustomerAdress(PostAdress customerAdress) {
 		this.customerAdress = customerAdress;
 	}
-	public void setCustomerAdressStreet(String street){
+
+	public void setCustomerAdressStreet(String street) {
 		this.customerAdress.setStreet(street);
 	}
-	
-	public void setCustomerAdressHouseNumber(int number){
-	this.customerAdress.setHouseNumber(number);
+
+	public void setCustomerAdressHouseNumber(int number) {
+		this.customerAdress.setHouseNumber(number);
 	}
-	
-	public void setCustomerAdressPostIndex(int index){
+
+	public void setCustomerAdressPostIndex(int index) {
 		this.customerAdress.setPostIndex(index);
 	}
 
-	public void setCustomerAdressCity(String city){
+	public void setCustomerAdressCity(String city) {
 		this.customerAdress.setCity(city);
 	}
-	
-	public void setCustomerAdressCountry(String country){
+
+	public void setCustomerAdressCountry(String country) {
 		this.customerAdress.setCountry(country);
 	}
-	
-	
-	
-	public String getCustomerAdressStreet(){
+
+	public String getCustomerAdressStreet() {
 		return this.customerAdress.getStreet();
 	}
-	
-	public int getCustomerAdressHouseNumber(){
+
+	public int getCustomerAdressHouseNumber() {
 		return this.customerAdress.getHouseNumber();
 	}
-	
-	public int getCustomerAdressPostIndex(){
+
+	public int getCustomerAdressPostIndex() {
 		return this.customerAdress.getPostIndex();
 	}
 
-	public String getCustomerAdressCity(){
+	public String getCustomerAdressCity() {
 		return this.customerAdress.getCity();
 	}
-	
-	public String getCustomerAdressCountry(){
+
+	public String getCustomerAdressCountry() {
 		return this.customerAdress.getCountry();
 	}
 
-	
 	public String getAddedDate() {
 		return addedDate;
 	}
@@ -224,6 +214,5 @@ public class Customer {
 	public String toString() {
 		return String.valueOf(this.id);
 	}
-	
-	
+
 }
