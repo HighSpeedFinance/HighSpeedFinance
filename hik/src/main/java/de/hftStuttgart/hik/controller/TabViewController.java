@@ -86,7 +86,7 @@ public class TabViewController {
 		supplierNameColumn.setCellValueFactory(new PropertyValueFactory<Supplier, String>("supplierCompanyName"));
 
 		customerNameColumn
-				.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerContactPersonFirstName"));
+				.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerContactPersonName"));
 		customerNumberColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerNumber"));
 
 		supplierTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);

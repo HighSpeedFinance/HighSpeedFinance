@@ -22,6 +22,7 @@ public class Customer {
 	private String customerCompanyName;
 	private String customerContactPersonFirstName;
 	private String customerContactPersonLastName;
+	private String customerCotactPersonName;
 	
 	private int customerPhoneNumber;
 	private String customerEmail;
@@ -104,7 +105,15 @@ public class Customer {
 	public void setCustomerContactPersonLastName(String customerContactPersonLastName) {
 		this.customerContactPersonLastName = customerContactPersonLastName;
 	}
+	
+	
+	public String getCustomerContactPersonName(){
+		return customerContactPersonFirstName+" "+customerContactPersonLastName;
+	}
 
+	public void setCustomerContactPersonName(String customerContactPersonName){
+		this.customerContactPersonLastName=customerContactPersonLastName;
+	}
 	
 	public int getCustomerPhoneNumber() {
 		return customerPhoneNumber;
