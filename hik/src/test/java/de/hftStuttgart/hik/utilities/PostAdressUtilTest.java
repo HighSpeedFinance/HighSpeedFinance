@@ -2,12 +2,15 @@ package de.hftStuttgart.hik.utilities;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
 import de.hftStuttgart.hik.model.PostAdress;
+import de.hftStuttgart.hik.model.SupplierOrder;
 
 public class PostAdressUtilTest {
 	private PostAdress PostAdress;
@@ -31,12 +34,18 @@ public class PostAdressUtilTest {
 	@Ignore
 	@Test
 	public void testLoadAllAdresses() {
-		fail("Not xet implemented");
+		fail("Not yet implemented");
 	}
 
 	@Test
 	public void testAddPostAdress(PostAdress PostAdress) {
-
+		PostAdress addedPostAdress = null;
+		PostAdressUtil.addPostAdress(PostAdress);
+		List<PostAdress> PostAdresses = PostAdressUtil.loadAllAdresses();
+		for (PostAdress add : PostAdresses )
+		{
+//			if()
+		}
 	}
 
 	@Test
