@@ -22,7 +22,6 @@ private SupplierOrder order;
 private Status status;
 private Supplier supplier;
 
-
 	@Before
 	public void setUp() throws Exception {
 		
