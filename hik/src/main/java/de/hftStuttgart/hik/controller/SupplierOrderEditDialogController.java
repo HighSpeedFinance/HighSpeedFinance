@@ -50,10 +50,12 @@ public class SupplierOrderEditDialogController {
 
 	public void setSupplierOrder(SupplierOrder supplierOrder) {
 		this.supplierOrder = supplierOrder;
+		date.setEditable(false);
 		if (supplierOrder.getStatus() == Status.ENABLED || supplierOrder.getStatus() == Status.PENDING
 				|| supplierOrder.getStatus() == Status.SUCCEEDED) {
 			date.setValue(new LocalDateStringConverter().fromString(supplierOrder.getDate()));
 			date.setEditable(false);
+			date.setDisable(true);
 			artNr.setText(String.valueOf(supplierOrder.getItemNumb()));
 			artNr.setEditable(false);
 			description.setText(supplierOrder.getDescription());

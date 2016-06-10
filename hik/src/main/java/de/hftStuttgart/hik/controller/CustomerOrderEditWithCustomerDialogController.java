@@ -64,10 +64,12 @@ public class CustomerOrderEditWithCustomerDialogController {
 
 	public void setCustomerOrder(CustomerOrder customerOrder) {
 		this.customerOrder = customerOrder;
+		date.setEditable(false);
 		if (customerOrder.getStatus() == Status.ENABLED || customerOrder.getStatus() == Status.PENDING
 				|| customerOrder.getStatus() == Status.SUCCEEDED) {
 			date.setValue(new LocalDateStringConverter().fromString(customerOrder.getDate()));
 			date.setEditable(false);
+			date.setDisable(true);
 			artNr.setText(String.valueOf(customerOrder.getItemNumb()));
 			artNr.setEditable(false);
 			description.setText(customerOrder.getDescription());
