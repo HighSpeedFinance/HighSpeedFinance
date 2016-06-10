@@ -220,7 +220,7 @@ public class TabViewController {
 					String.valueOf(customer.getCustomerAdressPostIndex()) + " " + customer.getCustomerAdressCity());
 			customerCountry.setText(customer.getCustomerAdressCountry());
 			customerPhone.setText(customer.getCustomerPhoneNumber());
-			customerFax.setText(String.valueOf(customer.getCustomerFax()));
+			customerFax.setText(customer.getCustomerFax());
 			customerMail.setText(customer.getCustomerEmail());
 		} else {
 			customerHeading.setText("");
@@ -245,7 +245,7 @@ public class TabViewController {
 					String.valueOf(supplier.getSupplierAdressPostIndex() + " " + supplier.getSupplierAdressCity()));
 			supplierStreetLabel.setText(supplier.getSupplierAdressStreet() + " " + supplier.getSupplierAdressHouseNumber());
 			supplierEmailLabel.setText(supplier.getSupplierEmail());
-			supplierFaxLabel.setText(String.valueOf(supplier.getSupplierFax()));
+			supplierFaxLabel.setText(supplier.getSupplierFax());
 			supplierCompanyLabel.setText(supplier.getSupplierCompanyName());
 		} else {
 			supplierPhoneNumberLabel.setText("");

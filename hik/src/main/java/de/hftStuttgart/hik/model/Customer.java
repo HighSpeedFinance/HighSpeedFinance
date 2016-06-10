@@ -24,7 +24,7 @@ public class Customer {
 	private String customerContactPersonLastName;
 	private String customerPhoneNumber;
 	private String customerEmail;
-	private int customerFax;
+	private String customerFax;
 	private String customerTitel;
 	private String addedDate;
 
@@ -42,7 +42,7 @@ public class Customer {
 	public Customer(final int customerNumber, final String customerCompanyName,
 			final String customerContactPersonFirstName, final String customerContactPersonLastName,
 			final PostAdress customerAdress, final String customerPhoneNumber, final String customerEmail,
-			final int customerFax, final String customerTitel, final String date) {
+			final String customerFax, final String customerTitel, final String date) {
 
 		this.customerNumber = customerNumber;
 		this.customerCompanyName = customerCompanyName;
@@ -184,11 +184,11 @@ public class Customer {
 		this.orders = orders;
 	}
 
-	public int getCustomerFax() {
+	public String getCustomerFax() {
 		return customerFax;
 	}
 
-	public void setCustomerFax(int customerFax) {
+	public void setCustomerFax(String customerFax) {
 		this.customerFax = customerFax;
 	}
 

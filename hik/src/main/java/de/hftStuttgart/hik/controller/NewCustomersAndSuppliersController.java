@@ -202,8 +202,8 @@ public class NewCustomersAndSuppliersController {
 			customerPLZ.setText(
 					String.valueOf(customer.getCustomerAdressPostIndex()) + " " + customer.getCustomerAdressCity());
 			customerCountry.setText(customer.getCustomerAdressCountry());
-			customerPhone.setText(String.valueOf(customer.getCustomerPhoneNumber()));
-			customerFax.setText(String.valueOf(customer.getCustomerFax()));
+			customerPhone.setText(customer.getCustomerPhoneNumber());
+			customerFax.setText(customer.getCustomerFax());
 			customerMail.setText(customer.getCustomerEmail());
 		} else {
 			customerHeading.setText("");
@@ -227,9 +227,9 @@ public class NewCustomersAndSuppliersController {
 					+ String.valueOf(supplier.getSupplierAdressHouseNumber()));
 			supplierPLZ.setText(
 					String.valueOf(supplier.getSupplierAdressPostIndex()) + " " + supplier.getSupplierAdressCity());
-			supplierPhoneNumber.setText(String.valueOf(supplier.getSupplierPhoneNumber()));
-			supplierMail.setText(String.valueOf(supplier.getSupplierEmail()));
-			supplierFax.setText(String.valueOf(supplier.getSupplierFax()));
+			supplierPhoneNumber.setText(supplier.getSupplierPhoneNumber());
+			supplierMail.setText(supplier.getSupplierEmail());
+			supplierFax.setText(supplier.getSupplierFax());
 		} else {
 			supplierCompanyName.setText("");
 			supplierContactPerson.setText("");

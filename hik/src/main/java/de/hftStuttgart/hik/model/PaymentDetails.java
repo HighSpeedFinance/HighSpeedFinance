@@ -13,8 +13,8 @@ public class PaymentDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String accountOwner;
-	private int bic;
-	private int iban;
+	private String bic;
+	private String iban;
 	private String creditInstitution;
 	
 	@OneToOne(fetch=FetchType.EAGER, mappedBy="supplierPaymentDetails")
@@ -24,10 +24,9 @@ public class PaymentDetails {
 
 	}
 
-	public PaymentDetails( final String accountOwner, final int bic, final int iban,
+	public PaymentDetails( final String accountOwner, final String bic, final String iban,
 			final String creditInstitution) {
 
-		this.id = id;
 		this.accountOwner = accountOwner;
 		this.bic = bic;
 		this.iban = iban;
@@ -50,19 +49,19 @@ public class PaymentDetails {
 		this.accountOwner = accountOwner;
 	}
 
-	public int getBic() {
+	public String getBic() {
 		return bic;
 	}
 
-	public void setBic(int bic) {
+	public void setBic(String bic) {
 		this.bic = bic;
 	}
 
-	public int getIban() {
+	public String getIban() {
 		return iban;
 	}
 
-	public void setIban(int iban) {
+	public void setIban(String iban) {
 		this.iban = iban;
 	}
 

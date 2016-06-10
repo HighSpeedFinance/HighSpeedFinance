@@ -25,7 +25,7 @@ public class Supplier {
 	private String supplierContactPersonLastName;
 	private String supplierPhoneNumber;
 	private String supplierEmail;
-	private int supplierFax;
+	private String supplierFax;
 	private String addedDate;
 	
 	@OneToOne(fetch=FetchType.EAGER)
@@ -45,7 +45,7 @@ public class Supplier {
 	public Supplier(final int supplierNumber, final String supplierCompanyName,
 			final String supplierContactPersonFirstName, final String supplierContactPersonLastName,
 			final PostAdress supplierAdress, final String supplierPhoneNumber, final String supplierEmail,
-			final int supplierFax, final String date, final PaymentDetails supplierPaymentDetails) {
+			final String supplierFax, final String date, final PaymentDetails supplierPaymentDetails) {
 
 		this.supplierNumber = supplierNumber;
 		this.supplierCompanyName = supplierCompanyName;
@@ -175,11 +175,11 @@ public class Supplier {
 		this.supplierEmail = supplierEmail;
 	}
 
-	public int getSupplierFax() {
+	public String getSupplierFax() {
 		return supplierFax;
 	}
 
-	public void setSupplierFax(int supplierFax) {
+	public void setSupplierFax(String supplierFax) {
 		this.supplierFax = supplierFax;
 	}
 
