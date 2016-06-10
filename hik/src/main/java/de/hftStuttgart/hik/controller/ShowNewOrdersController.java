@@ -97,7 +97,11 @@ public class ShowNewOrdersController {
 	@FXML
 	private void initialize() {
 		setDaysCombobox();
-
+		startDate.setEditable(false);
+		endDate.setEditable(false);
+		startDateSupplier.setEditable(false);
+		endDateSupplier.setEditable(false);
+		
 		daysCombobox.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(@SuppressWarnings("rawtypes") ObservableValue ov, String t, String t1) {

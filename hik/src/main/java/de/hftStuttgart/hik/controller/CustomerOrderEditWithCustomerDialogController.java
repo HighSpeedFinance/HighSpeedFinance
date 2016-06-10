@@ -101,6 +101,13 @@ public class CustomerOrderEditWithCustomerDialogController {
 
 	@FXML
 	private void handleOk() {
+		amount.setStyle("-fx-border-color: black ; -fx-border-width: 1px ;");
+		date.setStyle("-fx-border-color: black ; -fx-border-width: 1px ;");
+		description.setStyle("-fx-border-color: black ; -fx-border-width: 1px ;");
+		artNr.setStyle("-fx-border-color: black ; -fx-border-width: 1px ;");
+		orderNr.setStyle("-fx-border-color: black ; -fx-border-width: 1px ;");
+		singlePrice.setStyle("-fx-border-color: black ; -fx-border-width: 1px ;");
+		tax.setStyle("-fx-border-color: black ; -fx-border-width: 1px ;");
 		if (isInputValid()) {
 			customerOrder.setAmount(Integer.parseInt(amount.getText()));
 			customerOrder.setDate(new LocalDateStringConverter().toString(date.getValue()));
@@ -134,53 +141,65 @@ public class CustomerOrderEditWithCustomerDialogController {
 
 		if (amount.getText() == null || amount.getText().length() == 0) {
 			errorMessage += "Keine gueltige Menge!\n";
+			amount.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 		} else {
 			try {
 				Integer.parseInt(amount.getText());
 			} catch (NumberFormatException e) {
 				errorMessage += "Keine gueltige Menge (muss eine Zahl sein)!\n";
+				amount.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			}
 		}
 		if (date.getValue() == null) {
 			errorMessage += "Kein gueltiges Datum!\n";
+			date.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 		}
 		if (description.getText() == null || description.getText().length() == 0) {
 			errorMessage += "Keine gueltige Beschreibung!\n";
+			description.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 		}
 		if (artNr.getText() == null || artNr.getText().length() == 0) {
 			errorMessage += "Keine gueltige Artikelnummer!\n";
+			artNr.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 		} else {
 			try {
 				Integer.parseInt(artNr.getText());
 			} catch (NumberFormatException e) {
 				errorMessage += "Keine gueltige Artikelnummer (muss eine Zahl sein)!\n";
+				artNr.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			}
 		}
 		if (orderNr.getText() == null || orderNr.getText().length() == 0) {
 			errorMessage += "Keine gueltige Ordernummer!\n";
+			orderNr.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 		} else {
 			try {
 				Integer.parseInt(orderNr.getText());
 			} catch (NumberFormatException e) {
 				errorMessage += "Keine gueltige Ordernummer (muss eine Zahl sein)!\n";
+				orderNr.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			}
 		}
 		if (singlePrice.getText() == null || singlePrice.getText().length() == 0) {
 			errorMessage += "Kein gueltiger Unitpreis!\n";
+			singlePrice.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 		} else {
 			try {
 				Double.parseDouble(singlePrice.getText());
 			} catch (NumberFormatException e) {
 				errorMessage += "Kein gueltiger Unitpreis (muss eine Zahl sein)!\n";
+				singlePrice.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			}
 		}
 		if (tax.getText() == null || tax.getText().length() == 0) {
 			errorMessage += "Kein gueltiger Steuersatz!\n";
+			tax.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 		} else {
 			try {
 				Double.parseDouble(tax.getText());
 			} catch (NumberFormatException e) {
 				errorMessage += "Kein gueltiger Steuersatz (muss eine Zahl sein)!\n";
+				tax.setStyle("-fx-border-color: red ; -fx-border-width: 2px ;");
 			}
 		}
 		if (errorMessage.length() == 0) {

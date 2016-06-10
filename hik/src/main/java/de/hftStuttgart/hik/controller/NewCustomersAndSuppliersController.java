@@ -115,6 +115,10 @@ public class NewCustomersAndSuppliersController {
 
 	@FXML
 	private void initialize() {
+		startDate.setEditable(false);
+		endDate.setEditable(false);
+		startDateSupplier.setEditable(false);
+		endDateSupplier.setEditable(false);
 		setDaysComboBox();
 		daysCombobox.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
