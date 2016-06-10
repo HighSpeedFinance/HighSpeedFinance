@@ -30,7 +30,7 @@ public class SupplierOrder {
 
 	}
 
-	public SupplierOrder(final String date, final int order_nr, final int supId, final Status status, final int itemNumb,
+	public SupplierOrder(final String date, final int order_nr,  final Status status, final int itemNumb,
 			final String description, final double unitPrice, final int amount, final double tax) {
 
 		this.date = date;

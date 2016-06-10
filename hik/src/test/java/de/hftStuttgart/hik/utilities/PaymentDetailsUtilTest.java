@@ -14,10 +14,12 @@ import de.hftStuttgart.hik.model.PaymentDetails;
 import junit.framework.Assert;
 
 public class PaymentDetailsUtilTest {
-	private PaymentDetails payDet;
+	private PaymentDetails payDet=new PaymentDetails();
+	
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
+		DatabaseConnectionUtil.getEm();
 	}
 
 	@AfterClass
@@ -30,17 +32,18 @@ public class PaymentDetailsUtilTest {
 		payDet.setBic(12345);
 		payDet.setCreditInstitution("BWBank");
 		payDet.setIban(123456789);
-		payDet.setId(127654398L);
+		//payDet.setId(127654398L);
+
 	}
 
 	@After
 	public void tearDown() throws Exception {
 	}
 
-	@Test
-	public void testLoadAllPayDetails() {
-		fail("Not yet implemented");
-	}
+//	@Test
+//	public void testLoadAllPayDetails() {
+//		fail("Not yet implemented");
+//	}
 
 	@Test
 	public void testAddPayDetails() {

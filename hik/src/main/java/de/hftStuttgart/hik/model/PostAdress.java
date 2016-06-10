@@ -34,7 +34,7 @@ public class PostAdress {
 
 	}
 
-	public PostAdress(final Long id, final String street,final int houseNumber, final int postIndex, final String city, final String country) {
+	public PostAdress( final String street,final int houseNumber, final int postIndex, final String city, final String country) {
 
 		this.id = id;
 		this.street = street;
