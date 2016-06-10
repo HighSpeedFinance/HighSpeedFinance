@@ -71,6 +71,14 @@ public class TabViewController {
 	@FXML
 	private Label supplierFaxLabel;
 	@FXML
+	private Label supplierAccountOwnerLabel;
+	@FXML
+	private Label supplierBICLabel;
+	@FXML
+	private Label supplierCreditLabel;
+	@FXML
+	private Label supplierIBANLabel;
+	@FXML
 	private TextField searchCustomer;
 	@FXML
 	private TextField searchSupplier;
@@ -247,6 +255,10 @@ public class TabViewController {
 			supplierEmailLabel.setText(supplier.getSupplierEmail());
 			supplierFaxLabel.setText(supplier.getSupplierFax());
 			supplierCompanyLabel.setText(supplier.getSupplierCompanyName());
+			supplierAccountOwnerLabel.setText(supplier.getSupplierPaymentDetails().getAccountOwner());
+			supplierBICLabel.setText(supplier.getSupplierPaymentDetails().getBic());
+			supplierCreditLabel.setText(supplier.getSupplierPaymentDetails().getCreditInstitution());
+			supplierIBANLabel.setText(supplier.getSupplierPaymentDetails().getIban());
 		} else {
 			supplierPhoneNumberLabel.setText("");
 			supplierCompanyNameLabel.setText("");
@@ -256,6 +268,10 @@ public class TabViewController {
 			supplierEmailLabel.setText("");
 			supplierFaxLabel.setText("");
 			supplierCompanyLabel.setText("");
+			supplierAccountOwnerLabel.setText("");
+			supplierBICLabel.setText("");
+			supplierCreditLabel.setText("");
+			supplierIBANLabel.setText("");
 		}
 	}
 
