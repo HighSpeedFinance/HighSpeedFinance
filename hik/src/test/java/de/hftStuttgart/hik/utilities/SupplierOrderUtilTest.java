@@ -100,12 +100,11 @@ private Supplier supplier;
 		order.setSumPrice(0);
 		SupplierOrderUtil.editOrder(order);
 		List<SupplierOrder> orders = SupplierOrderUtil.loadAllOrders();
-		for (SupplierOrder ord : orders )
-		{
-			if(ord.getId().equals(order.getId()))
-				editedOrder=ord;
+		for (SupplierOrder ord : orders) {
+			if (ord.getId().equals(order.getId()))
+				editedOrder = ord;
 		}
-		Assert.assertTrue(order.getSumPrice()== editedOrder.getSumPrice());
+		Assert.assertTrue(order.getSumPrice() == editedOrder.getSumPrice());
 	}
 
 	@Test
