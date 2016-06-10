@@ -25,7 +25,7 @@
 //
 //		controller = new GuiTest() {
 //			@Override
-//			protected Parent getRootNode() {
+//			protected javafx.scene.Parent getRootNode() {
 //				return Main.showCustomerAndSupplierOverview().getScene().getRoot();
 //			}
 //		};
@@ -51,6 +51,6 @@
 //	
 //	@AfterClass
 //	public void tearDown (){
-//		//zurücksetzten
+//		//zurï¿½cksetzten
 //	}
 //}

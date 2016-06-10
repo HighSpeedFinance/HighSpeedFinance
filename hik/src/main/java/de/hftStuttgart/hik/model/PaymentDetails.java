@@ -24,7 +24,7 @@ public class PaymentDetails {
 
 	}
 
-	public PaymentDetails(final Long id, final String accountOwner, final int bic, final int iban,
+	public PaymentDetails( final String accountOwner, final int bic, final int iban,
 			final String creditInstitution) {
 
 		this.id = id;
