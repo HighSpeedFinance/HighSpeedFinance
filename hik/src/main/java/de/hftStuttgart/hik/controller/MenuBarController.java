@@ -38,6 +38,11 @@ public class MenuBarController {
 		main.showIncome();
 	}
 	
+	@FXML
+	private void showHelp(){
+		main.showHelp();
+	}
+	
 	public void setMainApp(Main main){
 		this.main = main;
 	}

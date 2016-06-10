@@ -35,7 +35,6 @@ public class SupplierOrder {
 
 		this.date = date;
 		this.orderNumber = order_nr;
-		this.supId = supId;
 		this.status = status;
 		this.itemNumb = itemNumb;
 		this.description = description;

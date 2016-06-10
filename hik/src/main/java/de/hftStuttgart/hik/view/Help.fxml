@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.Group?>
+
+<AnchorPane prefHeight="680.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.HelpController">
+   <children>
+      <AnchorPane prefHeight="587.0" prefWidth="1000.0">
+      	<children>
+            <Label layoutX="473.0" layoutY="285.0" text="Ist das toll" />
+      	</children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

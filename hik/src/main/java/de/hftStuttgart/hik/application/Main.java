@@ -7,6 +7,7 @@ import javax.persistence.PersistenceException;
 import de.hftStuttgart.hik.controller.CustomerOrderController;
 import de.hftStuttgart.hik.controller.CustomerOrderEditDialogController;
 import de.hftStuttgart.hik.controller.CustomerOrderEditWithCustomerDialogController;
+import de.hftStuttgart.hik.controller.HelpController;
 import de.hftStuttgart.hik.controller.AnnualAccountsController;
 import de.hftStuttgart.hik.controller.IncomeController;
 import de.hftStuttgart.hik.controller.MenuBarController;
@@ -412,6 +413,26 @@ public class Main extends Application {
 		}
 
 		AnnualAccountsController controller = loader.getController();
+		controller.setMainApp(this);
+	}
+	
+	public void showHelp() {
+		AnchorPane anchorPane = null;
+		FXMLLoader loader = null;
+		try {
+			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/Help.fxml"));
+		} catch (IllegalArgumentException e) {
+			AlertUtil.invalidURL();
+		}
+		try {
+			anchorPane = (AnchorPane) loader.load();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
+		rootLayout.setLeft(null);
+		rootLayout.setCenter(anchorPane);
+
+		HelpController controller = loader.getController();
 		controller.setMainApp(this);
 	}
 

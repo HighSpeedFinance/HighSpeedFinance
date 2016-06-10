@@ -37,7 +37,7 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: transparent;" text="Hilfe">
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: transparent;" text="Hilfe" onAction="#showHelp">
                      <font>
                         <Font size="14.0" />
                      </font>
