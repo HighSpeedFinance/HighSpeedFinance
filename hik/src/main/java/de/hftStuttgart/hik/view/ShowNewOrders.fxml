@@ -23,7 +23,7 @@
 									<children>
 										<TableView fx:id="customerOrderTable" prefHeight="387.0" prefWidth="766.0" AnchorPane.bottomAnchor="65.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-66.0" AnchorPane.topAnchor="0.0">
 										<placeholder>
-												<Label text="Keine neuen Kundenbestellungen vorhanden!" />
+												<Label text="Keine neuen Kundenrechnungen vorhanden!" />
 											</placeholder>
 											<columns>
 												<TableColumn fx:id="orderNumber" prefWidth="116.0" text="Rechnungsnr." />
@@ -46,7 +46,7 @@
 						<DatePicker fx:id="startDate" layoutX="176.0" layoutY="85.0" onAction="#loadOrders" prefHeight="25.0" prefWidth="89.0" />
 						<DatePicker fx:id="endDate" layoutX="306.0" layoutY="85.0" onAction="#loadOrders" prefHeight="25.0" prefWidth="89.0" />
 						<Label layoutX="275.0" layoutY="89.0" text="bis" />
-						<Label layoutX="10.0" layoutY="10.0" text="Neue Kundenbestellungen" underline="true">
+						<Label layoutX="10.0" layoutY="10.0" text="Neue Kundenrechnungen" underline="true">
 							<font>
 								<Font size="18.0" />
 							</font>
@@ -63,7 +63,7 @@
 									<children>
 										<TableView fx:id="supplierOrderTable" prefHeight="387.0" prefWidth="766.0">
 										<placeholder>
-												<Label text="Keine neuen Lieferantenrechnungen vorhanden!" />
+												<Label text="Keine neuen Lieferantenbestellungen vorhanden!" />
 											</placeholder>
 											<columns>
 												<TableColumn fx:id="orderDateSupplier" prefWidth="93.0" text="Bestelldatum" />
@@ -89,7 +89,7 @@
 						<DatePicker fx:id="startDateSupplier" layoutX="176.0" layoutY="85.0" onAction="#loadOrders" prefHeight="25.0" prefWidth="89.0" />
 						<DatePicker fx:id="endDateSupplier" layoutX="306.0" layoutY="85.0" onAction="#loadSupplierOrders" prefHeight="25.0" prefWidth="89.0" />
 						<Label layoutX="275.0" layoutY="89.0" text="bis" />
-						<Label layoutX="10.0" layoutY="10.0" text="Neue Lieferantenrechnungen" underline="true">
+						<Label layoutX="10.0" layoutY="10.0" text="Neue Lieferantenbestellungen" underline="true">
 							<font>
 								<Font size="18.0" />
 							</font>

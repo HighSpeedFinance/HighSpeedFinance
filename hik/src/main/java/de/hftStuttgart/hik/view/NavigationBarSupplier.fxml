@@ -12,9 +12,9 @@
          <children>
             <Button mnemonicParsing="false" onAction="#showSupplierOverview" prefHeight="37.0" prefWidth="300.0" text="Lieferantenübersicht" />
             <Button layoutY="70.0" mnemonicParsing="false" onAction="#showNewSuppliers" prefHeight="37.0" prefWidth="232.0" text="Neue Lieferanten anzeigen" />
-            <Button layoutY="100.0" mnemonicParsing="false" onAction="#showNewSupplierOrders" prefHeight="37.0" prefWidth="229.0" text="Neue Bestellung anzeigen" />
-            <Button layoutY="130.0" mnemonicParsing="false" onAction="#showAllSupplierOrders" prefHeight="37.0" prefWidth="232.0" text="Bestellung verwalten" />
-            <Button layoutY="160.0" mnemonicParsing="false" onAction="#showOpenSupplierOrders" prefHeight="37.0" prefWidth="227.0" text="Ausstehende Rechnungen" />
+            <Button layoutY="100.0" mnemonicParsing="false" onAction="#showNewSupplierOrders" prefHeight="37.0" prefWidth="229.0" text="Neue Bestellungen anzeigen" />
+            <Button layoutY="130.0" mnemonicParsing="false" onAction="#showAllSupplierOrders" prefHeight="37.0" prefWidth="232.0" text="Bestellungen verwalten" />
+            <Button layoutY="160.0" mnemonicParsing="false" onAction="#showOpenSupplierOrders" prefHeight="37.0" prefWidth="227.0" text="Ausstehende Bestellungen" />
          </children>
       </VBox>
    </children>

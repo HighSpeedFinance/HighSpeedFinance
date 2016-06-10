@@ -19,7 +19,7 @@
       	<children>
       		<TableView fx:id="customerOrderTable" layoutY="45.0" prefHeight="473.0" prefWidth="950.0" AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="45.0">
       			<placeholder>
-      				<Label text="Keine Kundenbestellungen vorhanden!" />
+      				<Label text="Keine Kundenrechnungen vorhanden!" />
       			</placeholder>
       			<columns>
       				<TableColumn fx:id="orderNumber" prefWidth="83.0" text="Rechnungsnr." />

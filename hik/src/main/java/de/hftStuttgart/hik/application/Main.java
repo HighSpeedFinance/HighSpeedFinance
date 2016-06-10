@@ -241,7 +241,7 @@ public class Main extends Application {
 			System.out.println(e.getMessage());
 		}
 		Stage dialogStage = new Stage();
-		dialogStage.setTitle("Bestellungen: " + customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
+		dialogStage.setTitle("Rechnungen: " + customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
 		dialogStage.initModality(Modality.WINDOW_MODAL);
 		dialogStage.initOwner(getPrimaryStage());
 		Scene scene = new Scene(page);
@@ -275,7 +275,7 @@ public class Main extends Application {
 			System.out.println(e.getMessage());
 		}
 		Stage dialogStage = new Stage();
-		dialogStage.setTitle("Rechnungen: " + supplier.getSupplierCompanyName());
+		dialogStage.setTitle("Bestellungen: " + supplier.getSupplierCompanyName());
 		dialogStage.initModality(Modality.WINDOW_MODAL);
 		dialogStage.initOwner(getPrimaryStage());
 		Scene scene = new Scene(page);
@@ -490,7 +490,7 @@ public class Main extends Application {
 			return false;
 		}
 		Stage dialogStage = new Stage();
-		dialogStage.setTitle("Bestellung hinzufuegen");
+		dialogStage.setTitle("Rechnung hinzufuegen");
 		dialogStage.initModality(Modality.WINDOW_MODAL);
 		dialogStage.initOwner(getPrimaryStage());
 		Scene scene = new Scene(page);
@@ -520,7 +520,7 @@ public class Main extends Application {
 			return false;
 		}
 		Stage dialogStage = new Stage();
-		dialogStage.setTitle("Bestellung hinzufuegen");
+		dialogStage.setTitle("Rechnung hinzufuegen");
 		dialogStage.initModality(Modality.WINDOW_MODAL);
 		dialogStage.initOwner(getPrimaryStage());
 		Scene scene = new Scene(page);

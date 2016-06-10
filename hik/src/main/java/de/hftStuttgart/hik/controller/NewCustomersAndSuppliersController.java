@@ -51,6 +51,10 @@ public class NewCustomersAndSuppliersController {
 	@FXML
 	private Label customerPhone;
 	@FXML
+	private Label customerFax;
+	@FXML
+	private Label customerMail;
+	@FXML
 	private Label supplierCompanyName;
 	@FXML
 	private Label supplierContactPerson;
@@ -62,6 +66,8 @@ public class NewCustomersAndSuppliersController {
 	private Label supplierPhoneNumber;
 	@FXML
 	private Label supplierMail;
+	@FXML
+	private Label supplierFax;
 	@FXML
 	private TableView<Supplier> supplierTable;
 	@FXML
@@ -140,7 +146,7 @@ public class NewCustomersAndSuppliersController {
 		});
 
 		customerNameColumn
-				.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerContactPersonFirstName"));
+				.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerContactPersonName"));
 		customerNumberColumn.setCellValueFactory(new PropertyValueFactory<Customer, String>("customerNumber"));
 
 		customerTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
@@ -197,6 +203,8 @@ public class NewCustomersAndSuppliersController {
 					String.valueOf(customer.getCustomerAdressPostIndex()) + " " + customer.getCustomerAdressCity());
 			customerCountry.setText(customer.getCustomerAdressCountry());
 			customerPhone.setText(String.valueOf(customer.getCustomerPhoneNumber()));
+			customerFax.setText(String.valueOf(customer.getCustomerFax()));
+			customerMail.setText(customer.getCustomerEmail());
 		} else {
 			customerHeading.setText("");
 			customerTitel.setText("");
@@ -205,6 +213,8 @@ public class NewCustomersAndSuppliersController {
 			customerPLZ.setText("");
 			customerCountry.setText("");
 			customerPhone.setText("");
+			customerFax.setText("");
+			customerMail.setText("");
 		}
 	}
 
@@ -219,6 +229,7 @@ public class NewCustomersAndSuppliersController {
 					String.valueOf(supplier.getSupplierAdressPostIndex()) + " " + supplier.getSupplierAdressCity());
 			supplierPhoneNumber.setText(String.valueOf(supplier.getSupplierPhoneNumber()));
 			supplierMail.setText(String.valueOf(supplier.getSupplierEmail()));
+			supplierFax.setText(String.valueOf(supplier.getSupplierFax()));
 		} else {
 			supplierCompanyName.setText("");
 			supplierContactPerson.setText("");
@@ -226,6 +237,7 @@ public class NewCustomersAndSuppliersController {
 			supplierPLZ.setText("");
 			supplierPhoneNumber.setText("");
 			supplierMail.setText("");
+			supplierFax.setText("");
 		}
 	}
 
@@ -237,7 +249,7 @@ public class NewCustomersAndSuppliersController {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error!");
 			alert.setHeaderText("");
-			alert.setContentText("Keinen Kunden ausgew�hlt!");
+			alert.setContentText("Keinen Kunden ausgewaehlt!");
 			alert.showAndWait();
 		}
 	}
@@ -250,7 +262,7 @@ public class NewCustomersAndSuppliersController {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error!");
 			alert.setHeaderText("");
-			alert.setContentText("Keinen Lieferanten ausgew�hlt!");
+			alert.setContentText("Keinen Lieferanten ausgewaehlt!");
 			alert.showAndWait();
 		}
 	}

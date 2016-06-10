@@ -5,32 +5,30 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="341.0" prefWidth="732.0"
-	xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
-	fx:controller="de.hftStuttgart.hik.controller.CustomerOrderController">
+<AnchorPane prefHeight="341.0" prefWidth="908.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.CustomerOrderController">
 	<children>
-		<TableView layoutX="14.0" layoutY="14.0" prefHeight="260.0"
-			prefWidth="701.0" fx:id="customerOrderTable">
+		<TableView fx:id="customerOrderTable" layoutX="14.0" layoutY="14.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
 			<placeholder>
-				<Label text="Keine Kundenbestellungen vorhanden!" />
+				<Label text="Keine Kundenrechnungen vorhanden!" />
 			</placeholder>
 			<columns>
-				<TableColumn prefWidth="99.0" text="Rechnungsnr." fx:id="orderNumber" />
-				<TableColumn prefWidth="76.0" text="Artikel-Nr." fx:id="orderArt" />
-				<TableColumn prefWidth="91.0" text="Bezeichnung" fx:id="orderDescription" />
-				<TableColumn prefWidth="61.0" fx:id="customerID" text="Kundennr." />
-				<TableColumn prefWidth="76.0" text="Bezahlstatus" fx:id="orderStatus" />
-				<TableColumn prefWidth="89.0" text="Bestelldatum" fx:id="orderDate" />
-				<TableColumn prefWidth="70.0" text="Einzelpreis" fx:id="orderSinglePrice" />
-				<TableColumn prefWidth="59.0" text="Steuer" fx:id="orderTax" />
-				<TableColumn prefWidth="59.0" text="Menge" fx:id="orderAmount" />
-				<TableColumn prefWidth="119.0" text="Gesamtpreis" fx:id="orderTotalPrice" />
+				<TableColumn fx:id="orderNumber" prefWidth="99.0" text="Rechnungsnr." />
+				<TableColumn fx:id="orderArt" prefWidth="76.0" text="Artikel-Nr." />
+				<TableColumn fx:id="orderDescription" prefWidth="109.0" text="Bezeichnung" />
+				<TableColumn fx:id="customerID" prefWidth="73.0" text="Kundennr." />
+				<TableColumn fx:id="orderStatus" prefWidth="90.0" text="Bezahlstatus" />
+				<TableColumn fx:id="orderDate" prefWidth="98.0" text="Bestelldatum" />
+				<TableColumn fx:id="orderSinglePrice" prefWidth="81.0" text="Einzelpreis" />
+				<TableColumn fx:id="orderTax" prefWidth="82.0" text="Steuer" />
+				<TableColumn fx:id="orderAmount" prefWidth="73.0" text="Menge" />
+				<TableColumn fx:id="orderTotalPrice" prefWidth="126.0" text="Gesamtpreis" />
 			</columns>
 		</TableView>
-		<Button layoutX="572.0" layoutY="282.0" mnemonicParsing="false"
-			text="Hinzufügen" onAction="#addCustomerOrder" />
-		<Button layoutX="650.0" layoutY="282.0" mnemonicParsing="false"
-			text="Bearbeiten" onAction="#editCustomerOrder" />
+      <HBox layoutX="190.0" layoutY="302.0" spacing="15.0">
+         <children>
+      		<Button layoutX="572.0" layoutY="282.0" mnemonicParsing="false" onAction="#addCustomerOrder" prefWidth="257.0" text="Hinzufügen" />
+      		<Button layoutX="650.0" layoutY="282.0" mnemonicParsing="false" onAction="#editCustomerOrder" prefWidth="257.0" text="Bearbeiten" />
+         </children>
+      </HBox>
 	</children>
 </AnchorPane>

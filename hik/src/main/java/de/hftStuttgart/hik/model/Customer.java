@@ -22,7 +22,7 @@ public class Customer {
 	private String customerCompanyName;
 	private String customerContactPersonFirstName;
 	private String customerContactPersonLastName;
-	private int customerPhoneNumber;
+	private String customerPhoneNumber;
 	private String customerEmail;
 	private int customerFax;
 	private String customerTitel;
@@ -41,7 +41,7 @@ public class Customer {
 
 	public Customer(final int customerNumber, final String customerCompanyName,
 			final String customerContactPersonFirstName, final String customerContactPersonLastName,
-			final PostAdress customerAdress, final int customerPhoneNumber, final String customerEmail,
+			final PostAdress customerAdress, final String customerPhoneNumber, final String customerEmail,
 			final int customerFax, final String customerTitel, final String date) {
 
 		this.customerNumber = customerNumber;
@@ -108,11 +108,11 @@ public class Customer {
 		return this.customerContactPersonFirstName + " " + this.customerContactPersonLastName;
 	}
 
-	public int getCustomerPhoneNumber() {
+	public String getCustomerPhoneNumber() {
 		return customerPhoneNumber;
 	}
 
-	public void setCustomerPhoneNumber(int customerPhoneNumber) {
+	public void setCustomerPhoneNumber(String customerPhoneNumber) {
 		this.customerPhoneNumber = customerPhoneNumber;
 	}
 

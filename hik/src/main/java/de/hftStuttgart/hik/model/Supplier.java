@@ -23,8 +23,7 @@ public class Supplier {
 	private String supplierCompanyName;
 	private String supplierContactPersonFirstName;
 	private String supplierContactPersonLastName;
-	
-	private int supplierPhoneNumber;
+	private String supplierPhoneNumber;
 	private String supplierEmail;
 	private int supplierFax;
 	private String addedDate;
@@ -45,7 +44,7 @@ public class Supplier {
 
 	public Supplier(final int supplierNumber, final String supplierCompanyName,
 			final String supplierContactPersonFirstName, final String supplierContactPersonLastName,
-			final PostAdress supplierAdress, final int supplierPhoneNumber, final String supplierEmail,
+			final PostAdress supplierAdress, final String supplierPhoneNumber, final String supplierEmail,
 			final int supplierFax, final String date, final PaymentDetails supplierPaymentDetails) {
 
 		this.supplierNumber = supplierNumber;
@@ -160,11 +159,11 @@ public class Supplier {
 		this.supplierContactPersonLastName = supplierContactPersonLastName;
 	}
 
-	public int getSupplierPhoneNumber() {
+	public String getSupplierPhoneNumber() {
 		return supplierPhoneNumber;
 	}
 
-	public void setSupplierPhoneNumber(int supplierPhoneNumber) {
+	public void setSupplierPhoneNumber(String supplierPhoneNumber) {
 		this.supplierPhoneNumber = supplierPhoneNumber;
 	}
 

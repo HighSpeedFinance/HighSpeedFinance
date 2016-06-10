@@ -12,9 +12,9 @@
          <children>
             <Button layoutY="40.0" mnemonicParsing="false" onAction="#showCustomerOverview" prefHeight="37.0" prefWidth="300.0" text="Kundenübersicht" />
             <Button layoutY="70.0" mnemonicParsing="false" onAction="#showNewCustomers" prefHeight="37.0" prefWidth="300.0" text="Neue Kunden anzeigen" />
-            <Button layoutY="100.0" mnemonicParsing="false" onAction="#showNewCustomerOrders" prefHeight="37.0" prefWidth="300.0" text="Neue Bestellung anzeigen" />
-            <Button layoutY="130.0" mnemonicParsing="false" onAction="#showCustomerOrderOverview" prefHeight="37.0" prefWidth="300.0" text="Bestellungen verwalten" />
-            <Button layoutY="160.0" mnemonicParsing="false" onAction="#showOpenCustomerOrders" prefHeight="37.0" prefWidth="300.0" text="Offene Kundenbestellungen" />
+            <Button layoutY="100.0" mnemonicParsing="false" onAction="#showNewCustomerOrders" prefHeight="37.0" prefWidth="300.0" text="Neue Rechnungen anzeigen" />
+            <Button layoutY="130.0" mnemonicParsing="false" onAction="#showCustomerOrderOverview" prefHeight="37.0" prefWidth="300.0" text="Rechnungen verwalten" />
+            <Button layoutY="160.0" mnemonicParsing="false" onAction="#showOpenCustomerOrders" prefHeight="37.0" prefWidth="300.0" text="Offene Kundenrechnungen" />
          </children>
       </VBox>
    </children>

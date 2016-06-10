@@ -43,6 +43,10 @@ public class TabViewController {
 	@FXML
 	private Label customerPhone;
 	@FXML
+	private Label customerFax;
+	@FXML
+	private Label customerMail;
+	@FXML
 	private TableView<Supplier> supplierTable;
 	@FXML
 	private TableColumn<Supplier, String> supplierNumberColumn;
@@ -62,6 +66,10 @@ public class TabViewController {
 	private Label supplierEmailLabel;
 	@FXML
 	private Label supplierNameLabel;
+	@FXML
+	private Label supplierCompanyLabel;
+	@FXML
+	private Label supplierFaxLabel;
 	@FXML
 	private TextField searchCustomer;
 	@FXML
@@ -164,7 +172,6 @@ public class TabViewController {
 			for (Customer cus : main.getCustomerData()) {
 				if (cus.getCustomerNumber() == searchInteger
 						|| cus.getCustomerContactPersonFirstName().toLowerCase().equals(searchCustomer.getText().toLowerCase())
-						|| cus.getCustomerCompanyName().toLowerCase().equals(searchCustomer.getText().toLowerCase())
 						|| (cus.getCustomerContactPersonFirstName().toLowerCase() + " " + cus.getCustomerContactPersonLastName().toLowerCase())
 								.equals(searchCustomer.getText().toLowerCase())
 						|| cus.getCustomerContactPersonLastName().toLowerCase().equals(searchCustomer.getText().toLowerCase())) {
@@ -208,12 +215,13 @@ public class TabViewController {
 			customerTitel.setText(customer.getCustomerTitel());
 			customerName.setText(
 					customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
-			customerStreet.setText(customer.getCustomerAdressStreet() + ". "
-					+ String.valueOf(customer.getCustomerAdressHouseNumber()));
+			customerStreet.setText(customer.getCustomerAdressStreet()+ " " + String.valueOf(customer.getCustomerAdressHouseNumber()));
 			customerPLZ.setText(
 					String.valueOf(customer.getCustomerAdressPostIndex()) + " " + customer.getCustomerAdressCity());
 			customerCountry.setText(customer.getCustomerAdressCountry());
-			customerPhone.setText(String.valueOf(customer.getCustomerPhoneNumber()));
+			customerPhone.setText(customer.getCustomerPhoneNumber());
+			customerFax.setText(String.valueOf(customer.getCustomerFax()));
+			customerMail.setText(customer.getCustomerEmail());
 		} else {
 			customerHeading.setText("");
 			customerTitel.setText("");
@@ -222,19 +230,23 @@ public class TabViewController {
 			customerPLZ.setText("");
 			customerCountry.setText("");
 			customerPhone.setText("");
+			customerFax.setText("");
+			customerMail.setText("");
 		}
 	}
 
 	private void showSupplierDetails(Supplier supplier) {
 		if (supplier != null) {
-			supplierPhoneNumberLabel.setText(String.valueOf(supplier.getSupplierPhoneNumber()));
+			supplierPhoneNumberLabel.setText(supplier.getSupplierPhoneNumber());
 			supplierCompanyNameLabel.setText(String.valueOf(supplier.getSupplierCompanyName()));
 			supplierContactPersonLabel.setText(
 					supplier.getSupplierContactPersonFirstName() + " " + supplier.getSupplierContactPersonLastName());
 			supplierPostalCodeCityLabel.setText(
 					String.valueOf(supplier.getSupplierAdressPostIndex() + " " + supplier.getSupplierAdressCity()));
-			supplierStreetLabel.setText(supplier.getSupplierAdressStreet());
+			supplierStreetLabel.setText(supplier.getSupplierAdressStreet() + " " + supplier.getSupplierAdressHouseNumber());
 			supplierEmailLabel.setText(supplier.getSupplierEmail());
+			supplierFaxLabel.setText(String.valueOf(supplier.getSupplierFax()));
+			supplierCompanyLabel.setText(supplier.getSupplierCompanyName());
 		} else {
 			supplierPhoneNumberLabel.setText("");
 			supplierCompanyNameLabel.setText("");
@@ -242,6 +254,8 @@ public class TabViewController {
 			supplierPostalCodeCityLabel.setText("");
 			supplierStreetLabel.setText("");
 			supplierEmailLabel.setText("");
+			supplierFaxLabel.setText("");
+			supplierCompanyLabel.setText("");
 		}
 	}
 
