@@ -68,7 +68,11 @@ public class CustomerOrderController {
 		CustomerOrder customerOrder = new CustomerOrder();
 		boolean okClicked = main.showOrderEditDialog(customerOrder);
 		if (okClicked) {
-			CustomerUtil.loadAllCustomers().get(customer.getId().intValue()-1).addOrder(customerOrder);
+			for(Customer cus : CustomerUtil.loadAllCustomers()){
+				if(customer.getId() == cus.getId()){
+					cus.addOrder(customerOrder);
+				}
+			}
 			customerOrder.setCustomer(customer);
 			OrderUtil.addOrder(customerOrder);
 			main.addCustomerOrder(customerOrder);

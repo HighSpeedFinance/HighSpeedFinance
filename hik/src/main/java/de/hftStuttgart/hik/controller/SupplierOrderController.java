@@ -65,7 +65,11 @@ public class SupplierOrderController {
 		SupplierOrder supplierOrder = new SupplierOrder();
 		boolean okClicked = main.showSupplierOrderEditDialog(supplierOrder);
 		if (okClicked) {
-			SupplierUtil.loadAllSuppliers().get(supplier.getId().intValue()-1).addOrder(supplierOrder);
+			for(Supplier sup : SupplierUtil.loadAllSuppliers()){
+				if(supplier.getId() == sup.getId()){
+					sup.addOrder(supplierOrder);
+				}
+			}
 			supplierOrder.setSupplier(supplier);
 			SupplierOrderUtil.addOrder(supplierOrder);
 			refreshSupplierOrderTable();
