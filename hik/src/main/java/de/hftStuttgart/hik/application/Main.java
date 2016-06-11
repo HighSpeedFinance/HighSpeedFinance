@@ -429,7 +429,7 @@ public class Main extends Application {
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
-		rootLayout.setLeft(null);
+		rootLayout.setLeft(null);;
 		rootLayout.setCenter(anchorPane);
 
 		HelpController controller = loader.getController();

@@ -16,7 +16,9 @@
    <children>
       <AnchorPane prefHeight="587.0" prefWidth="1000.0">
       	<children>
-            <Label layoutX="473.0" layoutY="285.0" text="Ist das toll" />
+            <Label layoutX="250.0" layoutY="285.0" text="Bei Problemen wenden Sie sich bitte an den Support der HIK GmbH : support@hik.de" />
+            <Label layoutX="250.0" layoutY="78.0" text="Die FAQ´s finden Sie im Benutzerhandbuch oder unter folgendem Link:" />
+            <Label layoutX="250.0" layoutY="167.0" text="https://hahnimkorb.de/help/Frequently_Asked_Questions" textFill="#2811bf" underline="true" />
       	</children>
       </AnchorPane>
    </children>

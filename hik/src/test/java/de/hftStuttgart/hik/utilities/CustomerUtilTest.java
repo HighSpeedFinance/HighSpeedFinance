@@ -45,19 +45,20 @@ public class CustomerUtilTest {
 		TesHelper.cusList=CustomerUtil.loadAllCustomers();
 		Assert.assertTrue(TesHelper.cusList.contains(customer));
 	}
-	 @Ignore
+	 
 	 @Test
 	 public void testEditCustomer() {
-	 Customer editCustomer = null;
+	 Customer editedCustomer = null;
+	
 	 CustomerUtil.addCustomer(customer);
+	 customer.setCustomerAdressCountry("England");
 	 CustomerUtil.editCustomer(customer);
-	 List<Customer> customers = CustomerUtil.loadAllCustomers();
-	 for (Customer cust : customers )
-	 {
-	 if(cust.getId().equals(customer.getId()))
-	 editCustomer=cust;
-	 }
-	 Assert.assertTrue(customer.equals(editCustomer));
+	 TesHelper.cusList=CustomerUtil.loadAllCustomers();
+	 if(TesHelper.cusList.contains(customer))
+		 editedCustomer=customer;
+	 
+	 
+	 Assert.assertTrue(editedCustomer.getCustomerAdressCountry().equals("England"));
 	 }
 	 
 	 
