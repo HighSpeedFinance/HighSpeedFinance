@@ -20,7 +20,6 @@ import junit.framework.Assert;
 public class SupplierUtilTest {
 	private Supplier supplier;
 	private List<SupplierOrder> list;
-	
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -34,8 +33,7 @@ public class SupplierUtilTest {
 	@Before
 	public void setUp() throws Exception {
 
-		
-supplier= TesHelper.supplier;
+		supplier = TesHelper.supplier;
 	}
 
 	@After
@@ -44,18 +42,11 @@ supplier= TesHelper.supplier;
 
 	@Test
 	public void testAddSupplier() {
-		Supplier addedSup = null;
 		SupplierUtil.addSupplier(supplier);
-		List<Supplier> supList = SupplierUtil.loadAllSuppliers();
-		for (Supplier all : supList) {
-			if (all.getId().equals(supplier.getId())) {
-				addedSup = all;
-			}
-		}
-		Assert.assertTrue(supplier.equals(addedSup));
+		TesHelper.supList = SupplierUtil.loadAllSuppliers();
+		Assert.assertTrue(TesHelper.supList.contains(supplier));
 	}
 
-	
 	@Test
 	public void testEditSupplier() {
 		Supplier editedSup = null;
@@ -74,15 +65,8 @@ supplier= TesHelper.supplier;
 	@Test
 	public void testDeleteSupplier() {
 
-		Supplier deletedSup = null;
-		SupplierUtil.addSupplier(supplier);
 		SupplierUtil.deleteSupplier(supplier);
-		List<Supplier> supList = SupplierUtil.loadAllSuppliers();
-		for (Supplier sup : supList) {
-			if (sup.equals(supplier))
-				deletedSup = sup;
-		}
-		Assert.assertTrue(supplier.equals(deletedSup));
-
+		TesHelper.supList = SupplierUtil.loadAllSuppliers();
+		Assert.assertTrue(!TesHelper.supList.contains(supplier));
 	}
 }

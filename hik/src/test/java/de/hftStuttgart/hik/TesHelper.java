@@ -19,17 +19,19 @@ public class TesHelper {
 	public static Status statusP = Status.PENDING;
 	public static Status statusS = Status.SUCCEEDED;
 	public static PostAdress adress = new PostAdress("Berndstrasse", 2, 70199, "Stuttgart", "Deutschland");
-	public static PaymentDetails paymentDetails = new PaymentDetails("Bernd Bauer	", 12345, 23456, "BWBank");
-	public static Supplier supplier = new Supplier(12345, "RechnerExport", "Bauer", "Bernd", adress, 1256488273,
-			"berndBauer@berndisttoll.com", 112657891, "1.2.2016", paymentDetails);
+	public static PaymentDetails paymentDetails = new PaymentDetails("Hans Hansi", "GENODEM1GLS",
+			"DE55430609677027019874", "GLSBank");
+	public static Supplier supplier = new Supplier(12345, "RechnerExport", "Benrd", "Bauer", adress, "0711-2657890", "berndderbauer@bauer.de", "0711-2657891", "1.1.2010", paymentDetails);
 
-	public static Customer customer = new Customer(123456, "LisaAG", "Lisa", "Lustig", adress, 123456,
-			"lisaLustig@haha.de", 123432, "Frau", "1.4.2015");
+	public static Customer customer = new Customer(123456, "LisaAG", "Lisa", "Lustig", adress, "0711-53678298",
+			"lisaLustig@haha.de", "0711-35672891", "Frau", "1.4.2015");
 	public static CustomerOrder cOrder = new CustomerOrder("8.6.2016", 1, statusP, 12, "Rechner", 100.00, 3, 19.00);
 	public static SupplierOrder sOrder = new SupplierOrder("1.1.2016", 2, statusE, 123, "Kabel", 2.00, 7, 0.38);
 	public static List<Supplier> supList;
 	public static List<Customer> cusList;
 	public static List<SupplierOrder> supOList;
 	public static List<CustomerOrder> cusOList;
+	public static List<PaymentDetails> payList;
+	public static List<PostAdress> postList;
 
 }

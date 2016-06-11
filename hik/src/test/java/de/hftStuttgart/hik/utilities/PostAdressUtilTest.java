@@ -7,24 +7,23 @@ import java.util.List;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import de.hftStuttgart.hik.TesHelper;
 import de.hftStuttgart.hik.model.PostAdress;
 import de.hftStuttgart.hik.model.SupplierOrder;
 
 public class PostAdressUtilTest {
-	private PostAdress postAdress;
-
+	private PostAdress postAdress=new PostAdress();
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		DatabaseConnectionUtil.getEm();
+	}
 	@Before
 	public void setUp() throws Exception {
-		postAdress = new PostAdress();
-		postAdress.setId(2147483648L);
-		postAdress.setStreet("Heimstraﬂe");
-		postAdress.setHouseNumber(23);
-		postAdress.setPostIndex(70439);
-		postAdress.setCity("Stuttgart");
-		postAdress.setCountry("Deutschland");
+		postAdress=TesHelper.adress;
 
 	}
 
@@ -41,14 +40,9 @@ public class PostAdressUtilTest {
 
 	@Test
 	public void testAddPostAdress(PostAdress PostAdress) {
-		PostAdress addedPostAdress = null;
 		PostAdressUtil.addPostAdress(postAdress);
-		List<PostAdress> postAdresses = PostAdressUtil.loadAllAdresses();
-		for (PostAdress add : postAdresses) {
-			if (add.equals(addedPostAdress))
-				addedPostAdress = add;
-		}
-		Assert.assertTrue(postAdress.equals(addedPostAdress));
+		TesHelper.postList=PostAdressUtil.loadAllAdresses();
+		Assert.assertTrue(TesHelper.postList.contains(postAdress));
 	}
 
 	@Test
@@ -68,15 +62,9 @@ public class PostAdressUtilTest {
 
 	@Test
 	public void testDeletePostAdress() {
-		PostAdress deletedPostAdress = null;
-		PostAdressUtil.addPostAdress(postAdress);
 		PostAdressUtil.deletePostAdress(postAdress);
-		List<PostAdress> postAdresses = PostAdressUtil.loadAllAdresses();
-		for (PostAdress add : postAdresses) {
-			if (add.equals(postAdress))
-				deletedPostAdress = add;
-		}
-		Assert.assertTrue(postAdress.equals(deletedPostAdress));
+		TesHelper.postList=PostAdressUtil.loadAllAdresses();
+		Assert.assertTrue(!TesHelper.postList.contains(postAdress));
 	}
 
 }
