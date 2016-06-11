@@ -20,6 +20,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 
 public class TabViewController {
 	@FXML
@@ -220,6 +222,7 @@ public class TabViewController {
 		if (customer != null) {
 			customerHeading.setText(
 					customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
+			customerHeading.setFont(Font.font("Verdana", FontWeight.BOLD,12));
 			customerTitel.setText(customer.getCustomerTitel());
 			customerName.setText(
 					customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
@@ -247,6 +250,7 @@ public class TabViewController {
 		if (supplier != null) {
 			supplierPhoneNumberLabel.setText(supplier.getSupplierPhoneNumber());
 			supplierCompanyNameLabel.setText(String.valueOf(supplier.getSupplierCompanyName()));
+			supplierCompanyNameLabel.setFont(Font.font("Verdana", FontWeight.BOLD,12));
 			supplierContactPersonLabel.setText(
 					supplier.getSupplierContactPersonFirstName() + " " + supplier.getSupplierContactPersonLastName());
 			supplierPostalCodeCityLabel.setText(

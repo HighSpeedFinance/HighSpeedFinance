@@ -4,8 +4,10 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 
 import de.hftStuttgart.hik.application.Main;
+import de.hftStuttgart.hik.model.Supplier;
 import de.hftStuttgart.hik.model.SupplierOrder;
 import de.hftStuttgart.hik.utilities.SupplierOrderUtil;
+import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -46,7 +48,6 @@ public class CostsController {
 	@FXML
 	private ComboBox<String> supplierCombobox;
 
-	private Main main;
 	private ObservableList<SupplierOrder> supplierOrderListInTime = FXCollections.observableArrayList();
 	private ObservableList<SupplierOrder> supplierOrderListInTimeAndSupplier = FXCollections.observableArrayList();
 	private ObservableList<SupplierOrder> supplierOrderList = FXCollections.observableArrayList();
@@ -109,7 +110,12 @@ public class CostsController {
 
 	public void setSupplierComboBox(int index) {
 		for (SupplierOrder supOrder : supplierOrderListInTime) {
-			String supplierName = main.getSupplierData().get((supOrder.getSupplierObject().getId()).intValue()-1).getSupplierCompanyName();
+			String supplierName = "";
+			for(Supplier sup : SupplierUtil.loadAllSuppliers()){
+				if(supOrder.getSupplierObject().getId() == sup.getId()){
+					 supplierName = supOrder.getSupplierObject().getSupplierCompanyName();
+				}
+			}
 			if (!supplier.contains("Alle")) {
 				supplier.add("Alle");
 			}
@@ -159,7 +165,6 @@ public class CostsController {
 	}
 
 	public void setMainApp(Main main) {
-		this.main = main;
 		supplierOrderList = SupplierOrderUtil.loadAllOrdersWhereStatusSucceeded();
 		loadSupplierOrders("10 Tage");
 	}

@@ -4,7 +4,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 
 import de.hftStuttgart.hik.application.Main;
+import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.CustomerOrder;
+import de.hftStuttgart.hik.utilities.CustomerUtil;
 import de.hftStuttgart.hik.utilities.OrderUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -46,7 +48,6 @@ public class IncomeController {
 	@FXML
 	private ComboBox<String> plzCombobox;
 
-	private Main main;
 	private ObservableList<CustomerOrder> customerOrderListInTime = FXCollections.observableArrayList();
 	private ObservableList<CustomerOrder> customerOrderListInTimeAndPlz = FXCollections.observableArrayList();
 	private ObservableList<CustomerOrder> customerOrderList = FXCollections.observableArrayList();
@@ -55,8 +56,12 @@ public class IncomeController {
 
 	public void setPlzComboBox(int index) {
 		for (CustomerOrder cusOrder : customerOrderListInTime) {
-			String plzInt = String
-					.valueOf(main.getCustomerData().get((int) cusOrder.getCustomer()-1).getCustomerAdressPostIndex());
+			String plzInt = "";
+			for(Customer cus : CustomerUtil.loadAllCustomers()){
+				if(cusOrder.getCustomerObject().getId() == cus.getId()){
+					 plzInt = String.valueOf(cusOrder.getCustomerObject().getCustomerAdressPostIndex());
+				}
+			}
 			if (!plz.contains("Alle")) {
 				plz.add("Alle");
 			}
@@ -92,7 +97,7 @@ public class IncomeController {
 		orderAmount.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("amount"));
 		orderArt.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("itemNumb"));
 		orderTotalPrice.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("sumPrice"));
-		customerNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("customer"));
+		customerNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("customerNumber"));
 		orderTax.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("tax"));
 		customerOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	}
@@ -103,7 +108,6 @@ public class IncomeController {
 	}
 
 	public void setMainApp(Main main) {
-		this.main = main;
 		customerOrderList = OrderUtil.loadAllOrdersWhereStatusSucceeded();
 		loadOrders("10 Tage");
 	}

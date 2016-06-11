@@ -111,6 +111,10 @@ public class CustomerOrder {
 	public long getCustomer() {
 		return customer.getId();
 	}
+	
+	public int getCustomerNumber() {
+		return customer.getCustomerNumber();
+	}
 
 	public Customer getCustomerObject(){
 		return customer;
