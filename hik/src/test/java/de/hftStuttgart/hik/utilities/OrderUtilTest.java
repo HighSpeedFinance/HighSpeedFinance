@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import de.hftStuttgart.hik.TesHelper;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.model.Status;
@@ -18,23 +19,16 @@ import de.hftStuttgart.hik.model.SupplierOrder;
 
 
 public class OrderUtilTest {
-  CustomerOrder order;
-  Customer customer;
-	
+ private CustomerOrder order= new CustomerOrder();
+  
+ @BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+		DatabaseConnectionUtil.getEm();
+	}
 
 	@Before
 	public void setUp() throws Exception {
-		order = new CustomerOrder();
-		order.setAmount(2);
-		order.setCustomer(customer);
-		order.setDescription("Rechner");
-		order.setItemNumb(3567);
-		order.setOrderNumber(12345);
-		order.setStatus(Status.ENABLED);
-		order.setSumPrice(1000);
-		order.setTax(10.3);
-		order.setUnitPrice(500);
-		order.setId(2147483648L);
+		order=TesHelper.cOrder;
 		
 		
 		
@@ -65,16 +59,10 @@ public class OrderUtilTest {
 
 	@Test
 	public void testAddOrder() {
-		CustomerOrder addedOrder = null;
-	     OrderUtil.addOrder(order);
-		List<CustomerOrder> orders = OrderUtil.loadAllOrders();
-		for (CustomerOrder ord : orders )
-		{
-			if(ord.getId().equals(order.getId())){
-				addedOrder=ord;
-		}
-		Assert.assertTrue(order.equals(addedOrder));
-	}}
+		OrderUtil.addOrder(order);
+		TesHelper.cusOList=OrderUtil.loadAllOrders();
+		Assert.assertTrue(TesHelper.cusOList.contains(order));
+	}
 
 	@Test
 	public void testEditOrder() {
@@ -94,17 +82,9 @@ public class OrderUtilTest {
 
 	@Test
 	public void testDeleteOrder() {
-		CustomerOrder deletedOrder = null;
-		OrderUtil.addOrder(order);
 		OrderUtil.deleteOrder(order);
-		List<CustomerOrder> orders = OrderUtil.loadAllOrders();
-		for (CustomerOrder ord : orders )
-		{
-			if(ord.getId().equals(order.getId())){
-				deletedOrder=ord;
-		}
-		Assert.assertTrue(order.equals(deletedOrder));
-	}
+		TesHelper.cusOList=OrderUtil.loadAllOrders();
+		Assert.assertTrue(!TesHelper.cusOList.contains(order));
 	}
 
 }

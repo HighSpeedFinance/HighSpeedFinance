@@ -12,6 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Ignore;
 import org.junit.Test;
 
+import de.hftStuttgart.hik.TesHelper;
 import de.hftStuttgart.hik.model.Status;
 import de.hftStuttgart.hik.model.Supplier;
 import de.hftStuttgart.hik.model.SupplierOrder;
@@ -19,37 +20,22 @@ import javafx.collections.ObservableList;
 
 public class SupplierOrderUtilTest {
 	private static Supplier supplier = new Supplier();
-	private SupplierOrder order = new SupplierOrder();
-	//private Status status;
-	
-	private static DatabaseConnectionUtil dbc;
+	private static SupplierOrder order = new SupplierOrder();
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		DatabaseConnectionUtil.getEm();
-		
-		List<Supplier> listSup=SupplierUtil.loadAllSuppliers();
-		supplier=listSup.get(0);
-		Assert.assertTrue(supplier!=null);
-		
+
+		List<Supplier> listSup = SupplierUtil.loadAllSuppliers();
+		supplier = listSup.get(0);
+		Assert.assertTrue(supplier != null);
+
 	}
 
 	@Before
 	public void setUp() throws Exception {
 
-		
-		order.setOrderNumber(5);
-		order.setAmount(4);
-		order.setDate("10.02.2016");
-		order.setDescription("Rechner fuer Buchhaltung");
-		
-		order.setItemNumb(0603);
-		order.setSumPrice(4569);
-		order.setStatus(Status.ENABLED);
-
-		order.setTax(10.3);
-		order.setSupplier(supplier);
-		order.setUnitPrice(1000);
+		order = TesHelper.sOrder;
 
 	}
 
@@ -92,14 +78,9 @@ public class SupplierOrderUtilTest {
 
 	@Test
 	public void testAddOrder() {
-		SupplierOrder addedOrder = null;
 		SupplierOrderUtil.addOrder(order);
-		List<SupplierOrder> orders = SupplierOrderUtil.loadAllOrders();
-		for (SupplierOrder ord : orders) {
-			if (ord.getId().equals(order.getId()))
-				addedOrder = ord;
-		}
-		Assert.assertTrue(order.equals(addedOrder));
+		TesHelper.supOList=SupplierOrderUtil.loadAllOrders();
+		Assert.assertTrue(TesHelper.supOList.contains(order));
 	}
 
 	@Test
@@ -115,18 +96,13 @@ public class SupplierOrderUtilTest {
 		}
 		Assert.assertTrue(order.getSumPrice() == editedOrder.getSumPrice());
 	}
-@Ignore
+
+	@Ignore
 	@Test
 	public void testDeleteOrder() {
-		SupplierOrder deletedOrder = null;
-		SupplierOrderUtil.addOrder(order);
 		SupplierOrderUtil.deleteOrder(order);
-		List<SupplierOrder> orders = SupplierOrderUtil.loadAllOrders();
-		for (SupplierOrder ord : orders) {
-			if (ord.getId().equals(order.getId()))
-				deletedOrder = ord;
-		}
-		Assert.assertTrue(order.equals(deletedOrder));
+		TesHelper.supOList=SupplierOrderUtil.loadAllOrders();
+		Assert.assertTrue(!TesHelper.supOList.contains(order));
 	}
 
 }
