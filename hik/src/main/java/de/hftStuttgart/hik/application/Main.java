@@ -63,13 +63,13 @@ public class Main extends Application {
 		this.primaryStage.setTitle("HighSpeed-Finance");
 		this.primaryStage.setResizable(false);
 		try {
-			this.primaryStage.getIcons().add(new Image("/main/java/de/hftStuttgart/hik/pics/Icon_icon.png"));
+			this.primaryStage.getIcons().add(new Image("/de/hftStuttgart/hik/pics/Icon_icon.png"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(Main.class.getResource("/main/java/de/hftStuttgart/hik/view/MenuBar.fxml"));
+			loader = new FXMLLoader(Main.class.getResource("/view/MenuBar.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -94,7 +94,7 @@ public class Main extends Application {
 		FXMLLoader loader = null;
 		try {
 			loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/TabViewCustomerSupplier.fxml"));
+					getClass().getResource("/view/TabViewCustomerSupplier.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -116,7 +116,7 @@ public class Main extends Application {
 		FXMLLoader loader = null;
 		try {
 			loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/TabViewCustomerSupplier.fxml"));
+					getClass().getResource("/view/TabViewCustomerSupplier.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -139,7 +139,7 @@ public class Main extends Application {
 		FXMLLoader loader = null;
 		try {
 			loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/NewCustomersAndSuppliers.fxml"));
+					getClass().getResource("/view/NewCustomersAndSuppliers.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -159,7 +159,7 @@ public class Main extends Application {
 		TabPane myPane;
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/ShowNewOrders.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/ShowNewOrders.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -189,7 +189,7 @@ public class Main extends Application {
 		FXMLLoader loader = null;
 		try {
 			loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/NavigationBarCustomer.fxml"));
+					getClass().getResource("/view/NavigationBarCustomer.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -213,7 +213,7 @@ public class Main extends Application {
 		FXMLLoader loader = null;
 		try {
 			loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/NavigationBarSupplier.fxml"));
+					getClass().getResource("/view/NavigationBarSupplier.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -231,7 +231,7 @@ public class Main extends Application {
 	public void showCustomerOrder(Customer customer) {
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/CustomerOrder.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/CustomerOrder.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -265,7 +265,7 @@ public class Main extends Application {
 	public void showSupplierOrder(Supplier supplier) {
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/SupplierOrder.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/SupplierOrder.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -301,7 +301,7 @@ public class Main extends Application {
 		FXMLLoader loader = null;
 		try {
 			loader = new FXMLLoader(getClass()
-					.getResource("/main/java/de/hftStuttgart/hik/view/CustomerAndSupplierOrderOverview.fxml"));
+					.getResource("/view/CustomerAndSupplierOrderOverview.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -331,7 +331,7 @@ public class Main extends Application {
 		FXMLLoader loader = null;
 		try {
 			loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/OpenCustomerAndSupplierOrders.fxml"));
+					getClass().getResource("/view/OpenCustomerAndSupplierOrders.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -353,7 +353,7 @@ public class Main extends Application {
 		AnchorPane anchorPane = null;
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/Income.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/Income.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -373,7 +373,7 @@ public class Main extends Application {
 		AnchorPane anchorPane = null;
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/Costs.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/Costs.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -393,7 +393,7 @@ public class Main extends Application {
 		AnchorPane anchorPane = null;
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/AnnualAccounts.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/AnnualAccounts.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -420,7 +420,7 @@ public class Main extends Application {
 		AnchorPane anchorPane = null;
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/Help.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/Help.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -440,7 +440,7 @@ public class Main extends Application {
 		FXMLLoader loader = null;
 		try {
 			loader = new FXMLLoader(getClass()
-					.getResource("/main/java/de/hftStuttgart/hik/view/SupplierOrderEditWithSupplierDialog.fxml"));
+					.getResource("/view/SupplierOrderEditWithSupplierDialog.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -470,7 +470,7 @@ public class Main extends Application {
 		FXMLLoader loader = null;
 		try {
 			loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/SupplierOrderEditDialog.fxml"));
+					getClass().getResource("/view/SupplierOrderEditDialog.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -499,7 +499,7 @@ public class Main extends Application {
 	public boolean showOrderEditDialog(CustomerOrder customerOrder) {
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(getClass().getResource("/main/java/de/hftStuttgart/hik/view/OrderEditDialog.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/OrderEditDialog.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -529,7 +529,7 @@ public class Main extends Application {
 		FXMLLoader loader = null;
 		try {
 			loader = new FXMLLoader(
-					getClass().getResource("/main/java/de/hftStuttgart/hik/view/OrderEditWithCustomerDialog.fxml"));
+					getClass().getResource("/view/OrderEditWithCustomerDialog.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}

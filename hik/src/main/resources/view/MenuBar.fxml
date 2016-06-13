@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.MenuBarController">
+<BorderPane cacheShape="false" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="de.hftStuttgart.hik.controller.MenuBarController">
    <top>
       <AnchorPane prefHeight="118.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
          <children>
@@ -37,7 +37,7 @@
                         <Font size="14.0" />
                      </font>
                   </Button>
-                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" style="-fx-background-color: transparent;" text="Hilfe" onAction="#showHelp">
+                  <Button maxHeight="1.7976931348623157E308" mnemonicParsing="false" prefWidth="80.0" onAction="#showHelp" style="-fx-background-color: transparent;" text="Hilfe">
                      <font>
                         <Font size="14.0" />
                      </font>

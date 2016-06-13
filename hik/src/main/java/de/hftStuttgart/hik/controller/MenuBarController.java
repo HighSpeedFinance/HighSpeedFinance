@@ -15,7 +15,7 @@ public class MenuBarController {
 
 	@FXML
 	private void initialize() {
-		imageView.setImage(new Image("/main/java/de/hftStuttgart/hik/pics/Icon_Hahn.png"));
+		imageView.setImage(new Image("/de/hftStuttgart/hik/pics/Icon_Hahn.png"));
 	}
 	
 	@FXML
