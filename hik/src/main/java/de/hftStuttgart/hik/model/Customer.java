@@ -12,33 +12,82 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+/**
+ * The Class Customer. Functions as template for the Database and shows
+ * relationships between the Class Customer and CustomerOrder and Customer and
+ * PostAdress
+ *
+ */
 @Entity
 public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
 	private int customerNumber;
+
 	private String customerCompanyName;
+
 	private String customerContactPersonFirstName;
+
 	private String customerContactPersonLastName;
+
 	private String customerPhoneNumber;
+
 	private String customerEmail;
+
 	private String customerFax;
+
 	private String customerTitel;
+
 	private String addedDate;
 
+	/**
+	 * The orders. Customer has a OneToMany Relatioship to CustomerOrder. CascadeType
+	 * means, that all Relationships will be deleted by deleting the Customer Object
+	 */
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	private List<CustomerOrder> orders;
 
+	/**
+	 * The customer adress. Customer has a ManyToOne Relationship to PostAdress
+	 */
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "postAdress_id")
 	private PostAdress customerAdress;
 
+	/**
+	 * Instantiates a new customer.
+	 */
 	public Customer() {
 
 	}
 
+	/**
+	 * Instantiates a new customer.
+	 *
+	 * @param customerNumber
+	 *            the customer number
+	 * @param customerCompanyName
+	 *            the customer company name
+	 * @param customerContactPersonFirstName
+	 *            the customer contact person first name
+	 * @param customerContactPersonLastName
+	 *            the customer contact person last name
+	 * @param customerAdress
+	 *            the customer adress
+	 * @param customerPhoneNumber
+	 *            the customer phone number
+	 * @param customerEmail
+	 *            the customer email
+	 * @param customerFax
+	 *            the customer fax
+	 * @param customerTitel
+	 *            the customer titel
+	 * @param date
+	 *            the date
+	 */
 	public Customer(final int customerNumber, final String customerCompanyName,
 			final String customerContactPersonFirstName, final String customerContactPersonLastName,
 			final PostAdress customerAdress, final String customerPhoneNumber, final String customerEmail,

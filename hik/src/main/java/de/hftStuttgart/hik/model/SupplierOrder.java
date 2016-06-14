@@ -7,30 +7,70 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+/**
+ * The Class SupplierOrder. The Class SupplierOrder. Functions as template for
+ * the Database and shows relationships between the Class SupplierOrder and
+ * Supplier
+ */
 @Entity
 public class SupplierOrder {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	private int orderNumber;
+
 	private String date;
+
 	private int supId;
+
 	private Status status;
+
 	private int itemNumb;
+
 	private String description;
+
 	private double unitPrice;
+
 	private int amount;
+
 	private double sumPrice;
+
 	private double tax;
 
+	/** The supplier. SupplierOrder has a ManyToOne Relatioship to Supplier */
 	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Supplier.class)
 	private Supplier supplier;
 
+	/**
+	 * Instantiates a new supplier order.
+	 */
 	public SupplierOrder() {
 
 	}
 
-	public SupplierOrder(final String date, final int order_nr,  final Status status, final int itemNumb,
+	/**
+	 * Instantiates a new supplier order.
+	 *
+	 * @param date
+	 *            the date
+	 * @param order_nr
+	 *            the order_nr
+	 * @param status
+	 *            the status
+	 * @param itemNumb
+	 *            the item numb
+	 * @param description
+	 *            the description
+	 * @param unitPrice
+	 *            the unit price
+	 * @param amount
+	 *            the amount
+	 * @param tax
+	 *            the tax
+	 */
+	public SupplierOrder(final String date, final int order_nr, final Status status, final int itemNumb,
 			final String description, final double unitPrice, final int amount, final double tax) {
 
 		this.date = date;
@@ -40,7 +80,7 @@ public class SupplierOrder {
 		this.description = description;
 		this.unitPrice = unitPrice;
 		this.amount = amount;
-		this.sumPrice = (unitPrice * ((tax/100)+1)) * amount;
+		this.sumPrice = (unitPrice * ((tax / 100) + 1)) * amount;
 	}
 
 	public Long getId() {
@@ -70,13 +110,17 @@ public class SupplierOrder {
 	public Status getStatus() {
 		return status;
 	}
-	
-	public String getStatusString(){
-		switch(this.status.toString()){
-		case "SUCCEEDED": return "Bezahlt";
-		case "PENDING": return "Offen";
-		case "ENABLED" : return "Freigegeben";
-		default: return " ";
+
+	public String getStatusString() {
+		switch (this.status.toString()) {
+		case "SUCCEEDED":
+			return "Bezahlt";
+		case "PENDING":
+			return "Offen";
+		case "ENABLED":
+			return "Freigegeben";
+		default:
+			return " ";
 		}
 	}
 
@@ -115,7 +159,7 @@ public class SupplierOrder {
 	public void setAmount(int amount) {
 		this.amount = amount;
 	}
-	
+
 	public long getSupplierId() {
 		return supplier.getId();
 	}
@@ -147,20 +191,19 @@ public class SupplierOrder {
 	public void setSumPrice(double sumPrice) {
 		this.sumPrice = sumPrice;
 	}
-	
+
 	public double getTax() {
 		return tax;
 	}
 
 	public void setTax(double tax) {
 		this.tax = tax;
-		this.sumPrice = (this.unitPrice * ((tax/100)+1)) * this.amount;
+		this.sumPrice = (this.unitPrice * ((tax / 100) + 1)) * this.amount;
 	}
 
 	@Override
 	public String toString() {
 		return String.valueOf(Math.round(100.0 * sumPrice) / 100.0);
-	}	
-	
-	
+	}
+
 }

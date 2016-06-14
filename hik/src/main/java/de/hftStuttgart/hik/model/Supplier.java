@@ -13,35 +13,89 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+/**
+ * The Class Supplier. Functions as template for the Database and shows
+ * relationships between the Class Supplier and SupplierOrder, Supplier and
+ * PostAdress and Supplier and PaymentDetails
+ *
+ */
 @Entity
 public class Supplier {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
 	private int supplierNumber;
+
 	private String supplierCompanyName;
+
 	private String supplierContactPersonFirstName;
+
 	private String supplierContactPersonLastName;
+
 	private String supplierPhoneNumber;
+
 	private String supplierEmail;
+
 	private String supplierFax;
+
 	private String addedDate;
-	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="paymentDetails_id")
+
+	/**
+	 * The supplier payment details. Supplier has a OneToMany Relatioship to
+	 * PaymentDetails.
+	 */
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "paymentDetails_id")
 	private PaymentDetails supplierPaymentDetails;
 
-	@OneToMany(mappedBy = "supplier", cascade = CascadeType.REMOVE, fetch=FetchType.EAGER)
+	/**
+	 * The orders. Supplier has a OneToMany Relatioship to SupplierOrder.
+	 * CascadeType means, that all Relationships will be deleted by deleting the
+	 * Supplier Object
+	 */
+	@OneToMany(mappedBy = "supplier", cascade = CascadeType.REMOVE, fetch = FetchType.EAGER)
 	private List<SupplierOrder> orders;
-	
-	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="postAdress_id")
+
+	/**
+	 * The supplier adress.Supplier has a OneToMany Relatioship to
+	 * SupplierOrder.
+	 */
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "postAdress_id")
 	private PostAdress supplierAdress;
-	
+
+	/**
+	 * Instantiates a new supplier.
+	 */
 	public Supplier() {
 	}
 
+	/**
+	 * Instantiates a new supplier.
+	 *
+	 * @param supplierNumber
+	 *            the supplier number
+	 * @param supplierCompanyName
+	 *            the supplier company name
+	 * @param supplierContactPersonFirstName
+	 *            the supplier contact person first name
+	 * @param supplierContactPersonLastName
+	 *            the supplier contact person last name
+	 * @param supplierAdress
+	 *            the supplier adress
+	 * @param supplierPhoneNumber
+	 *            the supplier phone number
+	 * @param supplierEmail
+	 *            the supplier email
+	 * @param supplierFax
+	 *            the supplier fax
+	 * @param date
+	 *            the date
+	 * @param supplierPaymentDetails
+	 *            the supplier payment details
+	 */
 	public Supplier(final int supplierNumber, final String supplierCompanyName,
 			final String supplierContactPersonFirstName, final String supplierContactPersonLastName,
 			final PostAdress supplierAdress, final String supplierPhoneNumber, final String supplierEmail,
@@ -62,48 +116,49 @@ public class Supplier {
 	public PostAdress getSupplierAdress() {
 		return supplierAdress;
 
-}
-	public void setSupplierAdressStreet(String street){
+	}
+
+	public void setSupplierAdressStreet(String street) {
 		this.supplierAdress.setStreet(street);
 	}
-	
-	public void setSupplierAdressHouseNumber(int number){
-	this.supplierAdress.setHouseNumber(number);
+
+	public void setSupplierAdressHouseNumber(int number) {
+		this.supplierAdress.setHouseNumber(number);
 	}
-	
-	public void setSupplierAdressPostIndex(int index){
+
+	public void setSupplierAdressPostIndex(int index) {
 		this.supplierAdress.setPostIndex(index);
 	}
 
-	public void setSupplierAdressCity(String city){
+	public void setSupplierAdressCity(String city) {
 		this.supplierAdress.setCity(city);
 	}
-	
-	public void setSupplierAdressCountry(String country){
+
+	public void setSupplierAdressCountry(String country) {
 		this.supplierAdress.setCountry(country);
 	}
-	
+
 	public void setSupplierAdress(PostAdress supplierAdress) {
 		this.supplierAdress = supplierAdress;
 	}
-	
-	public String getSupplierAdressStreet(){
+
+	public String getSupplierAdressStreet() {
 		return this.supplierAdress.getStreet();
 	}
-	
-	public int getSupplierAdressHouseNumber(){
+
+	public int getSupplierAdressHouseNumber() {
 		return this.supplierAdress.getHouseNumber();
 	}
-	
-	public int getSupplierAdressPostIndex(){
+
+	public int getSupplierAdressPostIndex() {
 		return this.supplierAdress.getPostIndex();
 	}
 
-	public String getSupplierAdressCity(){
+	public String getSupplierAdressCity() {
 		return this.supplierAdress.getCity();
 	}
-	
-	public String getSupplierAdressCountry(){
+
+	public String getSupplierAdressCountry() {
 		return this.supplierAdress.getCountry();
 	}
 

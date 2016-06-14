@@ -7,24 +7,50 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class PaymentDetails. The Class PaymentDetails Functions as template for
+ * the Database and shows relationships between the Class PaymentDetails and
+ * Supplier
+ */
 @Entity
 public class PaymentDetails {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+
 	private String accountOwner;
+
 	private String bic;
+
 	private String iban;
+
 	private String creditInstitution;
-	
-	@OneToOne(fetch=FetchType.EAGER, mappedBy="supplierPaymentDetails")
+
+	@OneToOne(fetch = FetchType.EAGER, mappedBy = "supplierPaymentDetails")
 	private Supplier owner;
 
+	/**
+	 * Instantiates a new payment detail.
+	 */
 	public PaymentDetails() {
 
 	}
 
-	public PaymentDetails( final String accountOwner, final String bic, final String iban,
+	/**
+	 * Instantiates a new payment detail.
+	 *
+	 * @param accountOwner
+	 *            the account owner
+	 * @param bic
+	 *            the bic
+	 * @param iban
+	 *            the iban
+	 * @param creditInstitution
+	 *            the credit institution
+	 */
+	public PaymentDetails(final String accountOwner, final String bic, final String iban,
 			final String creditInstitution) {
 
 		this.accountOwner = accountOwner;

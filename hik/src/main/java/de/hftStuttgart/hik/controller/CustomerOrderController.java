@@ -12,34 +12,65 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CustomerOrderController.
+ */
 public class CustomerOrderController {
 
+	/** The customer order table. */
 	@FXML
 	private TableView<CustomerOrder> customerOrderTable;
+	
+	/** The order number. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderNumber;
+	
+	/** The order description. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderDescription;
+	
+	/** The customer id. */
 	@FXML
 	private TableColumn<CustomerOrder, String> customerID;
+	
+	/** The order status. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderStatus;
+	
+	/** The order date. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderDate;
+	
+	/** The order single price. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderSinglePrice;
+	
+	/** The order amount. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderAmount;
+	
+	/** The order total price. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderTotalPrice;
+	
+	/** The order art. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderArt;
+	
+	/** The order tax. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderTax;
 
+	/** The customer. */
 	private Customer customer;
+	
+	/** The main. */
 	private Main main;
 
+	/**
+	 * Initialize.
+	 */
 	@FXML
 	private void initialize() {
 		orderNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("orderNumber"));
@@ -55,6 +86,9 @@ public class CustomerOrderController {
 		customerOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	}
 
+	/**
+	 * Refresh customer order table.
+	 */
 	private void refreshCustomerOrderTable() {
 		int selectedIndex = customerOrderTable.getSelectionModel().getSelectedIndex();
 		customerOrderTable.setItems(null);
@@ -63,6 +97,9 @@ public class CustomerOrderController {
 		customerOrderTable.getSelectionModel().select(selectedIndex);
 	}
 
+	/**
+	 * Adds the customer order.
+	 */
 	@FXML
 	public void addCustomerOrder() {
 		CustomerOrder customerOrder = new CustomerOrder();
@@ -80,6 +117,9 @@ public class CustomerOrderController {
 		}
 	}
 
+	/**
+	 * Edits the customer order.
+	 */
 	@FXML
 	private void editCustomerOrder() {
 		CustomerOrder customerOrder = customerOrderTable.getSelectionModel().getSelectedItem();
@@ -98,15 +138,30 @@ public class CustomerOrderController {
 		}
 	}
 
+	/**
+	 * Sets the main app.
+	 *
+	 * @param mainApp the new main app
+	 */
 	public void setMainApp(Main mainApp) {
 		this.main = mainApp;
 		customerOrderTable.setItems(main.getCustomerOrderData());
 	}
 
+	/**
+	 * Gets the customer.
+	 *
+	 * @return the customer
+	 */
 	public Customer getCustomer() {
 		return customer;
 	}
 
+	/**
+	 * Sets the customer.
+	 *
+	 * @param customer the new customer
+	 */
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}

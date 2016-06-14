@@ -43,20 +43,42 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+
+/**
+ * The Class Main.
+ */
 public class Main extends Application {
 
+	/** The supplier data. */
 	private ObservableList<Supplier> supplierData = FXCollections.observableArrayList();
+	
+	/** The customer data. */
 	private ObservableList<Customer> customerData = FXCollections.observableArrayList();
+	
+	/** The customer order data. */
 	private ObservableList<CustomerOrder> customerOrderData = FXCollections.observableArrayList();
+	
+	/** The supplier order data. */
 	private ObservableList<SupplierOrder> supplierOrderData = FXCollections.observableArrayList();
 
+	/** The primary stage. */
 	private Stage primaryStage;
+	
+	/** The root layout. */
 	private BorderPane rootLayout;
 
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
 
+	/* (non-Javadoc)
+	 * @see javafx.application.Application#start(javafx.stage.Stage)
+	 */
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
@@ -89,6 +111,9 @@ public class Main extends Application {
 		showNavigationBarCustomer();
 	}
 
+	/**
+	 * Show customer and supplier overview.
+	 */
 	public void showCustomerAndSupplierOverview() {
 		TabPane myPane = null;
 		FXMLLoader loader = null;
@@ -111,6 +136,9 @@ public class Main extends Application {
 		controller.setTabSelected(0);
 	}
 
+	/**
+	 * Show supplier overview.
+	 */
 	public void showSupplierOverview() {
 		TabPane myPane;
 		FXMLLoader loader = null;
@@ -134,6 +162,11 @@ public class Main extends Application {
 		controller.setTabSelected(1);
 	}
 
+	/**
+	 * Show new customers and suppliers.
+	 *
+	 * @param selection the selection
+	 */
 	public void showNewCustomersAndSuppliers(int selection) {
 		TabPane myPane;
 		FXMLLoader loader = null;
@@ -155,6 +188,11 @@ public class Main extends Application {
 		controller.setTabSelected(selection);
 	}
 
+	/**
+	 * Show new orders.
+	 *
+	 * @param selection the selection
+	 */
 	public void showNewOrders(int selection) {
 		TabPane myPane;
 		FXMLLoader loader = null;
@@ -184,6 +222,9 @@ public class Main extends Application {
 		controller.setTabSelected(selection);
 	}
 
+	/**
+	 * Show navigation bar customer.
+	 */
 	public void showNavigationBarCustomer() {
 		AnchorPane anchorPane;
 		FXMLLoader loader = null;
@@ -208,6 +249,9 @@ public class Main extends Application {
 
 	}
 
+	/**
+	 * Show navigation bar supplier.
+	 */
 	public void showNavigationBarSupplier() {
 		AnchorPane anchorPane;
 		FXMLLoader loader = null;
@@ -228,6 +272,11 @@ public class Main extends Application {
 		controller.setMainApp(this);
 	}
 
+	/**
+	 * Show customer order.
+	 *
+	 * @param customer the customer
+	 */
 	public void showCustomerOrder(Customer customer) {
 		FXMLLoader loader = null;
 		try {
@@ -262,6 +311,11 @@ public class Main extends Application {
 		dialogStage.showAndWait();
 	}
 
+	/**
+	 * Show supplier order.
+	 *
+	 * @param supplier the supplier
+	 */
 	public void showSupplierOrder(Supplier supplier) {
 		FXMLLoader loader = null;
 		try {
@@ -296,6 +350,11 @@ public class Main extends Application {
 		dialogStage.showAndWait();
 	}
 
+	/**
+	 * Show customer and supplier order overview.
+	 *
+	 * @param selection the selection
+	 */
 	public void showCustomerAndSupplierOrderOverview(int selection) {
 		TabPane myPane = null;
 		FXMLLoader loader = null;
@@ -326,6 +385,11 @@ public class Main extends Application {
 		controller.setTabSelected(selection);
 	}
 
+	/**
+	 * Show open customer and supplier orders.
+	 *
+	 * @param selection the selection
+	 */
 	public void showOpenCustomerAndSupplierOrders(int selection) {
 		TabPane myPane = null;
 		FXMLLoader loader = null;
@@ -349,6 +413,9 @@ public class Main extends Application {
 		controller.setTabSelected(selection);
 	}
 
+	/**
+	 * Show income.
+	 */
 	public void showIncome() {
 		AnchorPane anchorPane = null;
 		FXMLLoader loader = null;
@@ -369,6 +436,9 @@ public class Main extends Application {
 		controller.setMainApp(this);
 	}
 
+	/**
+	 * Show costs.
+	 */
 	public void showCosts() {
 		AnchorPane anchorPane = null;
 		FXMLLoader loader = null;
@@ -389,6 +459,9 @@ public class Main extends Application {
 		controller.setMainApp(this);
 	}
 
+	/**
+	 * Show graphics.
+	 */
 	public void showGraphics() {
 		AnchorPane anchorPane = null;
 		FXMLLoader loader = null;
@@ -416,6 +489,9 @@ public class Main extends Application {
 		controller.setMainApp(this);
 	}
 	
+	/**
+	 * Show help.
+	 */
 	public void showHelp() {
 		AnchorPane anchorPane = null;
 		FXMLLoader loader = null;
@@ -436,6 +512,12 @@ public class Main extends Application {
 		controller.setMainApp(this);
 	}
 
+	/**
+	 * Show supplier order edit with supplier dialog.
+	 *
+	 * @param supplierOrder the supplier order
+	 * @return true, if successful
+	 */
 	public boolean showSupplierOrderEditWithSupplierDialog(SupplierOrder supplierOrder) {
 		FXMLLoader loader = null;
 		try {
@@ -466,6 +548,12 @@ public class Main extends Application {
 		return controller.isOkClicked();
 	}
 
+	/**
+	 * Show supplier order edit dialog.
+	 *
+	 * @param supplierOrder the supplier order
+	 * @return true, if successful
+	 */
 	public boolean showSupplierOrderEditDialog(SupplierOrder supplierOrder) {
 		FXMLLoader loader = null;
 		try {
@@ -496,6 +584,12 @@ public class Main extends Application {
 		return controller.isOkClicked();
 	}
 
+	/**
+	 * Show order edit dialog.
+	 *
+	 * @param customerOrder the customer order
+	 * @return true, if successful
+	 */
 	public boolean showOrderEditDialog(CustomerOrder customerOrder) {
 		FXMLLoader loader = null;
 		try {
@@ -525,6 +619,12 @@ public class Main extends Application {
 		return controller.isOkClicked();
 	}
 
+	/**
+	 * Show order edit with customer dialog.
+	 *
+	 * @param customerOrder the customer order
+	 * @return true, if successful
+	 */
 	public boolean showOrderEditWithCustomerDialog(CustomerOrder customerOrder) {
 		FXMLLoader loader = null;
 		try {
@@ -555,6 +655,9 @@ public class Main extends Application {
 		return controller.isOkClicked();
 	}
 
+	/**
+	 * Instantiates a new main.
+	 */
 	public Main() {
 		AlertUtil.programStart();
 		try {
@@ -567,30 +670,65 @@ public class Main extends Application {
 		}
 	}
 
+	/**
+	 * Gets the primary stage.
+	 *
+	 * @return the primary stage
+	 */
 	public Stage getPrimaryStage() {
 		return primaryStage;
 	}
 
+	/**
+	 * Gets the supplier data.
+	 *
+	 * @return the supplier data
+	 */
 	public ObservableList<Supplier> getSupplierData() {
 		return supplierData;
 	}
 
+	/**
+	 * Gets the customer data.
+	 *
+	 * @return the customer data
+	 */
 	public ObservableList<Customer> getCustomerData() {
 		return customerData;
 	}
 
+	/**
+	 * Gets the customer order data.
+	 *
+	 * @return the customer order data
+	 */
 	public ObservableList<CustomerOrder> getCustomerOrderData() {
 		return customerOrderData;
 	}
 
+	/**
+	 * Gets the supplier order data.
+	 *
+	 * @return the supplier order data
+	 */
 	public ObservableList<SupplierOrder> getSupplierOrderData() {
 		return supplierOrderData;
 	}
 
+	/**
+	 * Adds the customer order.
+	 *
+	 * @param customerOrder the customer order
+	 */
 	public void addCustomerOrder(CustomerOrder customerOrder) {
 		customerOrderData.add(customerOrder);
 	}
 
+	/**
+	 * Adds the supplier order.
+	 *
+	 * @param supplierOrder the supplier order
+	 */
 	public void addSupplierOrder(SupplierOrder supplierOrder) {
 		supplierOrderData.add(supplierOrder);
 	}

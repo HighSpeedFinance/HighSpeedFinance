@@ -23,81 +23,162 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class TabViewController.
+ */
 public class TabViewController {
+	
+	/** The customer table. */
 	@FXML
 	private TableView<Customer> customerTable;
+	
+	/** The customer number column. */
 	@FXML
 	private TableColumn<Customer, String> customerNumberColumn;
+	
+	/** The customer name column. */
 	@FXML
 	private TableColumn<Customer, String> customerNameColumn;
+	
+	/** The customer heading. */
 	@FXML
 	private Label customerHeading;
+	
+	/** The customer titel. */
 	@FXML
 	private Label customerTitel;
+	
+	/** The customer name. */
 	@FXML
 	private Label customerName;
+	
+	/** The customer street. */
 	@FXML
 	private Label customerStreet;
+	
+	/** The customer plz. */
 	@FXML
 	private Label customerPLZ;
+	
+	/** The customer country. */
 	@FXML
 	private Label customerCountry;
+	
+	/** The customer phone. */
 	@FXML
 	private Label customerPhone;
+	
+	/** The customer fax. */
 	@FXML
 	private Label customerFax;
+	
+	/** The customer mail. */
 	@FXML
 	private Label customerMail;
+	
+	/** The supplier table. */
 	@FXML
 	private TableView<Supplier> supplierTable;
+	
+	/** The supplier number column. */
 	@FXML
 	private TableColumn<Supplier, String> supplierNumberColumn;
+	
+	/** The supplier name column. */
 	@FXML
 	private TableColumn<Supplier, String> supplierNameColumn;
+	
+	/** The supplier company name label. */
 	@FXML
 	private Label supplierCompanyNameLabel;
+	
+	/** The supplier contact person label. */
 	@FXML
 	private Label supplierContactPersonLabel;
+	
+	/** The supplier street label. */
 	@FXML
 	private Label supplierStreetLabel;
+	
+	/** The supplier postal code city label. */
 	@FXML
 	private Label supplierPostalCodeCityLabel;
+	
+	/** The supplier phone number label. */
 	@FXML
 	private Label supplierPhoneNumberLabel;
+	
+	/** The supplier email label. */
 	@FXML
 	private Label supplierEmailLabel;
+	
+	/** The supplier name label. */
 	@FXML
 	private Label supplierNameLabel;
+	
+	/** The supplier company label. */
 	@FXML
 	private Label supplierCompanyLabel;
+	
+	/** The supplier fax label. */
 	@FXML
 	private Label supplierFaxLabel;
+	
+	/** The supplier account owner label. */
 	@FXML
 	private Label supplierAccountOwnerLabel;
+	
+	/** The supplier bic label. */
 	@FXML
 	private Label supplierBICLabel;
+	
+	/** The supplier credit label. */
 	@FXML
 	private Label supplierCreditLabel;
+	
+	/** The supplier iban label. */
 	@FXML
 	private Label supplierIBANLabel;
+	
+	/** The search customer. */
 	@FXML
 	private TextField searchCustomer;
+	
+	/** The search supplier. */
 	@FXML
 	private TextField searchSupplier;
+	
+	/** The customer tab. */
 	@FXML
 	private Tab customerTab;
+	
+	/** The supplier tab. */
 	@FXML
 	private Tab supplierTab;
+	
+	/** The tab pane. */
 	@FXML
 	private TabPane tabPane;
 
+	/** The main. */
 	private Main main;
+	
+	/** The customer list. */
 	private ObservableList<Customer> customerList = FXCollections.observableArrayList();
+	
+	/** The supplier list. */
 	private ObservableList<Supplier> supplierList = FXCollections.observableArrayList();
 
+	/**
+	 * Instantiates a new tab view controller.
+	 */
 	public TabViewController() {
 	}
 
+	/**
+	 * Initialize.
+	 */
 	@FXML
 	private void initialize() {
 		supplierNumberColumn.setCellValueFactory(new PropertyValueFactory<Supplier, String>("supplierNumber"));
@@ -144,6 +225,9 @@ public class TabViewController {
 		});
 	}
 
+	/**
+	 * Show bestellung.
+	 */
 	@FXML
 	private void showBestellung() {
 		if (customerTable.getSelectionModel().getSelectedItem() != null)
@@ -157,6 +241,9 @@ public class TabViewController {
 		}
 	}
 
+	/**
+	 * Show bestellung supplier.
+	 */
 	@FXML
 	private void showBestellungSupplier() {
 		if (supplierTable.getSelectionModel().getSelectedItem() != null)
@@ -170,6 +257,9 @@ public class TabViewController {
 		}
 	}
 
+	/**
+	 * Search customer.
+	 */
 	@FXML
 	public void searchCustomer() {
 		customerList.clear();
@@ -194,6 +284,9 @@ public class TabViewController {
 		}
 	}
 
+	/**
+	 * Search suppliers.
+	 */
 	@FXML
 	public void searchSuppliers() {
 		supplierList.clear();
@@ -218,6 +311,11 @@ public class TabViewController {
 		}
 	}
 
+	/**
+	 * Show customer details.
+	 *
+	 * @param customer the customer
+	 */
 	private void showCustomerDetails(Customer customer) {
 		if (customer != null) {
 			customerHeading.setText(
@@ -246,6 +344,11 @@ public class TabViewController {
 		}
 	}
 
+	/**
+	 * Show supplier details.
+	 *
+	 * @param supplier the supplier
+	 */
 	private void showSupplierDetails(Supplier supplier) {
 		if (supplier != null) {
 			supplierPhoneNumberLabel.setText(supplier.getSupplierPhoneNumber());
@@ -279,12 +382,22 @@ public class TabViewController {
 		}
 	}
 
+	/**
+	 * Sets the main app.
+	 *
+	 * @param mainApp the new main app
+	 */
 	public void setMainApp(Main mainApp) {
 		this.main = mainApp;
 		supplierTable.setItems(mainApp.getSupplierData());
 		customerTable.setItems(mainApp.getCustomerData());
 	}
 
+	/**
+	 * Sets the tab selected.
+	 *
+	 * @param selection the new tab selected
+	 */
 	public void setTabSelected(int selection) {
 		SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
 		if (selection == 0) {
@@ -294,6 +407,9 @@ public class TabViewController {
 		}
 	}
 
+	/**
+	 * Customer is selected.
+	 */
 	@FXML
 	public void customerIsSelected() {
 		try {
@@ -303,6 +419,9 @@ public class TabViewController {
 		}
 	}
 
+	/**
+	 * Supplier is selected.
+	 */
 	@FXML
 	public void supplierIsSelected() {
 		main.showNavigationBarSupplier();

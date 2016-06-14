@@ -7,30 +7,71 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
+/**
+ * The Class CustomerOrder. Functions as template for the Database and shows
+ * relationships between the Class CustomerOrder and Customer
+ *
+ */
+
 @Entity
 public class CustomerOrder {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
+
 	private int orderNumber;
+
 	private String date;
+
 	private Status status;
+
 	private int itemNumb;
+
 	private String description;
+
 	private double unitPrice;
+
 	private int amount;
+
 	private double sumPrice;
+
 	private double tax;
-	
-	@ManyToOne(fetch=FetchType.EAGER, targetEntity=Customer.class)
+
+	/**
+	 * The customer. CustomerOrder has a ManyToOne Relatioship to Customer.
+	 */
+	@ManyToOne(fetch = FetchType.EAGER, targetEntity = Customer.class)
 	private Customer customer;
 
+	/**
+	 * Instantiates a new customer order.
+	 */
 	public CustomerOrder() {
 
 	}
 
-	public CustomerOrder(final String date, final int order_nr,final Status status, final int itemNumb,
+	/**
+	 * Instantiates a new customer order.
+	 *
+	 * @param date
+	 *            the date
+	 * @param order_nr
+	 *            the order_nr
+	 * @param status
+	 *            the status
+	 * @param itemNumb
+	 *            the item numb
+	 * @param description
+	 *            the description
+	 * @param unitPrice
+	 *            the unit price
+	 * @param amount
+	 *            the amount
+	 * @param tax
+	 *            the tax
+	 */
+	public CustomerOrder(final String date, final int order_nr, final Status status, final int itemNumb,
 			final String description, final double unitPrice, final int amount, final double tax) {
 
 		this.date = date;
@@ -40,7 +81,7 @@ public class CustomerOrder {
 		this.description = description;
 		this.unitPrice = unitPrice;
 		this.amount = amount;
-		this.sumPrice = (unitPrice * ((tax/100)+1)) * amount;
+		this.sumPrice = (unitPrice * ((tax / 100) + 1)) * amount;
 	}
 
 	public Long getId() {
@@ -62,13 +103,17 @@ public class CustomerOrder {
 	public Status getStatus() {
 		return status;
 	}
-	
-	public String getStatusString(){
-		switch(this.status.toString()){
-		case "SUCCEEDED": return "Bezahlt";
-		case "PENDING": return "Offen";
-		case "ENABLED" : return "Freigegeben";
-		default: return " ";
+
+	public String getStatusString() {
+		switch (this.status.toString()) {
+		case "SUCCEEDED":
+			return "Bezahlt";
+		case "PENDING":
+			return "Offen";
+		case "ENABLED":
+			return "Freigegeben";
+		default:
+			return " ";
 		}
 	}
 
@@ -111,15 +156,15 @@ public class CustomerOrder {
 	public long getCustomer() {
 		return customer.getId();
 	}
-	
+
 	public int getCustomerNumber() {
 		return customer.getCustomerNumber();
 	}
 
-	public Customer getCustomerObject(){
+	public Customer getCustomerObject() {
 		return customer;
 	}
-	
+
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
@@ -146,7 +191,7 @@ public class CustomerOrder {
 
 	public void setTax(double tax) {
 		this.tax = tax;
-		this.sumPrice = (this.unitPrice * ((tax/100)+1)) * this.amount;
+		this.sumPrice = (this.unitPrice * ((tax / 100) + 1)) * this.amount;
 	}
 
 	@Override
