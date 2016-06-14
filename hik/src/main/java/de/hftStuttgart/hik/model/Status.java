@@ -1,16 +1,11 @@
 package de.hftStuttgart.hik.model;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Enum Status.
+ * The Enum Status. Provides a Status for CustomerOrder and Supplier. The Status
+ * Enabled can not be used for CustomerOrder
  */
 public enum Status {
-	 
- 	/** The succeeded. */
- 	SUCCEEDED,
-/** The pending. */
-PENDING,
-/** The enabled. */
-ENABLED;
-	
+
+	SUCCEEDED, PENDING, ENABLED;
+
 }

@@ -43,7 +43,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class Main.
  */
