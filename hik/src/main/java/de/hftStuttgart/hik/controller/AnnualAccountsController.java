@@ -24,28 +24,60 @@ import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
 import javafx.util.converter.LocalDateStringConverter;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class AnnualAccountsController.
+ */
 public class AnnualAccountsController {
 
+	/** The result income cost. */
 	@FXML
 	private Label resultIncomeCost;
+	
+	/** The cost. */
 	@FXML
 	private ListView<SupplierOrder> cost;
+	
+	/** The income. */
 	@FXML
 	private ListView<CustomerOrder> income;
+	
+	/** The month choice box. */
 	@FXML
 	private ChoiceBox<String> monthChoiceBox;
 
+	/** The bar chart. */
 	@SuppressWarnings("rawtypes")
 	@FXML
 	private BarChart barChart;
+	
+	/** The customer order list. */
 	private ObservableList<CustomerOrder> customerOrderList = FXCollections.observableArrayList();
+	
+	/** The supplier order list. */
 	private ObservableList<SupplierOrder> supplierOrderList = FXCollections.observableArrayList();
+	
+	/** The customer order listin time. */
 	private ObservableList<CustomerOrder> customerOrderListinTime = FXCollections.observableArrayList();
+	
+	/** The supplier order listin time. */
 	private ObservableList<SupplierOrder> supplierOrderListinTime = FXCollections.observableArrayList();
+	
+	/** The customer order list month. */
 	private ObservableList<CustomerOrder> customerOrderListMonth = FXCollections.observableArrayList();
+	
+	/** The supplier order list month. */
 	private ObservableList<SupplierOrder> supplierOrderListMonth = FXCollections.observableArrayList();
+	
+	/** The summe einnahmen. */
 	private double summeEinnahmen = 0;
+	
+	/** The summe ausgaben. */
 	private double summeAusgaben = 0;
+	
+	/**
+	 * Initialize.
+	 */
 	@FXML
 	private void initialize() {
 		setMonthChoiceBox();
@@ -57,11 +89,17 @@ public class AnnualAccountsController {
 		});
 	}
 
+	/**
+	 * Sets the month choice box.
+	 */
 	public void setMonthChoiceBox(){
 		monthChoiceBox.setItems(FXCollections.observableArrayList("Alle", "Januar", "Februar", "März", "April", "Mai", "Juni","Juli","August","September", "Oktober", "November", "Dezember"));
 		monthChoiceBox.getSelectionModel().select(0);
 	}
 	
+	/**
+	 * Load bar chart.
+	 */
 	@SuppressWarnings("unchecked")
 	private void loadBarChart() {
 		new CategoryAxis();
@@ -83,6 +121,9 @@ public class AnnualAccountsController {
 		barChart.setData(barChartData);
 	}
 
+	/**
+	 * Sets the result income label.
+	 */
 	public void setResultIncomeLabel() {
 		double result = Math.round(100.0 * (summeEinnahmen - summeAusgaben)) / 100.0;
 		resultIncomeCost.setText(String.valueOf(result));
@@ -91,6 +132,11 @@ public class AnnualAccountsController {
 		}
 	}
 
+	/**
+	 * Sets the main app.
+	 *
+	 * @param main the new main app
+	 */
 	public void setMainApp(Main main) {
 		customerOrderList.addAll(OrderUtil.loadAllOrdersWhereStatusSucceeded());
 		supplierOrderList.addAll(SupplierOrderUtil.loadAllOrdersWhereStatusSucceeded());
@@ -100,6 +146,9 @@ public class AnnualAccountsController {
 		loadOrdersMonth(monthChoiceBox.getSelectionModel().getSelectedItem());
 	}
 
+	/**
+	 * Sets the list in time.
+	 */
 	public void setListInTime() {
 		ZoneId zone1 = ZoneId.of("Europe/Berlin");
 		LocalDate local = LocalDate.now(zone1);
@@ -124,6 +173,11 @@ public class AnnualAccountsController {
 		}
 	}
 
+	/**
+	 * Load orders month.
+	 *
+	 * @param comboValue the combo value
+	 */
 	public void loadOrdersMonth(String comboValue) {
 		String month = "";
 		customerOrderListMonth.clear();

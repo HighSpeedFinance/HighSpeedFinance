@@ -31,6 +31,8 @@ public class CustomerOrderEditWithCustomerDialogController {
 	private TextField amount;
 	@FXML
 	private TextField tax;
+	
+	/** The order nr. */
 	@FXML
 	private TextField orderNr;
 

@@ -20,40 +20,82 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.converter.LocalDateStringConverter;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CostsController.
+ */
 public class CostsController {
+	
+	/** The supplier order table. */
 	@FXML
 	private TableView<SupplierOrder> supplierOrderTable;
+	
+	/** The order name supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderNameSupplier;
+	
+	/** The order description supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderDescriptionSupplier;
+	
+	/** The order status supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderStatusSupplier;
+	
+	/** The order date supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderDateSupplier;
+	
+	/** The order single price supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderSinglePriceSupplier;
+	
+	/** The order amount supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderAmountSupplier;
+	
+	/** The order total price supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderTotalPriceSupplier;
+	
+	/** The order art supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderArtSupplier;
+	
+	/** The order tax supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderTaxSupplier;
+	
+	/** The summe. */
 	@FXML
 	private Label summe;
+	
+	/** The days combobox. */
 	@FXML
 	private ComboBox<String> daysCombobox;
+	
+	/** The supplier combobox. */
 	@FXML
 	private ComboBox<String> supplierCombobox;
 
+	/** The supplier order list in time. */
 	private ObservableList<SupplierOrder> supplierOrderListInTime = FXCollections.observableArrayList();
+	
+	/** The supplier order list in time and supplier. */
 	private ObservableList<SupplierOrder> supplierOrderListInTimeAndSupplier = FXCollections.observableArrayList();
+	
+	/** The supplier order list. */
 	private ObservableList<SupplierOrder> supplierOrderList = FXCollections.observableArrayList();
+	
+	/** The supplier. */
 	private ObservableList<String> supplier = FXCollections.observableArrayList();
+	
+	/** The summe calc. */
 	private double summeCalc = 0;
 
+	/**
+	 * Initialize.
+	 */
 	@FXML
 	private void initialize() {
 		setDaysCombobox();
@@ -85,11 +127,19 @@ public class CostsController {
 
 	}
 	
+	/**
+	 * Sets the days combobox.
+	 */
 	public void setDaysCombobox(){
 		daysCombobox.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage", "Alle"));
 		daysCombobox.getSelectionModel().select(0);
 	}
 
+	/**
+	 * Load orders supplier.
+	 *
+	 * @param comboValue the combo value
+	 */
 	public void loadOrdersSupplier(String comboValue) {
 		supplierOrderListInTimeAndSupplier.clear();
 		summeCalc = 0;
@@ -108,6 +158,11 @@ public class CostsController {
 		supplierOrderTable.setItems(supplierOrderListInTimeAndSupplier);
 	}
 
+	/**
+	 * Sets the supplier combo box.
+	 *
+	 * @param index the new supplier combo box
+	 */
 	public void setSupplierComboBox(int index) {
 		for (SupplierOrder supOrder : supplierOrderListInTime) {
 			String supplierName = "";
@@ -126,6 +181,11 @@ public class CostsController {
 		supplierCombobox.getSelectionModel().select(index);
 	}
 
+	/**
+	 * Load supplier orders.
+	 *
+	 * @param comboValue the combo value
+	 */
 	public void loadSupplierOrders(String comboValue) {
 		ZoneId zone1 = ZoneId.of("Europe/Berlin");
 		LocalDate local = LocalDate.now(zone1);
@@ -164,6 +224,11 @@ public class CostsController {
 		loadOrdersSupplier(supplierCombobox.getSelectionModel().getSelectedItem());
 	}
 
+	/**
+	 * Sets the main app.
+	 *
+	 * @param main the new main app
+	 */
 	public void setMainApp(Main main) {
 		supplierOrderList = SupplierOrderUtil.loadAllOrdersWhereStatusSucceeded();
 		loadSupplierOrders("10 Tage");

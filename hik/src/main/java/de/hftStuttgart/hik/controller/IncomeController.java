@@ -20,40 +20,84 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.converter.LocalDateStringConverter;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class IncomeController.
+ */
 public class IncomeController {
+	
+	/** The customer order table. */
 	@FXML
 	private TableView<CustomerOrder> customerOrderTable;
+	
+	/** The order number. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderNumber;
+	
+	/** The order description. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderDescription;
+	
+	/** The order date. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderDate;
+	
+	/** The order single price. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderSinglePrice;
+	
+	/** The order amount. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderAmount;
+	
+	/** The order total price. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderTotalPrice;
+	
+	/** The order art. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderArt;
+	
+	/** The customer number. */
 	@FXML
 	private TableColumn<CustomerOrder, String> customerNumber;
+	
+	/** The order tax. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderTax;
+	
+	/** The summe. */
 	@FXML
 	private Label summe;
+	
+	/** The days combobox. */
 	@FXML
 	private ComboBox<String> daysCombobox;
+	
+	/** The plz combobox. */
 	@FXML
 	private ComboBox<String> plzCombobox;
 
+	/** The customer order list in time. */
 	private ObservableList<CustomerOrder> customerOrderListInTime = FXCollections.observableArrayList();
+	
+	/** The customer order list in time and plz. */
 	private ObservableList<CustomerOrder> customerOrderListInTimeAndPlz = FXCollections.observableArrayList();
+	
+	/** The customer order list. */
 	private ObservableList<CustomerOrder> customerOrderList = FXCollections.observableArrayList();
+	
+	/** The plz. */
 	private ObservableList<String> plz = FXCollections.observableArrayList();
+	
+	/** The summe calc. */
 	private double summeCalc = 0;
 
+	/**
+	 * Sets the plz combo box.
+	 *
+	 * @param index the new plz combo box
+	 */
 	public void setPlzComboBox(int index) {
 		for (CustomerOrder cusOrder : customerOrderListInTime) {
 			String plzInt = "";
@@ -72,6 +116,9 @@ public class IncomeController {
 		plzCombobox.getSelectionModel().select(index);
 	}
 
+	/**
+	 * Initialize.
+	 */
 	@FXML
 	private void initialize() {
 		setDaysCombobox();
@@ -102,16 +149,29 @@ public class IncomeController {
 		customerOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	}
 	
+	/**
+	 * Sets the days combobox.
+	 */
 	public void setDaysCombobox(){
 		daysCombobox.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage", "Alle"));
 		daysCombobox.getSelectionModel().select(0);
 	}
 
+	/**
+	 * Sets the main app.
+	 *
+	 * @param main the new main app
+	 */
 	public void setMainApp(Main main) {
 		customerOrderList = OrderUtil.loadAllOrdersWhereStatusSucceeded();
 		loadOrders("10 Tage");
 	}
 
+	/**
+	 * Load orders plz.
+	 *
+	 * @param comboValue the combo value
+	 */
 	public void loadOrdersPlz(String comboValue) {
 		customerOrderListInTimeAndPlz.clear();
 		summeCalc = 0;
@@ -130,6 +190,11 @@ public class IncomeController {
 		customerOrderTable.setItems(customerOrderListInTimeAndPlz);
 	}
 
+	/**
+	 * Load orders.
+	 *
+	 * @param comboValue the combo value
+	 */
 	public void loadOrders(String comboValue) {
 		ZoneId zone1 = ZoneId.of("Europe/Berlin");
 		LocalDate local = LocalDate.now(zone1);
@@ -168,10 +233,20 @@ public class IncomeController {
 		loadOrdersPlz(plzCombobox.getSelectionModel().getSelectedItem());
 	}
 
+	/**
+	 * Gets the summe calc.
+	 *
+	 * @return the summe calc
+	 */
 	public double getSummeCalc() {
 		return summeCalc;
 	}
 
+	/**
+	 * Sets the summe calc.
+	 *
+	 * @param summeCalc the new summe calc
+	 */
 	public void setSummeCalc(double summeCalc) {
 		this.summeCalc = summeCalc;
 	}

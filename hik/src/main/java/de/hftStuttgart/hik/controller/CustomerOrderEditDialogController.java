@@ -12,43 +12,85 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.util.converter.LocalDateStringConverter;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CustomerOrderEditDialogController.
+ */
 public class CustomerOrderEditDialogController {
 
+	/** The art nr. */
 	@FXML
 	private TextField artNr;
+	
+	/** The description. */
 	@FXML
 	private TextField description;
+	
+	/** The payment status. */
 	@FXML
 	private ChoiceBox<String> paymentStatus;
+	
+	/** The date. */
 	@FXML
 	private DatePicker date;
+	
+	/** The single price. */
 	@FXML
 	private TextField singlePrice;
+	
+	/** The amount. */
 	@FXML
 	private TextField amount;
+	
+	/** The tax. */
 	@FXML
 	private TextField tax;
+	
+	/** The order nr. */
 	@FXML
 	private TextField orderNr;
 
+	/** The dialog stage. */
 	private Stage dialogStage;
+	
+	/** The customer order. */
 	private CustomerOrder customerOrder;
+	
+	/** The ok clicked. */
 	private boolean okClicked = false;
 
+	/**
+	 * Initialize.
+	 */
 	@FXML
 	private void initialize() {
 		paymentStatus.setItems(FXCollections.observableArrayList("offen", "bezahlt"));
 		paymentStatus.getSelectionModel().select(0);
 	}
 
+	/**
+	 * Sets the dialog stage.
+	 *
+	 * @param dialogStage the new dialog stage
+	 */
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
 	}
 
+	/**
+	 * Gets the customer order.
+	 *
+	 * @return the customer order
+	 */
 	public CustomerOrder getCustomerOrder() {
 		return customerOrder;
 	}
 
+	/**
+	 * Sets the customer order.
+	 *
+	 * @param customerOrder the new customer order
+	 */
 	public void setCustomerOrder(CustomerOrder customerOrder) {
 		this.customerOrder = customerOrder;
 		date.setEditable(false);
@@ -84,10 +126,18 @@ public class CustomerOrderEditDialogController {
 		}
 	}
 
+	/**
+	 * Checks if is ok clicked.
+	 *
+	 * @return true, if is ok clicked
+	 */
 	public boolean isOkClicked() {
 		return okClicked;
 	}
 
+	/**
+	 * Handle ok.
+	 */
 	@FXML
 	private void handleOk() {
 		amount.setStyle("-fx-border-color: black ; -fx-border-width: 1px ;");
@@ -119,11 +169,19 @@ public class CustomerOrderEditDialogController {
 		}
 	}
 
+	/**
+	 * Handle cancel.
+	 */
 	@FXML
 	private void handleCancel() {
 		dialogStage.close();
 	}
 
+	/**
+	 * Checks if is input valid.
+	 *
+	 * @return true, if is input valid
+	 */
 	private boolean isInputValid() {
 		String errorMessage = "";
 

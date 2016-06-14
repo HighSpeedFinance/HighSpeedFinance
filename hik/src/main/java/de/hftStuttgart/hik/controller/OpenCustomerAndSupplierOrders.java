@@ -32,6 +32,8 @@ public class OpenCustomerAndSupplierOrders {
 	private TableColumn<CustomerOrder, String> customerNumber;
 	@FXML
 	private TableView<SupplierOrder> supplierOrderTable;
+	
+	/** The order name supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderNameSupplier;
 	@FXML

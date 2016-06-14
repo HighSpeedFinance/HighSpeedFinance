@@ -20,50 +20,97 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class CustomerAndSupplierOrderOverviewController.
+ */
 public class CustomerAndSupplierOrderOverviewController {
 
+	/** The customer order table. */
 	@FXML
 	private TableView<CustomerOrder> customerOrderTable;
+	
+	/** The order number. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderNumber;
+	
+	/** The order status. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderStatus;
+	
+	/** The order date. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderDate;
+	
+	/** The order total price. */
 	@FXML
 	private TableColumn<CustomerOrder, String> orderTotalPrice;
+	
+	/** The customer number. */
 	@FXML
 	private TableColumn<CustomerOrder, String> customerNumber;
+	
+	/** The supplier order table. */
 	@FXML
 	private TableView<SupplierOrder> supplierOrderTable;
+	
+	/** The order name supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderNameSupplier;
+	
+	/** The order description supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderDescriptionSupplier;
+	
+	/** The order status supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderStatusSupplier;
+	
+	/** The order date supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderDateSupplier;
+	
+	/** The order single price supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderSinglePriceSupplier;
+	
+	/** The order amount supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderAmountSupplier;
+	
+	/** The order total price supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderTotalPriceSupplier;
+	
+	/** The order art supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderArtSupplier;
+	
+	/** The tab pane. */
 	@FXML
 	private TabPane tabPane;
+	
+	/** The search customer orders. */
 	@FXML
 	private TextField searchCustomerOrders;
+	
+	/** The search supplier orders. */
 	@FXML
 	private TextField searchSupplierOrders;
 	
+	/** The main. */
 	private Main main;
+	
+	/** The customer order list. */
 	private ObservableList<CustomerOrder> customerOrderList = FXCollections.observableArrayList();
+	
+	/** The supplier order list. */
 	private ObservableList<SupplierOrder> supplierOrderList = FXCollections.observableArrayList();
 	
 
+	/**
+	 * Initialize.
+	 */
 	@FXML
 	private void initialize() {
 		orderNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("orderNumber"));
@@ -84,6 +131,9 @@ public class CustomerAndSupplierOrderOverviewController {
 		supplierOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	}
 
+	/**
+	 * Refresh customer order table.
+	 */
 	private void refreshCustomerOrderTable() {
 		int selectedIndex = customerOrderTable.getSelectionModel().getSelectedIndex();
 		customerOrderTable.setItems(null);
@@ -92,6 +142,9 @@ public class CustomerAndSupplierOrderOverviewController {
 		customerOrderTable.getSelectionModel().select(selectedIndex);
 	}
 	
+	/**
+	 * Refresh supplier order table.
+	 */
 	private void refreshSupplierOrderTable() {
 		int selectedIndex = supplierOrderTable.getSelectionModel().getSelectedIndex();
 		supplierOrderTable.setItems(null);
@@ -100,6 +153,9 @@ public class CustomerAndSupplierOrderOverviewController {
 		supplierOrderTable.getSelectionModel().select(selectedIndex);
 	}
 	
+	/**
+	 * Adds the supplier order.
+	 */
 	@FXML
 	public void addSupplierOrder() {
 		SupplierOrder supplierOrder = new SupplierOrder();
@@ -113,6 +169,9 @@ public class CustomerAndSupplierOrderOverviewController {
 		}
 	}
 	
+	/**
+	 * Edits the supplier order.
+	 */
 	@FXML
 	private void editSupplierOrder() {
 		SupplierOrder supplierOrder = supplierOrderTable.getSelectionModel().getSelectedItem();
@@ -131,6 +190,9 @@ public class CustomerAndSupplierOrderOverviewController {
 		}
 	}
 
+	/**
+	 * Adds the customer order.
+	 */
 	@FXML
 	public void addCustomerOrder() {
 		CustomerOrder customerOrder = new CustomerOrder();
@@ -143,6 +205,9 @@ public class CustomerAndSupplierOrderOverviewController {
 		}
 	}
 
+	/**
+	 * Edits the customer order.
+	 */
 	@FXML
 	private void editCustomerOrder() {
 		CustomerOrder customerOrder = customerOrderTable.getSelectionModel().getSelectedItem();
@@ -161,6 +226,9 @@ public class CustomerAndSupplierOrderOverviewController {
 		}
 	}
 	
+	/**
+	 * Search supplier orders.
+	 */
 	@FXML
 	public void searchSupplierOrders() {
 		supplierOrderList.clear();
@@ -184,6 +252,9 @@ public class CustomerAndSupplierOrderOverviewController {
 		}
 	}
 	
+	/**
+	 * Search customer orders.
+	 */
 	@FXML
 	public void searchCustomerOrders() {
 		customerOrderList.clear();
@@ -208,12 +279,20 @@ public class CustomerAndSupplierOrderOverviewController {
 		}
 	}
 
+	/**
+	 * Sets the main app.
+	 *
+	 * @param mainApp the new main app
+	 */
 	public void setMainApp(Main mainApp) {
 		this.main = mainApp;
 		customerOrderTable.setItems(main.getCustomerOrderData());
 		supplierOrderTable.setItems(main.getSupplierOrderData());
 	}
 
+	/**
+	 * Customer is selected.
+	 */
 	@FXML
 	public void customerIsSelected() {
 		try {
@@ -223,11 +302,19 @@ public class CustomerAndSupplierOrderOverviewController {
 		}
 	}
 
+	/**
+	 * Supplier is selected.
+	 */
 	@FXML
 	public void supplierIsSelected() {
 		main.showNavigationBarSupplier();
 	}
 	
+	/**
+	 * Sets the tab selected.
+	 *
+	 * @param selection the new tab selected
+	 */
 	public void setTabSelected(int selection){
 		SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
 		if(selection == 0){

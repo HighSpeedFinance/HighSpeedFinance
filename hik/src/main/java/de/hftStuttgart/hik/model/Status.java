@@ -1,6 +1,16 @@
 package de.hftStuttgart.hik.model;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Enum Status.
+ */
 public enum Status {
-	 SUCCEEDED,PENDING,ENABLED;
+	 
+ 	/** The succeeded. */
+ 	SUCCEEDED,
+/** The pending. */
+PENDING,
+/** The enabled. */
+ENABLED;
 	
 }

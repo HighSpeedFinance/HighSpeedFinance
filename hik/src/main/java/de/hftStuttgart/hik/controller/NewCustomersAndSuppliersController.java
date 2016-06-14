@@ -29,90 +29,174 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.util.converter.LocalDateStringConverter;
 
+// TODO: Auto-generated Javadoc
+/**
+ * The Class NewCustomersAndSuppliersController.
+ */
 public class NewCustomersAndSuppliersController {
+	
+	/** The customer table. */
 	@FXML
 	private TableView<Customer> customerTable;
+	
+	/** The customer number column. */
 	@FXML
 	private TableColumn<Customer, String> customerNumberColumn;
+	
+	/** The customer name column. */
 	@FXML
 	private TableColumn<Customer, String> customerNameColumn;
+	
+	/** The customer heading. */
 	@FXML
 	private Label customerHeading;
+	
+	/** The customer titel. */
 	@FXML
 	private Label customerTitel;
+	
+	/** The customer name. */
 	@FXML
 	private Label customerName;
+	
+	/** The customer street. */
 	@FXML
 	private Label customerStreet;
+	
+	/** The customer plz. */
 	@FXML
 	private Label customerPLZ;
+	
+	/** The customer country. */
 	@FXML
 	private Label customerCountry;
+	
+	/** The customer phone. */
 	@FXML
 	private Label customerPhone;
+	
+	/** The customer fax. */
 	@FXML
 	private Label customerFax;
+	
+	/** The customer mail. */
 	@FXML
 	private Label customerMail;
+	
+	/** The supplier company name. */
 	@FXML
 	private Label supplierCompanyName;
+	
+	/** The supplier contact person. */
 	@FXML
 	private Label supplierContactPerson;
+	
+	/** The supplier street. */
 	@FXML
 	private Label supplierStreet;
+	
+	/** The supplier plz. */
 	@FXML
 	private Label supplierPLZ;
+	
+	/** The supplier phone number. */
 	@FXML
 	private Label supplierPhoneNumber;
+	
+	/** The supplier mail. */
 	@FXML
 	private Label supplierMail;
+	
+	/** The supplier fax. */
 	@FXML
 	private Label supplierFax;
+	
+	/** The supplier table. */
 	@FXML
 	private TableView<Supplier> supplierTable;
+	
+	/** The supplier number column. */
 	@FXML
 	private TableColumn<Supplier, String> supplierNumberColumn;
+	
+	/** The supplier name column. */
 	@FXML
 	private TableColumn<Supplier, String> supplierNameColumn;
+	
+	/** The radio days. */
 	@FXML
 	private RadioButton radioDays;
+	
+	/** The radio date. */
 	@FXML
 	private RadioButton radioDate;
+	
+	/** The radio days supplier. */
 	@FXML
 	private RadioButton radioDaysSupplier;
+	
+	/** The radio date supplier. */
 	@FXML
 	private RadioButton radioDateSupplier;
+	
+	/** The days combobox. */
 	@FXML
 	private ComboBox<String> daysCombobox;
+	
+	/** The days combobox supplier. */
 	@FXML
 	private ComboBox<String> daysComboboxSupplier;
+	
+	/** The zeitraum. */
 	@FXML
 	private ToggleGroup zeitraum;
+	
+	/** The zeitraum supplier. */
 	@FXML
 	private ToggleGroup zeitraumSupplier;
+	
+	/** The start date. */
 	@FXML
 	private DatePicker startDate;
+	
+	/** The end date. */
 	@FXML
 	private DatePicker endDate;
+	
+	/** The start date supplier. */
 	@FXML
 	private DatePicker startDateSupplier;
+	
+	/** The end date supplier. */
 	@FXML
 	private DatePicker endDateSupplier;
+	
+	/** The tab pane. */
 	@FXML
 	private TabPane tabPane;
 
+	/** The main. */
 	private Main main;
 
+	/**
+	 * Sets the days combo box.
+	 */
 	public void setDaysComboBox() {
 		daysCombobox.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage"));
 		daysCombobox.getSelectionModel().select(0);
 	}
 
+	/**
+	 * Sets the days combobox supplier.
+	 */
 	public void setDaysComboboxSupplier() {
 		daysComboboxSupplier.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage"));
 		daysComboboxSupplier.getSelectionModel().select(0);
 	}
 
+	/**
+	 * Initialize.
+	 */
 	@FXML
 	private void initialize() {
 		startDate.setEditable(false);
@@ -194,6 +278,11 @@ public class NewCustomersAndSuppliersController {
 
 	}
 
+	/**
+	 * Show customer details.
+	 *
+	 * @param customer the customer
+	 */
 	private void showCustomerDetails(Customer customer) {
 		if (customer != null) {
 			customerHeading.setText(
@@ -222,6 +311,11 @@ public class NewCustomersAndSuppliersController {
 		}
 	}
 
+	/**
+	 * Show supplier details.
+	 *
+	 * @param supplier the supplier
+	 */
 	private void showSupplierDetails(Supplier supplier) {
 		if (supplier != null) {
 			supplierCompanyName.setText(supplier.getSupplierCompanyName());
@@ -245,6 +339,9 @@ public class NewCustomersAndSuppliersController {
 		}
 	}
 
+	/**
+	 * Show bestellung.
+	 */
 	@FXML
 	private void showBestellung() {
 		if (customerTable.getSelectionModel().getSelectedItem() != null)
@@ -258,6 +355,9 @@ public class NewCustomersAndSuppliersController {
 		}
 	}
 
+	/**
+	 * Show supplier bestellung.
+	 */
 	@FXML
 	private void showSupplierBestellung() {
 		if (supplierTable.getSelectionModel().getSelectedItem() != null)
@@ -271,16 +371,27 @@ public class NewCustomersAndSuppliersController {
 		}
 	}
 
+	/**
+	 * Load customers.
+	 */
 	@FXML
 	public void loadCustomers() {
 		loadCustomerList(daysCombobox.getSelectionModel().getSelectedItem());
 	}
 
+	/**
+	 * Load suppliers.
+	 */
 	@FXML
 	public void loadSuppliers() {
 		loadSupplierList(daysComboboxSupplier.getSelectionModel().getSelectedItem());
 	}
 
+	/**
+	 * Load supplier list.
+	 *
+	 * @param comboValue the combo value
+	 */
 	public void loadSupplierList(String comboValue) {
 		ZoneId zone1 = ZoneId.of("Europe/Berlin");
 		LocalDate local = LocalDate.now(zone1);
@@ -322,6 +433,11 @@ public class NewCustomersAndSuppliersController {
 		supplierTable.setItems(supplierListInTime);
 	}
 
+	/**
+	 * Load customer list.
+	 *
+	 * @param comboValue the combo value
+	 */
 	public void loadCustomerList(String comboValue) {
 		ZoneId zone1 = ZoneId.of("Europe/Berlin");
 		LocalDate local = LocalDate.now(zone1);
@@ -361,12 +477,20 @@ public class NewCustomersAndSuppliersController {
 		customerTable.setItems(customerListInTime);
 	}
 
+	/**
+	 * Sets the main app.
+	 *
+	 * @param main the new main app
+	 */
 	public void setMainApp(Main main) {
 		this.main = main;
 		loadCustomerList("10 Tage");
 		loadSupplierList("10 Tage");
 	}
 
+	/**
+	 * Customer is selected.
+	 */
 	@FXML
 	public void customerIsSelected() {
 		try {
@@ -375,11 +499,19 @@ public class NewCustomersAndSuppliersController {
 		}
 	}
 
+	/**
+	 * Supplier is selected.
+	 */
 	@FXML
 	public void supplierIsSelected() {
 		main.showNavigationBarSupplier();
 	}
 
+	/**
+	 * Sets the tab selected.
+	 *
+	 * @param selection the new tab selected
+	 */
 	public void setTabSelected(int selection) {
 		SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
 		if (selection == 0) {
