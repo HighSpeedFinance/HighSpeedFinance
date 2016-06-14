@@ -1,11 +1,12 @@
 package de.hftStuttgart.hik.utilities;
 
-import static org.junit.Assert.*;
+
 
 import java.util.List;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -13,10 +14,10 @@ import org.junit.Test;
 
 import de.hftStuttgart.hik.TesHelper;
 import de.hftStuttgart.hik.model.PaymentDetails;
-import junit.framework.Assert;
+
 
 public class PaymentDetailsUtilTest {
-	private PaymentDetails payDet=new PaymentDetails();
+	private static PaymentDetails payDet=new PaymentDetails();
 	
 
 	@BeforeClass
@@ -26,6 +27,8 @@ public class PaymentDetailsUtilTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		if(TesHelper.payList.contains(payDet))
+				PaymentDetailsUtil.deletePayDetails(payDet);
 		
 	}
 

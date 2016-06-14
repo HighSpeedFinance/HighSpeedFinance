@@ -4,7 +4,6 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
@@ -16,7 +15,6 @@ import de.hftStuttgart.hik.TesHelper;
 import de.hftStuttgart.hik.model.Status;
 import de.hftStuttgart.hik.model.Supplier;
 import de.hftStuttgart.hik.model.SupplierOrder;
-import javafx.collections.ObservableList;
 
 public class SupplierOrderUtilTest {
 	private static Supplier supplier = new Supplier();
@@ -32,28 +30,18 @@ public class SupplierOrderUtilTest {
 
 	}
 
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+
+		if (TesHelper.supOList.contains(order))
+			SupplierOrderUtil.deleteOrder(order);
+	}
+
 	@Before
 	public void setUp() throws Exception {
 
 		order = TesHelper.sOrder;
 
-	}
-
-	@Ignore
-	@After
-	public void tearDown() throws Exception {
-	}
-
-	@Ignore
-	@Test
-	public void testLoadAllOrdersSupplier() {
-		fail("Not yet implemented");
-	}
-
-	@Ignore
-	@Test
-	public void testLoadAllOrders() {
-		fail("Not yet implemented");
 	}
 
 	@Test
@@ -79,7 +67,7 @@ public class SupplierOrderUtilTest {
 	@Test
 	public void testAddOrder() {
 		SupplierOrderUtil.addOrder(order);
-		TesHelper.supOList=SupplierOrderUtil.loadAllOrders();
+		TesHelper.supOList = SupplierOrderUtil.loadAllOrders();
 		Assert.assertTrue(TesHelper.supOList.contains(order));
 	}
 
@@ -101,7 +89,7 @@ public class SupplierOrderUtilTest {
 	@Test
 	public void testDeleteOrder() {
 		SupplierOrderUtil.deleteOrder(order);
-		TesHelper.supOList=SupplierOrderUtil.loadAllOrders();
+		TesHelper.supOList = SupplierOrderUtil.loadAllOrders();
 		Assert.assertTrue(!TesHelper.supOList.contains(order));
 	}
 

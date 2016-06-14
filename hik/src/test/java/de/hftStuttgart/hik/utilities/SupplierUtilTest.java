@@ -1,25 +1,20 @@
 package de.hftStuttgart.hik.utilities;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import org.junit.After;
 import org.junit.AfterClass;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import de.hftStuttgart.hik.TesHelper;
-import de.hftStuttgart.hik.model.PaymentDetails;
-import de.hftStuttgart.hik.model.PostAdress;
+
 import de.hftStuttgart.hik.model.Supplier;
-import de.hftStuttgart.hik.model.SupplierOrder;
-import junit.framework.Assert;
 
 public class SupplierUtilTest {
-	private Supplier supplier;
-	private List<SupplierOrder> list;
+	private static Supplier supplier;
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -28,6 +23,8 @@ public class SupplierUtilTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
+		if (TesHelper.supList.contains(supplier))
+			SupplierUtil.deleteSupplier(supplier);
 	}
 
 	@Before

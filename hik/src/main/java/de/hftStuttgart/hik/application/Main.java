@@ -399,11 +399,11 @@ public class Main extends Application {
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
-		try {
-			myPane = (TabPane) loader.load();
-		} catch (IOException e) {
-			System.out.println(e.getMessage());
-		}
+//		try {
+//			myPane = (TabPane) loader.load();
+//		} catch (IOException e) {
+//			System.out.println(e.getMessage());
+//		}
 		rootLayout.setCenter(myPane);
 
 		customerOrderData.clear();

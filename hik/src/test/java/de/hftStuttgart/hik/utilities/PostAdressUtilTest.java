@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -13,23 +13,25 @@ import org.junit.Test;
 
 import de.hftStuttgart.hik.TesHelper;
 import de.hftStuttgart.hik.model.PostAdress;
-import de.hftStuttgart.hik.model.SupplierOrder;
 
 public class PostAdressUtilTest {
-	private PostAdress postAdress=new PostAdress();
+	private static PostAdress postAdress = new PostAdress();
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		DatabaseConnectionUtil.getEm();
 	}
+
 	@Before
 	public void setUp() throws Exception {
-		postAdress=TesHelper.adress;
+		postAdress = TesHelper.adress;
 
 	}
 
-	@Ignore
-	@After
-	public void tearDown() throws Exception {
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+		if (TesHelper.postList.contains(postAdress))
+			PostAdressUtil.deletePostAdress(postAdress);
 	}
 
 	@Ignore
@@ -41,7 +43,7 @@ public class PostAdressUtilTest {
 	@Test
 	public void testAddPostAdress(PostAdress PostAdress) {
 		PostAdressUtil.addPostAdress(postAdress);
-		TesHelper.postList=PostAdressUtil.loadAllAdresses();
+		TesHelper.postList = PostAdressUtil.loadAllAdresses();
 		Assert.assertTrue(TesHelper.postList.contains(postAdress));
 	}
 
@@ -63,7 +65,7 @@ public class PostAdressUtilTest {
 	@Test
 	public void testDeletePostAdress() {
 		PostAdressUtil.deletePostAdress(postAdress);
-		TesHelper.postList=PostAdressUtil.loadAllAdresses();
+		TesHelper.postList = PostAdressUtil.loadAllAdresses();
 		Assert.assertTrue(!TesHelper.postList.contains(postAdress));
 	}
 
