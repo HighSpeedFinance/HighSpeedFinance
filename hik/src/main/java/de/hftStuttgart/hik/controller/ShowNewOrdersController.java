@@ -119,7 +119,7 @@ public class ShowNewOrdersController {
 		orderNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("orderNumber"));
 		orderStatus.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("statusString"));
 		orderDate.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("date"));
-		customerNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("customer"));
+		customerNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("customerNumber"));
 		orderTotalPrice.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("sumPrice"));
 		customerOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 

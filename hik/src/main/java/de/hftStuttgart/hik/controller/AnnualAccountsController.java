@@ -88,6 +88,8 @@ public class AnnualAccountsController {
 		resultIncomeCost.setText(String.valueOf(result));
 		if (result < 0) {
 			resultIncomeCost.setTextFill(Color.RED);
+		}else{
+			resultIncomeCost.setTextFill(Color.GREEN);
 		}
 	}
 

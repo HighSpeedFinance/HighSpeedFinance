@@ -20,4 +20,11 @@ public class AlertUtil {
 		alert.setContentText("URL oder Datei konnte nicht geladen werden!");
 		alert.showAndWait();
 	}
+	public static void programStart(){
+		Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Information!");
+		alert.setHeaderText("");
+		alert.setContentText("Das Programm ist in Kürze für Sie bereit!");
+		alert.show();
+	}
 }

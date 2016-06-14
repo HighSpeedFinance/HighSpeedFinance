@@ -69,7 +69,7 @@ public class CustomerAndSupplierOrderOverviewController {
 		orderNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("orderNumber"));
 		orderStatus.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("statusString"));
 		orderDate.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("date"));
-		customerNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("customer"));
+		customerNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("customerNumber"));
 		orderTotalPrice.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("sumPrice"));
 		customerOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 		
@@ -195,7 +195,7 @@ public class CustomerAndSupplierOrderOverviewController {
 		if (!searchCustomerOrders.getText().equals("")) {
 			for (CustomerOrder cusOrder : main.getCustomerOrderData()) {
 				if (cusOrder.getOrderNumber() == searchInteger
-						|| cusOrder.getCustomer() == searchInteger
+						|| cusOrder.getCustomerObject().getCustomerNumber() == searchInteger
 						|| cusOrder.getCustomerObject().getCustomerCompanyName().equals(searchCustomerOrders.getText())
 						|| (cusOrder.getCustomerObject().getCustomerContactPersonFirstName() + " " + cusOrder.getCustomerObject().getCustomerContactPersonLastName())
 								.equals(searchCustomerOrders.getText())) {

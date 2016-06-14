@@ -556,6 +556,7 @@ public class Main extends Application {
 	}
 
 	public Main() {
+		AlertUtil.programStart();
 		try {
 			supplierData.addAll(SupplierUtil.loadAllSuppliers());
 			customerData.addAll(CustomerUtil.loadAllCustomers());
