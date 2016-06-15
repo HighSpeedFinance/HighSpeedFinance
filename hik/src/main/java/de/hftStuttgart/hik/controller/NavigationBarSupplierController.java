@@ -3,9 +3,11 @@ package de.hftStuttgart.hik.controller;
 import de.hftStuttgart.hik.application.Main;
 import javafx.fxml.FXML;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Class NavigationBarSupplierController.
+ * The Class NavigationBarSupplierController manages the views from NavigantionBarSupplier and
+ * is responsible for handling user input and responses.It shows the overview, new Suppliers, SupplierOrderOverview , new
+ * SupplierOrders and open SupplierOrders
  */
 public class NavigationBarSupplierController {
 

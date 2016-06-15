@@ -10,9 +10,10 @@ import de.hftStuttgart.hik.model.CustomerOrder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Enum OrderUtil.
+ * The Enum OrderUtil gets the actual connection to the DatabaseConnection and instaciates the
+ * EntityManager
  */
 public enum OrderUtil {
 	

@@ -14,56 +14,47 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class SupplierOrderController.
+ * The Class SupplierOrderController manages the views from SupplierOrder and is
+ * responsible for handling user input and responses. The Methods load all
+ * orders from the database, add new orders and edit orders.
+ * 
  */
 public class SupplierOrderController {
 
-	/** The supplier order table. */
 	@FXML
 	private TableView<SupplierOrder> supplierOrderTable;
-	
-	/** The order number. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderNumber;
-	
-	/** The order description. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderDescription;
-	
-	/** The order status. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderStatus;
-	
-	/** The order date. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderDate;
-	
-	/** The order single price. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderSinglePrice;
-	
-	/** The order amount. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderAmount;
-	
-	/** The order total price. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderTotalPrice;
-	
-	/** The order art. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderArt;
-	
-	/** The order tax. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderTax;
-	
-	/** The supplier. */
+
 	private Supplier supplier;
-	
-	/** The main. */
+
 	private Main main;
-	
+
 	/**
 	 * Initialize.
 	 */
@@ -80,7 +71,7 @@ public class SupplierOrderController {
 		orderTax.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("tax"));
 		supplierOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	}
-	
+
 	/**
 	 * Refresh supplier order table.
 	 */
@@ -91,17 +82,17 @@ public class SupplierOrderController {
 		supplierOrderTable.setItems(main.getSupplierOrderData());
 		supplierOrderTable.getSelectionModel().select(selectedIndex);
 	}
-	
+
 	/**
-	 * Adds the supplier order.
+	 * Adds the supplier order to the table
 	 */
 	@FXML
 	public void addSupplierOrder() {
 		SupplierOrder supplierOrder = new SupplierOrder();
 		boolean okClicked = main.showSupplierOrderEditDialog(supplierOrder);
 		if (okClicked) {
-			for(Supplier sup : SupplierUtil.loadAllSuppliers()){
-				if(supplier.getId() == sup.getId()){
+			for (Supplier sup : SupplierUtil.loadAllSuppliers()) {
+				if (supplier.getId() == sup.getId()) {
 					sup.addOrder(supplierOrder);
 				}
 			}
@@ -111,9 +102,9 @@ public class SupplierOrderController {
 			main.addSupplierOrder(supplierOrder);
 		}
 	}
-	
+
 	/**
-	 * Edits the supplier order.
+	 * Edits the supplier order in the database
 	 */
 	@FXML
 	private void editSupplierOrder() {
@@ -128,7 +119,7 @@ public class SupplierOrderController {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error!");
 			alert.setHeaderText("");
-			alert.setContentText("Bitte wählen Sie eine Rechnung aus!");
+			alert.setContentText("Bitte wï¿½hlen Sie eine Rechnung aus!");
 			alert.showAndWait();
 		}
 	}
@@ -136,27 +127,18 @@ public class SupplierOrderController {
 	/**
 	 * Sets the main app.
 	 *
-	 * @param mainApp the new main app
+	 * @param mainApp
+	 *            the new main app
 	 */
 	public void setMainApp(Main mainApp) {
 		this.main = mainApp;
 		supplierOrderTable.setItems(main.getSupplierOrderData());
 	}
 
-	/**
-	 * Gets the supplier.
-	 *
-	 * @return the supplier
-	 */
 	public Supplier getSupplier() {
 		return supplier;
 	}
 
-	/**
-	 * Sets the supplier.
-	 *
-	 * @param supplier the new supplier
-	 */
 	public void setSupplier(Supplier supplier) {
 		this.supplier = supplier;
 	}

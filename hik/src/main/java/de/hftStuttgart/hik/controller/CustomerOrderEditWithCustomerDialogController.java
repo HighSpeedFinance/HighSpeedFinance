@@ -14,43 +14,66 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.util.converter.LocalDateStringConverter;
 
+/**
+ * The Class CustomerOrderEditWithCustomerDialogController manages the views
+ * from CustomerOrderEditWithCustomerDialog and is responsible for handling user
+ * input and responses.
+ */
 public class CustomerOrderEditWithCustomerDialogController {
+
 	@FXML
 	private TextField artNr;
+
 	@FXML
 	private TextField description;
+
 	@FXML
 	private ChoiceBox<String> paymentStatus;
+
 	@FXML
 	private ChoiceBox<Customer> customers;
+
 	@FXML
 	private DatePicker date;
+
 	@FXML
 	private TextField singlePrice;
+
 	@FXML
 	private TextField amount;
+
 	@FXML
 	private TextField tax;
-	
-	/** The order nr. */
+
 	@FXML
 	private TextField orderNr;
 
 	private Stage dialogStage;
+
 	private CustomerOrder customerOrder;
+
 	private boolean okClicked = false;
 
+	/**
+	 * Initialize.
+	 */
 	@FXML
 	private void initialize() {
 		setPaymentStatus();
 		setCustomers();
 	}
 
+	/**
+	 * Sets the payment status. Selectable Options are "PENDING" and "SUCCEEDED"
+	 */
 	public void setPaymentStatus() {
 		paymentStatus.setItems(FXCollections.observableArrayList("offen", "bezahlt"));
 		paymentStatus.getSelectionModel().select(0);
 	}
 
+	/**
+	 * Sets the customers.
+	 */
 	public void setCustomers() {
 		customers.setItems(CustomerUtil.loadAllCustomers());
 		customers.getSelectionModel().select(0);
@@ -101,6 +124,9 @@ public class CustomerOrderEditWithCustomerDialogController {
 		return okClicked;
 	}
 
+	/**
+	 * Handle ok.
+	 */
 	@FXML
 	private void handleOk() {
 		amount.setStyle("-fx-border-color: black ; -fx-border-width: 1px ;");
@@ -133,11 +159,20 @@ public class CustomerOrderEditWithCustomerDialogController {
 		}
 	}
 
+	/**
+	 * Handle cancel.
+	 *
+	 */
 	@FXML
 	private void handleCancel() {
 		dialogStage.close();
 	}
 
+	/**
+	 * Checks if input is valid and shows error messages if it is not
+	 *
+	 * @return true, if input is valid
+	 */
 	private boolean isInputValid() {
 		String errorMessage = "";
 

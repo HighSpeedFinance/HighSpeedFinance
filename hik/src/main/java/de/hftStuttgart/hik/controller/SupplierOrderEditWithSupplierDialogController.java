@@ -16,57 +16,48 @@ import javafx.util.converter.LocalDateStringConverter;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class SupplierOrderEditWithSupplierDialogController.
+ * The Class SupplierOrderEditWithSupplierDialogController manages the views
+ * from SupplierOrderEditWithCustomerDialog and is responsible for handling user
+ * input and responses.
  */
 public class SupplierOrderEditWithSupplierDialogController {
-	
-	/** The art nr. */
+
 	@FXML
 	private TextField artNr;
-	
-	/** The description. */
+
 	@FXML
 	private TextField description;
-	
-	/** The payment status. */
+
 	@FXML
 	private ChoiceBox<String> paymentStatus;
-	
-	/** The date. */
+
 	@FXML
 	private DatePicker date;
-	
-	/** The single price. */
+
 	@FXML
 	private TextField singlePrice;
-	
-	/** The amount. */
+
 	@FXML
 	private TextField amount;
-	
-	/** The tax. */
+
 	@FXML
 	private TextField tax;
-	
-	/** The order nr. */
+
 	@FXML
 	private TextField orderNr;
-	
-	/** The supplier choice box. */
+
 	@FXML
 	private ChoiceBox<Supplier> supplierChoiceBox;
 
-	/** The dialog stage. */
 	private Stage dialogStage;
-	
-	/** The supplier order. */
+
 	private SupplierOrder supplierOrder;
-	
-	/** The ok clicked. */
+
 	private boolean okClicked = false;
 
 	/**
-	 * Sets the payment status.
+	 * Sets the payment status. Selectable Options are "PENDING", "ENABLED" and
+	 * "SUCCEEDED"
 	 */
 	public void setPaymentStatus() {
 		paymentStatus.setItems(FXCollections.observableArrayList("offen", "bezahlt", "freigegeben"));
@@ -90,20 +81,10 @@ public class SupplierOrderEditWithSupplierDialogController {
 		setSupplierChoiceBox();
 	}
 
-	/**
-	 * Sets the dialog stage.
-	 *
-	 * @param dialogStage the new dialog stage
-	 */
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
 	}
 
-	/**
-	 * Gets the supplier order.
-	 *
-	 * @return the supplier order
-	 */
 	public SupplierOrder getSupplierOrder() {
 		return supplierOrder;
 	}
@@ -111,7 +92,8 @@ public class SupplierOrderEditWithSupplierDialogController {
 	/**
 	 * Sets the supplier order.
 	 *
-	 * @param supplierOrder the new supplier order
+	 * @param supplierOrder
+	 *            the new supplier order
 	 */
 	public void setSupplierOrder(SupplierOrder supplierOrder) {
 		this.supplierOrder = supplierOrder;
@@ -151,9 +133,9 @@ public class SupplierOrderEditWithSupplierDialogController {
 	}
 
 	/**
-	 * Checks if is ok clicked.
+	 * Checks if "Ok" is clicked.
 	 *
-	 * @return true, if is ok clicked
+	 * @return true, if "Ok" is clicked
 	 */
 	public boolean isOkClicked() {
 		return okClicked;
@@ -199,9 +181,9 @@ public class SupplierOrderEditWithSupplierDialogController {
 	}
 
 	/**
-	 * Checks if is input valid.
+	 * Checks if input is valid and shows error messages if it is not
 	 *
-	 * @return true, if is input valid
+	 * @return true, if input is valid
 	 */
 	private boolean isInputValid() {
 		String errorMessage = "";

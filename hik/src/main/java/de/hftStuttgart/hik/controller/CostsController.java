@@ -20,78 +20,61 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.converter.LocalDateStringConverter;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CostsController.
+ * The Class CostsController manages the views from Costs and is responsible for
+ * handling user input and responses.
+ * 
  */
 public class CostsController {
-	
-	/** The supplier order table. */
+
 	@FXML
 	private TableView<SupplierOrder> supplierOrderTable;
-	
-	/** The order name supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderNameSupplier;
-	
-	/** The order description supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderDescriptionSupplier;
-	
-	/** The order status supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderStatusSupplier;
-	
-	/** The order date supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderDateSupplier;
-	
-	/** The order single price supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderSinglePriceSupplier;
-	
-	/** The order amount supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderAmountSupplier;
-	
-	/** The order total price supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderTotalPriceSupplier;
-	
-	/** The order art supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderArtSupplier;
-	
-	/** The order tax supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderTaxSupplier;
-	
-	/** The summe. */
+
 	@FXML
 	private Label summe;
-	
-	/** The days combobox. */
+
 	@FXML
 	private ComboBox<String> daysCombobox;
-	
-	/** The supplier combobox. */
+
 	@FXML
 	private ComboBox<String> supplierCombobox;
 
-	/** The supplier order list in time. */
 	private ObservableList<SupplierOrder> supplierOrderListInTime = FXCollections.observableArrayList();
-	
-	/** The supplier order list in time and supplier. */
+
 	private ObservableList<SupplierOrder> supplierOrderListInTimeAndSupplier = FXCollections.observableArrayList();
-	
-	/** The supplier order list. */
+
 	private ObservableList<SupplierOrder> supplierOrderList = FXCollections.observableArrayList();
-	
-	/** The supplier. */
+
 	private ObservableList<String> supplier = FXCollections.observableArrayList();
-	
-	/** The summe calc. */
-	private double summeCalc = 0;
+
+	private double sumCalc = 0;
 
 	/**
 	 * Initialize.
@@ -113,7 +96,7 @@ public class CostsController {
 				loadOrdersSupplier(t1);
 			}
 		});
-		
+
 		orderStatusSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("statusString"));
 		orderDateSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("date"));
 		orderTotalPriceSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("sumPrice"));
@@ -126,23 +109,28 @@ public class CostsController {
 		supplierOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 	}
-	
+
 	/**
-	 * Sets the days combobox.
+	 * Sets the days combobox. Selectable options: Costs for 10 days, 20 days,
+	 * 30 days or all costs
 	 */
-	public void setDaysCombobox(){
+	public void setDaysCombobox() {
 		daysCombobox.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage", "Alle"));
 		daysCombobox.getSelectionModel().select(0);
 	}
 
 	/**
-	 * Load orders supplier.
-	 *
-	 * @param comboValue the combo value
+	 * Load orders supplier. Calculates the amount of orders in Euro and sets
+	 * the result label
+	 * 
+	 * @param comboValue
+	 *            the combo value
+	 * 
+	 * 
 	 */
 	public void loadOrdersSupplier(String comboValue) {
 		supplierOrderListInTimeAndSupplier.clear();
-		summeCalc = 0;
+		sumCalc = 0;
 
 		for (SupplierOrder supOrder : supplierOrderListInTime) {
 			if (String.valueOf(supOrder.getSupplierObject().getSupplierCompanyName()).equals(comboValue)
@@ -152,23 +140,26 @@ public class CostsController {
 		}
 
 		for (SupplierOrder supOrder : supplierOrderListInTimeAndSupplier) {
-			summeCalc += supOrder.getSumPrice();
+			sumCalc += supOrder.getSumPrice();
 		}
-		summe.setText(String.valueOf(Math.round(100.0 * summeCalc) / 100.0) + " Euro");
+		summe.setText(String.valueOf(Math.round(100.0 * sumCalc) / 100.0) + " Euro");
 		supplierOrderTable.setItems(supplierOrderListInTimeAndSupplier);
 	}
 
 	/**
 	 * Sets the supplier combo box.
 	 *
-	 * @param index the new supplier combo box
+	 * @param index
+	 *            the new supplier combo box
+	 * 
+	 * 
 	 */
 	public void setSupplierComboBox(int index) {
 		for (SupplierOrder supOrder : supplierOrderListInTime) {
 			String supplierName = "";
-			for(Supplier sup : SupplierUtil.loadAllSuppliers()){
-				if(supOrder.getSupplierObject().getId() == sup.getId()){
-					 supplierName = supOrder.getSupplierObject().getSupplierCompanyName();
+			for (Supplier sup : SupplierUtil.loadAllSuppliers()) {
+				if (supOrder.getSupplierObject().getId() == sup.getId()) {
+					supplierName = supOrder.getSupplierObject().getSupplierCompanyName();
 				}
 			}
 			if (!supplier.contains("Alle")) {
@@ -182,9 +173,14 @@ public class CostsController {
 	}
 
 	/**
-	 * Load supplier orders.
+	 * Load supplier orders. Loads all SupplierOrders according to the selected
+	 * option. The selectable options are: 10 days, 20 days, 30 days or all
+	 * orders.
+	 * 
+	 * @param comboValue
+	 *            the combo value
+	 * 
 	 *
-	 * @param comboValue the combo value
 	 */
 	public void loadSupplierOrders(String comboValue) {
 		ZoneId zone1 = ZoneId.of("Europe/Berlin");
@@ -225,9 +221,12 @@ public class CostsController {
 	}
 
 	/**
-	 * Sets the main app.
+	 * Sets the main app. Loads the default option: 10 days
+	 * 
+	 * @param main
+	 *            the new main app
+	 * 
 	 *
-	 * @param main the new main app
 	 */
 	public void setMainApp(Main main) {
 		supplierOrderList = SupplierOrderUtil.loadAllOrdersWhereStatusSucceeded();

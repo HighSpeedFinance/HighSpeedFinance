@@ -12,11 +12,12 @@ import javafx.collections.ObservableList;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Enum SupplierOrderUtil.
+ * The Enum SupplierOrderUtil gets the actual connection to the DatabaseConnection and instaciates the
+ * EntityManager
  */
 public enum SupplierOrderUtil {
 	
-	/** The instance. */
+	/** The instance. am cutomer hängt die order dran*/
 	INSTANCE;
 	
 	/** The em. */

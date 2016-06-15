@@ -3,59 +3,61 @@ package de.hftStuttgart.hik.controller;
 import de.hftStuttgart.hik.application.Main;
 import javafx.fxml.FXML;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class NavigationBarCustomerController.
+ * The Class NavigationBarCustomerController manages the views from
+ * NavigationBarCustomer and is responsible for handling user input and
+ * responses. It shows the overview, new Customers, CustomerOrderOverview , new
+ * CustomerOrders and open CustomerOrders
  */
 public class NavigationBarCustomerController {
-	
-	/** The main. */
+
 	private Main main;
 
 	/**
-	 * Show customer overview.
+	 * Shows customer overview.
 	 */
 	@FXML
-	private void showCustomerOverview(){
+	private void showCustomerOverview() {
 		main.showCustomerAndSupplierOverview();
 	}
-	
+
 	/**
-	 * Show new customers.
+	 * Shows new customers.
 	 */
 	@FXML
-	private void showNewCustomers(){
+	private void showNewCustomers() {
 		main.showNewCustomersAndSuppliers(0);
 	}
-	
+
 	/**
-	 * Show customer order overview.
+	 * Shows CustomerOrderOverview.
 	 */
 	@FXML
-	private void showCustomerOrderOverview(){
+	private void showCustomerOrderOverview() {
 		main.showCustomerAndSupplierOrderOverview(0);
 	}
-	
+
 	/**
-	 * Show new customer orders.
+	 * Shows new CustomerOrders.
 	 */
 	@FXML
-	private void showNewCustomerOrders(){
+	private void showNewCustomerOrders() {
 		main.showNewOrders(0);
 	}
-	
+
 	/**
-	 * Show open customer orders.
+	 * Shows open CustomerOrders.
 	 */
 	@FXML
-	private void showOpenCustomerOrders(){
+	private void showOpenCustomerOrders() {
 		main.showOpenCustomerAndSupplierOrders(0);
 	}
-	
+
 	/**
 	 * Sets the main app.
 	 *
-	 * @param mainApp the new main app
+	 * @param mainApp
+	 *            the new main app
 	 */
 	public void setMainApp(Main mainApp) {
 		this.main = mainApp;

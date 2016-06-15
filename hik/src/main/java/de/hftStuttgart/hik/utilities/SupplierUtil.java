@@ -10,7 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * The Enum SupplierUtil builds the DatabaseConnection and instaciates the
+ * The Enum SupplierUtil gets the actual connection to the DatabaseConnection and instaciates the
  * EntityManager
  * 
  */
@@ -49,7 +49,7 @@ public enum SupplierUtil {
 	}
 
 	/**
-	 * Edits the supplier to the Database
+	 * Edits the supplier in the Database
 	 *
 	 * @param sup
 	 *            the Supplier

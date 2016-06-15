@@ -26,127 +26,100 @@ import javafx.util.converter.LocalDateStringConverter;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class ShowNewOrdersController.
+ * The Class ShowNewOrdersController manages the views from CustomerOrder and is
+ * responsible for handling user input and responses.
  */
 public class ShowNewOrdersController {
-	
-	/** The customer order table. */
+
 	@FXML
 	private TableView<CustomerOrder> customerOrderTable;
-	
-	/** The order number. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderNumber;
-	
-	/** The order status. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderStatus;
-	
-	/** The order date. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderDate;
-	
-	/** The order total price. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderTotalPrice;
-	
-	/** The customer number. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> customerNumber;
-	
-	/** The supplier order table. */
+
 	@FXML
 	private TableView<SupplierOrder> supplierOrderTable;
-	
-	/** The order name supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderNameSupplier;
-	
-	/** The order description supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderDescriptionSupplier;
-	
-	/** The order status supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderStatusSupplier;
-	
-	/** The order date supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderDateSupplier;
-	
-	/** The order single price supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderSinglePriceSupplier;
-	
-	/** The order amount supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderAmountSupplier;
-	
-	/** The order total price supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderTotalPriceSupplier;
-	
-	/** The order art supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderArtSupplier;
-	
-	/** The radio days. */
+
 	@FXML
 	private RadioButton radioDays;
-	
-	/** The radio date. */
+
 	@FXML
 	private RadioButton radioDate;
-	
-	/** The days combobox. */
+
 	@FXML
 	private ComboBox<String> daysCombobox;
-	
-	/** The zeitraum. */
+
 	@FXML
-	private ToggleGroup zeitraum;
-	
-	/** The start date. */
+	private ToggleGroup period;
+
 	@FXML
 	private DatePicker startDate;
-	
-	/** The end date. */
+
 	@FXML
 	private DatePicker endDate;
-	
-	/** The radio days supplier. */
+
 	@FXML
 	private RadioButton radioDaysSupplier;
-	
-	/** The radio date supplier. */
+
 	@FXML
 	private RadioButton radioDateSupplier;
-	
-	/** The days combobox supplier. */
+
 	@FXML
 	private ComboBox<String> daysComboboxSupplier;
-	
-	/** The zeitraum supplier. */
+
 	@FXML
-	private ToggleGroup zeitraumSupplier;
-	
-	/** The start date supplier. */
+	private ToggleGroup periodSupplier;
+
 	@FXML
 	private DatePicker startDateSupplier;
-	
-	/** The end date supplier. */
+
 	@FXML
 	private DatePicker endDateSupplier;
-	
-	/** The tab pane. */
+
 	@FXML
 	private TabPane tabPane;
 
-	/** The main. */
 	private Main main;
 
 	/**
-	 * Sets the days combobox.
+	 * Sets the days combobox. Selectable options: 10 days, 20 days, 30 days or
+	 * all orders
 	 */
 	public void setDaysCombobox() {
 		daysCombobox.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage"));
@@ -154,7 +127,8 @@ public class ShowNewOrdersController {
 	}
 
 	/**
-	 * Sets the days combobox supplier.
+	 * Sets the days combobox supplier. Selectable options: 10 days, 20 days, 30
+	 * days or all orders
 	 */
 	public void setDaysComboboxSupplier() {
 		daysComboboxSupplier.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage"));
@@ -171,18 +145,18 @@ public class ShowNewOrdersController {
 		endDate.setEditable(false);
 		startDateSupplier.setEditable(false);
 		endDateSupplier.setEditable(false);
-		
+
 		daysCombobox.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(@SuppressWarnings("rawtypes") ObservableValue ov, String t, String t1) {
-				loadOrders(t1);
+				loadCustomerOrders(t1);
 			}
 		});
 
-		zeitraum.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+		period.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 				daysCombobox.getSelectionModel().select(0);
-				loadOrders(daysCombobox.getSelectionModel().getSelectedItem());
+				loadCustomerOrders(daysCombobox.getSelectionModel().getSelectedItem());
 			}
 		});
 
@@ -194,7 +168,7 @@ public class ShowNewOrdersController {
 		customerOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
 		setDaysComboboxSupplier();
-		
+
 		daysComboboxSupplier.valueProperty().addListener(new ChangeListener<String>() {
 			@Override
 			public void changed(@SuppressWarnings("rawtypes") ObservableValue ov, String t, String t1) {
@@ -202,7 +176,7 @@ public class ShowNewOrdersController {
 			}
 		});
 
-		zeitraumSupplier.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+		periodSupplier.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
 			public void changed(ObservableValue<? extends Toggle> ov, Toggle old_toggle, Toggle new_toggle) {
 				daysComboboxSupplier.getSelectionModel().select(0);
 				loadSupplierOrders(daysComboboxSupplier.getSelectionModel().getSelectedItem());
@@ -221,21 +195,22 @@ public class ShowNewOrdersController {
 	}
 
 	/**
-	 * Sets the main app.
+	 * Sets the main app with the default selection of 10 days
 	 *
-	 * @param main the new main app
+	 * @param main
+	 *            the new main app
 	 */
 	public void setMainApp(Main main) {
 		this.main = main;
-		loadOrders("10 Tage");
+		loadCustomerOrders("10 Tage");
 	}
 
 	/**
-	 * Load orders.
+	 * Load customer orders.
 	 */
 	@FXML
-	public void loadOrders() {
-		loadOrders(daysCombobox.getSelectionModel().getSelectedItem());
+	public void loadCustomerOrders() {
+		loadCustomerOrders(daysCombobox.getSelectionModel().getSelectedItem());
 	}
 
 	/**
@@ -247,9 +222,11 @@ public class ShowNewOrdersController {
 	}
 
 	/**
-	 * Load supplier orders.
+	 * Load supplier orders. Selectable options: 10 days, 20 days, 30 days or
+	 * all orders
 	 *
-	 * @param comboValue the combo value
+	 * @param comboValue
+	 *            the combo value
 	 */
 	public void loadSupplierOrders(String comboValue) {
 		ZoneId zone1 = ZoneId.of("Europe/Berlin");
@@ -296,11 +273,13 @@ public class ShowNewOrdersController {
 	}
 
 	/**
-	 * Load orders.
+	 * Load customer orders. Selectable options: 10 days, 20 days, 30 days or
+	 * all orders
 	 *
-	 * @param comboValue the combo value
+	 * @param comboValue
+	 *            the combo value
 	 */
-	public void loadOrders(String comboValue) {
+	public void loadCustomerOrders(String comboValue) {
 		ZoneId zone1 = ZoneId.of("Europe/Berlin");
 		LocalDate local = LocalDate.now(zone1);
 
@@ -342,7 +321,7 @@ public class ShowNewOrdersController {
 	}
 
 	/**
-	 * Customer is selected.
+	 * Shows NavigationBarCustomer if Customer is selected.
 	 */
 	@FXML
 	public void customerIsSelected() {
@@ -353,7 +332,7 @@ public class ShowNewOrdersController {
 	}
 
 	/**
-	 * Supplier is selected.
+	 * Shows NavigationBarSupplier if Supplier is selected.
 	 */
 	@FXML
 	public void supplierIsSelected() {
@@ -363,7 +342,8 @@ public class ShowNewOrdersController {
 	/**
 	 * Sets the tab selected.
 	 *
-	 * @param selection the new tab selected
+	 * @param selection
+	 *            the new tab selected
 	 */
 	public void setTabSelected(int selection) {
 		SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();

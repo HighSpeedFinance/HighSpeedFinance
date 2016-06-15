@@ -25,8 +25,11 @@ import javafx.scene.paint.Color;
 import javafx.util.converter.LocalDateStringConverter;
 
 /**
- * The Class AnnualAccountsController manages the views from XXXX and is
- * responsible for handling user input and responses
+ * The Class AnnualAccountsController manages the views from AnnualAccounts and
+ * is responsible for handling user input and responses. The Methods load all
+ * SupplierOrders and CustomerOrders where the Status is "SUCCEEDED" and
+ * calculate the balance of Income and Costs. The results are shown in a graphic
+ * and selectable by months.
  */
 public class AnnualAccountsController {
 
@@ -58,9 +61,9 @@ public class AnnualAccountsController {
 
 	private ObservableList<SupplierOrder> supplierOrderListMonth = FXCollections.observableArrayList();
 
-	private double summeEinnahmen = 0;
+	private double sumIncome = 0;
 
-	private double summeAusgaben = 0;
+	private double sumCosts = 0;
 
 	/**
 	 * Initialize.
@@ -77,7 +80,8 @@ public class AnnualAccountsController {
 	}
 
 	/**
-	 * Sets the month choice box.
+	 * Sets the month choice box. Selectable options are: all month or each
+	 * individual month.
 	 */
 	public void setMonthChoiceBox() {
 		monthChoiceBox.setItems(FXCollections.observableArrayList("Alle", "Januar", "Februar", "M�rz", "April", "Mai",
@@ -86,7 +90,9 @@ public class AnnualAccountsController {
 	}
 
 	/**
-	 * Load bar chart.
+	 * Loads the bar chart. Sets the bar charts to the amount of the values
+	 * Income and Costs
+	 * 
 	 */
 	@SuppressWarnings("unchecked")
 	private void loadBarChart() {
@@ -94,26 +100,27 @@ public class AnnualAccountsController {
 		new NumberAxis();
 
 		for (CustomerOrder customerOrder : customerOrderListMonth) {
-			summeEinnahmen += customerOrder.getSumPrice();
+			sumIncome += customerOrder.getSumPrice();
 		}
 		for (SupplierOrder supplierOrder : supplierOrderListMonth) {
-			summeAusgaben += supplierOrder.getSumPrice();
+			sumCosts += supplierOrder.getSumPrice();
 		}
 
 		ObservableList<XYChart.Series<String, Number>> barChartData = FXCollections.observableArrayList();
 		final BarChart.Series<String, Number> series1 = new BarChart.Series<String, Number>();
 		series1.setName("Jahresabschluss");
-		series1.getData().add(new XYChart.Data<String, Number>("Einnahmen", summeEinnahmen));
-		series1.getData().add(new XYChart.Data<String, Number>("Ausgaben", summeAusgaben));
+		series1.getData().add(new XYChart.Data<String, Number>("Einnahmen", sumIncome));
+		series1.getData().add(new XYChart.Data<String, Number>("Ausgaben", sumCosts));
 		barChartData.add(series1);
 		barChart.setData(barChartData);
 	}
 
 	/**
-	 * Sets the result income label.
+	 * Sets the result income label. if the balance is a negativ number the
+	 * result ist shown in the color red, else it is shown in the color green
 	 */
 	public void setResultIncomeLabel() {
-		double result = Math.round(100.0 * (summeEinnahmen - summeAusgaben)) / 100.0;
+		double result = Math.round(100.0 * (sumIncome - sumCosts)) / 100.0;
 		resultIncomeCost.setText(String.valueOf(result));
 		if (result < 0) {
 			resultIncomeCost.setTextFill(Color.RED);
@@ -140,6 +147,7 @@ public class AnnualAccountsController {
 
 	/**
 	 * Sets the list in time.
+	 * 
 	 */
 	public void setListInTime() {
 		ZoneId zone1 = ZoneId.of("Europe/Berlin");
@@ -166,17 +174,19 @@ public class AnnualAccountsController {
 	}
 
 	/**
-	 * Load orders month.
+	 * Load orders month. loads the orders for each individual month
 	 *
 	 * @param comboValue
 	 *            the combo value
+	 * 
+	 * 
 	 */
 	public void loadOrdersMonth(String comboValue) {
 		String month = "";
 		customerOrderListMonth.clear();
 		supplierOrderListMonth.clear();
-		summeEinnahmen = 0;
-		summeAusgaben = 0;
+		sumIncome = 0;
+		sumCosts = 0;
 
 		switch (comboValue) {
 		case "Januar":
@@ -224,7 +234,7 @@ public class AnnualAccountsController {
 		}
 
 		for (CustomerOrder cusOrder : customerOrderListMonth) {
-			summeEinnahmen += cusOrder.getSumPrice();
+			sumIncome += cusOrder.getSumPrice();
 		}
 
 		for (SupplierOrder supOrder : supplierOrderListinTime) {
@@ -234,7 +244,7 @@ public class AnnualAccountsController {
 		}
 
 		for (SupplierOrder supOrder : supplierOrderListMonth) {
-			summeAusgaben += supOrder.getSumPrice();
+			sumCosts += supOrder.getSumPrice();
 		}
 
 		income.setItems(customerOrderListMonth);

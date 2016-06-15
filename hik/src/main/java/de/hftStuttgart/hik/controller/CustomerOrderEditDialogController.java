@@ -12,51 +12,41 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.util.converter.LocalDateStringConverter;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CustomerOrderEditDialogController.
+ * The Class CustomerOrderEditDialogController manages the views from
+ * CustomerOrderEditDialog and is responsible for handling user input and
+ * responses.
  */
 public class CustomerOrderEditDialogController {
 
-	/** The art nr. */
 	@FXML
 	private TextField artNr;
-	
-	/** The description. */
+
 	@FXML
 	private TextField description;
-	
-	/** The payment status. */
+
 	@FXML
 	private ChoiceBox<String> paymentStatus;
-	
-	/** The date. */
+
 	@FXML
 	private DatePicker date;
-	
-	/** The single price. */
+
 	@FXML
 	private TextField singlePrice;
-	
-	/** The amount. */
+
 	@FXML
 	private TextField amount;
-	
-	/** The tax. */
+
 	@FXML
 	private TextField tax;
-	
-	/** The order nr. */
+
 	@FXML
 	private TextField orderNr;
 
-	/** The dialog stage. */
 	private Stage dialogStage;
-	
-	/** The customer order. */
+
 	private CustomerOrder customerOrder;
-	
-	/** The ok clicked. */
+
 	private boolean okClicked = false;
 
 	/**
@@ -71,7 +61,8 @@ public class CustomerOrderEditDialogController {
 	/**
 	 * Sets the dialog stage.
 	 *
-	 * @param dialogStage the new dialog stage
+	 * @param dialogStage
+	 *            the new dialog stage
 	 */
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
@@ -89,7 +80,8 @@ public class CustomerOrderEditDialogController {
 	/**
 	 * Sets the customer order.
 	 *
-	 * @param customerOrder the new customer order
+	 * @param customerOrder
+	 *            the new customer order
 	 */
 	public void setCustomerOrder(CustomerOrder customerOrder) {
 		this.customerOrder = customerOrder;
@@ -127,9 +119,9 @@ public class CustomerOrderEditDialogController {
 	}
 
 	/**
-	 * Checks if is ok clicked.
+	 * Checks if "Ok" is clicked.
 	 *
-	 * @return true, if is ok clicked
+	 * @return true if "OK" is clicked
 	 */
 	public boolean isOkClicked() {
 		return okClicked;
@@ -178,9 +170,9 @@ public class CustomerOrderEditDialogController {
 	}
 
 	/**
-	 * Checks if is input valid.
+	 * Checks if input is valid and shows error messages if not
 	 *
-	 * @return true, if is input valid
+	 * @return true, if input is valid
 	 */
 	private boolean isInputValid() {
 		String errorMessage = "";

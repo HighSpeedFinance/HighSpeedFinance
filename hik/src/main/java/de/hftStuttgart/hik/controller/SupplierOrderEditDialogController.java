@@ -12,51 +12,41 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.util.converter.LocalDateStringConverter;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class SupplierOrderEditDialogController.
+ * The Class SupplierOrderEditDialogController manages the views from
+ * SupplierOrderEditDialog and is responsible for handling user input and
+ * responses.
  */
 public class SupplierOrderEditDialogController {
-	
-	/** The art nr. */
+
 	@FXML
 	private TextField artNr;
-	
-	/** The description. */
+
 	@FXML
 	private TextField description;
-	
-	/** The payment status. */
+
 	@FXML
 	private ChoiceBox<String> paymentStatus;
-	
-	/** The date. */
+
 	@FXML
 	private DatePicker date;
-	
-	/** The single price. */
+
 	@FXML
 	private TextField singlePrice;
-	
-	/** The amount. */
+
 	@FXML
 	private TextField amount;
-	
-	/** The tax. */
+
 	@FXML
 	private TextField tax;
-	
-	/** The order nr. */
+
 	@FXML
 	private TextField orderNr;
 
-	/** The dialog stage. */
 	private Stage dialogStage;
-	
-	/** The supplier order. */
+
 	private SupplierOrder supplierOrder;
-	
-	/** The ok clicked. */
+
 	private boolean okClicked = false;
 
 	/**
@@ -71,7 +61,8 @@ public class SupplierOrderEditDialogController {
 	/**
 	 * Sets the dialog stage.
 	 *
-	 * @param dialogStage the new dialog stage
+	 * @param dialogStage
+	 *            the new dialog stage
 	 */
 	public void setDialogStage(Stage dialogStage) {
 		this.dialogStage = dialogStage;
@@ -89,7 +80,8 @@ public class SupplierOrderEditDialogController {
 	/**
 	 * Sets the supplier order.
 	 *
-	 * @param supplierOrder the new supplier order
+	 * @param supplierOrder
+	 *            the new supplier order
 	 */
 	public void setSupplierOrder(SupplierOrder supplierOrder) {
 		this.supplierOrder = supplierOrder;
@@ -129,9 +121,9 @@ public class SupplierOrderEditDialogController {
 	}
 
 	/**
-	 * Checks if is ok clicked.
+	 * Checks if "Ok" is clicked.
 	 *
-	 * @return true, if is ok clicked
+	 * @return true, if "Ok" is clicked
 	 */
 	public boolean isOkClicked() {
 		return okClicked;
@@ -168,7 +160,7 @@ public class SupplierOrderEditDialogController {
 			}
 			supplierOrder.setUnitPrice(Double.parseDouble(singlePrice.getText()));
 			supplierOrder.setTax(Double.parseDouble(tax.getText()));
-			
+
 			okClicked = true;
 			dialogStage.close();
 		}
@@ -183,9 +175,9 @@ public class SupplierOrderEditDialogController {
 	}
 
 	/**
-	 * Checks if is input valid.
+	 * Checks if input is valid and shows error messages if not
 	 *
-	 * @return true, if is input valid
+	 * @return true, if input is valid
 	 */
 	private boolean isInputValid() {
 		String errorMessage = "";
