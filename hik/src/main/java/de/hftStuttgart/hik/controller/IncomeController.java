@@ -58,7 +58,7 @@ public class IncomeController {
 	private TableColumn<CustomerOrder, String> orderTax;
 
 	@FXML
-	private Label summe;
+	private Label sumIncome;
 
 	@FXML
 	private ComboBox<String> daysCombobox;
@@ -173,7 +173,7 @@ public class IncomeController {
 		for (CustomerOrder cusOrder : customerOrderListInTimeAndPlz) {
 			summeCalc += cusOrder.getSumPrice();
 		}
-		summe.setText(String.valueOf(summeCalc) + " Euro");
+		sumIncome.setText(String.valueOf(summeCalc) + " Euro");
 		customerOrderTable.setItems(customerOrderListInTimeAndPlz);
 	}
 

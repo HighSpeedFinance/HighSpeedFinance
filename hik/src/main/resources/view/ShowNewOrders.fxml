@@ -38,13 +38,13 @@
 						<Label layoutX="14.0" layoutY="51.0" text="Zeitraum :" />
 						<RadioButton fx:id="radioDays" layoutX="92.0" layoutY="51.0" mnemonicParsing="false" selected="true" text="in Tagen">
 							<toggleGroup>
-								<ToggleGroup fx:id="zeitraum" />
+								<ToggleGroup fx:id="period" />
 							</toggleGroup>
 						</RadioButton>
-						<RadioButton fx:id="radioDate" layoutX="92.0" layoutY="89.0" mnemonicParsing="false" text="Datum" toggleGroup="$zeitraum" />
+						<RadioButton fx:id="radioDate" layoutX="92.0" layoutY="89.0" mnemonicParsing="false" text="Datum" toggleGroup="$period" />
 						<ComboBox fx:id="daysCombobox" layoutX="177.0" layoutY="47.0" prefHeight="25.0" prefWidth="87.0" />
-						<DatePicker fx:id="startDate" layoutX="176.0" layoutY="85.0" onAction="#loadOrders" prefHeight="25.0" prefWidth="89.0" />
-						<DatePicker fx:id="endDate" layoutX="306.0" layoutY="85.0" onAction="#loadOrders" prefHeight="25.0" prefWidth="89.0" />
+						<DatePicker fx:id="startDate" layoutX="176.0" layoutY="85.0" onAction="#loadCustomerOrders" prefHeight="25.0" prefWidth="89.0" />
+						<DatePicker fx:id="endDate" layoutX="306.0" layoutY="85.0" onAction="#loadCustomerOrders" prefHeight="25.0" prefWidth="89.0" />
 						<Label layoutX="275.0" layoutY="89.0" text="bis" />
 						<Label layoutX="10.0" layoutY="10.0" text="Neue Kundenrechnungen" underline="true">
 							<font>
@@ -81,12 +81,12 @@
 						<Label layoutX="14.0" layoutY="51.0" text="Zeitraum :" />
 						<RadioButton fx:id="radioDaysSupplier" layoutX="92.0" layoutY="51.0" mnemonicParsing="false" selected="true" text="in Tagen">
 							<toggleGroup>
-								<ToggleGroup fx:id="zeitraumSupplier" />
+								<ToggleGroup fx:id="periodSupplier" />
 							</toggleGroup>
 						</RadioButton>
-						<RadioButton fx:id="radioDateSupplier" layoutX="92.0" layoutY="89.0" mnemonicParsing="false" text="Datum" toggleGroup="$zeitraumSupplier" />
+						<RadioButton fx:id="radioDateSupplier" layoutX="92.0" layoutY="89.0" mnemonicParsing="false" text="Datum" toggleGroup="$periodSupplier" />
 						<ComboBox fx:id="daysComboboxSupplier" layoutX="177.0" layoutY="47.0" prefHeight="25.0" prefWidth="87.0" />
-						<DatePicker fx:id="startDateSupplier" layoutX="176.0" layoutY="85.0" onAction="#loadOrders" prefHeight="25.0" prefWidth="89.0" />
+						<DatePicker fx:id="startDateSupplier" layoutX="176.0" layoutY="85.0" onAction="#loadSupplierOrders" prefHeight="25.0" prefWidth="89.0" />
 						<DatePicker fx:id="endDateSupplier" layoutX="306.0" layoutY="85.0" onAction="#loadSupplierOrders" prefHeight="25.0" prefWidth="89.0" />
 						<Label layoutX="275.0" layoutY="89.0" text="bis" />
 						<Label layoutX="10.0" layoutY="10.0" text="Neue Lieferantenbestellungen" underline="true">

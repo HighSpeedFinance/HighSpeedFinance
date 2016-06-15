@@ -58,7 +58,7 @@ public class CostsController {
 	private TableColumn<SupplierOrder, String> orderTaxSupplier;
 
 	@FXML
-	private Label summe;
+	private Label sumCosts;
 
 	@FXML
 	private ComboBox<String> daysCombobox;
@@ -142,7 +142,7 @@ public class CostsController {
 		for (SupplierOrder supOrder : supplierOrderListInTimeAndSupplier) {
 			sumCalc += supOrder.getSumPrice();
 		}
-		summe.setText(String.valueOf(Math.round(100.0 * sumCalc) / 100.0) + " Euro");
+		sumCosts.setText(String.valueOf(Math.round(100.0 * sumCalc) / 100.0) + " Euro");
 		supplierOrderTable.setItems(supplierOrderListInTimeAndSupplier);
 	}
 
