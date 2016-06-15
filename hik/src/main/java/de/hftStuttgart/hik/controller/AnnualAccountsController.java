@@ -84,7 +84,7 @@ public class AnnualAccountsController {
 	 * individual month.
 	 */
 	public void setMonthChoiceBox() {
-		monthChoiceBox.setItems(FXCollections.observableArrayList("Alle", "Januar", "Februar", "Mï¿½rz", "April", "Mai",
+		monthChoiceBox.setItems(FXCollections.observableArrayList("Alle", "Januar", "Februar", "März", "April", "Mai",
 				"Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"));
 		monthChoiceBox.getSelectionModel().select(0);
 	}

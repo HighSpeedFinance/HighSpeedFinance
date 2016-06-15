@@ -40,7 +40,7 @@ public class AlertUtil {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information!");
 		alert.setHeaderText("");
-		alert.setContentText("Das Programm ist in Kï¿½rze fï¿½r Sie bereit!");
+		alert.setContentText("Das Programm ist in Kürze für Sie bereit!");
 		alert.show();
 	}
 }
