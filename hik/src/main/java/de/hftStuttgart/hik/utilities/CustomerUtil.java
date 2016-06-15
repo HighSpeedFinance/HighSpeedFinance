@@ -9,20 +9,22 @@ import de.hftStuttgart.hik.model.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Enum CustomerUtil.
+ * The Enum CustomerUtil gets the actual connection to the DatabaseConnection and instanciates the
+ * EntityManager
+ * 
  */
 public enum CustomerUtil {
 	
-	/** The instance. */
+	
 	INSTANCE;
 	
-	/** The em. */
+	
 	private static EntityManager em = DatabaseConnectionUtil.getEm();
 
 	/**
-	 * Load all customers.
+	 * Loads all Customers from the Databse
 	 *
 	 * @return the observable list
 	 */
@@ -38,9 +40,9 @@ public enum CustomerUtil {
 	}
 
 	/**
-	 * Adds the customer.
+	 * Adds the customer to the Database
 	 *
-	 * @param cust the cust
+	 * @param cust the Customer
 	 */
 	public static void addCustomer(Customer cust) {
 		em.getTransaction().begin();
@@ -49,9 +51,9 @@ public enum CustomerUtil {
 	}
 
 	/**
-	 * Edits the customer.
+	 * Edits the customer in the Database
 	 *
-	 * @param cust the cust
+	 * @param cust the Customer
 	 */
 	public static void editCustomer(Customer cust) {
 		em.getTransaction().begin();
@@ -60,9 +62,9 @@ public enum CustomerUtil {
 	}
 
 	/**
-	 * Delete customer.
+	 * Deletes the customer from the Database
 	 *
-	 * @param cust the cust
+	 * @param cust the Customer
 	 */
 	public static void deleteCustomer(Customer cust) {
 		em.getTransaction().begin();

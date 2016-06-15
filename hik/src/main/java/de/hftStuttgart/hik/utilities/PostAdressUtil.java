@@ -9,20 +9,18 @@ import de.hftStuttgart.hik.model.PostAdress;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Enum PostAdressUtil.
+ * The Enum PostAdressUtil gets the actual connection to the DatabaseConnection
+ * and instanciates the EntityManager
  */
 public enum PostAdressUtil {
-	
-	/** The instance. */
+
 	INSTANCE;
-	
-	/** The em. */
+
 	private static EntityManager em = DatabaseConnectionUtil.getEm();
 
 	/**
-	 * Load all adresses.
+	 * Loads all PostAdresses from the Database
 	 *
 	 * @return the observable list
 	 */
@@ -38,9 +36,10 @@ public enum PostAdressUtil {
 	}
 
 	/**
-	 * Adds the post adress.
+	 * Adds the PostAdresses to the Database
 	 *
-	 * @param postAd the post ad
+	 * @param postAd
+	 *            the PostAdress
 	 */
 	public static void addPostAdress(PostAdress postAd) {
 		em.getTransaction().begin();
@@ -49,9 +48,10 @@ public enum PostAdressUtil {
 	}
 
 	/**
-	 * Edits the post adress.
+	 * Edits the PostAdresses in the Database
 	 *
-	 * @param postAd the post ad
+	 * @param postAd
+	 *            the PostAdress
 	 */
 	public static void editPostAdress(PostAdress postAd) {
 		em.getTransaction().begin();
@@ -60,9 +60,10 @@ public enum PostAdressUtil {
 	}
 
 	/**
-	 * Delete post adress.
+	 * Deletes the PostAdresses from the Database
 	 *
-	 * @param postAd the post ad
+	 * @param postAd
+	 *            the PostAdress
 	 */
 	public static void deletePostAdress(PostAdress postAd) {
 		em.getTransaction().begin();

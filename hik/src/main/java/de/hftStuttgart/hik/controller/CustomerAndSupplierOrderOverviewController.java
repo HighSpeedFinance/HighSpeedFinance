@@ -20,93 +20,74 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CustomerAndSupplierOrderOverviewController.
+ * The Class CustomerAndSupplierOrderOverviewController manages the views from
+ * CustomerAndSupplierOverview and is responsible for handling user input and
+ * responses. The methods load all SupplierOrders and CustomerOrders and refresh
+ * the data from the Database if a new Tab is selected.
+ * 
  */
 public class CustomerAndSupplierOrderOverviewController {
 
-	/** The customer order table. */
 	@FXML
 	private TableView<CustomerOrder> customerOrderTable;
-	
-	/** The order number. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderNumber;
-	
-	/** The order status. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderStatus;
-	
-	/** The order date. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderDate;
-	
-	/** The order total price. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderTotalPrice;
-	
-	/** The customer number. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> customerNumber;
-	
-	/** The supplier order table. */
+
 	@FXML
 	private TableView<SupplierOrder> supplierOrderTable;
-	
-	/** The order name supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderNameSupplier;
-	
-	/** The order description supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderDescriptionSupplier;
-	
-	/** The order status supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderStatusSupplier;
-	
-	/** The order date supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderDateSupplier;
-	
-	/** The order single price supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderSinglePriceSupplier;
-	
-	/** The order amount supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderAmountSupplier;
-	
-	/** The order total price supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderTotalPriceSupplier;
-	
-	/** The order art supplier. */
+
 	@FXML
 	private TableColumn<SupplierOrder, String> orderArtSupplier;
-	
-	/** The tab pane. */
+
 	@FXML
 	private TabPane tabPane;
-	
-	/** The search customer orders. */
+
 	@FXML
 	private TextField searchCustomerOrders;
-	
-	/** The search supplier orders. */
+
 	@FXML
 	private TextField searchSupplierOrders;
-	
-	/** The main. */
+
 	private Main main;
-	
-	/** The customer order list. */
+
 	private ObservableList<CustomerOrder> customerOrderList = FXCollections.observableArrayList();
-	
-	/** The supplier order list. */
+
 	private ObservableList<SupplierOrder> supplierOrderList = FXCollections.observableArrayList();
-	
 
 	/**
 	 * Initialize.
@@ -119,7 +100,7 @@ public class CustomerAndSupplierOrderOverviewController {
 		customerNumber.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("customerNumber"));
 		orderTotalPrice.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("sumPrice"));
 		customerOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-		
+
 		orderNameSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("supplier"));
 		orderDescriptionSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("description"));
 		orderStatusSupplier.setCellValueFactory(new PropertyValueFactory<SupplierOrder, String>("statusString"));
@@ -132,7 +113,8 @@ public class CustomerAndSupplierOrderOverviewController {
 	}
 
 	/**
-	 * Refresh customer order table.
+	 * Refreshes customer order table if the tab CustomerOrder is selected.
+	 * 
 	 */
 	private void refreshCustomerOrderTable() {
 		int selectedIndex = customerOrderTable.getSelectionModel().getSelectedIndex();
@@ -141,9 +123,9 @@ public class CustomerAndSupplierOrderOverviewController {
 		customerOrderTable.setItems(main.getCustomerOrderData());
 		customerOrderTable.getSelectionModel().select(selectedIndex);
 	}
-	
+
 	/**
-	 * Refresh supplier order table.
+	 * Refreshes supplier order table if the tab SupplierOrder is selected
 	 */
 	private void refreshSupplierOrderTable() {
 		int selectedIndex = supplierOrderTable.getSelectionModel().getSelectedIndex();
@@ -152,7 +134,7 @@ public class CustomerAndSupplierOrderOverviewController {
 		supplierOrderTable.setItems(main.getSupplierOrderData());
 		supplierOrderTable.getSelectionModel().select(selectedIndex);
 	}
-	
+
 	/**
 	 * Adds the supplier order.
 	 */
@@ -161,16 +143,17 @@ public class CustomerAndSupplierOrderOverviewController {
 		SupplierOrder supplierOrder = new SupplierOrder();
 		boolean okClicked = main.showSupplierOrderEditWithSupplierDialog(supplierOrder);
 		if (okClicked) {
-			SupplierUtil.loadAllSuppliers().get(supplierOrder.getSupplierObject().getId().intValue()-1).addOrder(supplierOrder);
+			SupplierUtil.loadAllSuppliers().get(supplierOrder.getSupplierObject().getId().intValue() - 1)
+					.addOrder(supplierOrder);
 			supplierOrder.setSupplier(supplierOrder.getSupplierObject());
 			SupplierOrderUtil.addOrder(supplierOrder);
 			main.addSupplierOrder(supplierOrder);
 			refreshSupplierOrderTable();
 		}
 	}
-	
+
 	/**
-	 * Edits the supplier order.
+	 * Edits the supplier order and shows an alert when no order is selected
 	 */
 	@FXML
 	private void editSupplierOrder() {
@@ -185,7 +168,7 @@ public class CustomerAndSupplierOrderOverviewController {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error!");
 			alert.setHeaderText("");
-			alert.setContentText("Keine Bestellung ausgewählt!");
+			alert.setContentText("Keine Bestellung ausgewï¿½hlt!");
 			alert.showAndWait();
 		}
 	}
@@ -198,7 +181,8 @@ public class CustomerAndSupplierOrderOverviewController {
 		CustomerOrder customerOrder = new CustomerOrder();
 		boolean okClicked = main.showOrderEditWithCustomerDialog(customerOrder);
 		if (okClicked) {
-			CustomerUtil.loadAllCustomers().get(customerOrder.getCustomerObject().getId().intValue()-1).addOrder(customerOrder);
+			CustomerUtil.loadAllCustomers().get(customerOrder.getCustomerObject().getId().intValue() - 1)
+					.addOrder(customerOrder);
 			customerOrder.setCustomer(customerOrder.getCustomerObject());
 			OrderUtil.addOrder(customerOrder);
 			main.addCustomerOrder(customerOrder);
@@ -206,7 +190,7 @@ public class CustomerAndSupplierOrderOverviewController {
 	}
 
 	/**
-	 * Edits the customer order.
+	 * Edits the customer order and shows an alert when no order is selected.
 	 */
 	@FXML
 	private void editCustomerOrder() {
@@ -225,9 +209,9 @@ public class CustomerAndSupplierOrderOverviewController {
 			alert.showAndWait();
 		}
 	}
-	
+
 	/**
-	 * Search supplier orders.
+	 * Search supplier orders by SupplierOrder attributes
 	 */
 	@FXML
 	public void searchSupplierOrders() {
@@ -239,10 +223,9 @@ public class CustomerAndSupplierOrderOverviewController {
 		}
 		if (!searchSupplierOrders.getText().equals("")) {
 			for (SupplierOrder supOrder : main.getSupplierOrderData()) {
-				if (supOrder.getOrderNumber() == searchInteger
-						|| supOrder.getSupId() == searchInteger
+				if (supOrder.getOrderNumber() == searchInteger || supOrder.getSupId() == searchInteger
 						|| supOrder.getSupplierObject().getSupplierCompanyName().equals(searchCustomerOrders.getText())
-						|| supOrder.getItemNumb()==searchInteger) {
+						|| supOrder.getItemNumb() == searchInteger) {
 					supplierOrderList.add(supOrder);
 				}
 			}
@@ -251,9 +234,9 @@ public class CustomerAndSupplierOrderOverviewController {
 			supplierOrderTable.setItems(main.getSupplierOrderData());
 		}
 	}
-	
+
 	/**
-	 * Search customer orders.
+	 * Search customer orders by CustomerOrder attributes
 	 */
 	@FXML
 	public void searchCustomerOrders() {
@@ -268,8 +251,9 @@ public class CustomerAndSupplierOrderOverviewController {
 				if (cusOrder.getOrderNumber() == searchInteger
 						|| cusOrder.getCustomerObject().getCustomerNumber() == searchInteger
 						|| cusOrder.getCustomerObject().getCustomerCompanyName().equals(searchCustomerOrders.getText())
-						|| (cusOrder.getCustomerObject().getCustomerContactPersonFirstName() + " " + cusOrder.getCustomerObject().getCustomerContactPersonLastName())
-								.equals(searchCustomerOrders.getText())) {
+						|| (cusOrder.getCustomerObject().getCustomerContactPersonFirstName() + " "
+								+ cusOrder.getCustomerObject().getCustomerContactPersonLastName())
+										.equals(searchCustomerOrders.getText())) {
 					customerOrderList.add(cusOrder);
 				}
 			}
@@ -282,7 +266,8 @@ public class CustomerAndSupplierOrderOverviewController {
 	/**
 	 * Sets the main app.
 	 *
-	 * @param mainApp the new main app
+	 * @param mainApp
+	 *            the new main app
 	 */
 	public void setMainApp(Main mainApp) {
 		this.main = mainApp;
@@ -291,7 +276,8 @@ public class CustomerAndSupplierOrderOverviewController {
 	}
 
 	/**
-	 * Customer is selected.
+	 * Shows the navigation bar from Customer if Customer is selected
+	 * 
 	 */
 	@FXML
 	public void customerIsSelected() {
@@ -303,23 +289,24 @@ public class CustomerAndSupplierOrderOverviewController {
 	}
 
 	/**
-	 * Supplier is selected.
+	 * Shows the navigation bar from Supplier if Supplier is selected
 	 */
 	@FXML
 	public void supplierIsSelected() {
 		main.showNavigationBarSupplier();
 	}
-	
+
 	/**
 	 * Sets the tab selected.
 	 *
-	 * @param selection the new tab selected
+	 * @param selection
+	 *            the new tab selected
 	 */
-	public void setTabSelected(int selection){
+	public void setTabSelected(int selection) {
 		SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
-		if(selection == 0){
+		if (selection == 0) {
 			selectionModel.select(0);
-		}else{
+		} else {
 			selectionModel.select(1);
 		}
 	}

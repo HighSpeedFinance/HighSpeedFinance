@@ -20,90 +20,75 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.util.converter.LocalDateStringConverter;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class IncomeController.
+ * The Class IncomeController manages the views from Income and is responsible
+ * for handling user input and responses.
+ * 
  */
 public class IncomeController {
-	
-	/** The customer order table. */
+
 	@FXML
 	private TableView<CustomerOrder> customerOrderTable;
-	
-	/** The order number. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderNumber;
-	
-	/** The order description. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderDescription;
-	
-	/** The order date. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderDate;
-	
-	/** The order single price. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderSinglePrice;
-	
-	/** The order amount. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderAmount;
-	
-	/** The order total price. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderTotalPrice;
-	
-	/** The order art. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderArt;
-	
-	/** The customer number. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> customerNumber;
-	
-	/** The order tax. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderTax;
-	
-	/** The summe. */
+
 	@FXML
 	private Label summe;
-	
-	/** The days combobox. */
+
 	@FXML
 	private ComboBox<String> daysCombobox;
-	
-	/** The plz combobox. */
+
 	@FXML
 	private ComboBox<String> plzCombobox;
 
-	/** The customer order list in time. */
 	private ObservableList<CustomerOrder> customerOrderListInTime = FXCollections.observableArrayList();
-	
-	/** The customer order list in time and plz. */
+
 	private ObservableList<CustomerOrder> customerOrderListInTimeAndPlz = FXCollections.observableArrayList();
-	
-	/** The customer order list. */
+
 	private ObservableList<CustomerOrder> customerOrderList = FXCollections.observableArrayList();
-	
-	/** The plz. */
+
 	private ObservableList<String> plz = FXCollections.observableArrayList();
-	
-	/** The summe calc. */
+
 	private double summeCalc = 0;
 
 	/**
-	 * Sets the plz combo box.
+	 * Sets the plz combo box. Selectable options are all orders or orders by an
+	 * individul zip-code
 	 *
-	 * @param index the new plz combo box
+	 * @param index
+	 *            the new plz combo box
 	 */
 	public void setPlzComboBox(int index) {
 		for (CustomerOrder cusOrder : customerOrderListInTime) {
 			String plzInt = "";
-			for(Customer cus : CustomerUtil.loadAllCustomers()){
-				if(cusOrder.getCustomerObject().getId() == cus.getId()){
-					 plzInt = String.valueOf(cusOrder.getCustomerObject().getCustomerAdressPostIndex());
+			for (Customer cus : CustomerUtil.loadAllCustomers()) {
+				if (cusOrder.getCustomerObject().getId() == cus.getId()) {
+					plzInt = String.valueOf(cusOrder.getCustomerObject().getCustomerAdressPostIndex());
 				}
 			}
 			if (!plz.contains("Alle")) {
@@ -148,11 +133,11 @@ public class IncomeController {
 		orderTax.setCellValueFactory(new PropertyValueFactory<CustomerOrder, String>("tax"));
 		customerOrderTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 	}
-	
+
 	/**
-	 * Sets the days combobox.
+	 * Sets the days combobox.selectable options are 10 days, 20 days, 30 days or all
 	 */
-	public void setDaysCombobox(){
+	public void setDaysCombobox() {
 		daysCombobox.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage", "Alle"));
 		daysCombobox.getSelectionModel().select(0);
 	}
@@ -160,7 +145,8 @@ public class IncomeController {
 	/**
 	 * Sets the main app.
 	 *
-	 * @param main the new main app
+	 * @param main
+	 *            the new main app
 	 */
 	public void setMainApp(Main main) {
 		customerOrderList = OrderUtil.loadAllOrdersWhereStatusSucceeded();
@@ -168,9 +154,10 @@ public class IncomeController {
 	}
 
 	/**
-	 * Load orders plz.
+	 * Loads all orders from an indiviual zip-code and calculates the total sum
 	 *
-	 * @param comboValue the combo value
+	 * @param comboValue
+	 *            the combo value
 	 */
 	public void loadOrdersPlz(String comboValue) {
 		customerOrderListInTimeAndPlz.clear();
@@ -191,9 +178,11 @@ public class IncomeController {
 	}
 
 	/**
-	 * Load orders.
+	 * Loads all orders. selectable options are 10 days, 20 days, 30 days or all
+	 * orders
 	 *
-	 * @param comboValue the combo value
+	 * @param comboValue
+	 *            the combo value
 	 */
 	public void loadOrders(String comboValue) {
 		ZoneId zone1 = ZoneId.of("Europe/Berlin");
@@ -233,20 +222,10 @@ public class IncomeController {
 		loadOrdersPlz(plzCombobox.getSelectionModel().getSelectedItem());
 	}
 
-	/**
-	 * Gets the summe calc.
-	 *
-	 * @return the summe calc
-	 */
 	public double getSummeCalc() {
 		return summeCalc;
 	}
 
-	/**
-	 * Sets the summe calc.
-	 *
-	 * @param summeCalc the new summe calc
-	 */
 	public void setSummeCalc(double summeCalc) {
 		this.summeCalc = summeCalc;
 	}

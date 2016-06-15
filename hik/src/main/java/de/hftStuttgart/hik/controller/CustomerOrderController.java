@@ -12,60 +12,49 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class CustomerOrderController.
+ * The Class CustomerOrderController manages the views from CustomerOrder and is
+ * responsible for handling user input and responses. The Methods load all
+ * orders from the database, add new orders and edit orders.
+ * 
  */
 public class CustomerOrderController {
 
-	/** The customer order table. */
 	@FXML
 	private TableView<CustomerOrder> customerOrderTable;
-	
-	/** The order number. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderNumber;
-	
-	/** The order description. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderDescription;
-	
-	/** The customer id. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> customerID;
-	
-	/** The order status. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderStatus;
-	
-	/** The order date. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderDate;
-	
-	/** The order single price. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderSinglePrice;
-	
-	/** The order amount. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderAmount;
-	
-	/** The order total price. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderTotalPrice;
-	
-	/** The order art. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderArt;
-	
-	/** The order tax. */
+
 	@FXML
 	private TableColumn<CustomerOrder, String> orderTax;
 
-	/** The customer. */
 	private Customer customer;
-	
-	/** The main. */
+
 	private Main main;
 
 	/**
@@ -98,15 +87,15 @@ public class CustomerOrderController {
 	}
 
 	/**
-	 * Adds the customer order.
+	 * Adds the customer order to the table
 	 */
 	@FXML
 	public void addCustomerOrder() {
 		CustomerOrder customerOrder = new CustomerOrder();
 		boolean okClicked = main.showOrderEditDialog(customerOrder);
 		if (okClicked) {
-			for(Customer cus : CustomerUtil.loadAllCustomers()){
-				if(customer.getId() == cus.getId()){
+			for (Customer cus : CustomerUtil.loadAllCustomers()) {
+				if (customer.getId() == cus.getId()) {
 					cus.addOrder(customerOrder);
 				}
 			}
@@ -118,7 +107,7 @@ public class CustomerOrderController {
 	}
 
 	/**
-	 * Edits the customer order.
+	 * Edits the customer order in the database
 	 */
 	@FXML
 	private void editCustomerOrder() {
@@ -133,7 +122,7 @@ public class CustomerOrderController {
 			Alert alert = new Alert(AlertType.ERROR);
 			alert.setTitle("Error!");
 			alert.setHeaderText("");
-			alert.setContentText("Bitte wählen Sie eine Kundenbestellung aus!");
+			alert.setContentText("Bitte wï¿½hlen Sie eine Kundenbestellung aus!");
 			alert.showAndWait();
 		}
 	}
@@ -141,27 +130,18 @@ public class CustomerOrderController {
 	/**
 	 * Sets the main app.
 	 *
-	 * @param mainApp the new main app
+	 * @param mainApp
+	 *            the new main app
 	 */
 	public void setMainApp(Main mainApp) {
 		this.main = mainApp;
 		customerOrderTable.setItems(main.getCustomerOrderData());
 	}
 
-	/**
-	 * Gets the customer.
-	 *
-	 * @return the customer
-	 */
 	public Customer getCustomer() {
 		return customer;
 	}
 
-	/**
-	 * Sets the customer.
-	 *
-	 * @param customer the new customer
-	 */
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
