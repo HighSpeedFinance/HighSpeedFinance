@@ -10,23 +10,23 @@ import de.hftStuttgart.hik.model.SupplierOrder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Enum SupplierOrderUtil gets the actual connection to the DatabaseConnection and instaciates the
- * EntityManager
+ * The Enum SupplierOrderUtil gets the actual connection to the
+ * DatabaseConnection and instaciates the EntityManager. The SupplierOrder has a
+ * ManyToOne Relationship to Supplier. The Supplier has to be instaciated before
+ * adding a Order
  */
 public enum SupplierOrderUtil {
-	
-	/** The instance. am cutomer hängt die order dran*/
+
 	INSTANCE;
-	
-	/** The em. */
+
 	private static EntityManager em = DatabaseConnectionUtil.getEm();
 
 	/**
-	 * Load all orders.
+	 * Load all orders from the Database
 	 *
-	 * @param sup the sup
+	 * @param sup
+	 *            the Supplier
 	 * @return the observable list
 	 */
 	@SuppressWarnings("unchecked")
@@ -39,9 +39,9 @@ public enum SupplierOrderUtil {
 		}
 		return ordList;
 	}
-	
+
 	/**
-	 * Load all orders.
+	 * Load all orders from thea Database
 	 *
 	 * @return the observable list
 	 */
@@ -55,9 +55,9 @@ public enum SupplierOrderUtil {
 		}
 		return ordList;
 	}
-	
+
 	/**
-	 * Load all orders where status open.
+	 * Load all orders from the Database where status open.
 	 *
 	 * @return the observable list
 	 */
@@ -71,9 +71,9 @@ public enum SupplierOrderUtil {
 		}
 		return ordList;
 	}
-	
+
 	/**
-	 * Load all orders where status succeeded.
+	 * Load all orders from the Database where status succeeded.
 	 *
 	 * @return the observable list
 	 */
@@ -87,12 +87,12 @@ public enum SupplierOrderUtil {
 		}
 		return ordList;
 	}
-	
 
 	/**
-	 * Adds the order.
+	 * Adds the order to the Database
 	 *
-	 * @param ord the ord
+	 * @param ord
+	 *            the Order
 	 */
 	public static void addOrder(SupplierOrder ord) {
 		em.getTransaction().begin();
@@ -101,9 +101,10 @@ public enum SupplierOrderUtil {
 	}
 
 	/**
-	 * Edits the order.
+	 * Edits the order in the Database
 	 *
-	 * @param ord the ord
+	 * @param ord
+	 *            the Order
 	 */
 	public static void editOrder(SupplierOrder ord) {
 		em.getTransaction().begin();
@@ -112,9 +113,10 @@ public enum SupplierOrderUtil {
 	}
 
 	/**
-	 * Delete order.
+	 * Delete order in the Database
 	 *
-	 * @param ord the ord
+	 * @param ord
+	 *            the Order
 	 */
 	public static void deleteOrder(SupplierOrder ord) {
 		em.getTransaction().begin();

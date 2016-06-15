@@ -9,17 +9,14 @@ import de.hftStuttgart.hik.model.PaymentDetails;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
 /**
- * The Enum PaymentDetailsUtil gets the actual connection to the DatabaseConnection and instanciates the
- * EntityManager
+ * The Enum PaymentDetailsUtil gets the actual connection to the
+ * DatabaseConnection and instanciates the EntityManager
  */
 public enum PaymentDetailsUtil {
-	
-	
+
 	INSTANCE;
-	
-	
+
 	private static EntityManager em = DatabaseConnectionUtil.getEm();
 
 	/**
@@ -41,7 +38,8 @@ public enum PaymentDetailsUtil {
 	/**
 	 * Adds the PaymentDetails to the Database
 	 *
-	 * @param payD the PaymentDetails
+	 * @param payD
+	 *            the PaymentDetails
 	 */
 	public static void addPayDetails(PaymentDetails payD) {
 		em.getTransaction().begin();
@@ -52,7 +50,8 @@ public enum PaymentDetailsUtil {
 	/**
 	 * Edits the PaymentDetails in the Databse
 	 *
-	 * @param payD the PaymentDetails
+	 * @param payD
+	 *            the PaymentDetails
 	 */
 	public static void editPayDetails(PaymentDetails payD) {
 		em.getTransaction().begin();
@@ -63,7 +62,8 @@ public enum PaymentDetailsUtil {
 	/**
 	 * Deletes the PaymentDetails from the Database
 	 *
-	 * @param payD the PaymentDetails
+	 * @param payD
+	 *            the PaymentDetails
 	 */
 	public static void deletePayDetails(PaymentDetails payD) {
 		em.getTransaction().begin();

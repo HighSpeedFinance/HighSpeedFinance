@@ -10,8 +10,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 /**
- * The Enum SupplierUtil gets the actual connection to the DatabaseConnection and instaciates the
- * EntityManager
+ * The Enum SupplierUtil gets the actual connection to the DatabaseConnection
+ * and instaciates the EntityManager
  * 
  */
 public enum SupplierUtil {
@@ -21,7 +21,7 @@ public enum SupplierUtil {
 	private static EntityManager em = DatabaseConnectionUtil.getEm();
 
 	/**
-	 * Load all suppliers.
+	 * Load all suppliers from the Database
 	 *
 	 * @return the observable list
 	 */

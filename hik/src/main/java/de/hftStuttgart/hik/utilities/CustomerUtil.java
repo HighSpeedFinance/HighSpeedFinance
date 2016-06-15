@@ -9,18 +9,15 @@ import de.hftStuttgart.hik.model.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
 /**
- * The Enum CustomerUtil gets the actual connection to the DatabaseConnection and instanciates the
- * EntityManager
+ * The Enum CustomerUtil gets the actual connection to the DatabaseConnection
+ * and instanciates the EntityManager
  * 
  */
 public enum CustomerUtil {
-	
-	
+
 	INSTANCE;
-	
-	
+
 	private static EntityManager em = DatabaseConnectionUtil.getEm();
 
 	/**
@@ -42,7 +39,8 @@ public enum CustomerUtil {
 	/**
 	 * Adds the customer to the Database
 	 *
-	 * @param cust the Customer
+	 * @param cust
+	 *            the Customer
 	 */
 	public static void addCustomer(Customer cust) {
 		em.getTransaction().begin();
@@ -53,7 +51,8 @@ public enum CustomerUtil {
 	/**
 	 * Edits the customer in the Database
 	 *
-	 * @param cust the Customer
+	 * @param cust
+	 *            the Customer
 	 */
 	public static void editCustomer(Customer cust) {
 		em.getTransaction().begin();
@@ -64,7 +63,8 @@ public enum CustomerUtil {
 	/**
 	 * Deletes the customer from the Database
 	 *
-	 * @param cust the Customer
+	 * @param cust
+	 *            the Customer
 	 */
 	public static void deleteCustomer(Customer cust) {
 		em.getTransaction().begin();

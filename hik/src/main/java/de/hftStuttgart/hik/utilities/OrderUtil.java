@@ -10,23 +10,23 @@ import de.hftStuttgart.hik.model.CustomerOrder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
 /**
- * The Enum OrderUtil gets the actual connection to the DatabaseConnection and instaciates the
- * EntityManager
+ * The Enum OrderUtil gets the actual connection to the DatabaseConnection and
+ * instaciates the EntityManager. The CustomerOrder has a ManyToOne Relationship
+ * to Customer. The Customer has to be instaciated before adding a Order
  */
 public enum OrderUtil {
-	
-	/** The instance. */
+
 	INSTANCE;
-	
+
 	/** The em. */
 	private static EntityManager em = DatabaseConnectionUtil.getEm();
 
 	/**
-	 * Load all orders.
+	 * Load all orders from the Database
 	 *
-	 * @param cus the cus
+	 * @param cus
+	 *            the Customer
 	 * @return the observable list
 	 */
 	@SuppressWarnings("unchecked")
@@ -39,9 +39,9 @@ public enum OrderUtil {
 		}
 		return ordList;
 	}
-	
+
 	/**
-	 * Load all orders.
+	 * Load all orders from the Database
 	 *
 	 * @return the observable list
 	 */
@@ -55,9 +55,9 @@ public enum OrderUtil {
 		}
 		return ordList;
 	}
-	
+
 	/**
-	 * Load all orders where status open.
+	 * Load all orders from the Database where status open.
 	 *
 	 * @return the observable list
 	 */
@@ -71,9 +71,9 @@ public enum OrderUtil {
 		}
 		return ordList;
 	}
-	
+
 	/**
-	 * Load all orders where status succeeded.
+	 * Load all orders from the Database where status succeeded.
 	 *
 	 * @return the observable list
 	 */
@@ -87,12 +87,12 @@ public enum OrderUtil {
 		}
 		return ordList;
 	}
-	
 
 	/**
-	 * Adds the order.
+	 * Adds the order to the Database
 	 *
-	 * @param ord the ord
+	 * @param ord
+	 *            the Order
 	 */
 	public static void addOrder(CustomerOrder ord) {
 		em.getTransaction().begin();
@@ -101,9 +101,10 @@ public enum OrderUtil {
 	}
 
 	/**
-	 * Edits the order.
+	 * Edits the order in the Database
 	 *
-	 * @param ord the ord
+	 * @param ord
+	 *            the Order
 	 */
 	public static void editOrder(CustomerOrder ord) {
 		em.getTransaction().begin();
@@ -112,9 +113,10 @@ public enum OrderUtil {
 	}
 
 	/**
-	 * Delete order.
+	 * Delete order in the Database
 	 *
-	 * @param ord the ord
+	 * @param ord
+	 *            the Order
 	 */
 	public static void deleteOrder(CustomerOrder ord) {
 		em.getTransaction().begin();
