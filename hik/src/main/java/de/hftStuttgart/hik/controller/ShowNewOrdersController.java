@@ -203,6 +203,7 @@ public class ShowNewOrdersController {
 	public void setMainApp(Main main) {
 		this.main = main;
 		loadCustomerOrders("10 Tage");
+		loadSupplierOrders("10 Tage");
 	}
 
 	/**

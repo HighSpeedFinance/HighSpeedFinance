@@ -27,6 +27,8 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.util.converter.LocalDateStringConverter;
 
 // TODO: Auto-generated Javadoc
@@ -93,6 +95,9 @@ public class NewCustomersAndSuppliersController {
 
 	@FXML
 	private Label supplierFax;
+	
+	@FXML
+	private Label supplierNameLabel;
 
 	@FXML
 	private TableView<Supplier> supplierTable;
@@ -255,6 +260,7 @@ public class NewCustomersAndSuppliersController {
 		if (customer != null) {
 			customerHeading.setText(
 					customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
+			customerHeading.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
 			customerTitel.setText(customer.getCustomerTitel());
 			customerName.setText(
 					customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
@@ -287,6 +293,8 @@ public class NewCustomersAndSuppliersController {
 	 */
 	private void showSupplierDetails(Supplier supplier) {
 		if (supplier != null) {
+			supplierNameLabel.setText(supplier.getSupplierCompanyName());
+			supplierNameLabel.setFont(Font.font("Verdana", FontWeight.BOLD, 12));
 			supplierCompanyName.setText(supplier.getSupplierCompanyName());
 			supplierContactPerson.setText(
 					supplier.getSupplierContactPersonFirstName() + " " + supplier.getSupplierContactPersonLastName());
