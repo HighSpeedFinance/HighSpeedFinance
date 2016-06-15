@@ -24,57 +24,44 @@ import javafx.scene.control.ListView;
 import javafx.scene.paint.Color;
 import javafx.util.converter.LocalDateStringConverter;
 
-// TODO: Auto-generated Javadoc
 /**
- * The Class AnnualAccountsController.
+ * The Class AnnualAccountsController manages the views from XXXX and is
+ * responsible for handling user input and responses
  */
 public class AnnualAccountsController {
 
-	/** The result income cost. */
 	@FXML
 	private Label resultIncomeCost;
-	
-	/** The cost. */
+
 	@FXML
 	private ListView<SupplierOrder> cost;
-	
-	/** The income. */
+
 	@FXML
 	private ListView<CustomerOrder> income;
-	
-	/** The month choice box. */
+
 	@FXML
 	private ChoiceBox<String> monthChoiceBox;
 
-	/** The bar chart. */
 	@SuppressWarnings("rawtypes")
 	@FXML
 	private BarChart barChart;
-	
-	/** The customer order list. */
+
 	private ObservableList<CustomerOrder> customerOrderList = FXCollections.observableArrayList();
-	
-	/** The supplier order list. */
+
 	private ObservableList<SupplierOrder> supplierOrderList = FXCollections.observableArrayList();
-	
-	/** The customer order listin time. */
+
 	private ObservableList<CustomerOrder> customerOrderListinTime = FXCollections.observableArrayList();
-	
-	/** The supplier order listin time. */
+
 	private ObservableList<SupplierOrder> supplierOrderListinTime = FXCollections.observableArrayList();
-	
-	/** The customer order list month. */
+
 	private ObservableList<CustomerOrder> customerOrderListMonth = FXCollections.observableArrayList();
-	
-	/** The supplier order list month. */
+
 	private ObservableList<SupplierOrder> supplierOrderListMonth = FXCollections.observableArrayList();
-	
-	/** The summe einnahmen. */
+
 	private double summeEinnahmen = 0;
-	
-	/** The summe ausgaben. */
+
 	private double summeAusgaben = 0;
-	
+
 	/**
 	 * Initialize.
 	 */
@@ -92,11 +79,12 @@ public class AnnualAccountsController {
 	/**
 	 * Sets the month choice box.
 	 */
-	public void setMonthChoiceBox(){
-		monthChoiceBox.setItems(FXCollections.observableArrayList("Alle", "Januar", "Februar", "März", "April", "Mai", "Juni","Juli","August","September", "Oktober", "November", "Dezember"));
+	public void setMonthChoiceBox() {
+		monthChoiceBox.setItems(FXCollections.observableArrayList("Alle", "Januar", "Februar", "Mï¿½rz", "April", "Mai",
+				"Juni", "Juli", "August", "September", "Oktober", "November", "Dezember"));
 		monthChoiceBox.getSelectionModel().select(0);
 	}
-	
+
 	/**
 	 * Load bar chart.
 	 */
@@ -129,15 +117,17 @@ public class AnnualAccountsController {
 		resultIncomeCost.setText(String.valueOf(result));
 		if (result < 0) {
 			resultIncomeCost.setTextFill(Color.RED);
-		}else{
+		} else {
 			resultIncomeCost.setTextFill(Color.GREEN);
 		}
 	}
 
 	/**
-	 * Sets the main app.
+	 * Sets the main app. Loads all SupplierOrders and CustomerOrders where the
+	 * Status is "SUCCEEDED"
 	 *
-	 * @param main the new main app
+	 * @param main
+	 *            the new main app
 	 */
 	public void setMainApp(Main main) {
 		customerOrderList.addAll(OrderUtil.loadAllOrdersWhereStatusSucceeded());
@@ -178,7 +168,8 @@ public class AnnualAccountsController {
 	/**
 	 * Load orders month.
 	 *
-	 * @param comboValue the combo value
+	 * @param comboValue
+	 *            the combo value
 	 */
 	public void loadOrdersMonth(String comboValue) {
 		String month = "";
@@ -187,36 +178,47 @@ public class AnnualAccountsController {
 		summeEinnahmen = 0;
 		summeAusgaben = 0;
 
-		switch(comboValue){
-		case "Januar": month = "01";
-		break;
-		case "Februar": month = "02";
-		break;
-		case "März": month = "03";
-		break;
-		case "April": month = "04";
-		break;
-		case "Mai": month = "05";
-		break;
-		case "Juni": month = "06";
-		break;
-		case "Juli": month = "07";
-		break;
-		case "August": month = "08";
-		break;
-		case "September": month = "09";
-		break;
-		case "Oktober": month = "10";
-		break;
-		case "November": month = "11";
-		break;
-		case "Dezember": month = "12";
-		break;
+		switch (comboValue) {
+		case "Januar":
+			month = "01";
+			break;
+		case "Februar":
+			month = "02";
+			break;
+		case "Mï¿½rz":
+			month = "03";
+			break;
+		case "April":
+			month = "04";
+			break;
+		case "Mai":
+			month = "05";
+			break;
+		case "Juni":
+			month = "06";
+			break;
+		case "Juli":
+			month = "07";
+			break;
+		case "August":
+			month = "08";
+			break;
+		case "September":
+			month = "09";
+			break;
+		case "Oktober":
+			month = "10";
+			break;
+		case "November":
+			month = "11";
+			break;
+		case "Dezember":
+			month = "12";
+			break;
 		}
-		
+
 		for (CustomerOrder cusOder : customerOrderListinTime) {
-			if (cusOder.getDate().split(Pattern.quote("."))[1].equals(month)
-					|| comboValue.equals("Alle")) {
+			if (cusOder.getDate().split(Pattern.quote("."))[1].equals(month) || comboValue.equals("Alle")) {
 				customerOrderListMonth.add(cusOder);
 			}
 		}
@@ -226,8 +228,7 @@ public class AnnualAccountsController {
 		}
 
 		for (SupplierOrder supOrder : supplierOrderListinTime) {
-			if (supOrder.getDate().split(Pattern.quote("."))[1].equals(month)
-					|| comboValue.equals("Alle")) {
+			if (supOrder.getDate().split(Pattern.quote("."))[1].equals(month) || comboValue.equals("Alle")) {
 				supplierOrderListMonth.add(supOrder);
 			}
 		}

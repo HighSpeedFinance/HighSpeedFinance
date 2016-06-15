@@ -9,12 +9,22 @@ import de.hftStuttgart.hik.model.Supplier;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-
+/**
+ * The Enum SupplierUtil builds the DatabaseConnection and instaciates the
+ * EntityManager
+ * 
+ */
 public enum SupplierUtil {
 
 	INSTANCE;
+
 	private static EntityManager em = DatabaseConnectionUtil.getEm();
 
+	/**
+	 * Load all suppliers.
+	 *
+	 * @return the observable list
+	 */
 	@SuppressWarnings("unchecked")
 	public static ObservableList<Supplier> loadAllSuppliers() {
 		ObservableList<Supplier> supList = FXCollections.observableArrayList();
@@ -26,19 +36,36 @@ public enum SupplierUtil {
 		return supList;
 	}
 
+	/**
+	 * Adds the supplier to the Database
+	 *
+	 * @param sup
+	 *            the Supplier
+	 */
 	public static void addSupplier(Supplier sup) {
 		em.getTransaction().begin();
 		em.persist(sup);
 		em.getTransaction().commit();
 	}
 
+	/**
+	 * Edits the supplier to the Database
+	 *
+	 * @param sup
+	 *            the Supplier
+	 */
 	public static void editSupplier(Supplier sup) {
 		em.getTransaction().begin();
 		em.merge(sup);
 		em.getTransaction().commit();
 	}
 
-	
+	/**
+	 * Deletes supplier from the Database
+	 *
+	 * @param sup
+	 *            the Supplier
+	 */
 	public static void deleteSupplier(Supplier sup) {
 		em.getTransaction().begin();
 		em.remove(em.merge(sup));
