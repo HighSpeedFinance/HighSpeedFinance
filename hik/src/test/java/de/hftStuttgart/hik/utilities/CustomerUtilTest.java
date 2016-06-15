@@ -37,7 +37,7 @@ public class CustomerUtilTest {
 	public void tearDown() throws Exception {
 		if (TesHelper.cusList.contains(customer))
 			CustomerUtil.deleteCustomer(customer);
-		TesHelper.cusList.add(customer);
+		TesHelper.cusList.clear();
 	}
 
 	@AfterClass
@@ -45,14 +45,6 @@ public class CustomerUtilTest {
 
 	}
 
-	// MÜSSEN WIR DIESE METHODE AUCH TESTEN?????
-	// @Test
-	// public void testLoadAllCustomers() {
-	// List<Customer> customers = null;
-	// Assert.assertNull(customers);
-	// customers = CustomerUtil.loadAllCustomers();
-	// Assert.assertNotNull(customers);
-	// }
 
 	@Test
 	public void testAddCustomer() {
@@ -61,12 +53,11 @@ public class CustomerUtilTest {
 		Assert.assertTrue(TesHelper.cusList.contains(customer));
 	}
 
-	//Funktioniert nicht....
-	@Ignore
+
 	@Test
 	public void testEditCustomer() {
 		Customer editedCustomer = null;
-		customer.setCustomerAdressCountry("England");
+		customer.setCustomerContactPersonFirstName("Vedro");
 		CustomerUtil.editCustomer(customer);
 		List<Customer> customers = CustomerUtil.loadAllCustomers();
 		for (Customer cus : customers) {
@@ -74,7 +65,8 @@ public class CustomerUtilTest {
 				editedCustomer = cus;
 		}
 
-		Assert.assertTrue(customer.getCustomerAdressCountry().equals(editedCustomer.getCustomerAdressCountry()));
+		Assert.assertTrue(editedCustomer.getCustomerContactPersonFirstName().equals(customer.getCustomerContactPersonFirstName()));
+
 	}
 
 	@Test
