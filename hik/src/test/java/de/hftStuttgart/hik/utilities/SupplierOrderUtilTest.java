@@ -50,7 +50,7 @@ public class SupplierOrderUtilTest {
 		List<SupplierOrder> orders = SupplierOrderUtil.loadAllOrdersWhereStatusOpen();
 		for (SupplierOrder ord : orders) {
 			if (!ord.getStatus().equals(Status.PENDING))
-				fail("Exeption testing method SupplierOrderUtil.loadAllOrdersWhereStatusOpen()");
+				fail("Exception testing method SupplierOrderUtil.loadAllOrdersWhereStatusOpen()");
 		}
 
 	}
@@ -60,7 +60,7 @@ public class SupplierOrderUtilTest {
 		List<SupplierOrder> orders = SupplierOrderUtil.loadAllOrdersWhereStatusOpen();
 		for (SupplierOrder ord : orders) {
 			if (!ord.getStatus().equals(Status.PENDING))
-				fail("Exeption testing method SupplierOrderUtil.loadAllOrdersWhereStatusOpen()");
+				fail("Exception testing method SupplierOrderUtil.loadAllOrdersWhereStatusOpen()");
 		}
 	}
 
@@ -79,13 +79,11 @@ public class SupplierOrderUtilTest {
 		SupplierOrderUtil.editOrder(order);
 		List<SupplierOrder> orders = SupplierOrderUtil.loadAllOrders();
 		for (SupplierOrder ord : orders) {
-			if (ord.getId().equals(order.getId()))
-				editedOrder = ord;
+			if (ord.getId().equals(order.getId())) editedOrder = ord;
 		}
 		Assert.assertTrue(order.getSumPrice() == editedOrder.getSumPrice());
 	}
 
-	@Ignore
 	@Test
 	public void testDeleteOrder() {
 		SupplierOrderUtil.deleteOrder(order);
