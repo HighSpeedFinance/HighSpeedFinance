@@ -1,5 +1,6 @@
 package de.hftStuttgart.hik;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hftStuttgart.hik.model.Customer;
@@ -30,7 +31,7 @@ public class TesHelper {
 	public static List<Supplier> supList;
 	public static List<Customer> cusList;
 	public static List<SupplierOrder> supOList;
-	public static List<CustomerOrder> cusOList;
+	public static List<CustomerOrder> cusOList = new ArrayList<CustomerOrder>();
 	public static List<PaymentDetails> payList;
 	public static List<PostAdress> postList;
 
