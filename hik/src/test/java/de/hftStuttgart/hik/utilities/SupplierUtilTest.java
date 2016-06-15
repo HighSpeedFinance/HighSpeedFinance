@@ -15,27 +15,33 @@ import de.hftStuttgart.hik.TesHelper;
 import de.hftStuttgart.hik.model.Supplier;
 
 public class SupplierUtilTest {
-	private static Supplier supplier;
+	
+	private static Supplier supplier= new Supplier();
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		DatabaseConnectionUtil.getEm();
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-		if (TesHelper.supList.contains(supplier))
-			SupplierUtil.deleteSupplier(supplier);
-	}
-
 	@Before
 	public void setUp() throws Exception {
-
-		supplier = TesHelper.supplier;
+		if(!TesHelper.supList.contains(supplier)){
+			supplier = new Supplier();
+			supplier.setSupplierNumber(TesHelper.supplier.getSupplierNumber());
+			SupplierUtil.addSupplier(supplier);
+			TesHelper.supList.add(supplier);
+		}
 	}
-
+	
 	@After
 	public void tearDown() throws Exception {
+		if (TesHelper.supList.contains(supplier))
+			SupplierUtil.deleteSupplier(supplier);
+		TesHelper.supList.clear();
+	}
+	
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
 	}
 
 	
@@ -49,22 +55,18 @@ public class SupplierUtilTest {
 	@Test
 	public void testEditSupplier() {
 		Supplier editedSup = null;
-		SupplierUtil.addSupplier(supplier);
 		supplier.setSupplierCompanyName("RechnerExport");
 		SupplierUtil.editSupplier(supplier);
 		List<Supplier> supList = SupplierUtil.loadAllSuppliers();
 		for (Supplier sup : supList) {
-			if (sup.equals(supplier))
+			if (sup.getId().equals(supplier.getId()))
 				editedSup = sup;
 		}
 		Assert.assertTrue(supplier.getSupplierCompanyName() == editedSup.getSupplierCompanyName());
-
 	}
-
 
 	@Test
 	public void testDeleteSupplier() {
-
 		SupplierUtil.deleteSupplier(supplier);
 		TesHelper.supList = SupplierUtil.loadAllSuppliers();
 		Assert.assertTrue(!TesHelper.supList.contains(supplier));

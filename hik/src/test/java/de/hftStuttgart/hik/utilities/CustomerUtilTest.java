@@ -30,7 +30,6 @@ public class CustomerUtilTest {
 			CustomerUtil.addCustomer(customer);
 			TesHelper.cusList.add(customer);
 		}
-
 	}
 
 	@After
@@ -42,7 +41,6 @@ public class CustomerUtilTest {
 
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
-
 	}
 
 
@@ -52,7 +50,6 @@ public class CustomerUtilTest {
 		TesHelper.cusList = CustomerUtil.loadAllCustomers();
 		Assert.assertTrue(TesHelper.cusList.contains(customer));
 	}
-
 
 	@Test
 	public void testEditCustomer() {
@@ -64,9 +61,7 @@ public class CustomerUtilTest {
 			if (cus.getId().equals(customer.getId()))
 				editedCustomer = cus;
 		}
-
-		Assert.assertTrue(editedCustomer.getCustomerContactPersonFirstName().equals(customer.getCustomerContactPersonFirstName()));
-
+		Assert.assertTrue(customer.getCustomerContactPersonFirstName()==editedCustomer.getCustomerContactPersonFirstName());
 	}
 
 	@Test

@@ -26,7 +26,6 @@ public class OrderUtilTest {
 
 	}
 
-
 	@Before
 	public void setUp() throws Exception {
 		if (!TesHelper.cusOList.contains(order)) {

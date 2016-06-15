@@ -32,7 +32,7 @@ public class TesHelper {
 	public static List<Customer> cusList = new ArrayList<Customer>();
 	public static List<SupplierOrder> supOList = new ArrayList<SupplierOrder>();
 	public static List<CustomerOrder> cusOList = new ArrayList<CustomerOrder>();
-	public static List<PaymentDetails> payList;
-	public static List<PostAdress> postList;
+	public static List<PaymentDetails> payList = new ArrayList<PaymentDetails>();
+	public static List<PostAdress> postList = new ArrayList<PostAdress>();
 
 }

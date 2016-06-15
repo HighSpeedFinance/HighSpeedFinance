@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
@@ -24,24 +25,36 @@ public class PostAdressUtilTest {
 
 	@Before
 	public void setUp() throws Exception {
-		postAdress = TesHelper.adress;
+		if (!TesHelper.postList.contains(postAdress)) {
+			postAdress = new PostAdress();
+			postAdress.setHouseNumber(TesHelper.adress.getHouseNumber());
+			PostAdressUtil.addPostAdress(postAdress);
+			TesHelper.postList.add(postAdress);
+		}
+	}
 
+	@After
+	public void tearDown() {
+		if (TesHelper.postList.contains(postAdress)) {
+			PostAdressUtil.deletePostAdress(postAdress);
+			TesHelper.postList.clear();
+		}
 	}
 
 	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-		if (TesHelper.postList.contains(postAdress))
-			PostAdressUtil.deletePostAdress(postAdress);
+	public static void tearDownAfterClass() {
 	}
 
-	@Ignore
-	@Test
-	public void testLoadAllAdresses() {
-		fail("Not yet implemented");
-	}
+	// @Test
+	// public void testLoadAllAdresses() {
+	// List<PostAdress> postAdresses=null;
+	// Assert.assertNull(postAdresses);
+	// postAdresses=PostAdressUtil.loadAllAdresses();
+	// Assert.assertNotNull(postAdresses);
+	// }
 
 	@Test
-	public void testAddPostAdress(PostAdress PostAdress) {
+	public void testAddPostAdress() {
 		PostAdressUtil.addPostAdress(postAdress);
 		TesHelper.postList = PostAdressUtil.loadAllAdresses();
 		Assert.assertTrue(TesHelper.postList.contains(postAdress));
@@ -50,16 +63,14 @@ public class PostAdressUtilTest {
 	@Test
 	public void testEditPostAdress() {
 		PostAdress editedPostAdress = null;
-		PostAdressUtil.addPostAdress(postAdress);
 		postAdress.setStreet("Sackgasse");
 		PostAdressUtil.editPostAdress(postAdress);
 		List<PostAdress> postAdresses = PostAdressUtil.loadAllAdresses();
-		for (PostAdress add : postAdresses) {
-			if (add.equals(postAdress))
-				editedPostAdress = add;
+		for (PostAdress adress : postAdresses) {
+			if (adress.getId().equals(postAdress.getId()))
+				editedPostAdress = adress;
 		}
 		Assert.assertTrue(postAdress.getStreet() == editedPostAdress.getStreet());
-
 	}
 
 	@Test
@@ -68,5 +79,4 @@ public class PostAdressUtilTest {
 		TesHelper.postList = PostAdressUtil.loadAllAdresses();
 		Assert.assertTrue(!TesHelper.postList.contains(postAdress));
 	}
-
 }
