@@ -23,7 +23,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class TabViewController manages the views from the TabView and is
  * responsible for handling user input and responses.

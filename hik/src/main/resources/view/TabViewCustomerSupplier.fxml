@@ -73,7 +73,7 @@
 											</children>
 										</GridPane>
 										<HBox layoutX="50.0" layoutY="259.0" spacing="10.0" />
-										<Button layoutX="14.0" layoutY="299.0" mnemonicParsing="false" onAction="#showBestellung" prefHeight="25.0" prefWidth="257.0" text="Rechnungen anzeigen" />
+										<Button layoutX="14.0" layoutY="299.0" mnemonicParsing="false" onAction="#showOrderCustomer" prefHeight="25.0" prefWidth="257.0" text="Rechnungen anzeigen" />
 									</children>
 								</AnchorPane>
 							</items>
@@ -145,7 +145,7 @@
 											</children>
 										</GridPane>
 										<Label fx:id="supplierCompanyNameLabel" layoutX="10.0" layoutY="14.0" />
-										<Button layoutX="14.0" layoutY="417.0" mnemonicParsing="false" onAction="#showBestellungSupplier" prefHeight="25.0" prefWidth="257.0" text="Bestellungen anzeigen" />
+										<Button layoutX="14.0" layoutY="417.0" mnemonicParsing="false" onAction="#showOrderSupplier" prefHeight="25.0" prefWidth="257.0" text="Bestellungen anzeigen" />
                               <GridPane layoutX="14.0" layoutY="274.0" prefHeight="0.0">
                                  <children>
                                     <Label fx:id="supplierAccountOwnerLabel" text="Label" GridPane.columnIndex="1" />
