@@ -43,42 +43,27 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-
 /**
- * The Class Main.
+ * The Class Main invokes the views and loads data lists from the Database.
  */
 public class Main extends Application {
 
-	/** The supplier data. */
 	private ObservableList<Supplier> supplierData = FXCollections.observableArrayList();
-	
-	/** The customer data. */
+
 	private ObservableList<Customer> customerData = FXCollections.observableArrayList();
-	
-	/** The customer order data. */
+
 	private ObservableList<CustomerOrder> customerOrderData = FXCollections.observableArrayList();
-	
-	/** The supplier order data. */
+
 	private ObservableList<SupplierOrder> supplierOrderData = FXCollections.observableArrayList();
 
-	/** The primary stage. */
 	private Stage primaryStage;
-	
-	/** The root layout. */
+
 	private BorderPane rootLayout;
 
-	/**
-	 * The main method.
-	 *
-	 * @param args the arguments
-	 */
 	public static void main(String[] args) {
 		launch(args);
 	}
 
-	/* (non-Javadoc)
-	 * @see javafx.application.Application#start(javafx.stage.Stage)
-	 */
 	@Override
 	public void start(Stage primaryStage) {
 		this.primaryStage = primaryStage;
@@ -100,7 +85,7 @@ public class Main extends Application {
 		} catch (IOException | IllegalStateException e) {
 			System.out.println(e.getMessage());
 		}
-		Scene scene = new Scene(rootLayout);		
+		Scene scene = new Scene(rootLayout);
 
 		MenuBarController controller = loader.getController();
 		controller.setMainApp(this);
@@ -112,14 +97,14 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Show customer and supplier overview.
+	 * Show customer and supplier overview. Loads the view and the controller
+	 * for the Customer and Supplier Overview
 	 */
 	public void showCustomerAndSupplierOverview() {
 		TabPane myPane = null;
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(
-					getClass().getResource("/view/TabViewCustomerSupplier.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/TabViewCustomerSupplier.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -137,14 +122,14 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Show supplier overview.
+	 * Show supplier overview. Loads the view and the controller for the
+	 * Supplier Overview
 	 */
 	public void showSupplierOverview() {
 		TabPane myPane;
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(
-					getClass().getResource("/view/TabViewCustomerSupplier.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/TabViewCustomerSupplier.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -163,16 +148,17 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Show new customers and suppliers.
+	 * Show new customers and suppliers. Loads the view and the controller for
+	 * new Customers and Suppliers
 	 *
-	 * @param selection the selection
+	 * @param selection
+	 *            the selection
 	 */
 	public void showNewCustomersAndSuppliers(int selection) {
 		TabPane myPane;
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(
-					getClass().getResource("/view/NewCustomersAndSuppliers.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/NewCustomersAndSuppliers.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -191,7 +177,10 @@ public class Main extends Application {
 	/**
 	 * Show new orders.
 	 *
-	 * @param selection the selection
+	 * @param selection
+	 *            the selection
+	 * 
+	 *            Loads the view and the controller for new orders
 	 */
 	public void showNewOrders(int selection) {
 		TabPane myPane;
@@ -224,19 +213,20 @@ public class Main extends Application {
 
 	/**
 	 * Show navigation bar customer.
+	 * 
+	 * Loads the view and the controller for the Customer navigation bar
 	 */
 	public void showNavigationBarCustomer() {
 		AnchorPane anchorPane;
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(
-					getClass().getResource("/view/NavigationBarCustomer.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/NavigationBarCustomer.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
 		try {
 			anchorPane = (AnchorPane) loader.load();
-			
+
 			rootLayout.setLeft(anchorPane);
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
@@ -251,13 +241,14 @@ public class Main extends Application {
 
 	/**
 	 * Show navigation bar supplier.
+	 * 
+	 * Loads the view and the controller for the Supplier navigation bar
 	 */
 	public void showNavigationBarSupplier() {
 		AnchorPane anchorPane;
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(
-					getClass().getResource("/view/NavigationBarSupplier.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/NavigationBarSupplier.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -275,7 +266,10 @@ public class Main extends Application {
 	/**
 	 * Show customer order.
 	 *
-	 * @param customer the customer
+	 * @param customer
+	 *            the customer
+	 * 
+	 *            Loads the view and the controller for CustomerOrders
 	 */
 	public void showCustomerOrder(Customer customer) {
 		FXMLLoader loader = null;
@@ -291,7 +285,8 @@ public class Main extends Application {
 			System.out.println(e.getMessage());
 		}
 		Stage dialogStage = new Stage();
-		dialogStage.setTitle("Rechnungen: " + customer.getCustomerContactPersonFirstName() + " " + customer.getCustomerContactPersonLastName());
+		dialogStage.setTitle("Rechnungen: " + customer.getCustomerContactPersonFirstName() + " "
+				+ customer.getCustomerContactPersonLastName());
 		dialogStage.initModality(Modality.WINDOW_MODAL);
 		dialogStage.initOwner(getPrimaryStage());
 		Scene scene = new Scene(page);
@@ -314,7 +309,10 @@ public class Main extends Application {
 	/**
 	 * Show supplier order.
 	 *
-	 * @param supplier the supplier
+	 * @param supplier
+	 *            the supplier
+	 * 
+	 *            Loads the view and the controller for SupplierOrders
 	 */
 	public void showSupplierOrder(Supplier supplier) {
 		FXMLLoader loader = null;
@@ -353,14 +351,17 @@ public class Main extends Application {
 	/**
 	 * Show customer and supplier order overview.
 	 *
-	 * @param selection the selection
+	 * @param selection
+	 *            the selection
+	 * 
+	 *            Loads the view and the controller for the CustomerOrder and
+	 *            SupplierOrder Overview
 	 */
 	public void showCustomerAndSupplierOrderOverview(int selection) {
 		TabPane myPane = null;
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(getClass()
-					.getResource("/view/CustomerAndSupplierOrderOverview.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/CustomerAndSupplierOrderOverview.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -388,22 +389,25 @@ public class Main extends Application {
 	/**
 	 * Show open customer and supplier orders.
 	 *
-	 * @param selection the selection
+	 * @param selection
+	 *            the selection
+	 * 
+	 *            Loads the view and the controller for the CustomerOrders and
+	 *            SupplierOrders where the Status is PENDING
 	 */
 	public void showOpenCustomerAndSupplierOrders(int selection) {
 		TabPane myPane = null;
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(
-					getClass().getResource("/view/OpenCustomerAndSupplierOrders.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/OpenCustomerAndSupplierOrders.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
-//		try {
-//			myPane = (TabPane) loader.load();
-//		} catch (IOException e) {
-//			System.out.println(e.getMessage());
-//		}
+		try {
+			myPane = (TabPane) loader.load();
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
 		rootLayout.setCenter(myPane);
 
 		customerOrderData.clear();
@@ -415,6 +419,8 @@ public class Main extends Application {
 
 	/**
 	 * Show income.
+	 * 
+	 * Loads the view and the controller for the Income Tab
 	 */
 	public void showIncome() {
 		AnchorPane anchorPane = null;
@@ -438,6 +444,8 @@ public class Main extends Application {
 
 	/**
 	 * Show costs.
+	 * 
+	 * Loads the view and the controller for the Costs Tab
 	 */
 	public void showCosts() {
 		AnchorPane anchorPane = null;
@@ -461,6 +469,8 @@ public class Main extends Application {
 
 	/**
 	 * Show graphics.
+	 * 
+	 * Loads the view and the controller for the "annual accounts" Tab
 	 */
 	public void showGraphics() {
 		AnchorPane anchorPane = null;
@@ -488,9 +498,11 @@ public class Main extends Application {
 		AnnualAccountsController controller = loader.getController();
 		controller.setMainApp(this);
 	}
-	
+
 	/**
 	 * Show help.
+	 * 
+	 * Loads the view and the controller for the Help Tab
 	 */
 	public void showHelp() {
 		AnchorPane anchorPane = null;
@@ -515,14 +527,16 @@ public class Main extends Application {
 	/**
 	 * Show supplier order edit with supplier dialog.
 	 *
-	 * @param supplierOrder the supplier order
+	 * @param supplierOrder
+	 *            the supplier order
 	 * @return true, if successful
+	 * 
+	 *         Loads the view and the controller for SupplierOrder edit frame
 	 */
 	public boolean showSupplierOrderEditWithSupplierDialog(SupplierOrder supplierOrder) {
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(getClass()
-					.getResource("/view/SupplierOrderEditWithSupplierDialog.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/SupplierOrderEditWithSupplierDialog.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -551,14 +565,16 @@ public class Main extends Application {
 	/**
 	 * Show supplier order edit dialog.
 	 *
-	 * @param supplierOrder the supplier order
+	 * @param supplierOrder
+	 *            the supplier order
 	 * @return true, if successful
+	 * 
+	 *         Loads the view and the controller for SupplierOrder edit frame
 	 */
 	public boolean showSupplierOrderEditDialog(SupplierOrder supplierOrder) {
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(
-					getClass().getResource("/view/SupplierOrderEditDialog.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/SupplierOrderEditDialog.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -587,8 +603,11 @@ public class Main extends Application {
 	/**
 	 * Show order edit dialog.
 	 *
-	 * @param customerOrder the customer order
+	 * @param customerOrder
+	 *            the customer order
 	 * @return true, if successful
+	 * 
+	 *         Loads the view and the controller for CustomerOrder edit frame
 	 */
 	public boolean showOrderEditDialog(CustomerOrder customerOrder) {
 		FXMLLoader loader = null;
@@ -622,14 +641,16 @@ public class Main extends Application {
 	/**
 	 * Show order edit with customer dialog.
 	 *
-	 * @param customerOrder the customer order
+	 * @param customerOrder
+	 *            the customer order
 	 * @return true, if successful
+	 * 
+	 *         Loads the view and the controller for CustomerOrder edit frame
 	 */
 	public boolean showOrderEditWithCustomerDialog(CustomerOrder customerOrder) {
 		FXMLLoader loader = null;
 		try {
-			loader = new FXMLLoader(
-					getClass().getResource("/view/OrderEditWithCustomerDialog.fxml"));
+			loader = new FXMLLoader(getClass().getResource("/view/OrderEditWithCustomerDialog.fxml"));
 		} catch (IllegalArgumentException e) {
 			AlertUtil.invalidURL();
 		}
@@ -679,56 +700,26 @@ public class Main extends Application {
 		return primaryStage;
 	}
 
-	/**
-	 * Gets the supplier data.
-	 *
-	 * @return the supplier data
-	 */
 	public ObservableList<Supplier> getSupplierData() {
 		return supplierData;
 	}
 
-	/**
-	 * Gets the customer data.
-	 *
-	 * @return the customer data
-	 */
 	public ObservableList<Customer> getCustomerData() {
 		return customerData;
 	}
 
-	/**
-	 * Gets the customer order data.
-	 *
-	 * @return the customer order data
-	 */
 	public ObservableList<CustomerOrder> getCustomerOrderData() {
 		return customerOrderData;
 	}
 
-	/**
-	 * Gets the supplier order data.
-	 *
-	 * @return the supplier order data
-	 */
 	public ObservableList<SupplierOrder> getSupplierOrderData() {
 		return supplierOrderData;
 	}
 
-	/**
-	 * Adds the customer order.
-	 *
-	 * @param customerOrder the customer order
-	 */
 	public void addCustomerOrder(CustomerOrder customerOrder) {
 		customerOrderData.add(customerOrder);
 	}
 
-	/**
-	 * Adds the supplier order.
-	 *
-	 * @param supplierOrder the supplier order
-	 */
 	public void addSupplierOrder(SupplierOrder supplierOrder) {
 		supplierOrderData.add(supplierOrder);
 	}

@@ -7,6 +7,7 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import de.hftStuttgart.hik.TesHelper;
@@ -37,6 +38,7 @@ public class SupplierUtilTest {
 	public void tearDown() throws Exception {
 	}
 
+	
 	@Test
 	public void testAddSupplier() {
 		SupplierUtil.addSupplier(supplier);
@@ -58,6 +60,7 @@ public class SupplierUtilTest {
 		Assert.assertTrue(supplier.getSupplierCompanyName() == editedSup.getSupplierCompanyName());
 
 	}
+
 
 	@Test
 	public void testDeleteSupplier() {
