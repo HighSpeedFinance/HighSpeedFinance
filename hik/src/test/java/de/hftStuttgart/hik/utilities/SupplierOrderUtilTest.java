@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
@@ -12,56 +13,54 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import de.hftStuttgart.hik.TesHelper;
-import de.hftStuttgart.hik.model.Status;
-import de.hftStuttgart.hik.model.Supplier;
 import de.hftStuttgart.hik.model.SupplierOrder;
 
 public class SupplierOrderUtilTest {
-	private static Supplier supplier = new Supplier();
 	private static SupplierOrder order = new SupplierOrder();
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		DatabaseConnectionUtil.getEm();
 
-		List<Supplier> listSup = SupplierUtil.loadAllSuppliers();
-		supplier = listSup.get(0);
-		Assert.assertTrue(supplier != null);
-
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-
-		if (TesHelper.supOList.contains(order))
-			SupplierOrderUtil.deleteOrder(order);
 	}
 
 	@Before
 	public void setUp() throws Exception {
 
-		order = TesHelper.sOrder;
+		if (!TesHelper.supOList.contains(order)) {
+			order = new SupplierOrder();
+			order.setOrderNumber(TesHelper.sOrder.getOrderNumber());
+			SupplierOrderUtil.addOrder(order);
+			TesHelper.supOList.add(order);
+		}
 
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		if (TesHelper.supOList.contains(order))
+			SupplierOrderUtil.deleteOrder(order);
+		TesHelper.supOList.clear();
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
 	}
 
 	@Test
 	public void testLoadAllOrdersWhereStatusOpen() {
-
-		List<SupplierOrder> orders = SupplierOrderUtil.loadAllOrdersWhereStatusOpen();
-		for (SupplierOrder ord : orders) {
-			if (!ord.getStatus().equals(Status.PENDING))
-				fail("Exception testing method SupplierOrderUtil.loadAllOrdersWhereStatusOpen()");
-		}
-
+		List<SupplierOrder> orders = null;
+		Assert.assertNull(orders);
+		orders=SupplierOrderUtil.loadAllOrdersWhereStatusOpen();
+		Assert.assertNotNull(orders);	
 	}
 
 	@Test
 	public void testLoadAllOrdersWhereStatusSucceeded() {
-		List<SupplierOrder> orders = SupplierOrderUtil.loadAllOrdersWhereStatusOpen();
-		for (SupplierOrder ord : orders) {
-			if (!ord.getStatus().equals(Status.PENDING))
-				fail("Exception testing method SupplierOrderUtil.loadAllOrdersWhereStatusOpen()");
-		}
+		List<SupplierOrder> orders = null;
+		Assert.assertNull(orders);
+		orders = SupplierOrderUtil.loadAllOrdersWhereStatusSucceeded();
+		Assert.assertNotNull(orders);		
 	}
 
 	@Test
@@ -74,12 +73,12 @@ public class SupplierOrderUtilTest {
 	@Test
 	public void testEditOrder() {
 		SupplierOrder editedOrder = null;
-		SupplierOrderUtil.addOrder(order);
 		order.setSumPrice(0);
 		SupplierOrderUtil.editOrder(order);
 		List<SupplierOrder> orders = SupplierOrderUtil.loadAllOrders();
 		for (SupplierOrder ord : orders) {
-			if (ord.getId().equals(order.getId())) editedOrder = ord;
+			if (ord.getId().equals(order.getId()))
+				editedOrder = ord;
 		}
 		Assert.assertTrue(order.getSumPrice() == editedOrder.getSumPrice());
 	}

@@ -28,9 +28,9 @@ public class TesHelper {
 			"lisaLustig@haha.de", "0711-35672891", "Frau", "1.4.2015");
 	public static CustomerOrder cOrder = new CustomerOrder("8.6.2016", 1, statusP, 12, "Rechner", 100.00, 3, 19.00);
 	public static SupplierOrder sOrder = new SupplierOrder("1.1.2016", 2, statusE, 123, "Kabel", 2.00, 7, 0.38);
-	public static List<Supplier> supList;
-	public static List<Customer> cusList;
-	public static List<SupplierOrder> supOList;
+	public static List<Supplier> supList = new ArrayList<Supplier>();
+	public static List<Customer> cusList = new ArrayList<Customer>();
+	public static List<SupplierOrder> supOList = new ArrayList<SupplierOrder>();
 	public static List<CustomerOrder> cusOList = new ArrayList<CustomerOrder>();
 	public static List<PaymentDetails> payList;
 	public static List<PostAdress> postList;
