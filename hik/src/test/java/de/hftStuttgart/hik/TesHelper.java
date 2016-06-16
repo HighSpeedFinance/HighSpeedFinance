@@ -10,10 +10,8 @@ import de.hftStuttgart.hik.model.PostAdress;
 import de.hftStuttgart.hik.model.Status;
 import de.hftStuttgart.hik.model.Supplier;
 import de.hftStuttgart.hik.model.SupplierOrder;
-import de.hftStuttgart.hik.utilities.DatabaseConnectionUtil;
-import de.hftStuttgart.hik.utilities.PaymentDetailsUtil;
 
-//Alle Daten die hï¿½ufiger gebraucht werden hier rein
+//Alle Daten die häufiger gebraucht werden hier rein
 public class TesHelper {
 
 	public static Status statusE = Status.ENABLED;

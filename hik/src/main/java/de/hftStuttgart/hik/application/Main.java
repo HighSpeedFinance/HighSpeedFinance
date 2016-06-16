@@ -36,6 +36,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
@@ -680,7 +681,8 @@ public class Main extends Application {
 	 * Instantiates a new main.
 	 */
 	public Main() {
-		AlertUtil.programStart();
+		Alert alert = AlertUtil.programStart();
+		alert.show();
 		try {
 			supplierData.addAll(SupplierUtil.loadAllSuppliers());
 			customerData.addAll(CustomerUtil.loadAllCustomers());
@@ -689,6 +691,7 @@ public class Main extends Application {
 		} catch (PersistenceException e) {
 			AlertUtil.noConnectionToDatabase();
 		}
+		alert.close();
 	}
 
 	/**

@@ -36,11 +36,71 @@ public class AlertUtil {
 	 * Shows an information message when starting the program while the database
 	 * is loading
 	 */
-	public static void programStart() {
+	public static Alert programStart() {
 		Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle("Information!");
 		alert.setHeaderText("");
 		alert.setContentText("Das Programm ist in Kürze für Sie bereit!");
-		alert.show();
+		return alert;
+	}
+	
+	/**
+	 * Shows a error message if no CustomerOrder is selected
+	 * 
+	 */
+	public static void noCustomerOrderSelected() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error!");
+		alert.setHeaderText("");
+		alert.setContentText("Bitte wählen Sie eine Rechnung aus!");
+		alert.showAndWait();
+	}
+	
+	/**
+	 * Shows a error message if no SupplierOrder is selected
+	 * 
+	 */
+	public static void noSupplierOrderSelected() {
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error!");
+		alert.setHeaderText("");
+		alert.setContentText("Bitte wählen Sie eine Bestellung aus!");
+		alert.showAndWait();
+	}
+	
+	/**
+	 * Shows a error message if the input is not valid
+	 * 
+	 */
+	public static void isInputValid(String errorMessage){
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error!");
+		alert.setHeaderText("");
+		alert.setContentText(errorMessage);
+		alert.showAndWait();
+	}
+	
+	/**
+	 * Shows a error message if no Customer is selected
+	 * 
+	 */
+	public static void noCustomerSelected(){
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error!");
+		alert.setHeaderText("");
+		alert.setContentText("Bitte wählen Sie einen Kunden aus!");
+		alert.showAndWait();
+	}
+	
+	/**
+	 * Shows a error message if no Supplier is selected
+	 * 
+	 */
+	public static void noSupplierSelected(){
+		Alert alert = new Alert(AlertType.ERROR);
+		alert.setTitle("Error!");
+		alert.setHeaderText("");
+		alert.setContentText("Bitte wählen Sie einen Lieferanten aus!");
+		alert.showAndWait();
 	}
 }

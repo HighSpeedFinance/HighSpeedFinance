@@ -1,20 +1,17 @@
 package de.hftStuttgart.hik;
 
 import static org.junit.Assert.*;
-
 import java.awt.Label;
-
-import javax.management.StringValueExp;
-
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
-import org.mockito.asm.tree.LabelNode;
-
 import de.hftStuttgart.hik.controller.AnnualAccountsController;
 
+
+@Ignore
 public class AnnualAccountsControllerTest {
 	Label resultIncomeCost= new Label();
 	private double summeEinnahmen;

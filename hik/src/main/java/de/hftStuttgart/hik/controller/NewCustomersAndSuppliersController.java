@@ -6,13 +6,13 @@ import java.time.ZoneId;
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.Supplier;
+import de.hftStuttgart.hik.utilities.AlertUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -24,7 +24,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
@@ -324,11 +323,7 @@ public class NewCustomersAndSuppliersController {
 		if (customerTable.getSelectionModel().getSelectedItem() != null)
 			main.showCustomerOrder(customerTable.getSelectionModel().getSelectedItem());
 		else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error!");
-			alert.setHeaderText("");
-			alert.setContentText("Keinen Kunden ausgewaehlt!");
-			alert.showAndWait();
+			AlertUtil.noCustomerOrderSelected();
 		}
 	}
 
@@ -340,11 +335,7 @@ public class NewCustomersAndSuppliersController {
 		if (supplierTable.getSelectionModel().getSelectedItem() != null)
 			main.showSupplierOrder(supplierTable.getSelectionModel().getSelectedItem());
 		else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error!");
-			alert.setHeaderText("");
-			alert.setContentText("Keinen Lieferanten ausgewaehlt!");
-			alert.showAndWait();
+			AlertUtil.noSupplierOrderSelected();
 		}
 	}
 

@@ -1,8 +1,11 @@
 package de.hftStuttgart.hik.controller;
 
+import javax.persistence.PersistenceException;
+
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.model.SupplierOrder;
+import de.hftStuttgart.hik.utilities.AlertUtil;
 import de.hftStuttgart.hik.utilities.CustomerUtil;
 import de.hftStuttgart.hik.utilities.OrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierOrderUtil;
@@ -10,13 +13,11 @@ import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -90,6 +91,18 @@ public class CustomerAndSupplierOrderOverviewController {
 	private ObservableList<SupplierOrder> supplierOrderList = FXCollections.observableArrayList();
 
 	/**
+	 * Sets the main app.
+	 *
+	 * @param mainApp
+	 *            the new main app
+	 */
+	public void setMainApp(Main mainApp) {
+		this.main = mainApp;
+		customerOrderTable.setItems(main.getCustomerOrderData());
+		supplierOrderTable.setItems(main.getSupplierOrderData());
+	}
+
+	/**
 	 * Initialize.
 	 */
 	@FXML
@@ -143,12 +156,16 @@ public class CustomerAndSupplierOrderOverviewController {
 		SupplierOrder supplierOrder = new SupplierOrder();
 		boolean okClicked = main.showSupplierOrderEditWithSupplierDialog(supplierOrder);
 		if (okClicked) {
-			SupplierUtil.loadAllSuppliers().get(supplierOrder.getSupplierObject().getId().intValue() - 1)
-					.addOrder(supplierOrder);
-			supplierOrder.setSupplier(supplierOrder.getSupplierObject());
-			SupplierOrderUtil.addOrder(supplierOrder);
-			main.addSupplierOrder(supplierOrder);
-			refreshSupplierOrderTable();
+			try {
+				SupplierUtil.loadAllSuppliers().get(supplierOrder.getSupplierObject().getId().intValue() - 1)
+						.addOrder(supplierOrder);
+				supplierOrder.setSupplier(supplierOrder.getSupplierObject());
+				SupplierOrderUtil.addOrder(supplierOrder);
+				main.addSupplierOrder(supplierOrder);
+				refreshSupplierOrderTable();
+			} catch (PersistenceException e) {
+				AlertUtil.noConnectionToDatabase();
+			}
 		}
 	}
 
@@ -162,14 +179,14 @@ public class CustomerAndSupplierOrderOverviewController {
 			boolean okClicked = main.showSupplierOrderEditDialog(supplierOrder);
 			if (okClicked) {
 				refreshSupplierOrderTable();
-				SupplierOrderUtil.editOrder(supplierOrder);
+				try {
+					SupplierOrderUtil.editOrder(supplierOrder);
+				} catch (PersistenceException e) {
+					AlertUtil.noConnectionToDatabase();
+				}
 			}
 		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error!");
-			alert.setHeaderText("");
-			alert.setContentText("Keine Bestellung ausgew�hlt!");
-			alert.showAndWait();
+			AlertUtil.noSupplierOrderSelected();
 		}
 	}
 
@@ -181,11 +198,15 @@ public class CustomerAndSupplierOrderOverviewController {
 		CustomerOrder customerOrder = new CustomerOrder();
 		boolean okClicked = main.showOrderEditWithCustomerDialog(customerOrder);
 		if (okClicked) {
-			CustomerUtil.loadAllCustomers().get(customerOrder.getCustomerObject().getId().intValue() - 1)
-					.addOrder(customerOrder);
-			customerOrder.setCustomer(customerOrder.getCustomerObject());
-			OrderUtil.addOrder(customerOrder);
-			main.addCustomerOrder(customerOrder);
+			try {
+				CustomerUtil.loadAllCustomers().get(customerOrder.getCustomerObject().getId().intValue() - 1)
+						.addOrder(customerOrder);
+				customerOrder.setCustomer(customerOrder.getCustomerObject());
+				OrderUtil.addOrder(customerOrder);
+				main.addCustomerOrder(customerOrder);
+			} catch (PersistenceException e) {
+				AlertUtil.noConnectionToDatabase();
+			}
 		}
 	}
 
@@ -199,14 +220,14 @@ public class CustomerAndSupplierOrderOverviewController {
 			boolean okClicked = main.showOrderEditDialog(customerOrder);
 			if (okClicked) {
 				refreshCustomerOrderTable();
-				OrderUtil.editOrder(customerOrder);
+				try {
+					OrderUtil.editOrder(customerOrder);
+				} catch (PersistenceException e) {
+					AlertUtil.noConnectionToDatabase();
+				}
 			}
 		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error!");
-			alert.setHeaderText("");
-			alert.setContentText("No CustomerOrder selected!");
-			alert.showAndWait();
+			AlertUtil.noCustomerOrderSelected();
 		}
 	}
 
@@ -261,18 +282,6 @@ public class CustomerAndSupplierOrderOverviewController {
 		} else {
 			customerOrderTable.setItems(main.getCustomerOrderData());
 		}
-	}
-
-	/**
-	 * Sets the main app.
-	 *
-	 * @param mainApp
-	 *            the new main app
-	 */
-	public void setMainApp(Main mainApp) {
-		this.main = mainApp;
-		customerOrderTable.setItems(main.getCustomerOrderData());
-		supplierOrderTable.setItems(main.getSupplierOrderData());
 	}
 
 	/**

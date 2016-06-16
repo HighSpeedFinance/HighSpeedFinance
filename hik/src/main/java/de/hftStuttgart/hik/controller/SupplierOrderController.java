@@ -1,15 +1,16 @@
 package de.hftStuttgart.hik.controller;
 
+import javax.persistence.PersistenceException;
+
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.Supplier;
 import de.hftStuttgart.hik.model.SupplierOrder;
+import de.hftStuttgart.hik.utilities.AlertUtil;
 import de.hftStuttgart.hik.utilities.SupplierOrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 // TODO: Auto-generated Javadoc
@@ -91,13 +92,21 @@ public class SupplierOrderController {
 		SupplierOrder supplierOrder = new SupplierOrder();
 		boolean okClicked = main.showSupplierOrderEditDialog(supplierOrder);
 		if (okClicked) {
-			for (Supplier sup : SupplierUtil.loadAllSuppliers()) {
-				if (supplier.getId() == sup.getId()) {
-					sup.addOrder(supplierOrder);
+			try {
+				for (Supplier sup : SupplierUtil.loadAllSuppliers()) {
+					if (supplier.getId() == sup.getId()) {
+						sup.addOrder(supplierOrder);
+					}
 				}
+			} catch (PersistenceException e) {
+				AlertUtil.noConnectionToDatabase();
 			}
 			supplierOrder.setSupplier(supplier);
-			SupplierOrderUtil.addOrder(supplierOrder);
+			try {
+				SupplierOrderUtil.addOrder(supplierOrder);
+			} catch (PersistenceException e) {
+				AlertUtil.noConnectionToDatabase();
+			}
 			refreshSupplierOrderTable();
 			main.addSupplierOrder(supplierOrder);
 		}
@@ -112,15 +121,15 @@ public class SupplierOrderController {
 		if (supplierOrder != null) {
 			boolean okClicked = main.showSupplierOrderEditDialog(supplierOrder);
 			if (okClicked) {
-				SupplierOrderUtil.editOrder(supplierOrder);
+				try {
+					SupplierOrderUtil.editOrder(supplierOrder);
+				} catch (PersistenceException e) {
+					AlertUtil.noConnectionToDatabase();
+				}
 				refreshSupplierOrderTable();
 			}
 		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error!");
-			alert.setHeaderText("");
-			alert.setContentText("Bitte w�hlen Sie eine Rechnung aus!");
-			alert.showAndWait();
+			AlertUtil.noSupplierOrderSelected();
 		}
 	}
 

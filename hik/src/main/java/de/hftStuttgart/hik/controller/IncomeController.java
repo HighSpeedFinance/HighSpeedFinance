@@ -3,9 +3,12 @@ package de.hftStuttgart.hik.controller;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
+import javax.persistence.PersistenceException;
+
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.CustomerOrder;
+import de.hftStuttgart.hik.utilities.AlertUtil;
 import de.hftStuttgart.hik.utilities.CustomerUtil;
 import de.hftStuttgart.hik.utilities.OrderUtil;
 import javafx.beans.value.ChangeListener;
@@ -86,16 +89,20 @@ public class IncomeController {
 	public void setPlzComboBox(int index) {
 		for (CustomerOrder cusOrder : customerOrderListInTime) {
 			String plzInt = "";
-			for (Customer cus : CustomerUtil.loadAllCustomers()) {
-				if (cusOrder.getCustomerObject().getId() == cus.getId()) {
-					plzInt = String.valueOf(cusOrder.getCustomerObject().getCustomerAdressPostIndex());
+			try {
+				for (Customer cus : CustomerUtil.loadAllCustomers()) {
+					if (cusOrder.getCustomerObject().getId() == cus.getId()) {
+						plzInt = String.valueOf(cusOrder.getCustomerObject().getCustomerAdressPostIndex());
+					}
 				}
+				if (!plz.contains("Alle")) {
+					plz.add("Alle");
+				}
+				if (!plz.contains(plzInt))
+					plz.add(plzInt);
+			} catch (PersistenceException e) {
+				AlertUtil.noConnectionToDatabase();
 			}
-			if (!plz.contains("Alle")) {
-				plz.add("Alle");
-			}
-			if (!plz.contains(plzInt))
-				plz.add(plzInt);
 		}
 		plzCombobox.setItems(plz);
 		plzCombobox.getSelectionModel().select(index);
@@ -135,7 +142,8 @@ public class IncomeController {
 	}
 
 	/**
-	 * Sets the days combobox.selectable options are 10 days, 20 days, 30 days or all
+	 * Sets the days combobox.selectable options are 10 days, 20 days, 30 days
+	 * or all
 	 */
 	public void setDaysCombobox() {
 		daysCombobox.setItems(FXCollections.observableArrayList("10 Tage", "20 Tage", "30 Tage", "Alle"));
@@ -149,7 +157,11 @@ public class IncomeController {
 	 *            the new main app
 	 */
 	public void setMainApp(Main main) {
+		try{
 		customerOrderList = OrderUtil.loadAllOrdersWhereStatusSucceeded();
+		} catch (PersistenceException e) {
+			AlertUtil.noConnectionToDatabase();
+		}
 		loadOrders("10 Tage");
 	}
 

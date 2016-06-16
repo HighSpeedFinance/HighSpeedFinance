@@ -1,7 +1,5 @@
 package de.hftStuttgart.hik.utilities;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import org.junit.After;
@@ -14,8 +12,6 @@ import org.junit.Test;
 import de.hftStuttgart.hik.TesHelper;
 
 import de.hftStuttgart.hik.model.CustomerOrder;
-import de.hftStuttgart.hik.model.Status;
-import de.hftStuttgart.hik.model.SupplierOrder;
 
 public class OrderUtilTest {
 	private static CustomerOrder order = new CustomerOrder();

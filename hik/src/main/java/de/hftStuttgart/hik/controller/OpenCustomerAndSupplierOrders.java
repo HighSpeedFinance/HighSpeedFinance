@@ -1,20 +1,21 @@
 package de.hftStuttgart.hik.controller;
 
+import javax.persistence.PersistenceException;
+
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.model.SupplierOrder;
+import de.hftStuttgart.hik.utilities.AlertUtil;
 import de.hftStuttgart.hik.utilities.OrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierOrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class OpenCustomerAndSupplierOrders {
@@ -32,7 +33,7 @@ public class OpenCustomerAndSupplierOrders {
 	private TableColumn<CustomerOrder, String> customerNumber;
 	@FXML
 	private TableView<SupplierOrder> supplierOrderTable;
-	
+
 	/** The order name supplier. */
 	@FXML
 	private TableColumn<SupplierOrder, String> orderNameSupplier;
@@ -60,15 +61,23 @@ public class OpenCustomerAndSupplierOrders {
 	}
 
 	public void loadCustomerOrders() {
-		ObservableList<CustomerOrder> customerOrderList = OrderUtil.loadAllOrdersWhereStatusOpen();
-		customerOrderTable.setItems(customerOrderList);
+		try {
+			ObservableList<CustomerOrder> customerOrderList = OrderUtil.loadAllOrdersWhereStatusOpen();
+			customerOrderTable.setItems(customerOrderList);
+		} catch (PersistenceException e) {
+			AlertUtil.noConnectionToDatabase();
+		}
 	}
 
 	public void loadSupplierOrders() {
-		ObservableList<SupplierOrder> supplierOrderList = SupplierOrderUtil.loadAllOrdersWhereStatusOpen();
-		supplierOrderTable.setItems(supplierOrderList);
+		try {
+			ObservableList<SupplierOrder> supplierOrderList = SupplierOrderUtil.loadAllOrdersWhereStatusOpen();
+			supplierOrderTable.setItems(supplierOrderList);
+		} catch (PersistenceException e) {
+			AlertUtil.noConnectionToDatabase();
+		}
 	}
-	
+
 	private void refreshSupplierOrderTable() {
 		int selectedIndex = supplierOrderTable.getSelectionModel().getSelectedIndex();
 		supplierOrderTable.setItems(null);
@@ -106,11 +115,15 @@ public class OpenCustomerAndSupplierOrders {
 		SupplierOrder supplierOrder = new SupplierOrder();
 		boolean okClicked = main.showSupplierOrderEditWithSupplierDialog(supplierOrder);
 		if (okClicked) {
+			try{
 			SupplierUtil.loadAllSuppliers().get(supplierOrder.getSupplierObject().getId().intValue() - 1)
 					.addOrder(supplierOrder);
 			supplierOrder.setSupplier(supplierOrder.getSupplierObject());
 			SupplierOrderUtil.addOrder(supplierOrder);
 			refreshSupplierOrderTable();
+			} catch (PersistenceException e) {
+				AlertUtil.noConnectionToDatabase();
+			}
 		}
 	}
 
@@ -120,15 +133,15 @@ public class OpenCustomerAndSupplierOrders {
 		if (supplierOrder != null) {
 			boolean okClicked = main.showSupplierOrderEditDialog(supplierOrder);
 			if (okClicked) {
+				try{
 				SupplierOrderUtil.editOrder(supplierOrder);
+				} catch (PersistenceException e) {
+					AlertUtil.noConnectionToDatabase();
+				}
 				refreshSupplierOrderTable();
 			}
 		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error!");
-			alert.setHeaderText("");
-			alert.setContentText("Bitte wählen Sie eine Rechnung aus!");
-			alert.showAndWait();
+			AlertUtil.noSupplierOrderSelected();
 		}
 	}
 

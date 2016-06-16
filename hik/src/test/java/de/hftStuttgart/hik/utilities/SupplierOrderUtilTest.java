@@ -1,7 +1,5 @@
 package de.hftStuttgart.hik.utilities;
 
-import static org.junit.Assert.*;
-
 import java.util.List;
 
 import org.junit.After;
@@ -9,7 +7,6 @@ import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import de.hftStuttgart.hik.TesHelper;

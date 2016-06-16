@@ -1,13 +1,14 @@
 package de.hftStuttgart.hik.controller;
 
+import javax.persistence.PersistenceException;
+
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.CustomerOrder;
+import de.hftStuttgart.hik.utilities.AlertUtil;
 import de.hftStuttgart.hik.utilities.CustomerUtil;
 import de.hftStuttgart.hik.utilities.OrderUtil;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -94,15 +95,19 @@ public class CustomerOrderController {
 		CustomerOrder customerOrder = new CustomerOrder();
 		boolean okClicked = main.showOrderEditDialog(customerOrder);
 		if (okClicked) {
-			for (Customer cus : CustomerUtil.loadAllCustomers()) {
-				if (customer.getId() == cus.getId()) {
-					cus.addOrder(customerOrder);
+			try {
+				for (Customer cus : CustomerUtil.loadAllCustomers()) {
+					if (customer.getId() == cus.getId()) {
+						cus.addOrder(customerOrder);
+					}
 				}
+				customerOrder.setCustomer(customer);
+				OrderUtil.addOrder(customerOrder);
+				main.addCustomerOrder(customerOrder);
+				refreshCustomerOrderTable();
+			} catch (PersistenceException e) {
+				AlertUtil.noConnectionToDatabase();
 			}
-			customerOrder.setCustomer(customer);
-			OrderUtil.addOrder(customerOrder);
-			main.addCustomerOrder(customerOrder);
-			refreshCustomerOrderTable();
 		}
 	}
 
@@ -115,15 +120,15 @@ public class CustomerOrderController {
 		if (customerOrder != null) {
 			boolean okClicked = main.showOrderEditDialog(customerOrder);
 			if (okClicked) {
+				try{
 				OrderUtil.editOrder(customerOrder);
+				} catch (PersistenceException e) {
+					AlertUtil.noConnectionToDatabase();
+				}
 				refreshCustomerOrderTable();
 			}
 		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error!");
-			alert.setHeaderText("");
-			alert.setContentText("Bitte w�hlen Sie eine Kundenbestellung aus!");
-			alert.showAndWait();
+			AlertUtil.noCustomerOrderSelected();
 		}
 	}
 

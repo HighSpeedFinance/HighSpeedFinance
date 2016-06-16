@@ -4,9 +4,12 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.regex.Pattern;
 
+import javax.persistence.PersistenceException;
+
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.model.SupplierOrder;
+import de.hftStuttgart.hik.utilities.AlertUtil;
 import de.hftStuttgart.hik.utilities.OrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierOrderUtil;
 import javafx.beans.value.ChangeListener;
@@ -64,6 +67,26 @@ public class AnnualAccountsController {
 	private double sumIncome = 0;
 
 	private double sumCosts = 0;
+
+	/**
+	 * Sets the main app. Loads all SupplierOrders and CustomerOrders where the
+	 * Status is "SUCCEEDED"
+	 *
+	 * @param main
+	 *            the new main app
+	 */
+	public void setMainApp(Main main) {
+		try {
+			customerOrderList.addAll(OrderUtil.loadAllOrdersWhereStatusSucceeded());
+			supplierOrderList.addAll(SupplierOrderUtil.loadAllOrdersWhereStatusSucceeded());
+		} catch (PersistenceException e) {
+			AlertUtil.noConnectionToDatabase();
+		}
+
+		setListInTime();
+
+		loadOrdersMonth(monthChoiceBox.getSelectionModel().getSelectedItem());
+	}
 
 	/**
 	 * Initialize.
@@ -127,22 +150,6 @@ public class AnnualAccountsController {
 		} else {
 			resultIncomeCost.setTextFill(Color.GREEN);
 		}
-	}
-
-	/**
-	 * Sets the main app. Loads all SupplierOrders and CustomerOrders where the
-	 * Status is "SUCCEEDED"
-	 *
-	 * @param main
-	 *            the new main app
-	 */
-	public void setMainApp(Main main) {
-		customerOrderList.addAll(OrderUtil.loadAllOrdersWhereStatusSucceeded());
-		supplierOrderList.addAll(SupplierOrderUtil.loadAllOrdersWhereStatusSucceeded());
-
-		setListInTime();
-
-		loadOrdersMonth(monthChoiceBox.getSelectionModel().getSelectedItem());
 	}
 
 	/**

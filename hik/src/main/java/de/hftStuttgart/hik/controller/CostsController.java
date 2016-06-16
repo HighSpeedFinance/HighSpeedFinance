@@ -3,9 +3,12 @@ package de.hftStuttgart.hik.controller;
 import java.time.LocalDate;
 import java.time.ZoneId;
 
+import javax.persistence.PersistenceException;
+
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.Supplier;
 import de.hftStuttgart.hik.model.SupplierOrder;
+import de.hftStuttgart.hik.utilities.AlertUtil;
 import de.hftStuttgart.hik.utilities.SupplierOrderUtil;
 import de.hftStuttgart.hik.utilities.SupplierUtil;
 import javafx.beans.value.ChangeListener;
@@ -75,6 +78,23 @@ public class CostsController {
 	private ObservableList<String> supplier = FXCollections.observableArrayList();
 
 	private double sumCalc = 0;
+
+	/**
+	 * Sets the main app. Loads the default option: 10 days
+	 * 
+	 * @param main
+	 *            the new main app
+	 * 
+	 *
+	 */
+	public void setMainApp(Main main) {
+		try {
+			supplierOrderList = SupplierOrderUtil.loadAllOrdersWhereStatusSucceeded();
+		} catch (PersistenceException e) {
+			AlertUtil.noConnectionToDatabase();
+		}
+		loadSupplierOrders("10 Tage");
+	}
 
 	/**
 	 * Initialize.
@@ -157,19 +177,24 @@ public class CostsController {
 	public void setSupplierComboBox(int index) {
 		for (SupplierOrder supOrder : supplierOrderListInTime) {
 			String supplierName = "";
-			for (Supplier sup : SupplierUtil.loadAllSuppliers()) {
-				if (supOrder.getSupplierObject().getId() == sup.getId()) {
-					supplierName = supOrder.getSupplierObject().getSupplierCompanyName();
+			try {
+				for (Supplier sup : SupplierUtil.loadAllSuppliers()) {
+					if (supOrder.getSupplierObject().getId() == sup.getId()) {
+						supplierName = supOrder.getSupplierObject().getSupplierCompanyName();
+					}
 				}
+				if (!supplier.contains("Alle")) {
+					supplier.add("Alle");
+				}
+				if (!supplier.contains(supplierName)) {
+					supplier.add(supplierName);
+				}
+				supplierCombobox.setItems(supplier);
+				supplierCombobox.getSelectionModel().select(index);
+			} catch (PersistenceException e) {
+				AlertUtil.noConnectionToDatabase();
 			}
-			if (!supplier.contains("Alle")) {
-				supplier.add("Alle");
-			}
-			if (!supplier.contains(supplierName))
-				supplier.add(supplierName);
 		}
-		supplierCombobox.setItems(supplier);
-		supplierCombobox.getSelectionModel().select(index);
 	}
 
 	/**
@@ -220,16 +245,4 @@ public class CostsController {
 		loadOrdersSupplier(supplierCombobox.getSelectionModel().getSelectedItem());
 	}
 
-	/**
-	 * Sets the main app. Loads the default option: 10 days
-	 * 
-	 * @param main
-	 *            the new main app
-	 * 
-	 *
-	 */
-	public void setMainApp(Main main) {
-		supplierOrderList = SupplierOrderUtil.loadAllOrdersWhereStatusSucceeded();
-		loadSupplierOrders("10 Tage");
-	}
 }

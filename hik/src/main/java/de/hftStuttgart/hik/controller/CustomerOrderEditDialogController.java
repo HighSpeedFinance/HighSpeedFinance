@@ -2,13 +2,12 @@ package de.hftStuttgart.hik.controller;
 
 import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.model.Status;
+import de.hftStuttgart.hik.utilities.AlertUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.util.converter.LocalDateStringConverter;
 
@@ -243,11 +242,7 @@ public class CustomerOrderEditDialogController {
 		if (errorMessage.length() == 0) {
 			return true;
 		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error!");
-			alert.setHeaderText("");
-			alert.setContentText(errorMessage);
-			alert.showAndWait();
+			AlertUtil.isInputValid(errorMessage);
 			return false;
 		}
 	}

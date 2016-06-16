@@ -3,14 +3,13 @@ package de.hftStuttgart.hik.controller;
 import de.hftStuttgart.hik.application.Main;
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.Supplier;
+import de.hftStuttgart.hik.utilities.AlertUtil;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.SingleSelectionModel;
 import javafx.scene.control.Tab;
@@ -196,11 +195,7 @@ public class TabViewController {
 		if (customerTable.getSelectionModel().getSelectedItem() != null)
 			main.showCustomerOrder(customerTable.getSelectionModel().getSelectedItem());
 		else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error!");
-			alert.setHeaderText("");
-			alert.setContentText("Bitte w�hlen Sie einen Kunden aus!");
-			alert.showAndWait();
+			AlertUtil.noCustomerSelected();
 		}
 	}
 
@@ -212,11 +207,7 @@ public class TabViewController {
 		if (supplierTable.getSelectionModel().getSelectedItem() != null)
 			main.showSupplierOrder(supplierTable.getSelectionModel().getSelectedItem());
 		else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error!");
-			alert.setHeaderText("");
-			alert.setContentText("Bitte w�hlen Sie einen Lieferanten aus!");
-			alert.showAndWait();
+			AlertUtil.noSupplierSelected();
 		}
 	}
 

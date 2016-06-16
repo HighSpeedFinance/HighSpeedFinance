@@ -1,16 +1,17 @@
 package de.hftStuttgart.hik.controller;
 
+import javax.persistence.PersistenceException;
+
 import de.hftStuttgart.hik.model.Customer;
 import de.hftStuttgart.hik.model.CustomerOrder;
 import de.hftStuttgart.hik.model.Status;
+import de.hftStuttgart.hik.utilities.AlertUtil;
 import de.hftStuttgart.hik.utilities.CustomerUtil;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.util.converter.LocalDateStringConverter;
 
@@ -75,8 +76,12 @@ public class CustomerOrderEditWithCustomerDialogController {
 	 * Sets the customers.
 	 */
 	public void setCustomers() {
+		try{
 		customers.setItems(CustomerUtil.loadAllCustomers());
 		customers.getSelectionModel().select(0);
+		} catch (PersistenceException e) {
+			AlertUtil.noConnectionToDatabase();
+		}
 	}
 
 	public void setDialogStage(Stage dialogStage) {
@@ -242,11 +247,7 @@ public class CustomerOrderEditWithCustomerDialogController {
 		if (errorMessage.length() == 0) {
 			return true;
 		} else {
-			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error!");
-			alert.setHeaderText("");
-			alert.setContentText(errorMessage);
-			alert.showAndWait();
+			AlertUtil.isInputValid(errorMessage);
 			return false;
 		}
 	}
